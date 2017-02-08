@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "A8FETR73Y9.com.phonegap.MickmanTracker"
+        versionCode = "10" 
+        version     = "1.0" >
+	
+    <name>Mtracker</name>
+    <description>
+	    A Customizable App to collect scout orders for an on the go sales tool. 
+	    Droid and iOS compatible.
+    </description>
+
+    <author href="https://build.phonegap.com" email="j_flottmeyer@voilamediagroup.com">
+        John Flottmeyer
+    </author>
+    
+    <gap:platform name="ios" />
+    <gap:platform name="android" />
+    
+    <!-- third party plugins -->
+
+    <!-- universal preferences -->
+    <preference name="phonegap-version"           value="cli-5.2.0" />         
+    <preference name="fullscreen"                 value="true" />
+	
+	<!-- ios preferences --> 
+    <preference name="target-device" value="universal" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    
+    <!-- ios icons  6.1 -->
+    <!-- ios icons 7+ -->
+	
+<gap:config-file platform="ios" parent="ITSAppUsesNonExemptEncryption" mode="add">
+	<false/>
+</gap:config-file>
+</widget>
