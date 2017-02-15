@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+	<!--css rules-->
+    <link href="vendor/jquerymobile/jquery.mobile.icons.min.css" type="text/css" rel="stylesheet" />
+    <link href="vendor/jquerymobile/jquery.mobile.structure-1.4.5.min.css" type="text/css" rel="stylesheet" />
+    <link href="vendor/waves/waves.min.css" type="text/css" rel="stylesheet" />
+	<link href="vendor/wow/animate.css" type="text/css" rel="stylesheet"/>
+    <link href="css/nativedroid2.css" type="text/css" rel="stylesheet"/>
+    <link href="css/app.css" type="text/css" rel="stylesheet"/><!-- custom app specific css -->
+    <title>Mickman Holiday Wreath Fundraiser Sales Guide</title>
+</head>
+<body class="clr-accent-lime">
+
+	<!-- Login Page / Initial Page-->
+	<div data-role="page" id="page-signin">
+	    <div data-role="header" data-theme="c" data-position="fixed">
+	        <a href="#page-index" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+	        <h1>Mickman Holiday Wreath Fundraiser Login</h1>
+	    </div><!-- /header -->
+	    <div role="main" class="ui-content">
+		    <p style="text-align:center;margin:0px auto"><img src="images/mickman-logo.png" alt="Mickman Brothers" /></p>
+	        <h3>Welcome to the Mickman Holiday Sales App</h3>
+	        <p>Sign in below with your username and password that your Scout leader has given you to begin.</p>
+	        <div id="ctn-err" class="bi-invisible"></div>
+	        <label for="txt-email-address">Email Address</label>
+	        <input type="text" name="txt-email-address" id="txt-email-address" value="">
+	        <label for="txt-password">Password</label>
+	        <input type="password" name="txt-password" id="txt-password" value="">
+	        <fieldset data-role="controlgroup">                
+	            <label><input type="checkbox" name="chk-keep-signed-in" id="chk-keep-signed-in"> Keep me signed in</label>
+	        </fieldset>
+	        <a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-nodisc-icon ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" name="btn-submit">Submit</a>
+	        <p class="mc-top-margin-1-5"><a href="#begin-password-reset-page">Can't access your account?</a></p>
+	    </div>
+	</div><!-- /page -->
+	
+	<!-- User is logged in -->
+	<div data-role="page" id="page-main-menu">
+	    <div data-role="header" data-theme="c">
+		    <a href="#page-signin" data-icon="lock" data-iconpos="notext" data-transition="slide" data-direction="reverse" class="ui-nodisc-icon"></a>
+	        <h1>Mickman Holiday Wreath Fundraiser Catalog</h1>
+	        <ul data-role="nd2tabs" data-swipe="true" class="">
+						<li data-tab="catalog" data-tab-active="true">Catalog</li>
+						<li data-tab="orders">Orders</li>
+						<!--<li data-tab="holiday">Holiday</li>
+						<li data-tab="colors">Colors</li>
+		          		<li><a href="#catalog" data-theme="a" data-tab="catalog" data-ajax="false">Catalog</a></li>
+		          		<li><a href="#orders" data-theme="a" data-tab="orders" data-ajax="false">Orders</a></li>-->
+		        	</ul>
+	    </div><!-- /header -->
+	    <div role="main" class="ui-content wow" data-wow-delay="0.8s">
+	   		<h2 class="mc-text-center">Main Menu</h2>
+	   		
+		        	
+				<div id="catalog" data-role="nd2tab" data-tab="catalog" class="ui-content">
+					Catalog
+    			</div>
+				<div id="orders" data-role="nd2tab" data-tab="orders" class="ui-content">
+					Orders
+    			</div>
+	    </div><!-- /content -->
+	</div><!-- /page -->
+
+    
+    <!--<script type="text/javascript" src="cordova.js"></script>-->
+    <script src="vendor/fastclick/fastclick.min.js"></script>
+    <script src="vendor/jquery/jquery-2.1.1.min.js"></script>
+    
+    <script src="js/api-messages.js"></script><!--what is this-->
+    <script src="js/settings.js"></script><!--what is this-->
+    <script src="js/session.js"></script><!-- local storage session storage -->
+	<script src="js/signin-controller.js"></script>
+    
+    <script src="js/index.js"></script>
+    <script src="vendor/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
+    <script src="vendor/waves/waves.min.js"></script>
+	<script src="vendor/wow/wow.min.js"></script>
+	<script src="js/nativedroid2.js"></script>
+</body>
+</html>
