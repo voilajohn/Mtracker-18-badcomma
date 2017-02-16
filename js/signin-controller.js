@@ -7,7 +7,8 @@ var MickmanAppLogin = MickmanAppLogin || {};
 MickmanAppLogin.SignInController = function () {
     this.$signInPage = null;
     this.$btnSubmit = null;
-    this.$txtEmailAddress = null;
+    //this.$txtEmailAddress = null;
+    this.$txtUserName = null;
     this.$txtPassword = null;
     this.$chkKeepSignedIn = null;
     this.$ctnErr = null;
@@ -19,7 +20,8 @@ MickmanAppLogin.SignInController.prototype.init = function () {
     this.mainMenuPageId = "#page-main-menu";
     this.$btnSubmit = $("#btn-submit", this.$signInPage);
     this.$ctnErr = $("#ctn-err", this.$signInPage);
-    this.$txtEmailAddress = $("#txt-email-address", this.$signInPage);
+    //this.$txtEmailAddress = $("#txt-email-address", this.$signInPage);
+    this.$txtUserName = $("#txt-user-name", this.$signInPage);
     this.$txtPassword = $("#txt-password", this.$signInPage);
     this.$chkKeepSignedIn = $("#chk-keep-signed-in", this.$signInPage);
 };
@@ -36,9 +38,11 @@ MickmanAppLogin.SignInController.prototype.resetSignInForm = function () {
 
     this.$ctnErr.html("");
     this.$ctnErr.removeClass().addClass(invisibleStyle);
-    this.$txtEmailAddress.removeClass(invalidInputStyle);
+    //this.$txtEmailAddress.removeClass(invalidInputStyle);
+    this.$txtUserName.removeClass(invalidInputStyle);
     this.$txtPassword.removeClass(invalidInputStyle);
-    this.$txtEmailAddress.val("");
+    //this.$txtEmailAddress.val("");
+    this.$txtUserName.val("");
     this.$txtPassword.val("");
     this.$chkKeepSignedIn.prop("checked", false);
 };
@@ -48,7 +52,8 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 	console.log("submitted");
 	
     var me = this,
-        emailAddress = me.$txtEmailAddress.val().trim(),
+        //emailAddress = me.$txtEmailAddress.val().trim(),
+        userName = me.$txtUserName.val().trim(),
         password = me.$txtPassword.val().trim(),
         invalidInput = false,
         invisibleStyle = "bi-invisible",
@@ -56,14 +61,20 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 
     // Reset styles.
     me.$ctnErr.removeClass().addClass(invisibleStyle);
-    me.$txtEmailAddress.removeClass(invalidInputStyle);
+    //me.$txtEmailAddress.removeClass(invalidInputStyle);
+    me.$txtUserName.removeClass(invalidInputStyle);
     me.$txtPassword.removeClass(invalidInputStyle);
 
     // Flag each invalid field.
-    if (emailAddress.length === 0) {
+    /*if (emailAddress.length === 0) {
         me.$txtEmailAddress.addClass(invalidInputStyle);
         invalidInput = true;
         console.log("empty email");
+    }*/
+    if (userName.length === 0) {
+        me.$txtUserName.addClass(invalidInputStyle);
+        invalidInput = true;
+        console.log("empty user");
     }
     // check that there is a password entered.
     if (password.length === 0) {
@@ -79,18 +90,18 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
         return;
     }
 	//check that the email address is valid
-    if (!me.emailAddressIsValid(emailAddress)) {
+    /*if (!me.emailAddressIsValid(emailAddress)) {
         me.$ctnErr.html("<p>Please enter a valid email address.</p>");
         me.$ctnErr.addClass("bi-ctn-err").slideDown();
         me.$txtEmailAddress.addClass(invalidInputStyle);
         return;
-    }
+    }*/
 
     $.mobile.loading("show");
     $.ajax({
         type: 'POST',
         url: MickmanAppLogin.Settings.signInUrl,
-        data: "email=" + emailAddress + "&password=" + password,
+        data: "user=" + userName + "&password=" + password,
         success: function (resp) {
 	        
             $.mobile.loading("hide");
