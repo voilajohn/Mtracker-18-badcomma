@@ -9,20 +9,22 @@
 	<!--css rules-->
     <link href="vendor/jquerymobile/jquery.mobile.icons.min.css" type="text/css" rel="stylesheet" />
     <link href="vendor/jquerymobile/jquery.mobile.structure-1.4.5.min.css" type="text/css" rel="stylesheet" />
-    <link href="vendor/waves/waves.min.css" type="text/css" rel="stylesheet" />
-	<link href="vendor/wow/animate.css" type="text/css" rel="stylesheet"/>
-    <link href="css/nativedroid2.css" type="text/css" rel="stylesheet"/>
+    <!--<link href="vendor/waves/waves.min.css" type="text/css" rel="stylesheet" />-->
+	<!--<link href="vendor/wow/animate.css" type="text/css" rel="stylesheet"/>-->
+    <link href="vendor/jquerymobile/jquery.mobile-1.4.5.min.css" type="text/css" rel="stylesheet"/><!-- jquery mobile theme -->
+    <!--<link href="css/index.css" type="text/css" rel="stylesheet"/><!-- custom app specific css -->
     <link href="css/app.css" type="text/css" rel="stylesheet"/><!-- custom app specific css -->
     <title>Mickman Holiday Wreath Fundraiser Sales Guide</title>
 </head>
-<body class="clr-accent-lime">
+<body class="ui-mobile-viewport ui-overlay-c">
 
 	<!-- Login Page / Initial Page-->
-	<div data-role="page" id="page-signin">
-	    <div data-role="header" data-theme="c" data-position="fixed">
+	<div data-role="page" id="page-signin" class="ui-page">
+	    <div data-role="header" data-position="fixed" data-theme="b">
 	        <a href="#page-index" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
 	        <h1>Mickman Holiday Wreath Fundraiser Login</h1>
 	    </div><!-- /header -->
+	   
 	    <div role="main" class="ui-content">
 		    <p style="text-align:center;margin:0px auto"><img src="images/mickman-logo.png" alt="Mickman Brothers" /></p>
 	        <h3>Welcome to the Mickman Holiday Sales App</h3>
@@ -33,7 +35,7 @@
 	        <label for="txt-password">Password</label>
 	        <input type="password" name="txt-password" id="txt-password" value="">
 	        <fieldset data-role="controlgroup">                
-	            <label><input type="checkbox" name="chk-keep-signed-in" id="chk-keep-signed-in"> Keep me signed in</label>
+	            <label><input type="checkbox" name="chk-keep-signed-in" data-theme="a" id="chk-keep-signed-in"> Keep me signed in</label>
 	        </fieldset>
 	        <a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-nodisc-icon ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" name="btn-submit">Submit</a>
 	        <p class="mc-top-margin-1-5"><a href="#begin-password-reset-page">Can't access your account?</a></p>
@@ -42,67 +44,100 @@
 	
 	<!-- User is logged in -->
 	<div data-role="page" id="page-main-menu">
-	    <div data-role="header" data-theme="c">
-		    <a href="#page-signin" data-icon="lock" data-iconpos="notext" data-transition="slide" data-direction="reverse" class="ui-nodisc-icon"></a>
-	        <h1>Mickman Holiday Wreath Fundraiser Catalog</h1>
-	        <ul data-role="nd2tabs" data-swipe="true" class="">
-						<li data-tab="catalog" data-tab-active="true">Catalog</li>
-						<li data-tab="orders">Orders</li>
-						<!--<li data-tab="holiday">Holiday</li>
-						<li data-tab="colors">Colors</li>
-		          		<li><a href="#catalog" data-theme="a" data-tab="catalog" data-ajax="false">Catalog</a></li>
-		          		<li><a href="#orders" data-theme="a" data-tab="orders" data-ajax="false">Orders</a></li>-->
-		        	</ul>
+	    <div data-role="header" data-theme="b">
+		    <a href="#page-signin" data-icon="home"  data-transition="slide" data-direction="reverse" class="ui-nodisc-icon">Log Out</a>
+	        <h1>Products</h1>
+	       
 	    </div><!-- /header -->
-	    <div role="main" class="ui-content wow" data-wow-delay="0.8s">
-		        	
-				<div id="catalog" data-role="nd2tab" data-tab="catalog" class="ui-content">
-					<ul data-role="listview" data-icon="false">
-				<li data-role="list-divider">
-					Products
-				</li>
-				<li>
-					<a href="#">
-						<img src="images/products/classicprolg_sm.jpg" class="ui-thumbnail ui-thumbnail-circular" />
-						<h2>Classic Wreath</h2>
-						<p>form</p>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="images/products/victorian-wreath-large_sm.jpg" class="ui-thumbnail ui-thumbnail-circular" />
-						<h2>Classic Wreath</h2>
-						<p>form</p>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="images/products/classicprolg_sm.jpg" class="ui-thumbnail ui-thumbnail-circular" />
-						<h2>Classic Wreath</h2>
-						<p>form</p>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="images/products/victorian-wreath-large_sm.jpg" class="ui-thumbnail ui-thumbnail-circular" />
-						<h2>Classic Wreath</h2>
-						<p>form</p>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<img src="images/products/classicprolg_sm.jpg" class="ui-thumbnail ui-thumbnail-circular" />
-						<h2>Classic Wreath</h2>
-						<p>form</p>
-					</a>
-				</li>
-					</ul>
-    			</div>
-				<div id="orders" data-role="nd2tab" data-tab="orders" class="ui-content">
-					Orders
-    			</div>
+	    
+	    <div role="content" class="ui-content">
+		    <form class="ui-filterable">
+			    <input id="filterBasic-input" data-type="search">
+			</form>
+		    <ul data-role="listview"  data-filter="true" data-input="#filterBasic-input" data-inset="true">
+					<li data-role="list-divider">Wreaths</li>
+					<li><a href="#" data-icon="plus"><img src="images/products/thumbs/classic_sm.jpg" alt="Classic Wreath"><h2>Classic Wreath</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li><a href="#" ><img src="images/products/thumbs/victorian_sm.jpg" alt="Victorian Wreath"><h2>Victorian Wreath</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li><a href="#" data-icon="plus"><img src="images/products/thumbs/cranberry_sm.jpg" alt="Cranbeery Splash Wreath"><h2>Cranberry Splash Wreath</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li><a href="#"><img src="images/products/thumbs/wintergreen_sm.jpg" alt="Wintergreen Wreath"><h2>Wintergreen Wreath</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li data-role="list-divider">Holiday Sprays</li>
+					<li><a href="#"><img src="images/products/thumbs/classic-spray_sm.jpg" alt="Classic Spray"><h2>Classic Spray</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li><a href="#"><img src="images/products/thumbs/victorian-spray_sm.jpg" alt="Victorian Spray"><h2>Victorian Spray</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li><a href="#"><img src="images/products/thumbs/cranberry-spray_sm.jpg" alt="Cranberry Spray"><h2>Cranberry Spray</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li><a href="#"><img src="images/products/thumbs/wintergreen-spray_sm.jpg" alt="Wintergreen Spray"><h2>Wintergreen Spray</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li data-role="list-divider">Holiday Centerpieces</li>
+					<li><a href="#"><img src="images/products/thumbs/candlelitcenterpiece_sm.jpg" alt="Candlelit Centerpiece"><h2>Candlelit Centerpiece</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li><a href="#"><img src="images/products/thumbs/evergreen-elegance_sm.jpg" alt="Evergreen Elegance Centerpiece"><h2>Evergreen Elegance Centerpiece</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li><a href="#"><img src="images/products/thumbs/led-candlelit-centerpiece_sm.jpg" alt="Merry Moments Centerpiece"><h2>Merry Moments Centerpiece</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li><a href="#"><img src="images/products/thumbs/waxcandlelit-centerpiece_sm.jpg" alt="Wax Candlelit Centerpiece"><h2>Wax Candlelit Centerpiece</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li data-role="list-divider">Table Top Trees</li>
+					<li><a href="#"><img src="images/products/thumbs/North-star_sm.jpg" alt="The North Star Table Top Tree"><h2>The North Star Table Top Tree</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li><a href="#"><img src="images/products/thumbs/mini-merry_sm.jpg" alt="The Mini Merry Tree"><h2>The Mini Merry Tree</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li><a href="#"><img src="images/products/thumbs/holly-berry_sm.jpg" alt="The Holly Berry Tree"><h2>The Holly Berry</h2><p>Price: <span>Null</span></p></a><a href="#" data-icon="plus">Buy</a></li>
+					<li data-role="list-divider">Accessories</li>
+				</ul>
+		    
+			
+			<div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+			    <h3>Checkout?</h3>
+				<p>Would you like to...</p>
+			    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Add & Checkout</a>
+			    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Add & Shop</a>
+				<a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Cancel</a>
+			</div>
 	    </div><!-- /content -->
+	    <div data-role="footer" data-position="fixed">
+		    <div data-role="navbar">
+              <ul>
+	               <li><a href="#page-main-menu" data-icon="home" class="ui-btn-active">Products</a></li>
+	               <li><a href="#page-cart" data-icon="shop">Cart</a></li>
+	               <li><a href="#page-orders" data-icon="grid">Orders</a></li>
+              </ul>
+		    </div>
+		</div><!--/footer-->
 	</div><!-- /page -->
+	
+	<!-- Orders Page -->
+	<div data-role="page" id="page-orders" class="ui-page ui-body-a">
+	    <div data-role="header" data-theme="b" data-position="fixed">
+	        <a href="#page-index" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+	        <h1>Orders</h1>
+	    </div><!-- /header -->
+	    <div role="main" class="ui-content">
+		    Nothing at this time.
+	    </div>
+	    <div data-role="footer" data-position="fixed">
+		    <div data-role="navbar">
+              <ul>
+	               <li><a href="#page-main-menu" data-icon="home">Products</a></li>
+	               <li><a href="#page-cart" data-icon="shop">Cart</a></li>
+	               <li><a href="#page-orders" data-icon="grid" class="ui-btn-active">Orders</a></li>
+              </ul>
+		    </div>
+		</div><!--/footer-->
+	</div><!-- /page -->
+	
+	<!-- Cart Page -->
+	<div data-role="page" id="page-cart" class="ui-page ui-body-a">
+	    <div data-role="header" data-theme="b" data-position="fixed">
+	        <a href="#page-index" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+	        <h1>Cart</h1>
+	    </div><!-- /header -->
+	    <div role="main" class="ui-content">
+		    Nothing at this time.
+	    </div>
+	    <div data-role="footer" data-position="fixed">
+		    <div data-role="navbar">
+              <ul>
+	               <li><a href="#page-main-menu" data-icon="home">Products</a></li>
+	               <li><a href="#page-cart" data-icon="shop" class="ui-btn-active">Cart</a></li>
+	               <li><a href="#page-orders" data-icon="grid">Orders</a></li>
+              </ul>
+		    </div>
+		</div><!--/footer-->
+	</div><!-- /page -->
+	
+
 
     
     <!--<script type="text/javascript" src="cordova.js"></script>-->
@@ -116,8 +151,8 @@
     
     <script src="js/index.js"></script>
     <script src="vendor/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
-    <script src="vendor/waves/waves.min.js"></script>
+    <!--<script src="vendor/waves/waves.min.js"></script>
 	<script src="vendor/wow/wow.min.js"></script>
-	<script src="js/nativedroid2.js"></script>
+	<script src="js/nativedroid2.js"></script>-->
 </body>
 </html>
