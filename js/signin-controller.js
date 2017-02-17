@@ -7,7 +7,6 @@ var MickmanAppLogin = MickmanAppLogin || {};
 MickmanAppLogin.SignInController = function () {
     this.$signInPage = null;
     this.$btnSubmit = null;
-    //this.$txtEmailAddress = null;
     this.$txtUserName = null;
     this.$txtPassword = null;
     this.$chkKeepSignedIn = null;
@@ -20,15 +19,9 @@ MickmanAppLogin.SignInController.prototype.init = function () {
     this.mainMenuPageId = "#page-main-menu";
     this.$btnSubmit = $("#btn-submit", this.$signInPage);
     this.$ctnErr = $("#ctn-err", this.$signInPage);
-    //this.$txtEmailAddress = $("#txt-email-address", this.$signInPage);
     this.$txtUserName = $("#txt-user-name", this.$signInPage);
     this.$txtPassword = $("#txt-password", this.$signInPage);
     this.$chkKeepSignedIn = $("#chk-keep-signed-in", this.$signInPage);
-};
-
-MickmanAppLogin.SignInController.prototype.emailAddressIsValid = function (email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
 };
 
 MickmanAppLogin.SignInController.prototype.resetSignInForm = function () {
@@ -38,10 +31,8 @@ MickmanAppLogin.SignInController.prototype.resetSignInForm = function () {
 
     this.$ctnErr.html("");
     this.$ctnErr.removeClass().addClass(invisibleStyle);
-    //this.$txtEmailAddress.removeClass(invalidInputStyle);
     this.$txtUserName.removeClass(invalidInputStyle);
     this.$txtPassword.removeClass(invalidInputStyle);
-    //this.$txtEmailAddress.val("");
     this.$txtUserName.val("");
     this.$txtPassword.val("");
     this.$chkKeepSignedIn.prop("checked", false);
@@ -49,10 +40,7 @@ MickmanAppLogin.SignInController.prototype.resetSignInForm = function () {
 
 MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 	
-	console.log("submitted");
-	
     var me = this,
-        //emailAddress = me.$txtEmailAddress.val().trim(),
         userName = me.$txtUserName.val().trim(),
         password = me.$txtPassword.val().trim(),
         invalidInput = false,
@@ -61,16 +49,9 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 
     // Reset styles.
     me.$ctnErr.removeClass().addClass(invisibleStyle);
-    //me.$txtEmailAddress.removeClass(invalidInputStyle);
     me.$txtUserName.removeClass(invalidInputStyle);
     me.$txtPassword.removeClass(invalidInputStyle);
 
-    // Flag each invalid field.
-    /*if (emailAddress.length === 0) {
-        me.$txtEmailAddress.addClass(invalidInputStyle);
-        invalidInput = true;
-        console.log("empty email");
-    }*/
     if (userName.length === 0) {
         me.$txtUserName.addClass(invalidInputStyle);
         invalidInput = true;
@@ -82,20 +63,12 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
         invalidInput = true;
         console.log("empty pass");
     }
-	console.log("invalid: " + invalidInput);
     // Make sure that all the required fields have values.
     if (invalidInput) {
         me.$ctnErr.html("<p>Please enter all the required fields.</p>");
         me.$ctnErr.addClass("bi-ctn-err").slideDown();
         return;
     }
-	//check that the email address is valid
-    /*if (!me.emailAddressIsValid(emailAddress)) {
-        me.$ctnErr.html("<p>Please enter a valid email address.</p>");
-        me.$ctnErr.addClass("bi-ctn-err").slideDown();
-        me.$txtEmailAddress.addClass(invalidInputStyle);
-        return;
-    }*/
 
     $.mobile.loading("show");
     $.ajax({
@@ -105,21 +78,38 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
         success: function (resp) {
 	        
             $.mobile.loading("hide");
-            //console.log(resp);
+            console.log(resp);
             if (resp.success === true) {
-                // Create session. 
-                var today = new Date();
-                var expirationDate = new Date();
-                expirationDate.setTime(today.getTime() + MickmanAppLogin.Settings.sessionTimeoutInMSec);
-
-                MickmanAppLogin.Session.getInstance().set({
-                    userProfileModel: resp.extras.userProfileModel,
-                    sessionId: resp.extras.sessionId,
-                    expirationDate: expirationDate,
-                    keepSignedIn:me.$chkKeepSignedIn.is(":checked")
-                });
-                // Go to main menu.
-                $.mobile.navigate(me.mainMenuPageId);
+                // If the login method changes this part can be skipped
+                if(resp.extras.users){
+	                //build out the menu
+	                var users = resp.extras.users;
+	                $.each(users, function(bb){
+		                var Uname = (users[bb]);
+		                $('#select-choice-1').append('<option value="'+Uname+'">'+Uname+'</option>');
+		            });
+                	//Now lets assign a function to the button - they need to choose a user
+                	$(".startSession").click(function(){
+	                	//lets get the selected name and create the session variable.
+	                	var today = new Date();
+		                var expirationDate = new Date();
+		                expirationDate.setTime(today.getTime() + MickmanAppLogin.Settings.sessionTimeoutInMSec);
+		
+		                MickmanAppLogin.Session.getInstance().set({
+		                    userProfileModel:  $('#select-choice-1').val(),
+		                    sessionId: resp.extras.sessionId,
+		                    expirationDate: expirationDate,
+		                    keepSignedIn:me.$chkKeepSignedIn.is(":checked")
+		                });
+		                // if that is successful we will reroute them to the catalog page
+		                $.mobile.navigate(me.mainMenuPageId);
+                	});
+					//pop up window with selection
+					$( "#confirm-member" ).popup( "open");
+                }else{
+	                me.$ctnErr.html("<p>Oops! It looks like your leader hasn't added members yet.</p>");
+                    me.$ctnErr.addClass("bi-ctn-err").slideDown();
+                }
                 return;
             } else {
 	            console.log("should be an error here");
@@ -136,7 +126,8 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
                         case MickmanAppLogin.ApiMessages.EMAIL_NOT_FOUND:
                             me.$ctnErr.html("<p>You entered a wrong username or password.  Please try again.</p>");
                             me.$ctnErr.addClass("bi-ctn-err").slideDown();
-                            me.$txtEmailAddress.addClass(invalidInputStyle);
+                            me.$txtUserName.addClass(invalidInputStyle);
+                            //me.$txtEmailAddress.addClass(invalidInputStyle);
                             break;
                     }
                 }
