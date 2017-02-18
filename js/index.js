@@ -33,11 +33,10 @@ app.initialize();
 
 $(document).on("mobileinit", function (event, ui) {
     $.mobile.defaultPageTransition = "slide";
-    // Adds .waves-effect and .waves-light to <button> elems
-	//Waves.attach('ui-btn', 'waves-light');
 });
 
-app.signInController = new MickmanAppLogin.SignInController();
+app.signInController = new MickmanAppLogin.SignInController(); //call the signin controller
+app.CartController = new MickmanAppLogin.CartController(); //call the cart controller 
 
 
 $(document).on("pagecontainerbeforeshow", function (event, ui) {
@@ -79,4 +78,14 @@ $(document).delegate("#page-signin", "pagebeforecreate", function () {
     app.signInController.$btnSubmit.off("tap").on("tap", function () {
         app.signInController.onSignInCommand();
     });
+    
+});
+$(document).delegate("#page-main-menu", "pagebeforecreate", function () {
+
+    app.CartController.init();
+    
+    app.CartController.$btnAdd.off("tap").on("tap", function () {
+        app.CartController.addpricetoPopup();
+    });
+    
 });

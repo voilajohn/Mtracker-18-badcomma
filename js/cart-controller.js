@@ -4,18 +4,19 @@ var MickmanAppLogin = MickmanAppLogin || {};
 
 //reset the variables
 MickmanAppLogin.CartController = function () {
-    this.$productPrice = null;
-    this.$productName = null;
-    this.$productDescription = null;
+    this.$storePage = null;
+    this.$btnAdd = null;
 };
 
 //gather the variables that we will need 
 MickmanAppLogin.CartController.prototype.init = function () {
     //this.$signInPage = $("#page-signin");
+    this.storePage = "#page-main-menu";
+    this.$btnAdd = $(".addtocart", this.$storePage);
 };
 
 //add to cart
-MickmanAppLogin.SignInController.prototype.addtoCart = function (item) {
+MickmanAppLogin.CartController.prototype.addtoCart = function (item) {
 	//get cart contents 
 	//add to array 
     //db save 
@@ -23,7 +24,7 @@ MickmanAppLogin.SignInController.prototype.addtoCart = function (item) {
 };
 
 //remove from cart
-MickmanAppLogin.SignInController.prototype.removeFromCart = function (item) {
+MickmanAppLogin.CartController.prototype.removeFromCart = function (item) {
 	//get cart contents 
 	//add to array 
     //db save 
@@ -31,8 +32,17 @@ MickmanAppLogin.SignInController.prototype.removeFromCart = function (item) {
 };
 
 //
-MickmanAppLogin.SignInController.prototype.addtoCart = function () {
+MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e) {
 	//save cart to db 
+	//console.log("add " + e.data("num") + " price to cart");
+	
+	//NEED TO FIND A WAY TO PUSH THE DATA TO POPUP
+	//total cart contents 
+};
+
+MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e) {
+	//save cart to db 
+	//console.log("add " + e.data("num") + " price to cart");
 	//total cart contents 
 };
 

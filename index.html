@@ -39,7 +39,7 @@
 	        </fieldset>
 	        <a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-nodisc-icon ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" name="btn-submit">Submit</a>
 	        <p class="mc-top-margin-1-5"><a href="#begin-password-reset-page">Can't access your account?</a></p>
-	        <div data-role="popup" id="confirm-member" data-theme="a" data-overlay-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+	        <div data-role="popup" id="confirm-member" data-theme="a" data-overlay-theme="a" class="ui-content" data-dismissible="false" style="padding-bottom:2em;">
 			    <h3>Who are you?</h3>
 				<label for="select-choice-1" class="select">Please choose your name from the list below</label>
 				<select name="select-choice-1" id="select-choice-1">
@@ -64,54 +64,71 @@
 			</form>
 		    <ul data-role="listview"  data-filter="true" data-input="#filterBasic-input" data-inset="true">
 					<li data-role="list-divider">Wreaths</li>
-					<li><a href="#"><img src="images/products/thumbs/classic_sm.jpg" alt="Classic Wreath">
-						<h2>Classic Wreath</h2>
-						<p>Price: <span>Null</span></p></a>
-						<a href="#purchase" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
+					<li class="ClassicWreath"><a href="#"><img src="images/products/thumbs/classic_sm.jpg" alt="Classic Wreath">
+						<h2 style="margin:0px;">Classic Wreath</h2>
+							<select name="select-choice-mini" id="select-choice-mini" data-mini="true" data-inline="true" style="margin:0px;">
+							    <option value="25">25" | $25</option>
+							    <option value="28">28" | $28</option>
+							    <option value="36">36" | $36</option>
+							    <option value="48">48" | $48</option>
+							    <option value="60">60" | $60</option>
+							</select>
+						</a>
+						<a href="#purchase" data-num="25" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" class="addtocart">Buy</a>
 					</li>
-					<li><a href="#"><img src="images/products/thumbs/victorian_sm.jpg" alt="Victorian Wreath">
-						<h2>Victorian Wreath</h2>
-						<p>Price: <span>Null</span></p></a>
-						<a href="#purchase" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
+					<li class="VictorianWreath"><a href="#"><img src="images/products/thumbs/victorian_sm.jpg" alt="Victorian Wreath">
+						<h2 style="margin:0px;">Victorian Wreath</h2>
+							<select name="select-choice-mini" id="select-choice-mini" data-mini="true" data-inline="true" style="margin:0px;">
+							    <option value="25">25" | $25</option>
+							    <option value="28">28" | $28</option>
+							    <option value="36">36" | $36</option>
+							</select>
+						</a>
+						<a href="#purchase" data-num="25" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" class="addtocart">Buy</a>
 					</li>
-					<li><a href="#" data-icon="plus"><img src="images/products/thumbs/cranberry_sm.jpg" alt="Cranbeery Splash Wreath">
-						<h2>Cranberry Splash Wreath</h2>
-						<p>Price: <span>Null</span></p></a>
-						<a href="#purchase" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
+					<li class="CranberrySprayWreath"><a href="#" data-icon="plus"><img src="images/products/thumbs/cranberry_sm.jpg" alt="Cranbeery Splash Wreath">
+						<h2 style="margin:0px;">Cranberry Splash Wreath</h2>
+							<select name="select-choice-mini" id="select-choice-mini" data-mini="true" data-inline="true" style="margin:0px;">
+							    <option value="25">25" | $25</option>
+							    <option value="28">28" | $28</option>
+							    <option value="36">36" | $36</option>
+							</select>
+						</a>
+						<a href="#purchase" data-num="25" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" class="addtocart">Buy</a>
 					</li>
-					<li><a href="#"><img src="images/products/thumbs/wintergreen_sm.jpg" alt="Wintergreen Wreath">
+					<!--<li><a href="#"><img src="images/products/thumbs/wintergreen_sm.jpg" alt="Wintergreen Wreath">
 						<h2>Wintergreen Wreath</h2>
 						<p>Price: <span>Null</span></p></a>
 						<a href="#purchase" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
-					</li>
+					</li>-->
 					<li data-role="list-divider">Holiday Sprays</li>
 					<li><a href="#"><img src="images/products/thumbs/classic-spray_sm.jpg" alt="Classic Spray">
 						<h2>Classic Spray</h2>
 						<p>Price: <span>Null</span></p></a>
-						<a href="#purchase" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
+						<a href="#purchase" data-num="25" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" class="addtocart">Buy</a>
 					</li>
 					<li><a href="#"><img src="images/products/thumbs/victorian-spray_sm.jpg" alt="Victorian Spray">
 						<h2>Victorian Spray</h2>
 						<p>Price: <span>Null</span></p></a>
-						<a href="#purchase" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
+						<a href="#purchase" data-num="25" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" class="addtocart">Buy</a>
 					</li>
 					<li><a href="#"><img src="images/products/thumbs/cranberry-spray_sm.jpg" alt="Cranberry Spray">
 						<h2>Cranberry Spray</h2>
 						<p>Price: <span>Null</span></p></a>
-						<a href="#purchase" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
+						<a href="#purchase" data-num="25" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" class="addtocart">Buy</a>
 					</li>
-					<li><a href="#"><img src="images/products/thumbs/wintergreen-spray_sm.jpg" alt="Wintergreen Spray">
+					<!--<li><a href="#"><img src="images/products/thumbs/wintergreen-spray_sm.jpg" alt="Wintergreen Spray">
 						<h2>Wintergreen Spray</h2>
 						<p>Price: <span>Null</span></p></a>
 						<a href="#purchase" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
-					</li>
+					</li>-->
 					<li data-role="list-divider">Holiday Centerpieces</li>
 					<li><a href="#"><img src="images/products/thumbs/candlelitcenterpiece_sm.jpg" alt="Candlelit Centerpiece">
 						<h2>Candlelit Centerpiece</h2>
 						<p>Price: <span>Null</span></p></a>
-						<a href="#purchase" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
+						<a href="#purchase" data-num="25" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" class="addtocart">Buy</a>
 					</li>
-					<li><a href="#"><img src="images/products/thumbs/evergreen-elegance_sm.jpg" alt="Evergreen Elegance Centerpiece">
+					<!--<li><a href="#"><img src="images/products/thumbs/evergreen-elegance_sm.jpg" alt="Evergreen Elegance Centerpiece">
 						<h2>Evergreen Elegance Centerpiece</h2>
 						<p>Price: <span>Null</span></p></a>
 						<a href="#purchase" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
@@ -125,14 +142,14 @@
 						<h2>Wax Candlelit Centerpiece</h2>
 						<p>Price: <span>Null</span></p></a>
 						<a href="#purchase" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
-					</li>
+					</li>-->
 					<li data-role="list-divider">Table Top Trees</li>
 					<li><a href="#"><img src="images/products/thumbs/North-star_sm.jpg" alt="The North Star Table Top Tree">
 						<h2>The North Star Table Top Tree</h2>
 						<p>Price: <span>Null</span></p></a>
-						<a href="#" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
+						<a href="#" data-num="25" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" class="addtocart">Buy</a>
 					</li>
-					<li><a href="#"><img src="images/products/thumbs/mini-merry_sm.jpg" alt="The Mini Merry Tree">
+					<!--<li><a href="#"><img src="images/products/thumbs/mini-merry_sm.jpg" alt="The Mini Merry Tree">
 						<h2>The Mini Merry Tree</h2>
 						<p>Price: <span>Null</span></p></a>
 						<a href="#purchase" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
@@ -141,12 +158,33 @@
 						<h2>The Holly Berry</h2>
 						<p>Price: <span>Null</span></p></a
 						><a href="#purchase" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop">Buy</a>
-					</li>
+					</li>-->
 					<li data-role="list-divider">Accessories</li>
+					<li><a href="#"><img src="images/products/thumbs/garland_sm.jpg" alt="Garland">
+						<h2>Garland</h2>
+						<p>Price: <span>Null</span></p></a
+						><a href="#purchase" data-num="25" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" class="addtocart">Buy</a>
+					</li>
+					<li><a href="#"><img src="images/products/thumbs/hanger_sm.jpg" alt="EZ Hanger">
+						<h2>EZ Wreath Hanger</h2>
+						<p>Price: <span>Null</span></p></a
+						><a href="#purchase" data-num="25" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" class="addtocart">Buy</a>
+					</li>
+					<li><a href="#"><!--<img src="images/products/thumbs/holly-berry_sm.jpg" alt="Bag">-->
+						<h2>Bag</h2>
+						<p>Price: <span>Null</span></p></a
+						><a href="#purchase" data-num="25" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" class="addtocart">Buy</a>
+					</li>
+					<li><a href="#"><img src="images/products/thumbs/lights_sm.jpg" alt="LED">
+						<h2>LED</h2>
+						<p>Price: <span>Null</span></p></a
+						><a href="#purchase" data-num="25" data-icon="plus" href="#purchase" data-rel="popup" data-position-to="window" data-transition="pop" class="addtocart">Buy</a>
+					</li>
 				</ul>
 				<div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
 				    <h3>Checkout?</h3>
 					<p>Would you like to...</p>
+					
 				    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Add & Checkout</a>
 				    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Add & Shop</a>
 					<a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Cancel</a>
