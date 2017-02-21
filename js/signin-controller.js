@@ -57,12 +57,14 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
         invalidInput = true;
         console.log("empty user");
     }
+    
     // check that there is a password entered.
     if (password.length === 0) {
         me.$txtPassword.addClass(invalidInputStyle);
         invalidInput = true;
         console.log("empty pass");
     }
+    
     // Make sure that all the required fields have values.
     if (invalidInput) {
         me.$ctnErr.html("<p>Please enter all the required fields.</p>");
@@ -83,11 +85,13 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
                 // If the login method changes this part can be skipped
                 if(resp.extras.users){
 	                //build out the menu
+	                 $('#select-choice-1').html(""); //prevent big lists from multiple logins
 	                var users = resp.extras.users;
 	                $.each(users, function(bb){
 		                var Uname = (users[bb]);
 		                $('#select-choice-1').append('<option value="'+Uname+'">'+Uname+'</option>');
 		            });
+		            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load
                 	//Now lets assign a function to the button - they need to choose a user
                 	$(".startSession").click(function(){
 	                	//lets get the selected name and create the session variable.
@@ -127,7 +131,6 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
                             me.$ctnErr.html("<p>You entered a wrong username or password.  Please try again.</p>");
                             me.$ctnErr.addClass("bi-ctn-err").slideDown();
                             me.$txtUserName.addClass(invalidInputStyle);
-                            //me.$txtEmailAddress.addClass(invalidInputStyle);
                             break;
                     }
                 }
