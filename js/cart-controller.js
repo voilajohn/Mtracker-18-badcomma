@@ -34,7 +34,9 @@ MickmanAppLogin.CartController.prototype.removeFromCart = function (item) {
 //
 MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e) {
 	//save cart to db 
+	$('#purchase span').html(e);
 	//console.log("add " + e.data("num") + " price to cart");
+	//console.log(this.data("num"));
 	
 	//NEED TO FIND A WAY TO PUSH THE DATA TO POPUP
 	//total cart contents 
@@ -45,4 +47,21 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e) {
 	//console.log("add " + e.data("num") + " price to cart");
 	//total cart contents 
 };
-
+/********* RADIO UPDATE PRICING */
+//update the price display
+$('.priceselect').change(function () {
+  var radioSelected = $(this).find(':radio:checked');
+  var optradioSelected = radioSelected.val();
+  $(this).parent().parent().find('.price span').html(optradioSelected);
+});
+/********* POPUP ZOOM */
+//update the popup image
+$('.searchbtn').click(function () {
+	console.log("clicked");
+	var imageUrl = $(this).attr("data-largerimage"); //grab the URL
+	$(".larger img").attr("href").val(imageUrl); //set the url of the popup image
+	//console.log(imageUrl);
+  //var radioSelected = $(this).find(':radio:checked');
+  //var optradioSelected = radioSelected.val();
+  //$(this).parent().parent().find('.price span').html(optradioSelected);
+});

@@ -85,7 +85,8 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
     app.CartController.init();
     
     app.CartController.$btnAdd.off("tap").on("tap", function () {
-        app.CartController.addpricetoPopup();
+	    //console.log();
+        app.CartController.addpricetoPopup($(this).data("num"));
     });
     
 });
