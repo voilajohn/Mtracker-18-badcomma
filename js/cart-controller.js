@@ -57,11 +57,9 @@ $('.priceselect').change(function () {
 /********* POPUP ZOOM */
 //update the popup image
 $('.searchbtn').click(function () {
-	console.log("clicked");
 	var imageUrl = $(this).attr("data-largerimage"); //grab the URL
-	$(".larger img").attr("href").val(imageUrl); //set the url of the popup image
-	//console.log(imageUrl);
-  //var radioSelected = $(this).find(':radio:checked');
-  //var optradioSelected = radioSelected.val();
-  //$(this).parent().parent().find('.price span').html(optradioSelected);
+	console.log(imageUrl);
+	$("#larger img").attr("src", imageUrl); //set the url of the popup image
+	$("#larger").trigger( "updatelayout" );
+	$("#larger").popup("open");
 });
