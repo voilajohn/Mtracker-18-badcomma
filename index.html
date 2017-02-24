@@ -26,7 +26,7 @@
 	    </div><!-- /header -->
 	   
 	    <div role="main" class="ui-content">
-		    <p style="text-align:center;margin:0px auto"><img src="images/mickman-logo.png" alt="Mickman Brothers" /></p>
+		    <p style="text-align:center;margin:0px auto">logo</p>
 	        <h3>Welcome to the Mickman Holiday Sales App</h3>
 	        <p>Sign in below with your username and password that your Scout leader has given you to begin.</p>
 	        <div id="ctn-err" class="bi-invisible"></div>
@@ -41,7 +41,7 @@
 	        <p class="mc-top-margin-1-5"><a href="#begin-password-reset-page">Can't access your account?</a></p>
 	        <div data-role="popup" id="confirm-member" data-theme="a" data-overlay-theme="a" class="ui-content" data-dismissible="false" style="padding-bottom:2em;">
 			    <h3>Who are you?</h3>
-				<label for="select-choice-1" class="select">Please choose your name from the list below</label>
+				<label for="select-choice-1" class="select">Please choose your name from the <span class="mygroup"></span> list below</label>
 				<select name="select-choice-1" id="select-choice-1">
 				    <option value="standard">Choose a Name</option>
 				</select>
@@ -63,24 +63,28 @@
 		    <ul data-role="listview"  data-filter="true" data-input="#filterBasic-input" data-inset="true" class="productlist">
 					<li data-role="list-divider">Wreaths</li>
 					<!--Classic Wreath-->
-					<li class="ClassicWreath">
+					<li id="ClassicWreath">
 						<a href="#"><img src="images/products/thumbs/classic_sm.jpg" alt="Classic Wreath">
 						<h2 style="margin:0px;">Classic Wreath</h2>
-						<p class="price">$<span class="num">25.00</span></p>
+						<p class="price">$<span class="num">null</span></p>
 						<form>
 							<fieldset data-role="controlgroup" data-type="horizontal" name="ClassicOption" id="ClassicOption" class="priceselect">
-							  <input name="size" id="Classic25" value="25.00" type="radio" data-mini="true" checked="checked"/>
-							  <label for="Classic25">25</label>
-							  <input name="size" id="Classic28" value="28.00" type="radio" data-mini="true"/>
-							  <label for="Classic28">28</label>
-							  <input name="size" id="Classic36" value="36.00" type="radio" data-mini="true"/>
-							  <label for="Classic36">36</label>
-							  <input name="size" id="Classic48" value="48.00" type="radio" data-mini="true"/>
-							  <label for="Classic48">48</label>
-							  <input name="size" id="Classic60" value="60.00" type="radio" data-mini="true"/>
-							  <label for="Classic60">60</label>
-							  <input name="treated" id="ClassicG" value="30.00" type="radio" data-mini="true"/>
-							  <label for="ClassicG">G</label>
+							</fieldset>
+						</form>
+						</a>
+						<a href="#" data-largerimage="images/products/classic_lg.jpg" data-role="button" class="split-custom-button searchbtn" data-icon="search" data-theme="c" data-num="25" data-iconpos="notext"></a>
+						<div class="split-custom-wrapper">
+			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="25" data-position-to="window" data-transition="pop" data-iconpos="notext"></a>
+						</div>
+					</li>
+					<!-- / end Classic Wreath -->
+					<!--Classic Wreath Greenzit-->
+					<li id="ClassicWreathGreenzit">
+						<a href="#"><img src="images/products/thumbs/classic_sm.jpg" alt="Classic Wreath with Greenzit">
+						<h2 style="margin:0px;">Classic Wreath with Greenzit</h2>
+						<p class="price">$<span class="num">null</span></p>
+						<form>
+							<fieldset data-role="controlgroup" data-type="horizontal" name="ClassicGOption" id="ClassicGOption" class="priceselect">
 							</fieldset>
 						</form>
 						</a>
@@ -91,20 +95,28 @@
 					</li>
 					<!-- / end Classic Wreath -->
 					<!-- Victorian -->
-					<li class="VictorianWreath">
+					<li id="VictorianWreath">
 						<a href="#"><img src="images/products/thumbs/victorian_sm.jpg" alt="Victorian Wreath">
 						<h2 style="margin:0px;">Victorian Wreath</h2>
-						<p class="price">$<span class="num">25.00</span></p>
+						<p class="price">$<span class="num">null</span></p>
 						<form>
 							<fieldset data-role="controlgroup" data-type="horizontal" name="VictorianOption" id="VictorianOption" class="priceselect">
-							  <input name="size" id="Victorian25" value="25.00" type="radio" data-mini="true" checked="checked"/>
-							  <label for="Victorian25">25</label>
-							  <input name="size" id="Victorian28" value="28.00" type="radio" data-mini="true"/>
-							  <label for="Victorian28">28</label>
-							  <input name="size" id="Victorian36" value="36.00" type="radio" data-mini="true"/>
-							  <label for="Victorian36">36</label>
-							  <input name="treated" id="VictorianG" value="30.00" type="radio" data-mini="true"/>
-							  <label for="VictorianG">G</label>
+							</fieldset>
+						</form>
+						</a>
+						<a href="#" data-largerimage="images/products/victorian_lg.jpg" data-role="button" class="split-custom-button searchbtn" data-icon="search" data-theme="c" data-num="25" data-iconpos="notext"></a>
+						<div class="split-custom-wrapper">
+			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="25" data-position-to="window" data-transition="pop" data-iconpos="notext"></a>
+						</div>
+					</li>
+					<!-- / Victorian -->
+					<!-- Victorian G -->
+					<li id="VictorianGreenzitWreath">
+						<a href="#"><img src="images/products/thumbs/victorian_sm.jpg" alt="Victorian Wreath">
+						<h2 style="margin:0px;">Victorian Wreath with Greenzit</h2>
+						<p class="price">$<span class="num">null</span></p>
+						<form>
+							<fieldset data-role="controlgroup" data-type="horizontal" name="VictorianGOption" id="VictorianGOption" class="priceselect">
 							</fieldset>
 						</form>
 						</a>
@@ -115,20 +127,28 @@
 					</li>
 					<!-- / Victorian -->
 					<!-- Cranbery Splash -->
-					<li class="CranberrySplashWreath">
+					<li id="CranberrySplashWreath">
 						<a href="#" data-icon="plus"><img src="images/products/thumbs/cranberry_sm.jpg" alt="Cranberry Splash Wreath">
 						<h2 style="margin:0px;">Cranberry Splash Wreath</h2>
 						<p class="price">$<span class="num">25.00</span></p>
 						<form>
 							<fieldset data-role="controlgroup" data-type="horizontal" name="CranberryOption" id="CranberryOption" class="priceselect">
-							  <input name="size" id="Cranberry25" value="25" type="radio" data-mini="true" checked="checked"/>
-							  <label for="Cranberry25">25</label>
-							  <input name="size" id="Cranberry28" value="28" type="radio" data-mini="true"/>
-							  <label for="Cranberry28">28</label>
-							  <input name="size" id="Cranberry36" value="36" type="radio" data-mini="true"/>
-							  <label for="Cranberry36">36</label>
-							  <input name="treated" id="CranberryG" value="30.00" type="radio" data-mini="true"/>
-							  <label for="CranberryG">G</label>
+							</fieldset>
+						</form>
+						</a>
+						<a href="#" data-largerimage="images/products/cranberry_lg.jpg" data-role="button" class="split-custom-button searchbtn" data-icon="search" data-theme="c" data-num="25" data-iconpos="notext"></a>
+						<div class="split-custom-wrapper">
+			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="25" data-position-to="window" data-transition="pop" data-iconpos="notext"></a>
+						</div>
+					</li>
+					<!-- / Cranberry Splash Wreaths -->
+					<!-- Cranbery Splash -->
+					<li id="CranberrySplashGWreath">
+						<a href="#" data-icon="plus"><img src="images/products/thumbs/cranberry_sm.jpg" alt="Cranberry Splash Wreath">
+						<h2 style="margin:0px;">Cranberry Splash with Greenzit Wreath</h2>
+						<p class="price">$<span class="num">25.00</span></p>
+						<form>
+							<fieldset data-role="controlgroup" data-type="horizontal" name="CranberryOption" id="CranberryGOption" class="priceselect">
 							</fieldset>
 						</form>
 						</a>
@@ -342,24 +362,58 @@
 		    </div>
 		</div><!--/footer-->
 	</div><!-- /page -->
-	
-
-
+	<!-- Checkout Page -->
+	<div data-role="page" id="page-checkout" class="ui-page ui-body-a">
+	    <div data-role="header" data-theme="b" data-position="fixed">
+	        <a href="#page-index" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+	        <h1>Please enter your information</h1>
+	    </div><!-- /header -->
+	    <div role="main" class="ui-content">
+		    Nothing at this time.
+	    </div>
+	    <div data-role="footer" data-position="fixed">
+		    <div data-role="navbar">
+              <ul>
+	               <li><a href="#page-main-menu" data-icon="home">Products</a></li>
+	               <li><a href="#page-cart" data-icon="shop" class="ui-btn-active">Cart</a></li>
+	               <li><a href="#page-orders" data-icon="grid">Orders</a></li>
+              </ul>
+		    </div>
+		</div><!--/footer-->
+	</div><!-- /page -->
+	<!-- Payment Page -->
+	<div data-role="page" id="page-payment" class="ui-page ui-body-a">
+	    <div data-role="header" data-theme="b" data-position="fixed">
+	        <a href="#page-index" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+	        <h1>Are you paying now or later?</h1>
+	    </div><!-- /header -->
+	    <div role="main" class="ui-content">
+		    Nothing at this time.
+	    </div>
+	    <div data-role="footer" data-position="fixed">
+		    <div data-role="navbar">
+              <ul>
+	               <li><a href="#page-main-menu" data-icon="home">Products</a></li>
+	               <li><a href="#page-cart" data-icon="shop" class="ui-btn-active">Cart</a></li>
+	               <li><a href="#page-orders" data-icon="grid">Orders</a></li>
+              </ul>
+		    </div>
+		</div><!--/footer-->
+	</div><!-- /page -->
     
     <!--<script type="text/javascript" src="cordova.js"></script>-->
     <script src="vendor/fastclick/fastclick.min.js"></script>
     <script src="vendor/jquery/jquery-2.1.1.min.js"></script>
-    
-    <script src="js/api-messages.js"></script><!--what is this-->
-    <script src="js/settings.js"></script><!--what is this-->
-    <script src="js/session.js"></script><!-- local storage session storage -->
+    <script src="vendor/localforage/localforage.min.js">
+	    
+    <script src="js/api-messages.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/session.js"></script>
 	<script src="js/signin-controller.js"></script>
-	<script src="js/cart-controller.js"></script><!-- cart functions -->
+	<script src="js/catalog-controller.js"></script>
+	<script src="js/cart-controller.js"></script>
     
     <script src="js/index.js"></script>
     <script src="vendor/jquerymobile/jquery.mobile-1.4.5.min.js"></script>
-    <!--<script src="vendor/waves/waves.min.js"></script>
-	<script src="vendor/wow/wow.min.js"></script>
-	<script src="js/nativedroid2.js"></script>-->
 </body>
 </html>
