@@ -1,8 +1,9 @@
 var MickmanAppLogin = MickmanAppLogin || {};
 
+//create the session
 MickmanAppLogin.Session = (function () {
     var instance;
-
+	
     function init() {
 
         var sessionIdKey = "mickman-session";

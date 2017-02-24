@@ -83,21 +83,25 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
             console.log(resp);
             if (resp.success === true) {
                 // If the login method changes this part can be skipped
-                if(resp.extras.users){
-	                //build out the menu
+                if(resp.extras.users){//build out the menu
 	                 $('#select-choice-1').html(""); //prevent big lists from multiple logins
 	                var users = resp.extras.users;
 	                $.each(users, function(bb){
 		                var Uname = (users[bb]);
 		                $('#select-choice-1').append('<option value="'+Uname+'">'+Uname+'</option>');
 		            });
+		            $(".mygroup").html(resp.extras.cust_id);
 		            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load
-                	//Now lets assign a function to the button - they need to choose a user
-                	$(".startSession").click(function(){
+                	
+                	$(".startSession").click(function(){//Now lets assign a function to the button - they need to choose a user
+	                	//put the additional stuff into the DB
+		                app.catalogController.storeData(resp.extras.products);
 	                	//lets get the selected name and create the session variable.
 	                	var today = new Date();
 		                var expirationDate = new Date();
 		                expirationDate.setTime(today.getTime() + MickmanAppLogin.Settings.sessionTimeoutInMSec);
+		                
+		                //left save all this stuff to a local database to get later.
 		
 		                MickmanAppLogin.Session.getInstance().set({
 		                    userProfileModel:  $('#select-choice-1').val(),
@@ -105,7 +109,8 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 		                    expirationDate: expirationDate,
 		                    keepSignedIn:me.$chkKeepSignedIn.is(":checked")
 		                });
-		                // if that is successful we will reroute them to the catalog page
+		                
+						// if that is successful we will reroute them to the catalog page
 		                $.mobile.navigate(me.mainMenuPageId);
                 	});
 					//pop up window with selection
@@ -116,19 +121,23 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
                 }
                 return;
             } else {
-	            console.log("should be an error here");
-	            console.log("message: " + resp.extras.msg + MickmanAppLogin.ApiMessages.EMAIL_NOT_FOUND);
+	            //console.log("should be an error here");
                 if (resp.extras.msg) {
                     switch (resp.extras.msg) {
-                        case MickmanAppLogin.ApiMessages.DB_ERROR:
+                        case 0: //MickmanAppLogin.ApiMessages.DB_ERROR:
                         // TODO: Use a friendlier error message below.
                             me.$ctnErr.html("<p>Oops! It looks like we had a problem and could not log you on.  Please try again in a few minutes.</p>");
                             me.$ctnErr.addClass("bi-ctn-err").slideDown();
                             break;
-                        case MickmanAppLogin.ApiMessages.INVALID_PWD:
+                        case 1: //MickmanAppLogin.ApiMessages.INVALID_PWD:
                         
-                        case MickmanAppLogin.ApiMessages.EMAIL_NOT_FOUND:
+                        case 2: //MickmanAppLogin.ApiMessages.EMAIL_NOT_FOUND:
                             me.$ctnErr.html("<p>You entered a wrong username or password.  Please try again.</p>");
+                            me.$ctnErr.addClass("bi-ctn-err").slideDown();
+                            me.$txtUserName.addClass(invalidInputStyle);
+                            break;
+                        default:
+                        	me.$ctnErr.html("<p>Something Unexpected Happened.  Please try again.</p>");
                             me.$ctnErr.addClass("bi-ctn-err").slideDown();
                             me.$txtUserName.addClass(invalidInputStyle);
                             break;
@@ -138,7 +147,7 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
         },
         error: function (e) {
             $.mobile.loading("hide");
-            console.log(e.message);
+            console.log(e);
             // TODO: Use a friendlier error message below.
             me.$ctnErr.html("<p>Oops! It looks like we had a problem and could not log you on.  Please try again in a few minutes.</p>");
             me.$ctnErr.addClass("bi-ctn-err").slideDown();

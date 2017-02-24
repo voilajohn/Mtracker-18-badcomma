@@ -1,5 +1,11 @@
 var MickmanAppLogin = MickmanAppLogin || {};
 
+var dbShell; //database name variable
+var settings; //whether the db is loaded ie on or off
+var product;
+var cart;
+var order;
+
 // Begin boilerplate code generated with Cordova project.
 
 var app = {
@@ -19,7 +25,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
-        app.receivedEvent('deviceready');
+        app.receivedEvent('deviceready'); 
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
@@ -36,8 +42,8 @@ $(document).on("mobileinit", function (event, ui) {
 });
 
 app.signInController = new MickmanAppLogin.SignInController(); //call the signin controller
-app.CartController = new MickmanAppLogin.CartController(); //call the cart controller 
-
+app.catalogController = new MickmanAppLogin.CatalogController(); //call the catalog controller 
+app.cartController = new MickmanAppLogin.CartController(); //call the cart controller 
 
 $(document).on("pagecontainerbeforeshow", function (event, ui) {
     if (typeof ui.toPage == "object") {
@@ -50,12 +56,11 @@ $(document).on("pagecontainerbeforeshow", function (event, ui) {
     }
 });
 
+//Check for Sign-in
 $(document).on("pagecontainerbeforechange", function (event, ui) {
-
     if (typeof ui.toPage !== "object") return;
-    
     switch (ui.toPage.attr("id")) {
-        case "page-index":
+        case "page-signin":
             if (!ui.prevPage) {
                 // Check session.keepSignedIn and redirect to main menu.
                 var session = MickmanAppLogin.Session.getInstance().get(),
@@ -64,13 +69,13 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
                     ui.toPage = $("#page-main-menu");  
                     console.log("Redirect");              
                 }else{
-	                console.log("Not Logged in" + session);
+	                console.log("Not Logged in" + session.keepSignedIn + new Date(session.expirationDate).getTime() > today.getTime());
                 }
             }
     }
 });
 
-
+//Login Button
 $(document).delegate("#page-signin", "pagebeforecreate", function () {
 
     app.signInController.init();
@@ -80,13 +85,31 @@ $(document).delegate("#page-signin", "pagebeforecreate", function () {
     });
     
 });
+
+//Catalog Loaded
+$(document).delegate("#page-main-menu", "pageshow", function () {
+	app.catalogController.init();
+    app.catalogController.getSavedData();
+    console.log("page is changed2");
+});
+
+
+//Add to Cart Button
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 
-    app.CartController.init();
+    app.cartController.init();
     
-    app.CartController.$btnAdd.off("tap").on("tap", function () {
-	    //console.log();
-        app.CartController.addpricetoPopup($(this).data("num"));
+    app.cartController.$btnAdd.off("tap").on("tap", function () {
+        app.cartController.addpricetoPopup($(this).data("num"));
     });
     
+});
+
+localforage.config({
+    driver      : localforage.WEBSQL, // Force WebSQL; same as using setDriver()
+    name        : 'mickApp',
+    version     : 1.0,
+    size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+    storeName   : 'keyvalue_pairs', // Should be alphanumeric, with underscores.
+    description : 'products'
 });
