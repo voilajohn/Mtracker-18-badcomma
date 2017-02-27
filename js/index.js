@@ -90,19 +90,16 @@ $(document).delegate("#page-signin", "pagebeforecreate", function () {
 $(document).delegate("#page-main-menu", "pageshow", function () {
 	app.catalogController.init();
     app.catalogController.getSavedData();
-    console.log("page is changed2");
 });
 
 
 //Add to Cart Button
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
-
     app.cartController.init();
-    
     app.cartController.$btnAdd.off("tap").on("tap", function () {
         app.cartController.addpricetoPopup($(this).data("num"));
+        console.log("activated");
     });
-    
 });
 
 localforage.config({

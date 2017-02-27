@@ -78,10 +78,13 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 	console.log("popuplate the page"); //This runs when the page is loaded. 
 	
 	//hide everything
-	$("#ClassicWreath").hide();
-	$("#ClassicGreenzitWreath").hide();
-	$("#VictorianWreath").hide();
-	$("#CranberrySplashWreath").hide();
+	$("#ClassicWreath").hide(); $("#ClassicGreenzitWreath").hide();
+	$("#VictorianWreath").hide(); $("#VictorianGreenzitWreath").hide();
+	$("#CranberrySplashWreath").hide(); $("#CranberrySplashGreenzitWreath").hide();
+	
+	$("#ClassicSpray").hide();
+	$("#VictorianSpray").hide();
+	$("#CranberrySpray").hide();
 	
 	console.log("hidestuff");
 	  
@@ -96,7 +99,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 	    	(key == "60c") && value > 0
 	    ){ //Classic Wreath is available
 		    $("#ClassicWreath").show();
-		    var buttonLabel = key.replace("c","");
+		    var buttonLabel = key.replace("c"," inches");
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'</label>');
 		    $('#ClassicOption').controlgroup('container').append(radioBtn);
 	    }
@@ -107,7 +110,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 	    	(key == "60cg") && value > 0
 	    ){ //Classic Wreath Greenzit is available
 		    $("#ClassicWreathGreenzit").show();
-		    var buttonLabel = key.replace("cg","");
+		    var buttonLabel = key.replace("cg"," inches");
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'</label>');
 		    $('#ClassicGOption').controlgroup('container').append(radioBtn);
 		}
@@ -116,7 +119,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 	    	(key == "36v") && value > 0 
 	    ){ //Victorian Wreath is available
 		    $("#VictorianWreath").show();
-		    var buttonLabel = key.replace("v","");
+		    var buttonLabel = key.replace("v"," inches");
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'</label>');
 		    $('#VictorianOption').controlgroup('container').append(radioBtn);
 		}
@@ -125,7 +128,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 	    	(key == "36vg") && value > 0 
 	    ){ //Victorian Greenzit Wreath is available
 		    $("#VictorianGreenzitWreath").show();
-		    var buttonLabel = key.replace("vg","");
+		    var buttonLabel = key.replace("vg"," inches");
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'</label>');
 		    $('#VictorianGOption').controlgroup('container').append(radioBtn);
 		}
@@ -134,7 +137,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 	    	(key == "36cs") && value > 0 
 	    ){ //Cranberry Splash Wreath is available
 		    $("#CranberrySplashWreath").show();
-		    var buttonLabel = key.replace("cs","");
+		    var buttonLabel = key.replace("cs"," inches");
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'</label>');
 		    $('#CranberryOption').controlgroup('container').append(radioBtn);
 		}
@@ -143,27 +146,79 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 	    	(key == "36csg") && value > 0 
 	    ){ //Cranberry Splash Wreath is available
 		    $("#CranberrySplashGWreath").show();
-		    var buttonLabel = key.replace("csg","");
+		    var buttonLabel = key.replace("csg"," inches");
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'</label>');
 		    $('#CranberryGOption').controlgroup('container').append(radioBtn);
 		}
+		//SPRAYS
+		if( (key == "sprayc") && value > 0 || 
+			(key == "spraycg") && value > 0
+	    ){ //Classic Spray
+		    $("#ClassicSpray").show();
+		    if(key == "sprayc"){
+			    var buttonLabel = key.replace("sprayc","Regular");
+		    }else if(key == "spraycg"){
+			    var buttonLabel = key.replace("spraycg","w Greenzit");
+		    }
+		    var radioBtn = $('<input type="radio" name="size" id="spray'+key+'" value="'+value+'" data-mini="true"/><label for="spray'+key+'">'+buttonLabel+'</label>');
+		    $('#ClassicSprayOption').controlgroup('container').append(radioBtn);
+		}
+		if( (key == "sprayv") && value > 0 || 
+			(key == "sprayvg") && value > 0
+	    ){ //Classic Spray
+		    console.log("victorian");
+		    $("#VictorianSpray").show();
+		    if(key == "sprayv"){
+			    var buttonLabel = key.replace("sprayv","Regular");
+		    }else if(key == "sprayvg"){
+			    var buttonLabel = key.replace("sprayvg","w Greenzit");
+		    }
+		    var radioBtn = $('<input type="radio" name="size" id="spray'+key+'" value="'+value+'" data-mini="true"/><label for="spray'+key+'">'+buttonLabel+'</label>');
+		    $('#VictorianSprayOption').controlgroup('container').append(radioBtn);
+		}
+		if( (key == "spraycs") && value > 0 || 
+			(key == "spraycsg") && value > 0
+	    ){ //Classic Spray
+		    $("#CranberrySpray").show();
+		    if(key == "spraycs"){
+			    var buttonLabel = key.replace("spraycs","Regular");
+		    }else if(key == "spraycsg"){
+			    var buttonLabel = key.replace("spraycsg","w Greenzit"); 
+		    }
+		    var radioBtn = $('<input type="radio" name="size" id="spray'+key+'" value="'+value+'" data-mini="true"/><label for="spray'+key+'">'+buttonLabel+'</label>');
+		    $('#CranberrySprayOption').controlgroup('container').append(radioBtn);
+		}
+		//other parts
 	    
 	}).then(function() {
 	   // console.log('Iteration has completed');
 	    $("#ClassicOption").enhanceWithin().controlgroup("refresh");
-	    //$('#ClassicOption input[type=radio]:first-child').get(0).checked = true;
+	    $("#ClassicOption").find(".ui-btn:first").trigger('click');//click the first button
+	    
 	    $("#ClassicGOption").enhanceWithin().controlgroup("refresh");
-	    //$('#ClassicOption input[type=radio]', this).get(0).checked = true;
-	     $("#VictorianOption").enhanceWithin().controlgroup("refresh");
-	    //$('#ClassicOption input[type=radio]', this).get(0).checked = true;
-	     $("#VictorianGOption").enhanceWithin().controlgroup("refresh");
-	    //$('#ClassicOption input[type=radio]', this).get(0).checked = true;
-	     $("#CranberryOption").enhanceWithin().controlgroup("refresh");
-	    //$('#ClassicOption input[type=radio]', this).get(0).checked = true;
-	     $("#CranberryGOption").enhanceWithin().controlgroup("refresh");
-	    //$('#ClassicOption input[type=radio]', this).get(0).checked = true;
-	    //now lets refresh the radio buttons
-	    //$("#ClassicOption").controlgroup("refresh");
+	    $("#ClassicGOption").find(".ui-btn:first").trigger('click');//click the first button
+	    
+	    $("#VictorianOption").enhanceWithin().controlgroup("refresh"); 
+	    $("#VictorianOption").find(".ui-btn:first").trigger('click');//click the first button
+	    
+	    $("#VictorianGOption").enhanceWithin().controlgroup("refresh"); 
+	    $("#VictorianGOption").find(".ui-btn:first").trigger('click');//click the first button
+	    
+	    $("#CranberryOption").enhanceWithin().controlgroup("refresh");
+	    $("#CranberryOption").find(".ui-btn:first").trigger('click');//click the first button
+	    
+	    $("#CranberryGOption").enhanceWithin().controlgroup("refresh");
+	    $("#CranberryGOption").find(".ui-btn:first").trigger('click');//click the first button
+	    
+	    $("#ClassicSprayOption").enhanceWithin().controlgroup("refresh");
+	    $("#ClassicSprayOption").find(".ui-btn:first").trigger('click');//click the first button
+	    
+	    $("#VictorianSprayOption").enhanceWithin().controlgroup("refresh");
+	    $("#VictorianSprayOption").find(".ui-btn:first").trigger('click');//click the first button
+	    
+	    $("#CranberrySprayOption").enhanceWithin().controlgroup("refresh");
+	    $("#CranberrySprayOption").find(".ui-btn:first").trigger('click');//click the first button
+	    
 	    
 	}).catch(function(err) {
 	    // This code runs if there were any errors
@@ -217,7 +272,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 $('.priceselect').change(function () {
   var radioSelected = $(this).find(':radio:checked');
   var optradioSelected = radioSelected.val();
-  $(this).parent().parent().find('.price span').html(optradioSelected);
+  $(this).parent().parent().find('.price span.num').html(optradioSelected);
 });
 
 /********* POPUP ZOOM */
