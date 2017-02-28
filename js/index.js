@@ -97,7 +97,7 @@ $(document).delegate("#page-main-menu", "pageshow", function () {
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
     app.cartController.init();
     app.cartController.$btnAdd.off("tap").on("tap", function () {
-        app.cartController.addpricetoPopup($(this).data("num"));
+        app.cartController.addpricetoPopup($(this).data("num"),$(this).data("product-size"),$(this).data("product"));
         console.log("activated");
     });
 });

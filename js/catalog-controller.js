@@ -74,19 +74,22 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x) { //Write t
 });
 
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
-MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
-	console.log("popuplate the page"); //This runs when the page is loaded. 
-	
+MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This runs when the page is loaded.
 	//hide everything
 	$("#ClassicWreath").hide(); $("#ClassicGreenzitWreath").hide();
 	$("#VictorianWreath").hide(); $("#VictorianGreenzitWreath").hide();
-	$("#CranberrySplashWreath").hide(); $("#CranberrySplashGreenzitWreath").hide();
+	$("#CranberrySplashWreath").hide(); $("#CranberrySplashGWreath").hide();
 	
 	$("#ClassicSpray").hide();
 	$("#VictorianSpray").hide();
 	$("#CranberrySpray").hide();
 	
-	console.log("hidestuff");
+	$("#HolidayCenterpiece").hide();
+	$("#tabletoptree").hide();
+	$("#garland").hide();
+	$("#EZWreathHanger").hide();
+	$("#Bags").hide();
+	$("#LEDlights").hide();
 	  
 	var radioBtn = "";
 	// Find the number of items in the datastore.
@@ -134,7 +137,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 		}
 		if( (key == "25cs") && value > 0 || 
 	    	(key == "28cs") && value > 0 || 
-	    	(key == "36cs") && value > 0 
+	    	(key == "36cs") && value > 0  
 	    ){ //Cranberry Splash Wreath is available
 		    $("#CranberrySplashWreath").show();
 		    var buttonLabel = key.replace("cs"," inches");
@@ -144,7 +147,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 		if( (key == "25csg") && value > 0 || 
 	    	(key == "28csg") && value > 0 || 
 	    	(key == "36csg") && value > 0 
-	    ){ //Cranberry Splash Wreath is available
+	    ){ //Cranberry Splash Wreath w Greenzit is available
 		    $("#CranberrySplashGWreath").show();
 		    var buttonLabel = key.replace("csg"," inches");
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'</label>');
@@ -166,7 +169,6 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 		if( (key == "sprayv") && value > 0 || 
 			(key == "sprayvg") && value > 0
 	    ){ //Classic Spray
-		    console.log("victorian");
 		    $("#VictorianSpray").show();
 		    if(key == "sprayv"){
 			    var buttonLabel = key.replace("sprayv","Regular");
@@ -188,10 +190,58 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 		    var radioBtn = $('<input type="radio" name="size" id="spray'+key+'" value="'+value+'" data-mini="true"/><label for="spray'+key+'">'+buttonLabel+'</label>');
 		    $('#CranberrySprayOption').controlgroup('container').append(radioBtn);
 		}
+		if( (key == "cc") && value > 0
+		){ //Holiday Centerpiece
+			$("#HolidayCenterpiece").show();
+			$("#HolidayCenterpiece .split-custom-wrapper a").data("num",value);
+			$("#HolidayCenterpiece .price span.num").html(value);
+		}
+		if( (key == "tlt") && value > 0
+		){ //Tiny Living Tree
+			$("#tabletoptree").show();
+			$("#tabletoptree .split-custom-wrapper a").data("num",value);
+			$("#tabletoptree .price span.num").html(value);
+		}
+		if( (key == "25gar") && value > 0 ||
+			(key == "50gar") && value > 0 ||
+			(key == "25garg") && value > 0 ||
+			(key == "50garg") && value > 0 
+		){ //Garland
+			$("#garland").show();
+			if(key == "25gar"){
+			    var buttonLabel = key.replace("25gar","25ft");
+		    }else if(key == "25garg"){
+			    var buttonLabel = key.replace("25garg","25ft. w Greenzit"); 
+		    }else if(key == "50gar"){
+			    var buttonLabel = key.replace("50gar","50ft");
+		    }else if(key == "50garg"){
+			    var buttonLabel = key.replace("50garg","50ft. w Greenzit"); 
+		    }
+		    var radioBtn = $('<input type="radio" name="size" id="garland'+key+'" value="'+value+'" data-mini="true"/><label for="garland'+key+'">'+buttonLabel+'</label>');
+		    $('#GarlandOption').controlgroup('container').append(radioBtn);
+		}
+		if( (key == "hanger") && value > 0
+		){
+			$("#EZWreathHanger").show();
+			$("#EZWreathHanger .split-custom-wrapper a").data("num",value);
+			$("#EZWreathHanger .price span.num").html(value);
+		}
+		if( (key == "bag") && value > 0
+		){
+			$("#Bags").show();
+			$("#Bags .split-custom-wrapper a").data("num",value);
+			$("#Bags .price span.num").html(value);
+		}
+		if( (key == "led") && value > 0
+		){
+			$("#LEDlights").show();
+			$("#LEDlights .split-custom-wrapper a").data("num",value);
+			$("#LEDlights .price span.num").html(value);
+		}
+	
 		//other parts
 	    
 	}).then(function() {
-	   // console.log('Iteration has completed');
 	    $("#ClassicOption").enhanceWithin().controlgroup("refresh");
 	    $("#ClassicOption").find(".ui-btn:first").trigger('click');//click the first button
 	    
@@ -219,52 +269,36 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 	    $("#CranberrySprayOption").enhanceWithin().controlgroup("refresh");
 	    $("#CranberrySprayOption").find(".ui-btn:first").trigger('click');//click the first button
 	    
+	    //activate non radio buttons
+		var productName = $("#HolidayCenterpiece h2").text();
+		$("#HolidayCenterpiece .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
+		$("#HolidayCenterpiece .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
+		
+		var productName = $("#tabletoptree h2").text();
+		$("#tabletoptree .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
+		$("#tabletoptree .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
+
+	    $('#GarlandOption').enhanceWithin().controlgroup("refresh");
+	    $('#GarlandOption').find(".ui-btn:first").trigger('click');//click the first button
+	    
+		var productName = $("#EZWreathHanger h2").text();
+		$("#EZWreathHanger .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
+		$("#EZWreathHanger .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
+		
+		var productName = $("#Bags h2").text();
+		$("#Bags .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
+		$("#Bags .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
+		
+		var productName = $("#LEDlights h2").text();
+		$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
+		$("#LEDlights .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
+		
 	    
 	}).catch(function(err) {
 	    // This code runs if there were any errors
 	    console.log(err);
 	});
-	//refresh radio button set
-	//$("#ClassicWreath form").trigger.create();
-	//$("#ClassicOption").trigger("create");
-	//$("#ClassicOption").enhanceWithin().controlgroup("refresh");
-	//$("#ClassicOption").parent().enhanceWithin().controlgroup("refresh");
-		////var currentId = keycheck[x];
-		//console.log(currentId);
-		
-	
-		//go through and check for entries
-		//var myId = keycheck[x];
-			
-			
-			/*if((currentID == "25c") || (currentID == "28c") || (currentID == "36c") || (currentID == "48c") || (currentID == "60c")){
-				//console.log("show Classic" + currentID);
-				$("#ClassicWreath").show();
-				//not sure why I can't use the local var
-				//if(currentID == "25c"){$("#ClassicWreath").show();}else{$("#ClassicWreath").hide();}
-			}
-			if((currentID == "25v") || (currentID == "28v") || (currentID == "36v") || (currentID == "48v") || (currentID == "60v") ){
-				$("#VictorianWreath").show();
-			}
-			if((currentID == "25cs") || (currentID == "28cs") || (currentID == "36cs") ){
-				$("#CranberrySplashWreath").show();
-			}
-			console.log(doc);*/
-			// based on this let show items that are there. 
-			////$(".priceselect #wreath" + doc._id + "").val(doc.value);
-		//}).catch(function (err) {
-		//}, function(err, results) {
-			//hide the field
-			//$("#ClassicWreath .priceselect #wreath" + doc._id).hide();
-			//if (err) { return console.log(err); }
-		//});
 
-			//$(".ClassicWreath .priceselect #wreath" + keycheck[x]).val(price);
-			//$(".ClassicWreath .priceselect #wreath" + keycheck[x]).val(price);
-			////$(".ClassicWreath .priceselect #wreath" + keycheck[x]).next().html(price);
-			//$(".ClassicWreath .priceselect label[for='#wreath"+keycheck[x]+"']").html("asd");
-	
-	//$(".ClassicWreath").show('slow');
 }
 
 /********* RADIO UPDATE PRICING */
@@ -272,7 +306,14 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){
 $('.priceselect').change(function () {
   var radioSelected = $(this).find(':radio:checked');
   var optradioSelected = radioSelected.val();
-  $(this).parent().parent().find('.price span.num').html(optradioSelected);
+  $(this).parent().parent().find('.price span.num').html(optradioSelected); //show the price on the listview
+  $(this).parent().parent().parent().find('.split-custom-wrapper a').data("num",optradioSelected); //show the price in the cart
+  
+  var productName = $(this).parent().parent().find('h2').text(); //grab the product name
+  $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product",productName); //push the product name to the checkout area.
+  
+  var radioSize = $(this).find(':radio:checked').prev('label').text();
+  $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product-size",radioSize); //push the product option
 });
 
 /********* POPUP ZOOM */

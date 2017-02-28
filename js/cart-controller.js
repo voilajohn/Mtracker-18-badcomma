@@ -32,10 +32,14 @@ MickmanAppLogin.CartController.prototype.removeFromCart = function (item) {
 };
 
 //
-MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e) {
+MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p) {
 	//save cart to db 
-	$('#purchase span').html(e);
-	//console.log("add " + e.data("num") + " price to cart");
+	$('#purchase span.sentPrice').html(e);
+	$('#purchase span.sentSize').html(s);
+	$('#purchase span.sentProduct').html(p);
+	$('#purchase').enhanceWithin();
+	
+	//console.log("add "+ p + " - " + + e + " price to cart");
 	//console.log(this.data("num"));
 	
 	//NEED TO FIND A WAY TO PUSH THE DATA TO POPUP
