@@ -64,6 +64,9 @@ h3.mc-text-danger  {
 	border:1px solid #000;
 	padding:10px;
 }
+input[type="radio"] {
+    display: none;
+}
 .split-custom-wrapper {
     /* position wrapper on the right of the listitem */
     position: absolute;
