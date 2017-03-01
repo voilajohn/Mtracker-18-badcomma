@@ -70,7 +70,7 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
                 var session = MickmanAppLogin.Session.getInstance().get(),
                     today = new Date();
                 if (session && session.keepSignedIn && new Date(session.expirationDate).getTime() > today.getTime()) {
-                   // ui.toPage = $("#page-main-menu");  
+                    ui.toPage = $("#page-main-menu");  
                     console.log("Redirect");              
                 }else{
 	                console.log("Not Logged in" + session.keepSignedIn + new Date(session.expirationDate).getTime() > today.getTime());
