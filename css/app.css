@@ -67,6 +67,10 @@ h3.mc-text-danger  {
 input[type="radio"] {
     display: none;
 }
+.linesubtotal{
+	border-top:1px solid #000;
+	padding:20px;
+}
 .split-custom-wrapper {
     /* position wrapper on the right of the listitem */
     position: absolute;
