@@ -331,12 +331,12 @@
 	<!-- Cart Page -->
 	<div data-role="page" id="page-cart" class="ui-page ui-body-a">
 	    <div data-role="header" data-theme="b" data-position="fixed">
-	        <a href="#page-index" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+	        <a href="#page-main-menu" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
 	        <h1>Cart</h1>
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content">
 		    <h3>Checkout</h3>
-		    <table data-role="table" id="cart-table" data-mode="reflow">
+		    <table data-role="table" id="cart-table" data-mode="reflow" class="table-stripe">
 			    <thead>
 				    <tr>
 					    <th>&nbsp;</th>
@@ -376,11 +376,51 @@
 	<!-- Checkout Page -->
 	<div data-role="page" id="page-checkout" class="ui-page ui-body-a">
 	    <div data-role="header" data-theme="b" data-position="fixed">
-	        <a href="#page-index" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+	        <a href="#page-main-menu" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
 	        <h1>Please enter your information</h1>
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content">
-		    Nothing at this time.
+		    <form>
+		    <h3>Your Info</h3>
+			    <div class="ui-field-contain">
+			    	<label for="text-basic">First Name:</label>
+					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Joe">
+			    </div>
+			    <div class="ui-field-contain">
+					<label for="text-basic">Last Name:</label>
+					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Smith">
+			    </div>
+				<div class="ui-field-contain">
+					<label for="text-basic">Address:</label>
+					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="1234 Main Street">
+				</div>
+				<div class="ui-field-contain">
+					<label for="text-basic">City:</label>
+					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Your City">
+				</div>
+				<div class="ui-field-contain">
+					<label for="text-basic">State:</label>
+					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Minnesota">
+				</div>
+				<div class="ui-field-contain">
+					<label for="text-basic">Zip:</label>
+					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="55555">
+				</div>
+				<div class="ui-field-contain">
+					<label for="text-basic">Phone:</label>
+					<input type="tel" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="586-234-3454">
+				</div>
+				<div class="ui-field-contain">
+					<label for="text-basic">Email:</label>
+					<input type="email" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="joes@email.com">
+				</div>
+				<div data-role="navbar">
+				<ul>
+					<li><a href="#page-cart">Back</a></li>
+					<li><a href="#page-payment">Next</a></li>
+				</ul>
+				</div>
+		    </form>
 	    </div>
 	    <div data-role="footer" data-position="fixed">
 		    <div data-role="navbar">
@@ -395,11 +435,21 @@
 	<!-- Payment Page -->
 	<div data-role="page" id="page-payment" class="ui-page ui-body-a">
 	    <div data-role="header" data-theme="b" data-position="fixed">
-	        <a href="#page-index" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+	        <a href="#page-main-menu" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
 	        <h1>Are you paying now or later?</h1>
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content">
-		    Nothing at this time.
+		     <ul data-role="listview"  data-filter="true" data-input="#filterBasic-input" data-inset="true" class="productlist">
+					<li>
+					<a href="#page-orders">Paying now with Check</a>
+					</li>
+					<li>
+					<a href="#page-orders">Paying now with Cash</a>
+					</li>
+					<li>
+					<a href="#page-orders">Paying later</a>
+					</li>
+		     </ul>
 	    </div>
 	    <div data-role="footer" data-position="fixed">
 		    <div data-role="navbar">
@@ -414,7 +464,7 @@
 	<!-- Orders Page -->
 	<div data-role="page" id="page-orders" class="ui-page ui-body-a">
 	    <div data-role="header" data-theme="b" data-position="fixed">
-	        <a href="#page-index" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+	        <a href="#page-main-menu" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
 	        <h1>Orders</h1>
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content">
