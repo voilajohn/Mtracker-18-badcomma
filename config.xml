@@ -28,6 +28,7 @@
 	<!-- ios preferences --> 
     <preference name="target-device" value="universal" />
     <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#000000" />
     
     <!-- ios icons  6.1 -->
     <!-- ios icons 7+ -->
