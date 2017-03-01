@@ -148,3 +148,22 @@ legend{
     left:0px;
     height:40%; /* stay within boundaries of list item */
 }
+.table-stripe thead th,
+.table-stripe tbody tr:last-child {
+    border-bottom: 1px solid #d6d6d6; /* non-RGBA fallback */
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.table-stripe tbody th,
+.table-stripe tbody td {
+    border-bottom: 1px solid #e6e6e6; /* non-RGBA fallback  */
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.table-stripe tbody tr:last-child th,
+.table-stripe tbody tr:last-child td {
+    border-bottom: 0;
+}
+.table-stripe tbody tr:nth-child(odd) td,
+.table-stripe tbody tr:nth-child(odd) th {
+    background-color: #eeeeee; /* non-RGBA fallback  */
+    background-color: rgba(0,0,0,.04);
+}
