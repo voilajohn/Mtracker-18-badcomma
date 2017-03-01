@@ -68,13 +68,13 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e) {
 		console.log(err);
 	});
 	
-	$("#purchase").popup("close");
-	$(':mobile-pagecontainer').pagecontainer('change', '#page-cart', {
+	//$("#purchase").popup("close");
+	/*$(':mobile-pagecontainer').pagecontainer('change', '#page-cart', {
         transition: 'slide',
         changeHash: false,
         reverse: false,
         showLoadMsg: false
-    });
+    });*/
     $(':mobile-pagecontainer').pagecontainer('change', '#page-cart');
     //ui.toPage = $("#page-cart"); 
 	//this.getCartData(); //now lets boot up the page
