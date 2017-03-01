@@ -308,9 +308,9 @@
 					<p>Option: <span class="sentSize">none</span></p>
 					<p>Price: $<span class="sentPrice"></span></p>
 					</div>
-				    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Add & Checkout</a>
-				    <a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Add & Shop</a>
-					<a href="index.html" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Cancel</a>
+				    <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini addCheckout">Add & Checkout</a>
+				    <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini addShop">Add & Shop</a>
+					<a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Cancel</a>
 				</div>
 				<!-- larger image -->
 				<div data-role="popup" id="larger" data-theme="a" data-overlay-theme="a" class="ui-content imagepop" style="max-width:340px; padding-bottom:2em;"><a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
@@ -328,26 +328,6 @@
 		</div><!--/footer-->
 	</div><!-- /page -->
 	
-	<!-- Orders Page -->
-	<div data-role="page" id="page-orders" class="ui-page ui-body-a">
-	    <div data-role="header" data-theme="b" data-position="fixed">
-	        <a href="#page-index" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
-	        <h1>Orders</h1>
-	    </div><!-- /header -->
-	    <div role="main" class="ui-content">
-		    Nothing at this time.
-	    </div>
-	    <div data-role="footer" data-position="fixed">
-		    <div data-role="navbar">
-              <ul>
-	               <li><a href="#page-main-menu" data-icon="home">Products</a></li>
-	               <li><a href="#page-cart" data-icon="shop">Cart</a></li>
-	               <li><a href="#page-orders" data-icon="grid" class="ui-btn-active">Orders</a></li>
-              </ul>
-		    </div>
-		</div><!--/footer-->
-	</div><!-- /page -->
-	
 	<!-- Cart Page -->
 	<div data-role="page" id="page-cart" class="ui-page ui-body-a">
 	    <div data-role="header" data-theme="b" data-position="fixed">
@@ -355,7 +335,33 @@
 	        <h1>Cart</h1>
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content">
-		    Nothing at this time.
+		    <h3>Checkout</h3>
+		    <table data-role="table" id="cart-table" data-mode="reflow">
+			    <thead>
+				    <tr>
+					    <th>&nbsp;</th>
+					    <th>Product</th>
+						<th>Number</th>
+						<th>Price per</th>
+						<th>Amount</th>
+					</tr>
+			    </thead>
+			    <tbody>
+			    </tbody>
+		    </table>
+		    <div class="">
+			    <div class="linesubtotal">
+				    <strong>Subtotal: </strong><span class="subtotal">Null</span>
+			    </div>
+		    </div>
+		    <div data-role="navbar">
+              <ul>
+	               <li><a href="#page-main-menu">Continue Shopping</a></li>
+	               <li><a href="#page-checkout">Checkout</a></li>
+	               <li><a href="#" class="emptyCart">Empty Cart</a></li>
+              </ul>
+		    </div>
+		  
 	    </div>
 	    <div data-role="footer" data-position="fixed">
 		    <div data-role="navbar">
@@ -405,6 +411,26 @@
 		    </div>
 		</div><!--/footer-->
 	</div><!-- /page -->
+	<!-- Orders Page -->
+	<div data-role="page" id="page-orders" class="ui-page ui-body-a">
+	    <div data-role="header" data-theme="b" data-position="fixed">
+	        <a href="#page-index" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+	        <h1>Orders</h1>
+	    </div><!-- /header -->
+	    <div role="main" class="ui-content">
+		    Nothing at this time.
+	    </div>
+	    <div data-role="footer" data-position="fixed">
+		    <div data-role="navbar">
+              <ul>
+	               <li><a href="#page-main-menu" data-icon="home">Products</a></li>
+	               <li><a href="#page-cart" data-icon="shop">Cart</a></li>
+	               <li><a href="#page-orders" data-icon="grid" class="ui-btn-active">Orders</a></li>
+              </ul>
+		    </div>
+		</div><!--/footer-->
+	</div><!-- /page -->
+	
     
     <!--<script type="text/javascript" src="cordova.js"></script>-->
     <script src="vendor/fastclick/fastclick.min.js"></script>

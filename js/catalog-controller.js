@@ -5,8 +5,11 @@ var MickmanAppLogin = MickmanAppLogin || {};
 //reset the variables
 MickmanAppLogin.CatalogController = function () {
     this.$storePage = null;
-    this.$btnAdd = null;
-    this.$Classic = null;
+    this.$btnAdd = null; //add to cart button
+    this.$btnCheck = null; //checkout buttons
+    this.$btnCheckShop = null; //checkout and shop button
+    //why no work
+    this.$Classic = null; 
     this.$Victorian = null;
     this.$Cranberry = null;
     this.$ClassicS = null;
@@ -18,42 +21,17 @@ MickmanAppLogin.CatalogController = function () {
 MickmanAppLogin.CatalogController.prototype.init = function () {
     this.$storePage = "#page-main-menu";
     this.$btnAdd = $(".addtocart", this.$storePage);
+    //this.$btnCheck = $(".addCheckout", this.$storePage);
+    //this.$btnCheckShop = $(".addShop", this.$storePage);
+    //booo
     this.$Classic = $("#ClassicWreath");
     this.$Victorian = $("#VictorianWreath");
     this.$Cranberry = $("#CranberrySplashWreath");
 };
 
-//add to cart
-MickmanAppLogin.CatalogController.prototype.show = function (item) {
-	//get cart contents 
-	//add to array 
-    //db save 
-    //update display
-};
 
-//remove from cart
-MickmanAppLogin.CatalogController.prototype.hide = function (item) {
-	//get cart contents 
-	//add to array 
-    //db save 
-    //update display
-};
-
-//
 MickmanAppLogin.CatalogController.prototype.addpricetoPopup = function (e) {
-	//save cart to db 
 	$('#purchase span').html(e);
-	//console.log("add " + e.data("num") + " price to cart");
-	//console.log(this.data("num"));
-	
-	//NEED TO FIND A WAY TO PUSH THE DATA TO POPUP
-	//total cart contents 
-};
-
-MickmanAppLogin.CatalogController.prototype.addtoCartCommand = function (e) {
-	//save cart to db 
-	//console.log("add " + e.data("num") + " price to cart");
-	//total cart contents 
 };
 
 //create an instance ocf the db for the products
@@ -74,7 +52,7 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x) { //Write t
 });
 
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
-MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This runs when the page is loaded.
+MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
 	//hide everything
 	$("#ClassicWreath").hide(); $("#ClassicGreenzitWreath").hide();
 	$("#VictorianWreath").hide(); $("#VictorianGreenzitWreath").hide();
@@ -90,11 +68,12 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This ru
 	$("#EZWreathHanger").hide();
 	$("#Bags").hide();
 	$("#LEDlights").hide();
-	  
+	
 	var radioBtn = "";
 	// Find the number of items in the datastore.
 	// Need to set lowest price and flag the radio button
 	product.iterate(function(value, key, iterationNumber) {
+	
 	    if( (key == "25c") && value > 0 || 
 	    	(key == "28c") && value > 0 || 
 	    	(key == "36c") && value > 0 || 

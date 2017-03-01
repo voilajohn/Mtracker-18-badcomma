@@ -39,6 +39,7 @@ app.initialize();
 
 $(document).on("mobileinit", function (event, ui) {
     $.mobile.defaultPageTransition = "slide";
+    //$.mobile.defaultPageTransition = "none";
 });
 
 app.signInController = new MickmanAppLogin.SignInController(); //call the signin controller
@@ -52,6 +53,8 @@ $(document).on("pagecontainerbeforeshow", function (event, ui) {
                 // Reset signin form.
                 app.signInController.resetSignInForm();
                 break;
+            case "page-cart":
+            	app.cartController.getCartData(); 
         }
     }
 });
@@ -59,6 +62,7 @@ $(document).on("pagecontainerbeforeshow", function (event, ui) {
 //Check for Sign-in
 $(document).on("pagecontainerbeforechange", function (event, ui) {
     if (typeof ui.toPage !== "object") return;
+    
     switch (ui.toPage.attr("id")) {
         case "page-signin":
             if (!ui.prevPage) {
@@ -77,21 +81,23 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
 
 //Login Button
 $(document).delegate("#page-signin", "pagebeforecreate", function () {
-
     app.signInController.init();
-    
     app.signInController.$btnSubmit.off("tap").on("tap", function () {
         app.signInController.onSignInCommand();
     });
-    
 });
 
-//Catalog Loaded
-$(document).delegate("#page-main-menu", "pageshow", function () {
+//Catalog Page is Loaded
+$(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	app.catalogController.init();
     app.catalogController.getSavedData();
 });
 
+//Cart Page is Loaded
+$(document).delegate("#page-cart", "pageshow", function () {
+	app.cartController.init();
+    app.cartController.getCartData(); //lets gather the cart info each time the cart is visited.
+});
 
 //Add to Cart Button
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
@@ -99,6 +105,14 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
     app.cartController.$btnAdd.off("tap").on("tap", function () {
         app.cartController.addpricetoPopup($(this).data("num"),$(this).data("product-size"),$(this).data("product"));
         console.log("activated");
+    });
+    app.cartController.$btnCheck.off("tap").on("tap", function (event) {
+	    //first check cart data, then add to if there is existing
+	    
+	    cost = $(this).parent().find("span.sentPrice").text();
+	    product = $(this).parent().find("span.sentProduct").text();
+	    var items = [product,cost];
+        app.cartController.addtoCartCommand(items);
     });
 });
 
