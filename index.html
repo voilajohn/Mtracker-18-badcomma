@@ -9,6 +9,8 @@
 	<!--css rules-->
     <link href="vendor/jquerymobile/jquery.mobile.icons.min.css" type="text/css" rel="stylesheet" />
     <link href="vendor/jquerymobile/jquery.mobile.structure-1.4.5.min.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="vendor/slick/slick-theme.css"/>
     <!--<link href="vendor/waves/waves.min.css" type="text/css" rel="stylesheet" />-->
 	<!--<link href="vendor/wow/animate.css" type="text/css" rel="stylesheet"/>-->
     <link href="vendor/jquerymobile/jquery.mobile-1.4.5.min.css" type="text/css" rel="stylesheet"/><!-- jquery mobile theme -->
@@ -27,17 +29,17 @@
 	   
 	    <div role="main" class="ui-content">
 		    <p style="text-align:center;margin:0px auto">logo</p>
+		    <p>image</p>
 	        <h3>Welcome to the Mickman Holiday Sales App</h3>
 	        <p>Sign in below with your username and password that your Scout leader has given you to begin.</p>
 	        <div id="ctn-err" class="bi-invisible"></div>
-	        <label for="txt-user-name">Username</label>
-	        <input type="text" name="txt-user-name" id="txt-user-name" value="">
-	        <label for="txt-password">Password</label>
-	        <input type="password" name="txt-password" id="txt-password" value="">
-	        <fieldset data-role="controlgroup">                
+	        <input type="text" name="txt-user-name" id="txt-user-name" value="" placeholder="User Name">
+	        <input type="password" name="txt-password" id="txt-password" value="" placeholder="Password">
+	      
+	        <a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-nodisc-icon ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" name="btn-submit">Submit</a>
+	          <fieldset data-role="controlgroup">                
 	            <label><input type="checkbox" name="chk-keep-signed-in" data-theme="a" id="chk-keep-signed-in"> Keep me signed in</label>
 	        </fieldset>
-	        <a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-nodisc-icon ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" name="btn-submit">Submit</a>
 	        <p class="mc-top-margin-1-5"><a href="#begin-password-reset-page">Can't access your account?</a></p>
 	        <div data-role="popup" id="confirm-member" data-theme="a" data-overlay-theme="a" class="ui-content" data-dismissible="false" style="padding-bottom:2em;">
 			    <h3>Who are you?</h3>
@@ -53,10 +55,35 @@
 	<!-- User is logged in -->
 	<div data-role="page" id="page-main-menu">
 	    <div data-role="header" data-theme="b">
-		    <a href="#page-signin" data-icon="home"  data-transition="slide" data-direction="reverse" class="ui-nodisc-icon">Log Out</a>
+		    <a href="#profile-panel" data-icon="user"  data-transition="slide" data-direction="reverse" class="ui-nodisc-icon">Profile</a>
 	        <h1>Products</h1>
 	    </div><!-- /header -->
 	    <div role="content" class="ui-content">
+			<div class="your-class">
+ 				<div>
+	 				<img src="" alt="Classic Wreath"/>
+	 				<h3>Classic Wreath</h3>
+	 				<p>Description</p>
+	 			</div>
+ 				<div>Victorian Wreath</div>
+ 				<div>Cranberry Splash Wreath</div>
+ 				<div>Classic Spray</div>
+ 				<div>Victorian Spray</div>
+ 				<div>Cranberry Splash Spray</div>
+ 				<div>Candlelit Centerpiece</div>
+ 				<div>Tiny Living Tree</div>
+ 				<div>Garland</div>
+ 				<div>EZ Wreath Hanger</div>
+ 				<div>LED Lights</div>
+ 				<div>your content</div>
+			</div>
+			<div data-role="controlgroup" data-type="horizontal" data-mini="true">
+				<a href="" class="ui-btn">Wreaths</a>
+				<a href="" class="ui-btn">Sprays</a>
+				<a href="" class="ui-btn">Trees</a>
+				<a href="" class="ui-btn">Centerpieces</a>
+				<a href="" class="ui-btn">Other</a>
+			</div>
 		    <form class="ui-filterable">
 			    <input id="filterBasic-input" data-type="search">
 			</form>
@@ -339,7 +366,6 @@
 		    <table data-role="table" id="cart-table" data-mode="reflow" class="table-stripe">
 			    <thead>
 				    <tr>
-					    <th>&nbsp;</th>
 					    <th>Product</th>
 						<th>Number</th>
 						<th>Price per</th>
@@ -480,11 +506,22 @@
 		    </div>
 		</div><!--/footer-->
 	</div><!-- /page -->
-	
+	<div data-role="panel" id="profile-panel" data-position="left" data-display="reveal" data-theme="a">
+
+        <h3>Profile</h3>
+        <p><strong>Group:</strong><span class="your-group"></span></p>
+        <p><strong>Profile:</strong><span class="your-profile"></span></p>
+        <div data-role="controlgroup" data-type="horizontal">
+        <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Close panel</a>
+        <a href="#page-signin" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-lock ui-btn-icon-left">Log Out</a>
+        </div>
+
+	</div><!-- /leftpanel1 -->
     
     <script type="text/javascript" src="cordova.js"></script>
     <script src="vendor/fastclick/fastclick.min.js"></script>
     <script src="vendor/jquery/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="vendor/slick/slick.min.js"></script>
     <script src="vendor/localforage/localforage.min.js">
 	    
     <script src="js/api-messages.js"></script>

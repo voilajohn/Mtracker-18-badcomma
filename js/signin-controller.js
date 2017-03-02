@@ -142,6 +142,8 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
                             me.$txtUserName.addClass(invalidInputStyle);
                             break;
                     }
+                }else{
+	                console.log("nothing back");
                 }
             }
         },

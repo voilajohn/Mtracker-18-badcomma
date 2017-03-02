@@ -81,7 +81,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    	(key == "60c") && value > 0
 	    ){ //Classic Wreath is available
 		    $("#ClassicWreath").show();
-		    var buttonLabel = key.replace("c"," inches");
+		    var buttonLabel = key.replace("c","in.");
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'</label>');
 		    $('#ClassicOption').controlgroup('container').append(radioBtn);
 	    }
@@ -92,7 +92,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    	(key == "60cg") && value > 0
 	    ){ //Classic Wreath Greenzit is available
 		    $("#ClassicWreathGreenzit").show();
-		    var buttonLabel = key.replace("cg"," inches");
+		    var buttonLabel = key.replace("cg","in.");
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'</label>');
 		    $('#ClassicGOption').controlgroup('container').append(radioBtn);
 		}
@@ -101,7 +101,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    	(key == "36v") && value > 0 
 	    ){ //Victorian Wreath is available
 		    $("#VictorianWreath").show();
-		    var buttonLabel = key.replace("v"," inches");
+		    var buttonLabel = key.replace("v","in.");
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'</label>');
 		    $('#VictorianOption').controlgroup('container').append(radioBtn);
 		}
@@ -110,7 +110,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    	(key == "36vg") && value > 0 
 	    ){ //Victorian Greenzit Wreath is available
 		    $("#VictorianGreenzitWreath").show();
-		    var buttonLabel = key.replace("vg"," inches");
+		    var buttonLabel = key.replace("vg","in.");
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'</label>');
 		    $('#VictorianGOption').controlgroup('container').append(radioBtn);
 		}
@@ -119,7 +119,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    	(key == "36cs") && value > 0  
 	    ){ //Cranberry Splash Wreath is available
 		    $("#CranberrySplashWreath").show();
-		    var buttonLabel = key.replace("cs"," inches");
+		    var buttonLabel = key.replace("cs","in.");
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'</label>');
 		    $('#CranberryOption').controlgroup('container').append(radioBtn);
 		}
@@ -128,7 +128,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    	(key == "36csg") && value > 0 
 	    ){ //Cranberry Splash Wreath w Greenzit is available
 		    $("#CranberrySplashGWreath").show();
-		    var buttonLabel = key.replace("csg"," inches");
+		    var buttonLabel = key.replace("csg","in.");
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'</label>');
 		    $('#CranberryGOption').controlgroup('container').append(radioBtn);
 		}

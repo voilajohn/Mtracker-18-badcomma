@@ -40,6 +40,7 @@ app.initialize();
 $(document).on("mobileinit", function (event, ui) {
     $.mobile.defaultPageTransition = "slide";
     //$.mobile.defaultPageTransition = "none";
+	$( "body>[data-role='panel']" ).panel(); //global panel
 });
 
 app.signInController = new MickmanAppLogin.SignInController(); //call the signin controller
@@ -91,6 +92,31 @@ $(document).delegate("#page-signin", "pagebeforecreate", function () {
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	app.catalogController.init();
     app.catalogController.getSavedData();
+	$('.your-class').slick({
+    	centerMode: true,
+		centerPadding: '60px',
+		slidesToShow: 3,
+		responsive: [
+	    {
+	      breakpoint: 768,
+	      settings: {
+	        arrows: false,
+	        centerMode: true,
+	        centerPadding: '40px',
+	        slidesToShow: 3
+	      }
+	    },
+	    {
+	      breakpoint: 480,
+	      settings: {
+	        arrows: false,
+	        centerMode: true,
+	        centerPadding: '40px',
+	        slidesToShow: 1
+	      }
+	    }
+		]  	
+	});
 });
 
 //Cart Page is Loaded
@@ -111,10 +137,12 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	    
 	    cost = $(this).parent().find("span.sentPrice").text();
 	    product = $(this).parent().find("span.sentProduct").text();
-	    var items = [product,cost];
+	    size = $(this).parent().find("span.sentSize").text();
+	    var items = [product+"-"+size,cost];
         app.cartController.addtoCartCommand(items);
     });
 });
+
 
 localforage.config({
     driver      : localforage.WEBSQL, // Force WebSQL; same as using setDriver()
