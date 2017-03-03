@@ -105,9 +105,16 @@ input[type="radio"] {
     height:40%;
 }/*/
 .product-display div.slider{
+	margin:10px;
+}
+.product-display div.slider img{
+	max-width:100%;
+	height:auto;
+	width:100%;
+}
+.product-display div.slider .inner{
 	background:#EBEBEB;
 	padding:20px;
-	margin:10px;
 }
 legend{
 	font-size:.8em;

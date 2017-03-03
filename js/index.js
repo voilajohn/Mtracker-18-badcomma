@@ -92,6 +92,7 @@ $(document).delegate("#page-signin", "pagebeforecreate", function () {
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	app.catalogController.init();
     app.catalogController.getSavedData();
+    
 	$('.product-display').slick({
     	centerMode: true,
 		centerPadding: '60px',
@@ -117,6 +118,7 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	    }
 		]  	
 	});
+	
 });
 
 //Cart Page is Loaded
