@@ -92,33 +92,6 @@ $(document).delegate("#page-signin", "pagebeforecreate", function () {
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	app.catalogController.init();
     app.catalogController.getSavedData();
-    
-	$('.product-display').slick({
-    	centerMode: true,
-		centerPadding: '60px',
-		slidesToShow: 3,
-		responsive: [
-	    {
-	      breakpoint: 768,
-	      settings: {
-	        arrows: false,
-	        centerMode: true,
-	        centerPadding: '40px',
-	        slidesToShow: 3
-	      }
-	    },
-	    {
-	      breakpoint: 480,
-	      settings: {
-	        arrows: false,
-	        centerMode: true,
-	        centerPadding: '40px',
-	        slidesToShow: 1
-	      }
-	    }
-		]  	
-	});
-	
 });
 
 //Cart Page is Loaded

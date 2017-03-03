@@ -271,7 +271,31 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		var productName = $("#LEDlights h2").text();
 		$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 		$("#LEDlights .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
-		
+		$('.product-display').slick({ //fire up the image rotater
+	    	centerMode: true,
+			centerPadding: '60px',
+			slidesToShow: 3,
+			responsive: [
+		    {
+		      breakpoint: 768,
+		      settings: {
+		        arrows: false,
+		        centerMode: true,
+		        centerPadding: '40px',
+		        slidesToShow: 3
+		      }
+		    },
+		    {
+		      breakpoint: 480,
+		      settings: {
+		        arrows: false,
+		        centerMode: true,
+		        centerPadding: '40px',
+		        slidesToShow: 1
+		      }
+		    }
+			]  	
+		});
 	    
 	}).catch(function(err) {
 	    // This code runs if there were any errors
