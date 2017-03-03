@@ -92,7 +92,7 @@ $(document).delegate("#page-signin", "pagebeforecreate", function () {
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	app.catalogController.init();
     app.catalogController.getSavedData();
-	$('.your-class').slick({
+	$('.product-display').slick({
     	centerMode: true,
 		centerPadding: '60px',
 		slidesToShow: 3,

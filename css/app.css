@@ -71,8 +71,7 @@ input[type="radio"] {
 	border-top:1px solid #000;
 	padding:20px 10px;
 }
-.split-custom-wrapper {
-    /* position wrapper on the right of the listitem */
+/*.split-custom-wrapper {
     position: absolute;
     right: 0;
     top: 0;
@@ -81,12 +80,11 @@ input[type="radio"] {
 
 .split-custom-button {
     position: relative;
-    float: right;   /* allow multiple links stacked on the right */
+    float: right;  
     height: 100%;
     margin:0;
     min-width:1em;
     padding:0px 10px;
-    /* remove boxshadow and border */
     border:none !important;
     border-left:1px solid #CCC;
     moz-border-radius: 0;
@@ -99,14 +97,17 @@ input[type="radio"] {
     box-shadow: none;
 }
 .split-custom-button span.ui-btn-inner {
-    /* position icons in center of listitem*/
     position: relative;
     margin-top:50%;
     margin-left:50%;
-    /* compensation for icon dimensions */
     top:11px; 
     left:-12px;
-    height:40%; /* stay within boundaries of list item */
+    height:40%;
+}/*/
+.product-display div.slider{
+	background:#EBEBEB;
+	padding:20px;
+	margin:10px;
 }
 legend{
 	font-size:.8em;
@@ -129,7 +130,7 @@ legend{
 	min-height:150px !important;
 	/*height:150px;*/
 }
-.searchbtn{
+/*.searchbtn{
 	float:left;
 	height:auto;
 	position:absolute;
@@ -139,15 +140,13 @@ legend{
 	min-height:150px;
 }
 .searchbtn span.ui-btn {
-    /* position icons in center of listitem*/
     position: relative;
     margin:0;
     background:transparent !important;
-    /* compensation for icon dimensions */
     top:11px; 
     left:0px;
-    height:40%; /* stay within boundaries of list item */
-}
+    height:40%;
+}*/
 .table-stripe thead th,
 .table-stripe tbody tr:last-child {
     border-bottom: 1px solid #d6d6d6; /* non-RGBA fallback */
