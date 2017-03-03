@@ -105,6 +105,7 @@ input[type="radio"] {
     height:40%;
 }/*/
 .product-display div.slider{
+	position:relative;
 	margin:10px;
 }
 .product-display div.slider img{
@@ -146,14 +147,22 @@ legend{
 	min-width:150px;
 	min-height:150px;
 }
-.searchbtn span.ui-btn {
-    position: relative;
-    margin:0;
+*/
+#larger{
+  position:fixed;
+  width:92%;
+  top:0px;
+  left:0px;
+}
+.searchbtn  {
+    position:absolute;
     background:transparent !important;
-    top:11px; 
-    left:0px;
-    height:40%;
-}*/
+    top:0px; 
+    padding:0px;
+    margin:0px;
+    right:0px;
+    border:none;
+}
 .table-stripe thead th,
 .table-stripe tbody tr:last-child {
     border-bottom: 1px solid #d6d6d6; /* non-RGBA fallback */

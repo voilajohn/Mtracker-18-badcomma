@@ -53,18 +53,31 @@
 	</div><!-- /page -->
 	
 	<!-- User is logged in -->
+
 	<div data-role="page" id="page-main-menu">
+		<!--navpanel-->
+		<div data-role="popup" id="Mainnavpanel" data-transition="slidedown" data-theme="a">
+	     		<div data-role="navbar">
+	              <ul>
+		               <li><a href="#page-main-menu" data-icon="home" class="ui-btn-active">Products</a></li>
+		               <li><a href="#page-cart" data-icon="shop">Cart</a></li>
+		               <li><a href="#page-orders" data-icon="grid">Orders</a></li>
+	              </ul>
+			    </div>
+	    </div>
+	    <!-- / navpanel -->
 	    <div data-role="header" data-theme="b">
-		    <a href="#profile-panel" data-icon="user"  data-transition="slide" data-direction="reverse" class="ui-nodisc-icon">Profile</a>
+		    <a href="#profile-panel" data-icon="user"  data-transition="slide" data-direction="reverse" class="ui-nodisc-icon ui-btn-right ui-btn-icon-notext">Profile</a>
+		    <a href="#Mainnavpanel" data-icon="bars"  data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-left ui-btn-icon-notext ui-nodisc-icon ui-icon-bars" data-rel="popup">Menu</a>
 	        <h1>Products</h1>
 	    </div><!-- /header -->
 	    <div role="content" class="ui-content">
 			<div class="product-display">
  				<!--## Classic Wreath ## -->
 				<div id="ClassicWreath" class="slider">
-					<a href="#" data-largerimage="images/products/classic_lg.jpg" class="searchbtn">
+					<a href="#" data-largerimage="images/products/classic_lg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/classic_sm.jpg" alt="Classic Wreath">
-					</a>
+
 					<div class="inner">
 						<h2 style="margin:0px;">Classic Wreath</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">null</span></p>
@@ -81,9 +94,8 @@
 				<!-- / end Classic Wreath -->
  				<!-- ## Classic Wreath Greenzit ##-->
 				<div id="ClassicWreathGreenzit" class="slider">
-					<a href="#" data-largerimage="images/products/classic_lg.jpg" class="searchbtn">
-						<img src="images/products/thumbs/classic_sm.jpg" alt="Classic Wreath with Greenzit">
-					</a>
+					<a href="#" data-largerimage="images/products/classic_lg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
+					<img src="images/products/thumbs/classic_sm.jpg" alt="Classic Wreath with Greenzit">
 					<div class="inner">
 						<h2 style="margin:0px;">Classic Wreath with Greenzit</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">null</span></p>
@@ -100,9 +112,8 @@
 				<!-- / end Classic Wreath -->
  				<!-- ## Victorian ## -->
 				<div id="VictorianWreath" class="slider">
-					<a href="#" data-largerimage="images/products/victorian_lg.jpg" class="searchbtn">
+					<a href="#" data-largerimage="images/products/victorian_lg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/victorian_sm.jpg" alt="Victorian Wreath">
-					</a>
 					<div class="inner">
 						<h2 style="margin:0px;">Victorian Wreath</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">null</span></p>
@@ -119,9 +130,9 @@
 				<!-- / Victorian -->
  				<!-- ## Victorian G ## -->
 				<div id="VictorianGreenzitWreath" class="slider">
-					<a href="#" data-largerimage="images/products/victorian_lg.jpg" class="searchbtn">
+					<a href="#" data-largerimage="images/products/victorian_lg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/victorian_sm.jpg" alt="Victorian Wreath">
-					</a>
+		
 					<div class="inner">
 						<h2 style="margin:0px;">Victorian Wreath with Greenzit</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">null</span></p>
@@ -138,9 +149,9 @@
 					<!-- / Victorian -->
  				<!-- ## Cranbery Splash ## -->
 				<div id="CranberrySplashWreath" class="slider">
-					<a href="#" data-largerimage="images/products/cranberry_lg.jpg" class="searchbtn">
+					<a href="#" data-largerimage="images/products/cranberry_lg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/cranberry_sm.jpg" alt="Cranberry Splash Wreath">
-					</a>
+
 					<div class="inner">
 						<h2 style="margin:0px;">Cranberry Splash Wreath</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">null</span></p>
@@ -157,9 +168,9 @@
 				<!-- / Cranberry Splash Wreaths -->
  				<!-- ## Cranbery Splash ## -->
 				<div id="CranberrySplashGWreath" class="slider">
-					<a href="#" data-largerimage="images/products/cranberry_lg.jpg" class="searchbtn">
+					<a href="#" data-largerimage="images/products/cranberry_lg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/cranberry_sm.jpg" alt="Cranberry Splash Wreath">
-					</a>
+		
 					<div class="inner">
 						<h2 style="margin:0px;">Cranberry Splash with Greenzit Wreath</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">null</span></p>
@@ -176,9 +187,9 @@
 				<!-- / Cranberry Splash Wreaths -->
  				<!-- ## Classic Spray ## -->
 				<div id="ClassicSpray" class="slider">
-					<a href="#" data-largerimage="images/products/classic-spray_lg.jpg" class="searchbtn">
+					<a href="#" data-largerimage="images/products/classic-spray_lg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/classic-spray_sm.jpg" alt="Classic Spray">
-					</a>
+		
 					<div class="inner">
 						<h2>Classic Spray</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
@@ -193,9 +204,9 @@
 				<!-- / Classic Spray -->
  				<!-- Victorian Spray -->
 				<div id="VictorianSpray" class="slider">
-					<a href="#" data-largerimage="images/products/victorian-spray_lg.jpg" class="searchbtn">
+					<a href="#" data-largerimage="images/products/victorian-spray_lg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/victorian-spray_sm.jpg" alt="Victorian Spray">
-					</a>
+	
 					<div class="inner">
 						<h2>Victorian Spray</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
@@ -205,16 +216,16 @@
 							</fieldset>
 						</form>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop" data-iconpos="notext"></a>
+			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
 				<!-- / Victorian Spray -->
  				<!-- Cranberry Splash Spray -->
 				<div id="CranberrySpray" class="slider">
-					<a href="#" data-largerimage="images/products/cranberry_spray_lg.jpg" class="searchbtn victorian" data-icon="search">
+					<a href="#" data-largerimage="images/products/cranberry_spray_lg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/cranberry-spray_sm.jpg" alt="Cranberry Spray">
-					</a>
+			
 					<div class="inner">
 						<h2>Cranberry Spray</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
@@ -224,44 +235,44 @@
 							</fieldset>
 						</form>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop" data-iconpos="notext">Add to Cart</a>
+			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
 				<!-- / End Cranberry Splash Spray -->
  				<!-- Holiday Centerpiece -->
 				<div id="HolidayCenterpiece" class="slider">
-					<a href="#" data-largerimage="images/products/candlelitcenterpiece_lg.jpg" class="searchbtn">
+					<a href="#" data-largerimage="images/products/candlelitcenterpiece_lg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/candlelitcenterpiece_sm.jpg" alt="Candlelit Centerpiece">
-					</a>
+			
 					<div class="inner">
 						<h2>Candlelit Centerpiece</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop" data-iconpos="notext">Add to Cart</a>
+			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
 				<!-- / Holiday Centerpiece -->
  				<!-- Table Top Tree -->
 				<div id="tabletoptree" class="slider">
-					<a href="#" data-largerimage="images/products/North-star_lg.jpg" class="searchbtn">
+					<a href="#" data-largerimage="images/products/North-star_lg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/North-star_sm.jpg" alt="The North Star Table Top Tree">
-					</a>
+			
 					<div class="inner">
 						<h2>The North Star Table Top Tree</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num=""  data-product="" data-product-size="" data-transition="pop" data-iconpos="notext">Add to Cart</a>
+			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num=""  data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
 				<!-- / Tabletop Tree -->
 				<!-- Garland -->
 				<div id="garland" class="slider">
-					<a href="#" data-largerimage="images/products/garlandprolg.jpg" class="searchbtn">
+					<a href="#" data-largerimage="images/products/garlandprolg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/garland_sm.jpg" alt="Garland">
-					</a>
+				
 					<div class="inner">
 						<h2>Garland</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
@@ -277,9 +288,9 @@
 				<!-- / Garland -->
  				<!--EZ Wreath Hangers-->
 				<div id="EZWreathHanger" class="slider">
-					<a href="#" data-largerimage="images/products/hangerprolg.jpg" class="searchbtn">
+					<a href="#" data-largerimage="images/products/hangerprolg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/hanger_sm.jpg" alt="EZ Hanger">
-					</a>
+		
 					<div class="inner">
 						<h2>EZ Wreath Hanger</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
@@ -291,28 +302,28 @@
 				<!-- / EZ Wreath Hangers -->
  				<!-- Bags -->
 				<div id="Bags" class="slider">
-					<a href="#" data-largerimage="images/products/" class="searchbtn">
+					<a href="#" data-largerimage="images/products/" class="searchbtn"></a>
 						<img src="images/products/thumbs/holly-berry_sm.jpg" alt="Bag">
-					</a>
+			
 					<div class="inner">
 						<h2>Bag</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop" data-iconpos="notext">Add to Cart</a>
+			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
 				<!-- / Bags -->
 				<!--LED Lights-->
 				<div id="LEDlights" class="slider">
-					<a href="#" data-largerimage="images/products/lightsprolg.jpg" class="searchbtn">
+					<a href="#" data-largerimage="images/products/lightsprolg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/lights_sm.jpg" alt="LED">
-					</a>
+				
 					<div class="inner">
 						<h2>LED Lights</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop" data-iconpos="notext">Add to Cart</a>
+			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
@@ -343,18 +354,13 @@
 					<a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Cancel</a>
 				</div>
 				<!-- larger image -->
-				<div data-role="popup" id="larger" data-theme="a" data-overlay-theme="a" class="ui-content imagepop" style="max-width:340px; padding-bottom:2em;"><a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+				<div data-role="popup" id="larger" data-theme="a" data-overlay-theme="a" class="ui-content imagepop" style="max-width:95%; padding-bottom:2em;">
 				    <img src="images/products/classic_lg.jpg" alt=""/>
+				    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn">Close</a>
 				</div>
 	    </div><!-- /content -->
 	    <div data-role="footer" data-position="fixed">
-		    <div data-role="navbar">
-              <ul>
-	               <li><a href="#page-main-menu" data-icon="home" class="ui-btn-active">Products</a></li>
-	               <li><a href="#page-cart" data-icon="shop">Cart</a></li>
-	               <li><a href="#page-orders" data-icon="grid">Orders</a></li>
-              </ul>
-		    </div>
+		   
 		</div><!--/footer-->
 	</div><!-- /page -->
 	
@@ -510,7 +516,6 @@
 		</div><!--/footer-->
 	</div><!-- /page -->
 	<div data-role="panel" id="profile-panel" data-position="left" data-display="reveal" data-theme="a">
-
         <h3>Profile</h3>
         <p><strong>Group:</strong><span class="your-group"></span></p>
         <p><strong>Profile:</strong><span class="your-profile"></span></p>
@@ -520,6 +525,7 @@
         </div>
 
 	</div><!-- /leftpanel1 -->
+	
     
     <script type="text/javascript" src="cordova.js"></script>
     <script src="vendor/fastclick/fastclick.min.js"></script>
