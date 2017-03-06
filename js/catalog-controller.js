@@ -271,31 +271,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		var productName = $("#LEDlights h2").text();
 		$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 		$("#LEDlights .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
-		$('.product-display').slick({ //fire up the image rotater
-	    	centerMode: true,
-			centerPadding: '60px',
-			slidesToShow: 3,
-			responsive: [
-		    {
-		      breakpoint: 768,
-		      settings: {
-		        arrows: true,
-		        centerMode: true,
-		        centerPadding: '40px',
-		        slidesToShow: 3
-		      }
-		    },
-		    {
-		      breakpoint: 480,
-		      settings: {
-		        arrows: true,
-		        centerMode: true,
-		        centerPadding: '40px',
-		        slidesToShow: 1
-		      }
-		    }
-			] 	
-		});
+		$(".slickIt").trigger("click");
 	    
 	}).catch(function(err) {
 	    // This code runs if there were any errors
@@ -346,4 +322,48 @@ $('.product-button').on('click', function(){
 		 })
 	}
     console.log(filtername);
+});
+//
+$(".slickIt").on('click', function(){
+	$('.product-display').slick({ //fire up the image rotater
+    	centerMode: true,
+		centerPadding: '60px',
+		slidesToShow: 3,
+		responsive: [
+	    {
+	      breakpoint: 768,
+	      settings: {
+	        arrows: true,
+	        centerMode: true,
+	        centerPadding: '40px',
+	        slidesToShow: 3
+	      }
+	    },
+	    {
+	      breakpoint: 480,
+	      settings: {
+	        arrows: true,
+	        centerMode: true,
+	        centerPadding: '40px',
+	        slidesToShow: 1
+	      }
+	    }
+		] 	
+	});
+	$('.product-display').addClass("slicked");
+	$('.product-display').removeClass("unslicked");
+	console.log("slcked");
+	$(this).addClass("ui-btn-active");
+	$('.unslickIt').removeClass("ui-btn-active");
+	//remove the listview layout
+});
+$(".unslickIt").on('click', function(){
+	$('.product-display').slick("unslick");
+	console.log("unslcked");
+	$('.product-display').removeClass("slicked");
+	$('.product-display').addClass("unslicked");
+	$('.slickIt').removeClass("ui-btn-active");
+	$(this).addClass("ui-btn-active");
+	//style it as a listview
+	
 });
