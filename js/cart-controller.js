@@ -41,8 +41,9 @@ MickmanAppLogin.CartController.prototype.removeFromCart = function (item) {
 };
 
 //
-MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p) {
+MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t) {
 	//save cart to db 
+	$('#purchase img').attr('src',t);
 	$('#purchase span.sentPrice').html(e);
 	$('#purchase span.sentSize').html(s);
 	$('#purchase span.sentProduct').html(p);
@@ -55,41 +56,36 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e) {
 			//console.log("yep: " + value[1]);
 			//it is in there so lets add a variable to show how many are in there. and update the price. 
 			if(e != "" && value[1] != ""){ //name - cost - quantity
-				cart.setItem(e[0],[e[1],Number(value[1]+1)]); //one up the quantity
+				cart.setItem(e[0],[e[1],Number(value[1]+1),e[2]]); //one up the quantity
 			}
 		}else{ 
 			//console.log("nope"); //this is new lets add it. 
 			if(e != ""){//check for blanks
-				cart.setItem(e[0],[e[1],1]);
+				cart.setItem(e[0],[e[1],1,e[2]]);
 			}
 		}
-	}).catch(function(err) {
-    	// This code runs if there were any errors
+	}).catch(function(err) {// This code runs if there were any errors
 		console.log(err);
 	});
     $(':mobile-pagecontainer').pagecontainer('change', '#page-cart');
 };
 MickmanAppLogin.CartController.prototype.getCartData = function(){
 	//reset the table
-	$("#cart-table tbody").html(""); //clear table
+	$(".cartlist").html("");
 	//close the popup window
 	cart.iterate(function(value, key, iterationNumber) {
-		//console.log("update table" + value);
-		$("#cart-table tbody").append("<tr><td>"+key+"</td><td>"+value[1]+" <div data-role='controlgroup' data-type='horizontal' data-mini='true' class='ui-group-theme-b' data-product-name='"+key+"' data-product-cost='"+value[0]+"'><a href='#' class='ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext addProduct'>+</a><a href='#' class='ui-btn ui-corner-all ui-icon-minus ui-btn-icon-notext removeProduct'>-</a></div></td><td>$"+value[0]+"</td><td class='total'>$<span>"+Number(value[0]*value[1])+"</span></td></tr>");
+		$(".cartlist").append("<li class='' data-role='list-divider'>"+key+"<span class='ui-li-count'>"+value[1]+"</span></li><li><div class='ui-grid-b'><div class='ui-block-a' style='width:60%'><img src='"+value[2]+"' alt='"+key+"' class='cartthumb'/><p style='margin:0px;'>$"+value[0]+" each</span> <div class='total'>$<span>"+Number(value[0]*value[1])+"</span></div></p></div><div class='ui-block-b' style='width:15%;'></div><div class='ui-block-c' style='width:15%;float:right;vertical-align:top;'><div data-role='controlgroup' data-type='vertical' data-mini='true' class='ui-group-theme-a' data-product-name='"+key+"' data-product-cost='"+value[0]+"' data-product-thumb='"+value[2]+"'><a href='#' class='ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext addProduct'>+</a><a href='#' class='ui-btn ui-corner-all ui-icon-minus ui-btn-icon-notext removeProduct'>-</a></div></div></li>");
+		//
 	}).then(function() {
-		//$("#cart-table").enhanceWithin().controlgroup("refresh");
-		$("#cart-table").enhanceWithin();
-		$("#cart-table").table("refresh");
+		$(".cartlist").enhanceWithin();
+		$(".cartlist").listview("refresh");
 		//add up the totals
 		var total = 0;
-		$( "#cart-table tbody .total span" ).each( function( index, element ){
-		    console.log( $( this ).text() );
+		$( ".cartlist li .total span" ).each( function( index, element ){
 		    total += Number($( this ).text());
 		});
-		console.log(total);
 		$(".subtotal").html("$" + String(total));
-	}).catch(function(err) {
-    	// This code runs if there were any errors
+	}).catch(function(err) {// This code runs if there were any errors
 		console.log(err);
 	});
 };
@@ -101,14 +97,13 @@ MickmanAppLogin.CartController.prototype.addProduct = function (e) {
 			console.log("yep: " + value[1]);
 			//it is in there so lets add a variable to show how many are in there. and update the price. 
 			if(e != "" && value[1] != ""){ //name - cost - quantity
-				cart.setItem(e[0],[e[1],Number(value[1]+1)]); //one up the quantity
-				console.log(value[1]+1);
+				cart.setItem(e[0],[e[1],Number(value[1]+1),e[2]]); //one up the quantity
 			}
 		}
 		//add up the totals
 		var total = 0;
-		$( "#cart-table tbody .total span" ).each( function( index, element ){
-		    console.log( $( this ).text() );
+		$( ".cartlist li .total span" ).each( function( index, element ){
+		//$( "#cart-table tbody .total span" ).each( function( index, element ){
 		    total += Number($( this ).text());
 		});
 		$(".subtotal").html("$" + String(total));
@@ -128,7 +123,7 @@ MickmanAppLogin.CartController.prototype.removeProduct = function (e) {
 			console.log("yep: " + value[1]);
 			//it is in there so lets add a variable to show how many are in there. and update the price. 
 			if(e != "" && value[1] != 1){ //name - cost - quantity
-				cart.setItem(e[0],[e[1],Number(value[1]-1)]); //one up the quantity
+				cart.setItem(e[0],[e[1],Number(value[1]-1),e[2]]); //one up the quantity
 				console.log(value[1]-1)
 			}else if(e != "" && value[1] == 1){
 				console.log("remove from ");
@@ -138,8 +133,8 @@ MickmanAppLogin.CartController.prototype.removeProduct = function (e) {
 		
 		//add up the totals
 		var total = 0;
-		$( "#cart-table tbody .total span" ).each( function( index, element ){
-		    console.log( $( this ).text() );
+		$( ".cartlist .total span" ).each( function( index, element ){
+		//$( "#cart-table tbody .total span" ).each( function( index, element ){
 		    total += Number($( this ).text());
 		});
 		$(".subtotal").html("$" + String(total));
@@ -159,16 +154,16 @@ $('.emptyCart').click(function () {
 	}).catch(function(err){
 		console.log(err);
 	});
-	$("#cart-table tbody").html("");
-	$("#cart-table").table("refresh"); //clear table
+	$(".cartlist").listview("refresh");
 });
 
 $(document).on('click', '.addProduct', function(){     
 	var prod;
 	var prodname = $(this).parent().parent().data('product-name');
 	var prodprice = $(this).parent().parent().data('product-cost');
-	prod = [prodname,prodprice];
-	console.log(prodname + ":" + prodprice);
+	var prodthumb = $(this).parent().parent().data('product-thumb');
+	prod = [prodname,prodprice,prodthumb];
+	console.log(prodname + ":" + prodprice + ":" + prodthumb);
 	//document.addProduct(prod);
 	app.cartController.addProduct(prod);
 });
@@ -176,8 +171,9 @@ $(document).on('click', '.removeProduct', function(){
 	var prod;
 	var prodname = $(this).parent().parent().data('product-name');
 	var prodprice = $(this).parent().parent().data('product-cost');
-	prod = [prodname,prodprice];
-	console.log(prodname + ":" + prodprice);
+	var prodthumb = $(this).parent().parent().data('product-thumb');
+	prod = [prodname,prodprice,prodthumb];
+	console.log(prodname + ":" + prodprice + ":" + prodthumb);
 	//removeProduct(prod);
 	app.cartController.removeProduct(prod);
 }); 

@@ -71,6 +71,19 @@ input[type="radio"] {
 	border-top:1px solid #000;
 	padding:20px 10px;
 }
+.cartthumb{
+	float:left;
+	max-width:80px;
+	height:auto;
+	margin-right:10px;
+}
+.amount{
+	padding:2px 5px;
+	border-radius:5px;
+	border:1px solid #000;
+	background:#ebebeb;
+	display:inline-block;
+}
 /*.split-custom-wrapper {
     position: absolute;
     right: 0;
@@ -148,11 +161,14 @@ legend{
 	min-height:150px;
 }
 */
-#larger{
+.imagepop{
   position:fixed;
   width:92%;
   top:0px;
   left:0px;
+}
+.top-menu{
+	
 }
 .searchbtn  {
     position:absolute;

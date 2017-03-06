@@ -104,7 +104,7 @@ $(document).delegate("#page-cart", "pageshow", function () {
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
     app.cartController.init();
     app.cartController.$btnAdd.off("tap").on("tap", function () {
-        app.cartController.addpricetoPopup($(this).data("num"),$(this).data("product-size"),$(this).data("product"));
+        app.cartController.addpricetoPopup($(this).data("num"),$(this).data("product-size"),$(this).data("product"),$(this).data("thumb"));
         console.log("activated");
     });
     app.cartController.$btnCheck.off("tap").on("tap", function (event) {
@@ -113,7 +113,8 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	    cost = $(this).parent().find("span.sentPrice").text();
 	    product = $(this).parent().find("span.sentProduct").text();
 	    size = $(this).parent().find("span.sentSize").text();
-	    var items = [product+"-"+size,cost];
+	    thumb = $(this).parent().find("img").attr('src');
+	    var items = [product+"-"+size,cost,thumb];
         app.cartController.addtoCartCommand(items);
     });
 });

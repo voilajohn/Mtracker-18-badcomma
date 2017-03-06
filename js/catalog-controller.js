@@ -294,7 +294,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		        slidesToShow: 1
 		      }
 		    }
-			]  	
+			] 	
 		});
 	    
 	}).catch(function(err) {
@@ -327,4 +327,23 @@ $('.searchbtn').click(function () {
 	$("#larger img").attr("src", imageUrl); //set the url of the popup image
 	$("#larger").trigger( "updatelayout" );
 	$("#larger").popup("open");
+});
+var filtered = false;
+$('.product-button').on('click', function(){
+    var filtername = $(this).attr('id');
+	if (filtered === false) {
+        // currently filtered, turn the others off and this on
+        console.log("." + filtername + '-filter');
+         $('.product-display').slick('slickFilter','.'+ filtername +'-filter');
+		 $(this).addClass('ui-btn-active');
+		 filtered = true;
+    } else {
+	     $('.product-display').slick('slickUnfilter');
+		 filtered = false;
+		 console.log("unfilter");
+		 $(".product-button").each( function(){
+			 $(this).removeClass('ui-btn-active');
+		 })
+	}
+    console.log(filtername);
 });

@@ -56,7 +56,7 @@
 
 	<div data-role="page" id="page-main-menu">
 		<!--navpanel-->
-		<div data-role="popup" id="Mainnavpanel" data-transition="slidedown" data-theme="a">
+		<div data-role="popup" id="Mainnavpanel" data-transition="slidedown" data-theme="a" class="top-menu">
 	     		<div data-role="navbar">
 	              <ul>
 		               <li><a href="#page-main-menu" data-icon="home" class="ui-btn-active">Products</a></li>
@@ -67,11 +67,15 @@
 	    </div>
 	    <!-- / navpanel -->
 	    <div data-role="header" data-theme="b">
-		    <a href="#profile-panel" data-icon="user"  data-transition="slide" data-direction="reverse" class="ui-nodisc-icon ui-btn-right ui-btn-icon-notext">Profile</a>
+		    <a href="#profile-panel" data-icon="user"  data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-right ui-btn-icon-notext ui-nodisc-icon ui-icon-user">Profile</a>
 		    <a href="#Mainnavpanel" data-icon="bars"  data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-left ui-btn-icon-notext ui-nodisc-icon ui-icon-bars" data-rel="popup">Menu</a>
 	        <h1>Products</h1>
 	    </div><!-- /header -->
 	    <div role="content" class="ui-content">
+		    <div data-role="controlgroup" data-type="horizontal" data-mini="true">
+				<a href="#" class="ui-btn ui-icon-bullets ui-btn-icon-notext">List</a>
+				<a href="#" class="ui-btn ui-icon-grid ui-btn-icon-notext ui-btn-active">Group</a>
+		    </div>
 			<div class="product-display">
  				<!--## Classic Wreath ## -->
 				<div id="ClassicWreath" class="slider wreath-filter">
@@ -87,7 +91,7 @@
 							</fieldset>
 						</form>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop" data-iconpos="notext">Add to Cart</a>
+			            	<a href="#purchase" data-thumb="images/products/thumbs/classic_sm.jpg" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop" data-iconpos="notext">Add to Cart</a>
 						</div>
 					</div>
 				</div>
@@ -105,7 +109,7 @@
 							</fieldset>
 						</form>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size=""  data-position-to="window" data-transition="pop" data-iconpos="notext">Add to Cart</a>
+			            	<a href="#purchase" data-thumb="images/products/thumbs/classic_sm.jpg" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size=""  data-position-to="window" data-transition="pop" data-iconpos="notext">Add to Cart</a>
 						</div>
 					</div>
 				</div>
@@ -123,7 +127,7 @@
 							</fieldset>
 						</form>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop" data-iconpos="notext">Add to Cart</a>
+			            	<a href="#purchase" data-thumb="images/products/thumbs/victorian_sm.jpg" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop" data-iconpos="notext">Add to Cart</a>
 						</div>
 					</div>
 				</div>
@@ -142,7 +146,7 @@
 							</fieldset>
 						</form>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop" data-iconpos="notext">Add to Cart</a>
+			            	<a href="#purchase" data-thumb="images/products/thumbs/victorian_sm.jpg" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop" data-iconpos="notext">Add to Cart</a>
 						</div>
 					</div>
 				</div>
@@ -161,7 +165,7 @@
 							</fieldset>
 						</form>
 						<div class="split-custom-wrapper wreath-filter">
-			            	<a href="#purchase" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop">Add to Cart</a>
+			            	<a href="#purchase" data-thumb="images/products/thumbs/cranberry_sm.jpg" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
@@ -180,7 +184,7 @@
 							</fieldset>
 						</form>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop">Add to cart</a>
+			            	<a href="#purchase" data-thumb="images/products/thumbs/cranberry_sm.jpg" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop">Add to cart</a>
 						</div>
 					</div>
 				</div>
@@ -198,7 +202,7 @@
 							<legend>Choose an Option:</legend>
 							</fieldset>
 						</form>
-						<a href="#purchase" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop">Add to cart</a>
+						<a href="#purchase" data-thumb="images/products/thumbs/classic-spray_sm.jpg" data-role="button" class="ui-btn addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop">Add to cart</a>
 					</div>
 				</div>
 				<!-- / Classic Spray -->
@@ -216,7 +220,7 @@
 							</fieldset>
 						</form>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop">Add to Cart</a>
+			            	<a href="#purchase" data-thumb="images/products/thumbs/victorian-spray_sm.jpg" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
@@ -235,7 +239,7 @@
 							</fieldset>
 						</form>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop">Add to Cart</a>
+			            	<a href="#purchase" data-thumb="images/products/thumbs/cranberry-spray_sm.jpg" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-position-to="window" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
@@ -249,7 +253,7 @@
 						<h2>Candlelit Centerpiece</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
+			            	<a href="#purchase" data-thumb="images/products/thumbs/candlelitcenterpiece_sm.jpg" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
@@ -263,7 +267,7 @@
 						<h2>The North Star Table Top Tree</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num=""  data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
+			            	<a href="#purchase" data-thumb="images/products/thumbs/North-star_sm.jpg" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num=""  data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
@@ -281,13 +285,13 @@
 						</fieldset>
 						</form>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
+			            	<a href="#purchase" data-thumb="images/products/thumbs/garland_sm.jpg" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
 				<!-- / Garland -->
  				<!--EZ Wreath Hangers-->
-				<div id="EZWreathHanger" class="slider hanger-filter">
+				<div id="EZWreathHanger" class="slider other-filter">
 					<a href="#" data-largerimage="images/products/hangerprolg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/hanger_sm.jpg" alt="EZ Hanger">
 		
@@ -295,13 +299,13 @@
 						<h2>EZ Wreath Hanger</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
 						<div class="split-custom-wrapper">
-		            		<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
+		            		<a href="#purchase" data-thumb="images/products/thumbs/hanger_sm.jpg" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
 				<!-- / EZ Wreath Hangers -->
  				<!-- Bags -->
-				<div id="Bags" class="slider bag-filter">
+				<div id="Bags" class="slider other-filter">
 					<a href="#" data-largerimage="images/products/" class="searchbtn"></a>
 						<img src="images/products/thumbs/holly-berry_sm.jpg" alt="Bag">
 			
@@ -309,13 +313,13 @@
 						<h2>Bag</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
+			            	<a href="#purchase" data-thumb="images/products/thumbs/holly-berry_sm.jpg" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
 				<!-- / Bags -->
 				<!--LED Lights-->
-				<div id="LEDlights" class="slider led-filter">
+				<div id="LEDlights" class="slider other-filter">
 					<a href="#" data-largerimage="images/products/lightsprolg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/lights_sm.jpg" alt="LED">
 				
@@ -323,7 +327,7 @@
 						<h2>LED Lights</h2>
 						<p class="price"><span class="plabel">Price:</span> $<span class="num">Null</span></p>
 						<div class="split-custom-wrapper">
-			            	<a href="#purchase" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
+			            	<a href="#purchase" data-thumb="images/products/thumbs/lights_sm.jpg" data-role="button" class="split-custom-button addtocart" data-icon="plus" data-rel="popup" data-theme="c" data-num="" data-product="" data-product-size="" data-transition="pop">Add to Cart</a>
 						</div>
 					</div>
 				</div>
@@ -336,6 +340,7 @@
 				    <h3>Add to Cart</h3>
 					<p>Would you like to add this to the cart?</p>
 					<div class="purchaseAdd">
+					<img src="" alt=""/>
 					<p>Product: <span class="sentProduct"></span></p>
 					<p>Option: <span class="sentSize">none</span></p>
 					<p>Price: $<span class="sentPrice"></span></p>
@@ -352,11 +357,12 @@
 	    </div><!-- /content -->
 	    <div data-role="footer" data-position="fixed">
 		   <div data-role="controlgroup" data-type="horizontal" data-mini="true">
-				<a href="" class="ui-btn">Wreaths</a>
-				<a href="" class="ui-btn">Sprays</a>
-				<a href="" class="ui-btn">Trees</a>
-				<a href="" class="ui-btn">Centerpieces</a>
-				<a href="" class="ui-btn">Other</a>
+				<a href="#" id="wreath" class="ui-btn ui-btn-xs product-button">Wreaths</a>
+				<a href="#" id="spray" class="ui-btn ui-btn-xs product-button">Sprays</a>
+				<a href="#" id="tree" class="ui-btn ui-btn-xs product-button">Trees</a>
+				<a href="#" id="garland" class="ui-btn ui-btn-xs product-button">Garland</a>
+				<a href="#" id="centerpiece" class="ui-btn ui-btn-xs product-button">Centerpieces</a>
+				<a href="#" id="other" class="ui-btn ui-btn-xs product-button">Other</a>
 			</div>
 		</div><!--/footer-->
 	</div><!-- /page -->
@@ -368,18 +374,8 @@
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content">
 		    <h3>Checkout</h3>
-		    <table data-role="table" id="cart-table" data-mode="reflow" class="table-stripe">
-			    <thead>
-				    <tr>
-					    <th>Product</th>
-						<th>Number</th>
-						<th>Price per</th>
-						<th>Amount</th>
-					</tr>
-			    </thead>
-			    <tbody>
-			    </tbody>
-		    </table>
+		    <ul data-role="listview" data-split-icon="gear" data-split-theme="a" data-inset="true" class="cartlist">
+		    </ul>
 		    <div class="">
 			    <div class="linesubtotal">
 				    <strong>Subtotal: </strong><span class="subtotal">Null</span>
@@ -413,38 +409,22 @@
 	    <div role="main" class="ui-content">
 		    <form>
 		    <h3>Your Info</h3>
-			    <div class="ui-field-contain">
-			    	<label for="text-basic">First Name:</label>
-					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Joe">
-			    </div>
-			    <div class="ui-field-contain">
-					<label for="text-basic">Last Name:</label>
-					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Smith">
-			    </div>
-				<div class="ui-field-contain">
-					<label for="text-basic">Address:</label>
-					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="1234 Main Street">
-				</div>
-				<div class="ui-field-contain">
-					<label for="text-basic">City:</label>
+					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="First Name">
+			   
+					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Last Name">
+			 
+					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Address">
+			
 					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Your City">
-				</div>
-				<div class="ui-field-contain">
-					<label for="text-basic">State:</label>
-					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Minnesota">
-				</div>
-				<div class="ui-field-contain">
-					<label for="text-basic">Zip:</label>
-					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="55555">
-				</div>
-				<div class="ui-field-contain">
-					<label for="text-basic">Phone:</label>
-					<input type="tel" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="586-234-3454">
-				</div>
-				<div class="ui-field-contain">
-					<label for="text-basic">Email:</label>
-					<input type="email" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="joes@email.com">
-				</div>
+			
+					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Your State">
+			
+					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Zip Code">
+			
+					<input type="tel" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Phone">
+
+					<input type="email" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Email">
+
 				<div data-role="navbar">
 				<ul>
 					<li><a href="#page-cart">Back</a></li>
