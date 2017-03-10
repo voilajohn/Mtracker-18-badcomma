@@ -78,7 +78,7 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
                     ui.toPage = $("#page-main-menu");  
                     console.log("Redirect");              
                 }else{
-	                console.log("Not Logged in" + session.keepSignedIn + new Date(session.expirationDate).getTime() > today.getTime());
+	                console.log("Not Logged in");
                 }
             }
         case "page-checkout": //if it's the second step of the cart let's check for saved 
@@ -135,7 +135,7 @@ $(document).delegate("#page-orders", "pageshow", function () {
 	app.orderController.init();
     app.orderController.buildOrders(); //lets gather the cart info each time the cart is visited.
 });
-
+ 
 //Add to Cart Button
 /*$(document).delegate("#page-main-menu", "pagebeforecreate", function () {
     //app.cartController.init();

@@ -55,8 +55,8 @@
 	<!-- User is logged in -->
 
 	<div data-role="page" id="page-main-menu">
-	    <div data-role="header" >
-		    <a href="#profile-panel" data-icon="user"  data-transition="slide" class="ui-nodisc-icon ui-btn-right ui-btn-icon-notext ui-icon-user">Profile</a>
+	    <div data-role="header" data-theme="b">
+		    <a href="#profile-panel" data-icon="user"  data-transition="slide" class="ui-nodisc-icon ui-btn ui-btn-right ui-btn-icon-notext ui-icon-user">Profile</a>
 		    <a href="#menu-panel" data-icon="bars"  data-transition="slide" data-direction="reverse" class="ui-nodisc-icon ui-btn ui-btn-left ui-btn-icon-notext ui-icon-bars" data-rel="popup">Menu</a>
 	        <h1>Products</h1>
 	    </div><!-- /header -->
@@ -474,10 +474,10 @@
 	    <div data-role="footer" data-position="fixed">
 		
 		</div><!--/footer-->
-		<div data-role="popup" id="popupOrder" data-theme="a" class="ui-corner-all">
-			<p>
+		<div data-role="popup" id="popupOrder" data-theme="a" data-overlay-theme="a" class="ui-content " style="max-width:340px; padding-bottom:2em;">
+			<div>
 				text
-			</p>
+			</div>
   		</div>
 	</div><!-- /page -->
 	<div data-role="panel" id="profile-panel" data-position="right" data-display="reveal" data-theme="a">
@@ -485,7 +485,7 @@
         <p><strong>Group:</strong> <span class="your-group"></span></p>
         <p><strong>Profile:</strong> <span class="your-profile"></span></p>
         
-        <a href="#page-signin" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-lock ui-btn-icon-left">Log Out</a>
+        <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-lock ui-btn-icon-left signOut">Log Out</a>
         <form>
 	        <legend>text</legend>
 	        <input type="text" data-mini="true" name="default-city" id="default-city" value="" data-clear-btn="true" placeholder="City">

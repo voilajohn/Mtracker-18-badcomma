@@ -97,9 +97,7 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 		                var expirationDate = new Date();
 		                expirationDate.setTime(today.getTime() + MickmanAppLogin.Settings.sessionTimeoutInMSec);
 		                
-		                //left save all this stuff to a local database to get later - this may take over for the localdata stuff
-						//user.setItem($('#select-choice-1').val(), [resp.extras.userProfileModel,resp.extras.sessionID,expirationDate,me.$chkKeepSignedIn.is(":checked")]);
-						
+		                //left save all this stuff to a local database to get later - this may take over for the localdata stuff			
 						//local variable for checking the sessions
 		                MickmanAppLogin.Session.getInstance().set({
 		                    userProfileModel:  $('#select-choice-1').val(),
@@ -153,3 +151,11 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
         }
     });
 };
+
+//sign out button
+$(".signOut").on('click', function(){ 
+	//page-signin
+	window.localStorage.removeItem('mickman-session');//remove the session key
+	//log out 
+	$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
+});

@@ -13,7 +13,39 @@ MickmanAppLogin.OrderController.prototype.init = function () {
 };
 
 //add orders
+MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { //add order data to the popup then open it.
 
+	console.log("button called" + x);
+	order.getItem(x).then( function(value){
+		$('#popupOrder div').html("");
+		var orderNum = x.split("-");
+		$('#popupOrder div').append("<h3>Order "+orderNum[1]+"</h3>");
+		//console.log(value);
+		var contact = "<p>";
+		for(x=1;x<value[0].length;x++){
+			contact += "<span style='display:block'>"+value[0][x]+"</span>";
+		}
+		contact += "</p>";
+		var orders = "<div>";
+		for(y=0;y<value[1].length;y++){
+			orders += "<h3>"+value[1][y][0]+"</h3>";
+			//console.log(value[1][y][1].length);
+			for(z=0;z<value[1][y][1].length;z++){
+				orders += "<p style='display:block'>"+value[1][y][1][z]+"</p>";
+			}
+		}
+		orders += "</div>";
+		$('#popupOrder div').append(contact);
+		console.log(orders);
+		$('#popupOrder div').append(orders);
+		
+		$('#popupOrder').enhanceWithin();
+		$("#popupOrder").trigger( "updatelayout" );
+		$("#popupOrder").popup("open");
+	}).catch( function(err){
+		console.log("Not able to find it." + err);
+	});
+};
 
 //delete orders - for testing only remove for final or with a ton of warnings that the orders will be gone forever. 
 
@@ -21,7 +53,7 @@ MickmanAppLogin.OrderController.prototype.init = function () {
 MickmanAppLogin.OrderController.prototype.buildOrders = function(){
 	$(".orderList").html("");
 	order.iterate(function(value, key, iterationNumber) {
-		console.log(key + ":" + value);
+		//console.log(key + ":" + value);
 		//add orders to the listview
 		var name = value[0][1] + " " + value[0][2];
 		var phone = value[0][7];
@@ -29,9 +61,8 @@ MickmanAppLogin.OrderController.prototype.buildOrders = function(){
 		var getdate = key;
 		var date = getdate.split("-");
 		var button = key;
-		var row = '<li data-role="list-divider">'+Date(date[1])+'<span class="ui-li-count">0</span></li><li><div class="ui-grid-c"><div class="ui-block-a"><div class="ui-bar">'+name+'</div></div><div class="ui-block-b"><div class="ui-bar">'+phone+'</div></div><div class="ui-block-c"><div class="ui-bar">'+email+'</div></div><div class="ui-block-d"><div class="ui-bar"><a href="#popupOrder" class="ui-btn ui-icon-search ui-btn-icon-notext ui-nodisc-icon ui-theme-b ui-alt-icon" data-rel="popup" data-position-to="window">+</a></div></div></div></li>';
+		var row = '<li data-role="list-divider">'+Date(date[1])+'<span class="ui-li-count">0</span></li><li><div class="ui-grid-c"><div class="ui-block-a"><div class="ui-bar">'+name+'</div></div><div class="ui-block-b"><div class="ui-bar">'+phone+'</div></div><div class="ui-block-c"><div class="ui-bar">'+email+'</div></div><div class="ui-block-d"><div class="ui-bar"><a href="#" class="ui-btn ui-icon-search ui-btn-icon-notext ui-nodisc-icon ui-theme-b ui-alt-icon fullOrder" data-rel="popup" data-position-to="window" data-orderid="'+key+'"></a></div></div></div></li>';
 		$(".orderList").append(row);
-		//console.log(name + " : " + phone + " : " + email + " : " + button);
 	}).then(function(){
 		//refresh the listcontroller
 		$(".orderList").enhanceWithin().listview("refresh");
@@ -55,10 +86,10 @@ $(".create-order").click(function () {
 	});
 	//Key:User-Date, Value:[personal-info,order-info,payment]
 	//Create the order record - then when we go through the cart add the orders to the record. 
-		console.log(product);
+		//console.log(product);
 		order.setItem(orderStamp,[pdataA,"order-info",$("#payment-type :radio:checked").val()]).then( function(){
 			cart.iterate(function(value, key, iterationNumber) {//iterate over the cart 
-				console.log("iter: "+iterationNumber);
+				//console.log("iter: "+iterationNumber);
 			   if (key != "personal" && key != "defaults") {
 			        //console.log(value);
 			        cartArr.push(key); //push all the keys into an array
@@ -90,4 +121,11 @@ $(".create-order").click(function () {
 			console.log("ORDER ITEM NOT ABLE TO BE CREATED: "+err);
 		});
 
+});
+
+//buttons
+$(document).on('click', '.fullOrder', function(){ //Cart + button  
+	app.orderController.addorderDatatoPopup($(this).data('orderid'));
+//$('.fullOrder').on('click', function(){
+	console.log('boo');
 });

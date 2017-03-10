@@ -263,6 +263,7 @@ $(document).on('click', '.addProduct', function(){ //Cart + button
 	prod = [prodname,prodprice,prodthumb];
 	app.cartController.addProduct(prod);
 });
+
 $(document).on('click', '.removeProduct', function(){ //Cart - button    
 	var prod;
 	var prodname = $(this).parent().parent().data('product-name');
