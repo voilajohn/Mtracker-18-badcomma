@@ -1,20 +1,44 @@
 ﻿/*Custom styles for the Mickman app here*/
-
+@font-face {
+    font-family: "Raleway";
+    src: url(fonts/Raleway/Raleway-Regular.ttf) format("truetype");
+}
 body {
+	
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    font-family:"Raleway", Arial, sans-serif;
 }
 h1,h2,h3,h4,h5 {
     color:#0071bc;
 }
-
+/*input[type="text"]*/
+.flatfield{	
+	border: 0px !important;
+	border-bottom: 1px solid #CCC !important;
+	border-top:none !important;
+	/*-moz-border-radius: 0px !important;
+	-khtml-border-radius: 0px !important;
+	-webkit-border-radius: 0px !important;
+	border-radius: 0px !important;*/
+	-webkit-appearance: none; 
+	border-radius: 0;
+	-webkit-box-shadow: none;
+	outline: none;
+	padding:15px 10px !important;
+}
 .ui-btn-icon-notext.ui-corner-all {
     -webkit-border-radius: .3125em;
     border-radius: .3125em;
 }
 .ui-title {
     color:#fff;
+}
+.ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper
+{
+	background:url("../images/splash-bkg.png") !important;
+	background-color:none !important;
 }
 .ui-page .ui-header {
     background:green !important;
@@ -226,10 +250,25 @@ legend{
   top:0px;
   left:0px;
 }
-.top-menu{
-	
+.logo{
+	margin:0px auto;
+	text-align:center;
 }
-
+.logo img{
+	max-width:50%;
+	height:auto;
+}
+.red{
+	color:red;
+}
+.middle-image img{
+	max-width:100%;
+	height:auto;
+	box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);;
+}
+.ui-content-special{
+	padding:20px 20px 0px 20px;
+}
 .searchbtn  {
     position:absolute;
     background:transparent !important;

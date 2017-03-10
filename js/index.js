@@ -107,6 +107,7 @@ $(document).delegate("#page-checkout", "pagebeforecreate", function () {
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	app.catalogController.init();
     app.catalogController.getSavedData();
+    
     app.cartController.init();
     app.cartController.$btnAdd.off("tap").on("tap", function () {
         app.cartController.addpricetoPopup($(this).data("num"),$(this).data("product-size"),$(this).data("product"),$(this).data("thumb"));
