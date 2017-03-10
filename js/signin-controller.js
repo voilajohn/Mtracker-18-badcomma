@@ -52,27 +52,25 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
     me.$txtUserName.removeClass(invalidInputStyle);
     me.$txtPassword.removeClass(invalidInputStyle);
 
-    if (userName.length === 0) {
+    if (userName.length === 0) { // check that there is a username entered.
         me.$txtUserName.addClass(invalidInputStyle);
         invalidInput = true;
         console.log("empty user");
     }
     
-    // check that there is a password entered.
-    if (password.length === 0) {
+    if (password.length === 0) { // check that there is a password entered.
         me.$txtPassword.addClass(invalidInputStyle);
         invalidInput = true;
         console.log("empty pass");
     }
     
-    // Make sure that all the required fields have values.
-    if (invalidInput) {
+    if (invalidInput) {  // Make sure that all the required fields have values.
         me.$ctnErr.html("<p>Please enter all the required fields.</p>");
         me.$ctnErr.addClass("bi-ctn-err").slideDown();
         return;
     }
-
-    $.mobile.loading("show");
+	
+    $.mobile.loading("show");  // Show loading graphic
     $.ajax({
         type: 'POST',
         url: MickmanAppLogin.Settings.signInUrl,
@@ -81,8 +79,7 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 	        
             $.mobile.loading("hide");
             console.log(resp);
-            if (resp.success === true) {
-                // If the login method changes this part can be skipped
+            if (resp.success === true) { // If the login method changes this part can be skipped
                 if(resp.extras.users){//build out the menu
 	                 $('#select-choice-1').html(""); //prevent big lists from multiple logins
 	                var users = resp.extras.users;
@@ -92,26 +89,26 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 		            });
 		            $(".mygroup").html(resp.extras.cust_id);
 		            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load
-                	
-                	$(".startSession").click(function(){//Now lets assign a function to the button - they need to choose a user
+                	$(".startSession").click(function(){//They need to choose a user
 	                	//put the additional stuff into the DB
-		                app.catalogController.storeData(resp.extras.products);
+		                app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);
 	                	//lets get the selected name and create the session variable.
 	                	var today = new Date();
 		                var expirationDate = new Date();
 		                expirationDate.setTime(today.getTime() + MickmanAppLogin.Settings.sessionTimeoutInMSec);
 		                
-		                //left save all this stuff to a local database to get later.
-		
+		                //left save all this stuff to a local database to get later - this may take over for the localdata stuff
+						//user.setItem($('#select-choice-1').val(), [resp.extras.userProfileModel,resp.extras.sessionID,expirationDate,me.$chkKeepSignedIn.is(":checked")]);
+						
+						//local variable for checking the sessions
 		                MickmanAppLogin.Session.getInstance().set({
 		                    userProfileModel:  $('#select-choice-1').val(),
-		                    sessionId: resp.extras.sessionId,
+		                    sessionId: resp.extras.sessionID,
 		                    expirationDate: expirationDate,
 		                    keepSignedIn:me.$chkKeepSignedIn.is(":checked")
 		                });
 		                
-						// if that is successful we will reroute them to the catalog page
-		                $.mobile.navigate(me.mainMenuPageId);
+		                $.mobile.navigate(me.mainMenuPageId); // if that is successful we will reroute them to the catalog page
                 	});
 					//pop up window with selection
 					$( "#confirm-member" ).popup( "open");

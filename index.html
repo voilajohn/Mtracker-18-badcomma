@@ -55,20 +55,9 @@
 	<!-- User is logged in -->
 
 	<div data-role="page" id="page-main-menu">
-		<!--navpanel-->
-		<div data-role="popup" id="Mainnavpanel" data-transition="slidedown" data-theme="a" class="top-menu">
-	     		<div data-role="navbar">
-	              <ul>
-		               <li><a href="#page-main-menu" data-icon="home" class="ui-btn-active">Products</a></li>
-		               <li><a href="#page-cart" data-icon="shop">Cart</a></li>
-		               <li><a href="#page-orders" data-icon="grid">Orders</a></li>
-	              </ul>
-			    </div>
-	    </div>
-	    <!-- / navpanel -->
-	    <div data-role="header" data-theme="b">
-		    <a href="#profile-panel" data-icon="user"  data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-right ui-btn-icon-notext ui-nodisc-icon ui-icon-user">Profile</a>
-		    <a href="#Mainnavpanel" data-icon="bars"  data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-left ui-btn-icon-notext ui-nodisc-icon ui-icon-bars" data-rel="popup">Menu</a>
+	    <div data-role="header" >
+		    <a href="#profile-panel" data-icon="user"  data-transition="slide" class="ui-nodisc-icon ui-btn-right ui-btn-icon-notext ui-icon-user">Profile</a>
+		    <a href="#menu-panel" data-icon="bars"  data-transition="slide" data-direction="reverse" class="ui-nodisc-icon ui-btn ui-btn-left ui-btn-icon-notext ui-icon-bars" data-rel="popup">Menu</a>
 	        <h1>Products</h1>
 	    </div><!-- /header -->
 	    <div role="content" class="ui-content">
@@ -273,7 +262,7 @@
 				</li>
 				<!-- / Tabletop Tree -->
 				<!-- Garland -->
-				<li id="garland" class="slider garland-filter">
+				<li id="garland" class="slider other-filter">
 					<a href="#" data-largerimage="images/products/garlandprolg.jpg" class="searchbtn ui-btn ui-shadow ui-icon-search ui-btn-icon-notext" data-theme="a" data-position-to="window"></a>
 						<img src="images/products/thumbs/garland_sm.jpg" alt="Garland">
 				
@@ -340,14 +329,27 @@
 				    <h3>Add to Cart</h3>
 					<p>Would you like to add this to the cart?</p>
 					<div class="purchaseAdd">
-					<img src="" alt=""/>
-					<p>Product: <span class="sentProduct"></span></p>
-					<p>Option: <span class="sentSize">none</span></p>
-					<p>Price: $<span class="sentPrice"></span></p>
+					<img src="" alt="" class="cartthumb"/>
+					<p><strong>Product:</strong> <span class="sentProduct"></span></p>
+					<p><strong>Option:</strong> <span class="sentSize">none</span></p>
+					<p><strong>Price:</strong> $<span class="sentPrice"></span></p>
+					<div style="clear:both"></div>
 					</div>
-				    <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini addCheckout">Add & Checkout</a>
+				   <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini addCheckout">Add & Checkout</a>
 				    <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini addShop">Add & Shop</a>
 					<a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Cancel</a>
+					<!--<form>
+					    <fieldset data-role="controlgroup" data-mini="true">
+					        <legend>Vertical, icon right, mini sized:</legend>
+					        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6a" value="on" checked="checked">
+					        <label for="radio-choice-v-6a">Add & Checkout</label>
+					        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6b" value="off">
+					        <label for="radio-choice-v-6b">Add & Shop</label>
+					        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6c" value="other">
+					        <label for="radio-choice-v-6c">Cancel</label>
+					    </fieldset>
+						<a href="#" class="ui-btn addCheckout">Continue</a>
+					</form>-->
 				</div>
 				<!-- larger image -->
 				<div data-role="popup" id="larger" data-theme="a" data-overlay-theme="a" class="ui-content imagepop" style="max-width:95%; padding-bottom:2em;">
@@ -357,19 +359,20 @@
 	    </div><!-- /content -->
 	    <div data-role="footer" data-position="fixed">
 		   <div data-role="controlgroup" data-type="horizontal" data-mini="true">
+				<a href="#" id="All" class="ui-btn ui-btn-xs product-button">All</a>
 				<a href="#" id="wreath" class="ui-btn ui-btn-xs product-button">Wreaths</a>
 				<a href="#" id="spray" class="ui-btn ui-btn-xs product-button">Sprays</a>
-				<a href="#" id="tree" class="ui-btn ui-btn-xs product-button">Trees</a>
-				<a href="#" id="garland" class="ui-btn ui-btn-xs product-button">Garland</a>
 				<a href="#" id="centerpiece" class="ui-btn ui-btn-xs product-button">Centerpieces</a>
+				<a href="#" id="tree" class="ui-btn ui-btn-xs product-button">Trees</a>
 				<a href="#" id="other" class="ui-btn ui-btn-xs product-button">Other</a>
 			</div>
 		</div><!--/footer-->
 	</div><!-- /page -->
 	<!-- Cart Page -->
 	<div data-role="page" id="page-cart" class="ui-page ui-body-a">
-	    <div data-role="header" data-theme="b" data-position="fixed">
-	        <a href="#page-main-menu" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+	    <div data-role="header" data-theme="b" data-position="fixed">  
+		    <a href="#profile-panel" data-icon="user"  data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-right ui-btn-icon-notext ui-nodisc-icon ui-icon-user">Profile</a>
+		    <a href="#menu-panel" data-icon="bars"  data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-left ui-btn-icon-notext ui-nodisc-icon ui-icon-bars" data-rel="popup">Menu</a>
 	        <h1>Cart</h1>
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content">
@@ -380,22 +383,14 @@
 			    <div class="linesubtotal">
 				    <strong>Subtotal: </strong><span class="subtotal">Null</span>
 			    </div>
-		    </div>
-		    <div data-role="navbar">
-              <ul>
-	               <li><a href="#page-main-menu">Continue Shopping</a></li>
-	               <li><a href="#page-checkout">Checkout</a></li>
-	               <li><a href="#" class="emptyCart">Empty Cart</a></li>
-              </ul>
-		    </div>
-		  
+		    </div>  
 	    </div>
 	    <div data-role="footer" data-position="fixed">
 		    <div data-role="navbar">
               <ul>
-	               <li><a href="#page-main-menu" data-icon="home">Products</a></li>
-	               <li><a href="#page-cart" data-icon="shop" class="ui-btn-active">Cart</a></li>
-	               <li><a href="#page-orders" data-icon="grid">Orders</a></li>
+	               <li><a href="#page-main-menu">Continue Shopping</a></li>
+	               <li><a href="#page-checkout" class="checkoutNow">Checkout</a></li>
+	               <li><a href="#" class="emptyCart">Empty Cart</a></li>
               </ul>
 		    </div>
 		</div><!--/footer-->
@@ -403,103 +398,117 @@
 	<!-- Checkout Page -->
 	<div data-role="page" id="page-checkout" class="ui-page ui-body-a">
 	    <div data-role="header" data-theme="b" data-position="fixed">
-	        <a href="#page-main-menu" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
-	        <h1>Please enter your information</h1>
+	          <a href="#profile-panel" data-icon="user"  data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-right ui-btn-icon-notext ui-nodisc-icon ui-icon-user">Profile</a>
+		    <a href="#menu-panel" data-icon="bars"  data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-left ui-btn-icon-notext ui-nodisc-icon ui-icon-bars" data-rel="popup">Menu</a>
+	        <h1>Step 2 Personal</h1>
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content">
 		    <form>
 		    <h3>Your Info</h3>
-					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="First Name">
+		    <div id="ctn-err" class="bi-invisible"></div>
+					<input type="text" data-mini="true" name="personal-fname" id="personal-fname" value="" data-clear-btn="true" placeholder="First Name">
 			   
-					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Last Name">
+					<input type="text" data-mini="true" name="personal-lname" id="personal-lname" value="" data-clear-btn="true" placeholder="Last Name">
 			 
-					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Address">
+					<input type="text" data-mini="true" name="personal-address" id="personal-address" value="" data-clear-btn="true" placeholder="Address">
 			
-					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Your City">
+					<input type="text" data-mini="true" name="city" id="personal-city" value="" data-clear-btn="true" placeholder="Your City">
 			
-					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Your State">
+					<input type="text" data-mini="true" name="state" id="personal-state" value="" data-clear-btn="true" placeholder="Your State">
 			
-					<input type="text" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Zip Code">
+					<input type="text" data-mini="true" name="zip" id="personal-zip" value="" data-clear-btn="true" placeholder="Zip Code">
 			
-					<input type="tel" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Phone">
+					<input type="tel" data-mini="true" name="phone" id="personal-phone" value="" data-clear-btn="true" placeholder="Phone">
 
-					<input type="email" data-mini="true" name="text-basic" id="text-basic" value="" data-clear-btn="true" placeholder="Email">
+					<input type="email" data-mini="true" name="email" id="personal-email" value="" data-clear-btn="true" placeholder="Email">
 
-				<div data-role="navbar">
-				<ul>
-					<li><a href="#page-cart">Back</a></li>
-					<li><a href="#page-payment">Next</a></li>
-				</ul>
-				</div>
+				
 		    </form>
 	    </div>
 	    <div data-role="footer" data-position="fixed">
 		    <div data-role="navbar">
-              <ul>
-	               <li><a href="#page-main-menu" data-icon="home">Products</a></li>
-	               <li><a href="#page-cart" data-icon="shop" class="ui-btn-active">Cart</a></li>
-	               <li><a href="#page-orders" data-icon="grid">Orders</a></li>
-              </ul>
-		    </div>
+				<ul>
+					<li><a href="#page-cart" class="ui-btn">Back</a></li>
+					<li><a href="#" class="ui-btn saveCart">Next</a></li>
+				</ul>
+			</div>
 		</div><!--/footer-->
 	</div><!-- /page -->
 	<!-- Payment Page -->
 	<div data-role="page" id="page-payment" class="ui-page ui-body-a">
 	    <div data-role="header" data-theme="b" data-position="fixed">
-	        <a href="#page-main-menu" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+	         <a href="#profile-panel" data-icon="user"  data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-right ui-btn-icon-notext ui-nodisc-icon ui-icon-user">Profile</a>
+		    <a href="#menu-panel" data-icon="bars"  data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-left ui-btn-icon-notext ui-nodisc-icon ui-icon-bars" data-rel="popup">Menu</a>
 	        <h1>Are you paying now or later?</h1>
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content">
-		     <ul data-role="listview"  data-filter="true" data-input="#filterBasic-input" data-inset="true" class="productlist">
-					<li>
-					<a href="#page-orders">Paying now with Check</a>
-					</li>
-					<li>
-					<a href="#page-orders">Paying now with Cash</a>
-					</li>
-					<li>
-					<a href="#page-orders">Paying later</a>
-					</li>
-		     </ul>
+		     <form>
+			     <input type="hidden" name="personal" id="personal-data">
+			    <fieldset data-role="controlgroup" id="payment-type"><input type="radio" name="Payment" id="payment-check" value="pay-check" checked="checked"><label for="payment-check">Paying now with Check</label><input type="radio" name="Payment" id="payment-cash" value="pay-cash"><label for="payment-cash">Paying now with Cash</label><input type="radio" name="Payment" id="payment-later" value="pay-later"><label for="payment-later">Paying later</label></fieldset>
+			</form>
+		     <a href="#" class="ui-btn create-order">Complete Order</a>
 	    </div>
 	    <div data-role="footer" data-position="fixed">
-		    <div data-role="navbar">
-              <ul>
-	               <li><a href="#page-main-menu" data-icon="home">Products</a></li>
-	               <li><a href="#page-cart" data-icon="shop" class="ui-btn-active">Cart</a></li>
-	               <li><a href="#page-orders" data-icon="grid">Orders</a></li>
-              </ul>
-		    </div>
+		
 		</div><!--/footer-->
 	</div><!-- /page -->
 	<!-- Orders Page -->
 	<div data-role="page" id="page-orders" class="ui-page ui-body-a">
 	    <div data-role="header" data-theme="b" data-position="fixed">
-	        <a href="#page-main-menu" data-icon="home" data-iconpos="notext" data-transition="slide" data-direction="reverse"></a>
+	         <a href="#profile-panel" data-icon="user"  data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-right ui-btn-icon-notext ui-nodisc-icon ui-icon-user">Profile</a>
+		    <a href="#menu-panel" data-icon="bars"  data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-left ui-btn-icon-notext ui-nodisc-icon ui-icon-bars" data-rel="popup">Menu</a>
 	        <h1>Orders</h1>
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content">
-		    Nothing at this time.
+		    <ul data-role="listview" data-inset="true" class="orderList" data-filter="true" data-filter-placeholder="Search Orders...">
+			    <li>None at this time</li>
+		    </ul>
+		    <div data-role="navbar">
+				<ul>
+					<li><a href="#" class="ui-btn">Sync</a></li>
+					<li><a href="#" class="ui-btn">Print</a></li>
+				</ul>
+			</div>
+			<p>Disclaimer down here about Sync and Printing.</p>
 	    </div>
 	    <div data-role="footer" data-position="fixed">
-		    <div data-role="navbar">
-              <ul>
-	               <li><a href="#page-main-menu" data-icon="home">Products</a></li>
-	               <li><a href="#page-cart" data-icon="shop">Cart</a></li>
-	               <li><a href="#page-orders" data-icon="grid" class="ui-btn-active">Orders</a></li>
-              </ul>
-		    </div>
+		
 		</div><!--/footer-->
+		<div data-role="popup" id="popupOrder" data-theme="a" class="ui-corner-all">
+			<p>
+				text
+			</p>
+  		</div>
 	</div><!-- /page -->
-	<div data-role="panel" id="profile-panel" data-position="left" data-display="reveal" data-theme="a">
+	<div data-role="panel" id="profile-panel" data-position="right" data-display="reveal" data-theme="a">
         <h3>Profile</h3>
-        <p><strong>Group:</strong><span class="your-group"></span></p>
-        <p><strong>Profile:</strong><span class="your-profile"></span></p>
-        <div data-role="controlgroup" data-type="horizontal">
-        <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Close panel</a>
+        <p><strong>Group:</strong> <span class="your-group"></span></p>
+        <p><strong>Profile:</strong> <span class="your-profile"></span></p>
+        
         <a href="#page-signin" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-lock ui-btn-icon-left">Log Out</a>
-        </div>
+        <form>
+	        <legend>text</legend>
+	        <input type="text" data-mini="true" name="default-city" id="default-city" value="" data-clear-btn="true" placeholder="City">
+	        <input type="text" data-mini="true" name="default-state" id="default-state" value="" data-clear-btn="true" placeholder="State">
+	        <input type="text" data-mini="true" name="default-zip" id="default-zip" value="" data-clear-btn="true" placeholder="Zip">
+	        <a href="#" class="ui-btn save-defaults" data-user="">Save</a>
+	        
+        </form>
+        <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Close panel</a>
+        <a href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left emptyOrders">Debug Orders</a>
+        <a href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left emptyProducts">Debug Products</a>
+       
 
+	</div><!-- /leftpanel1 -->
+	<div data-role="panel" id="menu-panel" data-position="left" data-display="reveal" data-theme="a">
+	   <h3>Menu</h3>
+       <div data-role="navbar">
+          <ul>
+               <li><a href="#page-main-menu" data-icon="home" class="ui-btn-active">Products</a></li>
+               <li><a href="#page-cart" data-icon="shop">Cart</a></li>
+               <li><a href="#page-orders" data-icon="grid">Orders</a></li>
+          </ul>
+	    </div>
 	</div><!-- /leftpanel1 -->
 	
     
@@ -515,6 +524,7 @@
 	<script src="js/signin-controller.js"></script>
 	<script src="js/catalog-controller.js"></script>
 	<script src="js/cart-controller.js"></script>
+	<script src="js/order-controller.js"></script>
     
     <script src="js/index.js"></script>
     <script src="vendor/jquerymobile/jquery.mobile-1.4.5.min.js"></script>

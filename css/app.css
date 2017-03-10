@@ -16,6 +16,9 @@ h1,h2,h3,h4,h5 {
 .ui-title {
     color:#fff;
 }
+.ui-page .ui-header {
+    background:green !important;
+}
 .mc-text-center {
     text-align:center;
 }
@@ -63,6 +66,24 @@ h3.mc-text-danger  {
 .purchaseAdd{
 	border:1px solid #000;
 	padding:10px;
+	font-size:12px;
+	background:#EBEBEB;
+}
+.purchaseAdd p{
+	margin:5px;
+	padding:0px;
+}
+.purchaseAdd .sentPrice{
+	clear:both;
+}
+p.purchaseprice:after{
+	content:"";
+	clear:both;
+}
+.cartthumb{
+	float:left;
+	max-width:80px;
+	height:auto;
 }
 input[type="radio"] {
     display: none;
@@ -208,6 +229,7 @@ legend{
 .top-menu{
 	
 }
+
 .searchbtn  {
     position:absolute;
     background:transparent !important;

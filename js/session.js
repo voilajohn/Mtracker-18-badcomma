@@ -1,5 +1,19 @@
 var MickmanAppLogin = MickmanAppLogin || {};
 
+//create the databases
+/*var user = localforage.createInstance({ //User Database
+	name: "user"
+});*/
+var product = localforage.createInstance({ //Product Database
+	name: "product"
+});
+var cart = localforage.createInstance({ //Cart Database
+	name: "cart"
+});
+var order = localforage.createInstance({ //Orders Database
+	name: "order"
+});
+console.log("db created");
 //create the session
 MickmanAppLogin.Session = (function () {
     var instance;
