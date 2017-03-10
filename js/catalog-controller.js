@@ -52,6 +52,17 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	$("#LEDlights").hide();
 	
 	var radioBtn = "";
+	$('#ClassicOption').html("");
+	$('#ClassicGOption').html("");
+    $('#VictorianOption').html("");
+    $('#VictorianGOption').html("");
+    $('#CranberryOption').html("");
+    $('#CranberryGOption').html("");
+    $('#ClassicSprayOption').html("");
+    $('#VictorianSprayOption').html("");
+    $('#CranberrySprayOption').html("");
+    $('#GarlandOption').html("");
+    
 	// Find the number of items in the datastore.
 	// Need to set lowest price and flag the radio button
 	product.iterate(function(value, key, iterationNumber) {
