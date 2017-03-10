@@ -2,55 +2,37 @@
 
 var MickmanAppLogin = MickmanAppLogin || {};
 
-//reset the variables
-MickmanAppLogin.CatalogController = function () {
+MickmanAppLogin.CatalogController = function () {//reset the variables
     this.$storePage = null;
     this.$btnAdd = null; //add to cart button
     this.$btnCheck = null; //checkout buttons
     this.$btnCheckShop = null; //checkout and shop button
-    //why no work
-    this.$Classic = null; 
-    this.$Victorian = null;
-    this.$Cranberry = null;
-    this.$ClassicS = null;
-    this.$VictorianS = null;
-    this.$CranberryS = null;
 };
 
 //gather the variables that we will need 
 MickmanAppLogin.CatalogController.prototype.init = function () {
     this.$storePage = "#page-main-menu";
     this.$btnAdd = $(".addtocart", this.$storePage);
-    //this.$btnCheck = $(".addCheckout", this.$storePage);
-    //this.$btnCheckShop = $(".addShop", this.$storePage);
-    //booo
-    this.$Classic = $("#ClassicWreath");
-    this.$Victorian = $("#VictorianWreath");
-    this.$Cranberry = $("#CranberrySplashWreath");
 };
 
-
-MickmanAppLogin.CatalogController.prototype.addpricetoPopup = function (e) {
+MickmanAppLogin.CatalogController.prototype.addpricetoPopup = function (e) { //push the price to the popup
 	$('#purchase span').html(e);
 };
 
-//create an instance ocf the db for the products
-var product = localforage.createInstance({
-	name: "product"
-});
-
-MickmanAppLogin.CatalogController.prototype.storeData = (function(x) { //Write the server items to the database
-	var data = x;
-	for(x=0;x<data.length;x++){
-		if(data[x][1] != "" || data[x][1] != 0){//check for blanks
-			product.setItem(data[x][0], data[x][1]);
+MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write the server items to the database
+	var data = y;
+	data.unshift(['user',x]);//push username selected to the front of the list
+	console.log(data);
+	for(j=0;j<data.length;j++){
+		if(data[j][1] != "" || data[j][1] != 0){//check for blanks
+			product.setItem(data[j][0], data[j][1]);
 		}else{
-			console.log(data[x][0] + "is empty");
+			console.log(data[j][0] + "is empty");
 		}
 	}
 	this.getSavedData(); //now lets boot up the page
 });
-
+//1	John-1489093395117	[["John","you","you","you","La Crosse","Wisconsin","54601","you","you"],"order-info","pay-check"] wtf me?
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
 	//hide everything
@@ -158,8 +140,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		    $('#VictorianSprayOption').controlgroup('container').append(radioBtn);
 		}
 		if( (key == "spraycs") && value > 0 || 
-			(key == "spraycsg") && value > 0
-	    ){ //Classic Spray
+			(key == "spraycsg") && value > 0 ){ //Classic Spray
 		    $("#CranberrySpray").show();
 		    if(key == "spraycs"){
 			    var buttonLabel = key.replace("spraycs","Regular");
@@ -169,8 +150,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		    var radioBtn = $('<input type="radio" name="size" id="spray'+key+'" value="'+value+'" data-mini="true"/><label for="spray'+key+'">'+buttonLabel+'</label>');
 		    $('#CranberrySprayOption').controlgroup('container').append(radioBtn);
 		}
-		if( (key == "cc") && value > 0
-		){ //Holiday Centerpiece
+		if( (key == "cc") && value > 0 ){ //Holiday Centerpiece
 			$("#HolidayCenterpiece").show();
 			$("#HolidayCenterpiece .split-custom-wrapper a").data("num",value);
 			$("#HolidayCenterpiece .price span.num").html(value);
@@ -199,23 +179,26 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		    var radioBtn = $('<input type="radio" name="size" id="garland'+key+'" value="'+value+'" data-mini="true"/><label for="garland'+key+'">'+buttonLabel+'</label>');
 		    $('#GarlandOption').controlgroup('container').append(radioBtn);
 		}
-		if( (key == "hanger") && value > 0
-		){
+		if( (key == "hanger") && value > 0){
 			$("#EZWreathHanger").show();
 			$("#EZWreathHanger .split-custom-wrapper a").data("num",value);
 			$("#EZWreathHanger .price span.num").html(value);
 		}
-		if( (key == "bag") && value > 0
-		){
+		if( (key == "bag") && value > 0){
 			$("#Bags").show();
 			$("#Bags .split-custom-wrapper a").data("num",value);
 			$("#Bags .price span.num").html(value);
 		}
-		if( (key == "led") && value > 0
-		){
+		if( (key == "led") && value > 0){
 			$("#LEDlights").show();
 			$("#LEDlights .split-custom-wrapper a").data("num",value);
 			$("#LEDlights .price span.num").html(value);
+		}
+		if(key == "user"){
+			$(".your-profile").html(value);
+		}
+		if(key == "cust_id"){
+			$(".your-group").html(value);
 		}
 	
 		//other parts
@@ -271,14 +254,58 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		var productName = $("#LEDlights h2").text();
 		$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 		$("#LEDlights .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
-		$(".slickIt").trigger("click");
+		$(".slickIt").trigger("click"); //now load the carousel
 	    
 	}).catch(function(err) {
 	    // This code runs if there were any errors
 	    console.log(err);
 	});
-
+	
+	cart.getItem("defaults").then( function(value) { //let's add in our defaults if they are saved
+		$("#default-city").val(value[0]);
+		$("#default-state").val(value[1]);
+		$("#default-zip").val(value[2]);
+	}).catch(function(err) {
+		console.log(err);
+	});
+	console.log("Get Saved Data");
+	//lets query for the user data too
+	this.getUserData(); //only load this on the first time around after the catalog is in there
 }
+
+MickmanAppLogin.CatalogController.prototype.getUserData = function(){ //gather user info from the cart table
+	var savedcart;
+	cart.getItem("personal").then( function(value){//lets first check the cart for any data on the user 
+		savedcart = value;
+		if(savedcart != null){ //if there is a cart saved lets load that information in there. 
+			var fieldArr = ['personal-fname','personal-lname','personal-address','personal-city','personal-state','personal-zip','personal-phone','personal-email'];
+			for(x=0;x<fieldArr.length+1;x++){ //fill in the blanks
+				$("#"+fieldArr[x]).val(savedcart[x+1]);
+			}
+		}else{
+			cart.getItem("defaults").then( function(value) { //let's add in our defaults if they are saved
+				$("#default-city").val(value[0]);
+				$("#default-state").val(value[1]);
+				$("#default-zip").val(value[2]);
+				if(value[0] != ""){
+					$("#personal-city").val(value[0]);
+					$("#default-city").val(value[0]);
+				}
+				if(value[1] != ""){
+					$("#personal-state").val(value[1]);
+					$("#default-state").val(value[1]);
+				}
+				if(value[2] != ""){
+					$("#personal-zip").val(value[2]);
+					$("#default-zip").val(value[2]);
+				}
+			}).catch(function(err) {
+				console.log(err);
+			});
+		}
+		
+	});
+};
 
 /********* RADIO UPDATE PRICING */
 //update the price display
@@ -304,28 +331,49 @@ $('.searchbtn').click(function () {
 	$("#larger").trigger( "updatelayout" );
 	$("#larger").popup("open");
 });
+
+//save defaults option
+//need to get USER 			
+$('.save-defaults').click(function () { //lets create a default field in the cart database
+	var username = $(".your-profile").text(); //this should be set already
+	//get the values of the three fields
+	var city = $("#default-city").val();
+	var state = $("#default-state").val();
+	var zip = $("#default-zip").val();
+	
+	var defaults = [city,state,zip];
+	cart.setItem("defaults",defaults).then(function(){
+		console.log("saved");
+		app.catalogController.getUserData(); //refresh the form
+	}).catch(function(err){
+		console.log(err);
+	});
+});
+
+//filter buttons on the bottom of the page
 var filtered = false;
 $('.product-button').on('click', function(){
+	//lets make it so that when you click it switches to the other filter unless it is the all button then it shows everything.
+	
     var filtername = $(this).attr('id');
-	if (filtered === false) {
-        // currently filtered, turn the others off and this on
-        console.log("." + filtername + '-filter');
-         $('.product-display').slick('slickFilter','.'+ filtername +'-filter');
-		 $(this).addClass('ui-btn-active');
-		 filtered = true;
-    } else {
-	     $('.product-display').slick('slickUnfilter');
+    $('.product-display').slick('slickUnfilter');
+    if(filtername != "All"){
+	    //console.log("." + filtername + '-filter');
+        $('.product-display').slick('slickFilter','.'+ filtername +'-filter');
+		filtered = true;
+    }else{
 		 filtered = false;
-		 console.log("unfilter");
+		 //console.log("unfilter");
 		 $(".product-button").each( function(){
 			 $(this).removeClass('ui-btn-active');
 		 })
-	}
-    console.log(filtername);
+    }
+    $(this).addClass('ui-btn-active');
+    //console.log(filtername);
 });
-//
-$(".slickIt").on('click', function(){
-	$('.product-display').slick({ //fire up the image rotater
+
+$(".slickIt").on('click', function(){ //rotating area
+	$('.product-display').slick({ 
     	centerMode: true,
 		centerPadding: '60px',
 		slidesToShow: 3,
@@ -357,7 +405,7 @@ $(".slickIt").on('click', function(){
 	$('.unslickIt').removeClass("ui-btn-active");
 	//remove the listview layout
 });
-$(".unslickIt").on('click', function(){
+$(".unslickIt").on('click', function(){ //list view
 	$('.product-display').slick("unslick");
 	console.log("unslcked");
 	$('.product-display').removeClass("slicked");
@@ -365,5 +413,4 @@ $(".unslickIt").on('click', function(){
 	$('.slickIt').removeClass("ui-btn-active");
 	$(this).addClass("ui-btn-active");
 	//style it as a listview
-	
 });
