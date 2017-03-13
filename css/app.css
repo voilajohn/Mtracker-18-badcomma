@@ -151,9 +151,13 @@ h3.mc-text-danger  {
 .productlist p.price .plabel{
 	color:#000;
 }
-.ui-page-theme-a .productlist .ui-btn, , .ui-page-theme-a .ui-btn:visited{
+.ui-page-theme-a .slider .ui-btn, .ui-page-theme-a .slider .ui-btn:visited{
 	background:#FFF !important;
-	background:green;
+	
+}
+.ui-page-theme-a .ui-btn.addtocart, .ui-page-theme-a .ui-btn.addtocart:visited{
+	background:#00a65e !important;
+	color:#FFF;
 }
 .purchaseAdd{
 	border:1px solid #000;
