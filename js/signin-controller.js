@@ -91,6 +91,7 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 		            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load
                 	$(".startSession").click(function(){//They need to choose a user
 	                	//put the additional stuff into the DB
+	                	console.log("clicked");
 		                app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);
 	                	//lets get the selected name and create the session variable.
 	                	var today = new Date();

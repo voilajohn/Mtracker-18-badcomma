@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="vendor/slick/slick.css"/>
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick-theme.css"/>
     <link href="vendor/jquerymobile/jquery.mobile-1.4.5.min.css" type="text/css" rel="stylesheet"/><!-- jquery mobile theme -->
+     <link href="css/material-design-iconic-font.min.css" type="text/css" rel="stylesheet"/>
     <link href="css/app.css" type="text/css" rel="stylesheet"/><!-- custom app specific css -->
     <title>Mickman Holiday Wreath Fundraiser Sales Guide</title>
 </head>
@@ -27,28 +28,43 @@
 	        <div class="middle-image">
 		        <img src="images/group-products.jpg"/>
 		    </div>
-		<div class="ui-content-special">
+		<div class="ui-content-special-form">
 	        <p style="text-align:center;">Sign in with your group login to begin.</p>
 		</div>
 	        <div id="ctn-err" class="bi-invisible"></div>
 	        
 	        <input type="text" name="txt-user-name" id="txt-user-name" class="flatfield" value="" placeholder="User Name">
 	        <input type="password" name="txt-password" id="txt-password" class="flatfield" value="" placeholder="Password">
-	      
-	        <a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-nodisc-icon ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" name="btn-submit">Submit</a>
-	          <fieldset data-role="controlgroup">                
+			<fieldset data-role="controlgroup">                
 	            <label><input type="checkbox" name="chk-keep-signed-in" data-theme="a" id="chk-keep-signed-in"> Keep me signed in</label>
 	        </fieldset>
+	        <a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-nodisc-icon ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" name="btn-submit">Sign In</a>
+	       
 	        <div class="ui-content-special">
 	        <p class="mc-top-margin-1-5"><a href="#begin-password-reset-page">Can't access your account?</a></p>
 	        <div data-role="popup" id="confirm-member" data-theme="a" data-overlay-theme="a" class="ui-content" data-dismissible="false" style="padding-bottom:2em;">
 			    <h3>Who are you?</h3>
 				<label for="select-choice-1" class="select">Please choose your name from the <span class="mygroup"></span> list below</label>
-				<select name="select-choice-1" id="select-choice-1">
-				    <option value="standard">Choose a Name</option>
-				</select>
-				<a href="index.html" class="ui-shadow ui-btn ui-corner-all ui-btn-a ui-icon-check ui-btn-icon-left startSession">This is Me!</a>
-				<a href="ui-shadow ui-btn ui-corner-all ui-btn-a ui-icon-check ui-btn-icon-left " data-rel="back">Cancel</a>
+				
+				 <div class="ui-grid-a">
+				    <div class="ui-block-a">
+						<select name="select-choice-1" id="select-choice-1">
+						    <option value="standard">Choose a Name</option>
+						</select>
+				    </div>
+				    <!-- secondary story block #1 -->
+				    <div class="ui-block-b">
+					<div class="ui-block-a">
+						<div class="ui-block-a">
+							<a href="index.html" class="ui-corner-all green round-buttons startSession"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i></a>
+						</div>
+						<div class="ui-block-b">
+							<a href="#" class="ui-corner-all red round-buttons" data-rel="back"><i class="zmdi zmdi-minus-circle zmdi-hc-2x"></i></a>
+						</div>
+				    </div>
+				  </div>
+				</div><!-- /rwd-example -->
+				
 			</div>
 	    </div>
 	    </div>
@@ -58,14 +74,14 @@
 
 	<div data-role="page" id="page-main-menu">
 	    <div data-role="header" data-theme="b">
-		    <a href="#profile-panel" data-icon="user"  data-transition="slide" class="ui-nodisc-icon ui-btn ui-btn-right ui-btn-icon-notext ui-icon-user">Profile</a>
-		    <a href="#menu-panel" data-icon="bars"  data-transition="slide" data-direction="reverse" class="ui-nodisc-icon ui-btn ui-btn-left ui-btn-icon-notext ui-icon-bars" data-rel="popup">Menu</a>
+		    <a href="#profile-panel" data-transition="slide" class="ui-nodisc-icon ui-btn ui-btn-right ui-btn-icon-notext"><i class="zmdi-hc-4x zmdi zmdi-account"></i></a>
+		    <a href="#menu-panel" data-transition="slide" data-direction="reverse" class="ui-nodisc-icon ui-btn ui-btn-left ui-btn-icon-notext " data-rel="popup"><i class="zmdi-hc-4x zmdi zmdi-menu"></i></a>
 	        <h1>Products</h1>
 	    </div><!-- /header -->
 	    <div role="content" class="ui-content">
-		    <div data-role="controlgroup" data-type="horizontal" data-mini="true">
-				<a href="#" class="ui-btn ui-icon-bullets ui-btn-icon-notext unslickIt">List</a>
-				<a href="#" class="ui-btn ui-icon-grid ui-btn-icon-notext ui-btn-active slickIt">Group</a>
+		    <div data-role="controlgroup" data-type="horizontal" data-mini="true" class="dark-grey">
+				<a href="#" class="ui-btn unslickIt"><i class="zmdi zmdi-view-list zmdi-hc-2x" style="color:#FFF;"></i></a>
+				<a href="#" class="ui-btn ui-btn-active slickIt"><i class="zmdi zmdi-view-column zmdi-hc-2x"></i></a>
 		    </div>
 			<ul class="product-display">
  				<!--## Classic Wreath ## -->
@@ -483,7 +499,10 @@
   		</div>
 	</div><!-- /page -->
 	<div data-role="panel" id="profile-panel" data-position="right" data-display="reveal" data-theme="a">
-        <h3>Profile</h3>
+		<div class="panel-header">
+			<h3>Profile</h3>
+		</div>
+		<div class="ui-content">
         <p><strong>Group:</strong> <span class="your-group"></span></p>
         <p><strong>Profile:</strong> <span class="your-profile"></span></p>
         
@@ -499,18 +518,22 @@
         <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Close panel</a>
         <a href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left emptyOrders">Debug Orders</a>
         <a href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left emptyProducts">Debug Products</a>
-       
+		</div>
 
 	</div><!-- /leftpanel1 -->
 	<div data-role="panel" id="menu-panel" data-position="left" data-display="reveal" data-theme="a">
-	   <h3>Menu</h3>
-       <div data-role="navbar">
-          <ul>
-               <li><a href="#page-main-menu" data-icon="home" class="ui-btn-active">Products</a></li>
-               <li><a href="#page-cart" data-icon="shop">Cart</a></li>
-               <li><a href="#page-orders" data-icon="grid">Orders</a></li>
-          </ul>
-	    </div>
+		<div class="panel-header">
+			<h3>Menu</h3>
+		</div>
+		<div class="ui-content">
+	       <div data-role="navbar">
+	          <ul>
+	               <li><a href="#page-main-menu" data-icon="home" class="ui-btn-active">Products</a></li>
+	               <li><a href="#page-cart" data-icon="shop">Cart</a></li>
+	               <li><a href="#page-orders" data-icon="grid">Orders</a></li>
+	          </ul>
+		    </div>
+		</div>
 	</div><!-- /leftpanel1 -->
 	
     
