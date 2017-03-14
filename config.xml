@@ -32,6 +32,13 @@
     
     <!-- ios icons  6.1 -->
     <!-- ios icons 7+ -->
+    <!-- iPhone / iPod Touch  -->
+	<icon src="icons/icon-60.png" platform="ios" width="60" height="60" />
+	<icon src="icons/icon-60@2x.png" platform="ios" width="120" height="120" />
+
+    <!-- ios splash screens 5 -->
+    <splash src="splash/Default-568h@2x.png" platform="ios" width="640" height="1136" />
+
 	
 <gap:config-file platform="ios" parent="ITSAppUsesNonExemptEncryption" mode="add">
 	<false/>
