@@ -368,19 +368,20 @@ $('.product-button').on('click', function(){
 	
     var filtername = $(this).attr('id');
     $('.product-display').slick('slickUnfilter');
+    
     if(filtername != "All"){
-	    //console.log("." + filtername + '-filter');
-        $('.product-display').slick('slickFilter','.'+ filtername +'-filter');
-		filtered = true;
-    }else{
-		 filtered = false;
-		 //console.log("unfilter");
+         $('.product-display').slick('slickFilter','.'+ filtername +'-filter');
+		 filtered = true;
 		 $(".product-button").each( function(){
 			 $(this).removeClass('ui-btn-active');
-		 })
+		 });
+    }else{
+		 filtered = false;
+		 $(".product-button").each( function(){
+			 $(this).removeClass('ui-btn-active');
+		 });
     }
     $(this).addClass('ui-btn-active');
-    //console.log(filtername);
 });
 
 $(".slickIt").on('click', function(){ //rotating area
@@ -411,7 +412,6 @@ $(".slickIt").on('click', function(){ //rotating area
 	});
 	$('.product-display').addClass("slicked");
 	$('.product-display').removeClass("unslicked");
-	console.log("slcked");
 	$(this).addClass("ui-btn-active");
 	$('.unslickIt').removeClass("ui-btn-active");
 	//remove the listview layout

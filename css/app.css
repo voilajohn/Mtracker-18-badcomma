@@ -235,6 +235,10 @@ input[type="radio"] {
 	margin:0px;
 	padding:0px;
 }
+.product-display h2{
+	font-size:16px;
+	color:#00a65e;
+}
 .product-display li.slider{
 	position:relative;
 	margin:10px;
