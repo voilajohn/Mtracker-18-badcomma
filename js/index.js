@@ -41,6 +41,7 @@ $(document).on("mobileinit", function (event, ui) {
     $.mobile.defaultPageTransition = "slide";
     //$.mobile.defaultPageTransition = "none";
 	$( "body>[data-role='panel']" ).panel(); //global panel
+	$("#menu-panel").trigger("create");
 });
 
 app.signInController = new MickmanAppLogin.SignInController(); //call the signin controller
@@ -52,14 +53,28 @@ app.orderController = new MickmanAppLogin.OrderController(); //call the cart con
 $(document).on("pagecontainerbeforeshow", function (event, ui) {
     if (typeof ui.toPage == "object") {
         switch (ui.toPage.attr("id")) {
+            case "page-main-menu":
+                updatePageHighlight("#page-main-menu");//update navigation
+                break;
             case "page-signin":
                 // Reset signin form.
                 app.signInController.resetSignInForm();
+                updatePageHighlight("page-signin");//update navigation
                 break;
             case "page-cart":
             	app.cartController.getCartData(); 
+            	updatePageHighlight("#page-cart");//update navigation
+            	break;
             case "page-checkout":
             	app.catalogController.getUserData();
+            	updatePageHighlight("#page-cart");//update navigation
+            	break;
+            case "page-payment":
+            	updatePageHighlight("#page-cart");//update navigation
+            	break;
+            case "page-orders":
+           		updatePageHighlight("#page-orders");//update navigation
+            	break;
         }
     }
 });
@@ -155,7 +170,15 @@ $(document).delegate("#page-orders", "pageshow", function () {
         app.cartController.addtoCartCommand(items);
     });
 });*/
-
+function updatePageHighlight(x){
+	console.log(x);
+	$( "#menu-panel li a" ).each( function( index, element ){
+    	$( this ).removeClass("listview-active");
+	});
+	var currentmenu = $("#menu-panel a[href="+x+"]");
+	currentmenu.addClass("listview-active");
+	console.log(currentmenu);
+}
 
 localforage.config({
     driver      : localforage.WEBSQL, // Force WebSQL; same as using setDriver()

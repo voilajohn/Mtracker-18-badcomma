@@ -1,7 +1,7 @@
 ﻿/*Custom styles for the Mickman app here*/
 @font-face {
     font-family: "Raleway";
-    src: url(fonts/Raleway/Raleway-Regular.ttf) format("truetype");
+    src: url(../fonts/Raleway/Raleway-Regular.ttf) format("truetype");
 }
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
@@ -80,6 +80,23 @@ h1,h2,h3,h4,h5 {
 	display:inline-block;
 	color:#FFF;
 }
+.zmdi-circle{
+	background:#444;
+	padding:13px 15px;
+	margin-right:20px;
+	border-radius:30px;
+	display:inline-block;
+	float:left;
+}
+.listview-active{
+	background:#888 !important;
+	color:#FFF !important;
+}
+.nav-text{
+	line-height:4em;
+	vertical-align:middle;
+	display:inline-block;
+}
 .ui-page-theme-a .ui-btn.ui-btn-active{
 	background:#00a65e;
 }
@@ -142,6 +159,18 @@ h3.mc-text-danger  {
 }
 .bi-header {
     border: 0px; position: fixed; width: 100%; top: 0px; left: 0px; z-index: 21;
+}
+#filter-menu{
+	margin:5px auto;
+	display:inline-block;
+}
+#filter-menu .ui-btn{
+	padding:8px;
+	color:#FFF;
+}
+.centeredB{
+	margin:0px auto !important;\
+	text-align:center;
 }
 /*custom styles for listview*/
 .productlist p.price{
