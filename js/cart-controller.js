@@ -68,21 +68,30 @@ MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t) {/
 	$('#purchase').enhanceWithin();
 };
 
-MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e) {
-	cart.getItem(e[0]).then(function(value) {
-		if(value){ //the record is there.
-			if(e != "" && value[1] != ""){ //name - cost - quantity
-				cart.setItem(e[0],[e[1],Number(value[1]+1),e[2]]); //one up the quantity
+MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
+	console.log(r);
+	if(r != "cancel"){
+		cart.getItem(e[0]).then(function(value) {
+			if(value){ //the record is there.
+				if(e != "" && value[1] != ""){ //name - cost - quantity
+					cart.setItem(e[0],[e[1],Number(value[1]+1),e[2]]); //one up the quantity
+				}
+			}else{ 
+				if(e != ""){//check for blanks
+					cart.setItem(e[0],[e[1],1,e[2]]);
+				}
 			}
-		}else{ 
-			if(e != ""){//check for blanks
-				cart.setItem(e[0],[e[1],1,e[2]]);
-			}
-		}
-	}).catch(function(err) {// This code runs if there were any errors
-		console.log(err);
-	});
-    $(':mobile-pagecontainer').pagecontainer('change', '#page-cart');
+		}).catch(function(err) {// This code runs if there were any errors
+			console.log(err);
+		});
+		if(r == "checkout"){
+	    	$(':mobile-pagecontainer').pagecontainer('change', '#page-cart');
+	    }else{
+		    $("#purchase").popup("close");
+	    }
+    }else{
+	    $("#purchase").popup("close");
+    }
 };
 
 MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the cart by grabbing saved db items

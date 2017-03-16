@@ -23,7 +23,7 @@
 	    <div role="main">
 		<div class="ui-content-special">
 		    <p class="logo"><img src="images/full_logo.png" alt="Mickman Brothers Christmas Fundraising"/></p>
-	        <p style="text-align:center;">Your custom <span class="red">Christmas Fundraiser</span> sales tool.</p>
+	        <p style="text-align:center;font-size:14px;">Your custom <span class="red">Christmas Fundraiser</span> sales tool.</p>
 	    </div>
 	        <div class="middle-image">
 		        <img src="images/group-products.jpg"/>
@@ -33,8 +33,7 @@
 		</div>
 	        <div id="ctn-err" class="bi-invisible"></div>
 	        
-	        <input type="text" name="txt-user-name" id="txt-user-name" class="flatfield" value="" placeholder="User Name">
-	        <input type="password" name="txt-password" id="txt-password" class="flatfield" value="" placeholder="Password">
+	        <input type="text" name="txt-user-name" id="txt-user-name" class="flatfield" value="" placeholder="User Name"><input type="password" name="txt-password" id="txt-password" class="flatfield" value="" placeholder="Password">
 			<fieldset data-role="controlgroup">                
 	            <label><input type="checkbox" name="chk-keep-signed-in" data-theme="a" id="chk-keep-signed-in"> Keep me signed in</label>
 	        </fieldset>
@@ -74,8 +73,8 @@
 
 	<div data-role="page" id="page-main-menu">
 	    <div data-role="header" data-theme="b">
-		    <a href="#profile-panel" data-transition="slide" class="ui-nodisc-icon ui-btn ui-btn-right ui-btn-icon-notext"><i class="zmdi-hc-4x zmdi zmdi-account"></i></a>
-		    <a href="#menu-panel" data-transition="slide" data-direction="reverse" class="ui-nodisc-icon ui-btn ui-btn-left ui-btn-icon-notext " data-rel="popup"><i class="zmdi-hc-4x zmdi zmdi-menu"></i></a>
+		    <a href="#profile-panel" data-transition="slide" class="ui-nodisc-icon ui-btn ui-btn-right ui-btn-icon-notext"><i class="zmdi-hc-3x zmdi zmdi-account"></i></a>
+		    <a href="#menu-panel" data-transition="slide" data-direction="reverse" class="ui-nodisc-icon ui-btn ui-btn-left ui-btn-icon-notext " data-rel="popup"><i class="zmdi-hc-3x zmdi zmdi-menu"></i></a>
 	        <h1>Products</h1>
 	    </div><!-- /header -->
 	    <div role="content" class="ui-content">
@@ -340,11 +339,7 @@
 				</li>
 				<!-- / LED Lights -->
 			</ul>
-			
-			
-		
-				<div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="a" class="ui-content addpopup" style="max-width:340px; padding-bottom:2em;">
-				    <h3>Add to Cart</h3>
+				<div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="a" class="ui-content addpopup"><h2>Add to Cart</h2>
 					<p>Would you like to add this to the cart?</p>
 					<div class="purchaseAdd">
 					<img src="" alt="" class="cartthumb"/>
@@ -353,21 +348,20 @@
 					<p><strong>Price:</strong> $<span class="sentPrice"></span></p>
 					<div style="clear:both"></div>
 					</div>
-				   <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini addCheckout">Add & Checkout</a>
+				   <!--<a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini addCheckout">Add & Checkout</a>
 				    <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini addShop">Add & Shop</a>
-					<a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Cancel</a>
-					<!--<form>
+					<a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-g ui-icon-check ui-btn-icon-left ui-mini">Cancel</a>-->
+					<form>
 					    <fieldset data-role="controlgroup" data-mini="true">
-					        <legend>Vertical, icon right, mini sized:</legend>
-					        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6a" value="on" checked="checked">
-					        <label for="radio-choice-v-6a">Add & Checkout</label>
-					        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6b" value="off">
-					        <label for="radio-choice-v-6b">Add & Shop</label>
-					        <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6c" value="other">
-					        <label for="radio-choice-v-6c">Cancel</label>
+					        <input type="radio" name="cart-choice" id="cart-choice-a" value="checkout" checked="checked">
+								<label for="cart-choice-a">Add & Checkout</label>
+							<input type="radio" name="cart-choice" id="cart-choice-b" value="shop">
+								<label for="cart-choice-b">Add & Shop</label>
+							<input type="radio" name="cart-choice" id="cart-choice-c" value="cancel">
+								<label for="cart-choice-c">Cancel</label>
 					    </fieldset>
 						<a href="#" class="ui-btn addCheckout">Continue</a>
-					</form>-->
+					</form>
 				</div>
 				<!-- larger image -->
 				<div data-role="popup" id="larger" data-theme="a" data-overlay-theme="a" class="ui-content imagepop" style="max-width:95%; padding-bottom:2em;">
@@ -380,8 +374,8 @@
 				<a href="#" id="All" class="ui-btn ui-btn-xs product-button ui-btn-active">All</a>
 				<a href="#" id="wreath" class="ui-btn ui-btn-xs product-button">Wreaths</a>
 				<a href="#" id="spray" class="ui-btn ui-btn-xs product-button">Sprays</a>
-				<a href="#" id="centerpiece" class="ui-btn ui-btn-xs product-button">Centerpieces</a>
-				<a href="#" id="tree" class="ui-btn ui-btn-xs product-button">Trees</a>
+				<a href="#" id="centerpiece" class="ui-btn ui-btn-xs product-button">Centerpiece</a>
+				<a href="#" id="tree" class="ui-btn ui-btn-xs product-button">Tree</a>
 				<a href="#" id="other" class="ui-btn ui-btn-xs product-button">Other</a>
 			</div>
 		</div><!--/footer-->
@@ -436,7 +430,12 @@
 			
 					<input type="text" data-mini="true" name="zip" id="personal-zip" value="" data-clear-btn="true" placeholder="Zip Code">
 			
-					<input type="tel" data-mini="true" name="phone" id="personal-phone" value="" data-clear-btn="true" placeholder="Phone">
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+						<input type="tel" data-mini="true" name="phone" id="personal-phone" value="" data-clear-btn="true" placeholder="Phone"></div><div class="ui-block-b">
+							<select data-mini="true"><option>Mobile</option><option>Home</option></select>
+						</div>
+					</div>
 
 					<input type="email" data-mini="true" name="email" id="personal-email" value="" data-clear-btn="true" placeholder="Email">
 
