@@ -379,10 +379,10 @@ legend{
 }
 */
 .imagepop{
-  position:fixed;
+  /*position:fixed;
   width:92%;
   top:0px;
-  left:0px;
+  left:0px;*/
 }
 .logo{
 	margin:0px auto;
@@ -410,10 +410,11 @@ legend{
     position:absolute;
     background:transparent !important;
     top:0px; 
-    padding:0px;
+    padding:0px 5px;
     margin:0px;
     right:0px;
     border:none;
+    text-shadow: 2px 2px 10px #000000;
 }
 .unslicked .searchbtn  {
     position:relative;
