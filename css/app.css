@@ -173,8 +173,10 @@ h3.mc-text-danger  {
 	color:#FFF;
 }
 .centeredB{
-	margin:0px auto !important;\
+	margin:0px auto !important;
+	font-weight:normal !important;
 	text-align:center;
+	font-size:11px;
 }
 /*PURCHASE POPUP*/
 #purchase h2{
@@ -228,6 +230,45 @@ p.purchaseprice:after{
 	max-width:80px;
 	height:auto;
 }
+#ledlights label{
+	padding:5px;
+}
+.addonthumb{
+	float:left;
+	max-width:20px;
+	height:auto;
+	margin-right:10px;
+	/*display:none;*/
+}
+.cart-addons{
+	/*position:relative;*/
+	
+}
+.cart-addons label{
+	font-size:12px;
+	/*overflow:visible;*/
+}
+.cart-addons .ui-checkbox .ui-checkbox-on .zmdi-check-circle, .cart-addons .ui-checkbox .ui-checkbox-off .zmdi-check-circle{
+	position:absolute;
+	left:0px;
+	top:0em;
+}
+.cart-addons .ui-checkbox .ui-checkbox-on .zmdi-check-circle{
+    color: green !important;
+    /*background:#FFF;*/
+    padding:3px;
+}
+.cart-addons .ui-checkbox .ui-checkbox-on{
+    background: #FFF !important;
+    color:#000 !important;
+}
+.cart-addons .ui-checkbox .ui-checkbox-off .zmdi-check-circle{
+    display:none;
+}
+.addledprice, .addhangerprice{
+	display:inline-block;
+	font-weight:normal;
+}	
 input[type="radio"] {
     display: none;
 }
