@@ -378,6 +378,12 @@ legend{
 	min-height:150px;
 }
 */
+#myframe{
+	max-width:300px;
+	max-height:300px;
+	width:300px;
+	height:300px;
+}
 .imagepop{
   /*position:fixed;
   width:92%;
