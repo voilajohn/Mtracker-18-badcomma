@@ -19,7 +19,7 @@ MickmanAppLogin.CartController.prototype.init = function () {//gather the variab
     this.$btnSave = $(".saveCart", this.$checkoutPage);
     this.$ctnErr = $("#ctn-err", this.$storePage);
 };
-
+//10	Classic Wreath-25in. $30	[30,1,"images/products/thumbs/classic_sm.jpg"]
 //##### add to cart #####
 MickmanAppLogin.CartController.prototype.addProduct = function (e) {//add one product to the cart
 	cart.getItem(e[0]).then(function(value) {
@@ -61,7 +61,7 @@ MickmanAppLogin.CartController.prototype.removeProduct = function (e) {
 };
 
 MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t) {//save cart to db 
-	$('#purchase img').attr('src',t);
+	$('#purchase img.cartthumb').attr('src',t);
 	$('#purchase span.sentPrice').html(e);
 	$('#purchase span.sentSize').html(s);
 	$('#purchase span.sentProduct').html(p);
@@ -69,21 +69,48 @@ MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t) {/
 };
 
 MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
-	console.log(r);
+	//console.log(r);
 	if(r != "cancel"){
-		cart.getItem(e[0]).then(function(value) {
-			if(value){ //the record is there.
-				if(e != "" && value[1] != ""){ //name - cost - quantity
-					cart.setItem(e[0],[e[1],Number(value[1]+1),e[2]]); //one up the quantity
+		var cartList = []; //stuff that exists in the cart already
+		var cartValues = [];
+		var itemsLength = e.length; //number of things we are adding to the cart. 
+		var itemList = []; //stuff we are adding to the cart.
+		var listNum;
+		var savedData;
+		
+		for(x=0;x<itemsLength;x++){
+			itemList.push(e[x][0]);
+		}
+		itemList.push(["Classic Wreath-25in. $30"]);
+		
+		cart.iterate(function(value,key,iterationNumber){
+			if(key != "personal" && key != "defaults"){ //list everything in the cart as an array
+				cartList.push(key);
+				cartValues.push(value);
+			}
+		}).then(function(){
+			if(cartList.length == 0){
+				console.log("add new ones to the db");
+				for(x=0;x<itemList.length;x++){
+					cart.setItem(e[x][0],[e[x][1],1,e[x][2]]);
 				}
-			}else{ 
-				if(e != ""){//check for blanks
-					cart.setItem(e[0],[e[1],1,e[2]]);
+			}else{
+				//lets add in items that are not on this list and if they are we are going to add one
+				for(x=0;x<itemList.length;x++){
+					if(jQuery.inArray(String(itemList[x]),cartList) !== -1){
+						listNum = jQuery.inArray(String(itemList[x]),cartList);
+						savedData = cartValues[Number(listNum)];
+						cart.setItem(cartList[Number(listNum)],[cartValues[Number(listNum)][0],Number(cartValues[Number(listNum)][1]+1),cartValues[Number(listNum)][2]]);
+					}else{
+						cart.setItem(e[x][0],[e[x][1],1,e[x][2]]);
+					}
 				}
 			}
-		}).catch(function(err) {// This code runs if there were any errors
-			console.log(err);
 		});
+		//uncheck options if they are checked
+		$("#ledlights").attr("checked",false).checkboxradio("refresh");
+		$("#ezwreathhanger").attr("checked",false).checkboxradio("refresh");
+		
 		if(r == "checkout"){
 	    	$(':mobile-pagecontainer').pagecontainer('change', '#page-cart');
 	    }else{
@@ -157,30 +184,33 @@ MickmanAppLogin.CartController.prototype.saveCartData = function(){
         $('#page-checkout #ctn-err').addClass("bi-ctn-err").slideDown();
 	}else{
 		var userN;
-		//product.getItem('user').then( function(value){ //this is failing randomly??
-			//console.log("user:"+value);
-			//userN = value;
+		if(currentuser != null){
+			userN = currentuser;
+		}else{
+			userN = "not available";
+		}
+		var fname = $("#personal-fname").val();
+		var lname = $("#personal-lname").val();
+		var address = $("#personal-address").val();
+		var city = $("#personal-city").val();
+		var state = $("#personal-state").val();
+		var zip  = $("#personal-zip").val();
+		var phone = $("#personal-phone").val();
+		var email = $("#personal-email").val();
 		
-			if(userN != null){
-			}else{
-				userN = "not available";
-			}
-			var fname = $("#personal-fname").val();
-			var lname = $("#personal-lname").val();
-			var address = $("#personal-address").val();
-			var city = $("#personal-city").val();
-			var state = $("#personal-state").val();
-			var zip  = $("#personal-zip").val();
-			var phone = $("#personal-phone").val();
-			var email = $("#personal-email").val();
-			
-			cart.setItem("personal",[userN, fname, lname, address, city, state, zip, phone, email]).then( function(){
-				$('#personal-data').val([userN, fname, lname, address, city, state, zip, phone, email]);
-				$(':mobile-pagecontainer').pagecontainer('change', '#page-payment');//go to next page
-			});	
-		//});
+		cart.setItem("personal",[userN, fname, lname, address, city, state, zip, phone, email]).then( function(){
+			$('#personal-data').val([userN, fname, lname, address, city, state, zip, phone, email]);
+			$(':mobile-pagecontainer').pagecontainer('change', '#page-payment');//go to next page
+		});	
 	}
 };
+
+//check for many items in the cart already
+function getAll(arr){
+	return Promise.all( arr.map(function(key){
+		return cart.getItem(key);
+	}) );
+}
 
 //contact info submitted - store it in A 
 /* #### BUTTONS ### */

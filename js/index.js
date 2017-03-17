@@ -5,7 +5,8 @@ var settings; //whether the db is loaded ie on or off
 var product;
 var cart;
 var order;
-var group;
+var group; //get the group name
+var currentuser; //get the user name
 
 // Begin boilerplate code generated with Cordova project.
 
@@ -27,7 +28,6 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         app.receivedEvent('deviceready'); 
-        checkGroup();
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
@@ -38,7 +38,6 @@ var app = {
 app.initialize();
 
 // End boilerplate code.
-
 $(document).on("mobileinit", function (event, ui) {
     $.mobile.defaultPageTransition = "slide";
     //$.mobile.defaultPageTransition = "none";
@@ -51,11 +50,14 @@ app.catalogController = new MickmanAppLogin.CatalogController(); //call the cata
 app.cartController = new MickmanAppLogin.CartController(); //call the cart controller
 app.orderController = new MickmanAppLogin.OrderController(); //call the cart controller 
 
-function checkGroup(){
+function checkGroup(){ //find the group name and the user saved.
 	product.getItem('cust_id').then( function(value){
-		console.log("device Ready"+value);
 		group = value;
 	});
+	product.getItem('user').then( function(value){
+		currentuser = value;
+	});
+	console.log("gcheck");
 }
 
 $(document).on("pagecontainerbeforeshow", function (event, ui) {
@@ -70,7 +72,6 @@ $(document).on("pagecontainerbeforeshow", function (event, ui) {
                 // Reset signin form.
                 app.signInController.resetSignInForm();
                 updatePageHighlight("page-signin");//update navigation
-				//$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
                 break;
             case "page-cart":
             	app.cartController.getCartData(); 
@@ -135,6 +136,7 @@ $(document).delegate("#page-checkout", "pagebeforecreate", function () {
 
 //Catalog Page is Loaded
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
+    checkGroup(); 
 	app.catalogController.init();
     app.catalogController.getSavedData();
     
@@ -145,18 +147,27 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
     });
     app.cartController.$btnCheck.off("tap").on("tap", function (event) {
 	    //first check cart data, then add to if there is existing
-	    
 	    cost = $(this).parent().parent().find("span.sentPrice").text();
 	    product = $(this).parent().parent().find("span.sentProduct").text();
 	    size = $(this).parent().parent().find("span.sentSize").text();
 	    thumb = $(this).parent().parent().find("img").attr('src');
-	    var items = [product+"-"+size,Number(cost),thumb];
+	    var items = [[product+"-"+size,Number(cost),thumb]];
 	    var radioSelected = $(this).parent().find(':radio:checked').val();
+	    //lets check for addons
+	    if($("#ledlights").is(":checked") || $("#ezwreathhanger").is(":checked")){
+		    if($("#ledlights").is(":checked")){//led
+			   lthumb = $(this).parent().parent().find(".cart-addons img.ledthumb").attr('src');
+			   lprice = $(this).parent().parent().find("span.addledprice").text();
+			   items.push(["ledlights",Number(lprice),lthumb]);
+		    }
+		    if($("#ezwreathhanger").is(":checked")){
+			   ezthumb = $(this).parent().parent().find(".cart-addons img.ezthumb").attr('src');
+			   ezprice = $(this).parent().parent().find("span.addhangerprice").text();
+			   items.push(["ezhanger",Number(ezprice),ezthumb]);
+		    }
+	    }
         app.cartController.addtoCartCommand(items,radioSelected);
-        //app.cartController.addtoCartCommand(items, radio);
-        //console.log("radio: " + radioSelected);
     });
-    checkGroup();
 });
 
 //Cart Page is Loaded

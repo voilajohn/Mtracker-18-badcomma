@@ -13,12 +13,20 @@ MickmanAppLogin.CatalogController = function () {//reset the variables
 MickmanAppLogin.CatalogController.prototype.init = function () {
     this.$storePage = "#page-main-menu";
     this.$btnAdd = $(".addtocart", this.$storePage);
+    $('#ClassicOption').html("");
+	$('#VictorianOption').html("");
+	$('#CranberryOption').html("");
+	$('#GarlandOption').html("");
+	    
+	$('#CranberrySprayOption').html("");
+	$('#GarlandOption').html("");
+	$("#purchase #ledlights").hide();
+    $("#purchase #ezwreathhanger").hide();
 };
 
 MickmanAppLogin.CatalogController.prototype.addpricetoPopup = function (e) { //push the price to the popup
 	$('#purchase span').html(e);
 };
-
 MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write the server items to the database
 	var data = y;
 	data.unshift(['user',x]);//push username selected to the front of the list
@@ -36,9 +44,9 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
 	//hide everything
-	$("#ClassicWreath").hide(); $("#ClassicGreenzitWreath").hide();
-	$("#VictorianWreath").hide(); $("#VictorianGreenzitWreath").hide();
-	$("#CranberrySplashWreath").hide(); $("#CranberrySplashGWreath").hide();
+	$("#ClassicWreath").hide(); 
+	$("#VictorianWreath").hide(); 
+	$("#CranberrySplashWreath").hide();
 	
 	$("#ClassicSpray").hide();
 	$("#VictorianSpray").hide();
@@ -52,114 +60,57 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	$("#LEDlights").hide();
 	
 	var radioBtn = "";
-	$('#ClassicOption').html("");
-	$('#ClassicGOption').html("");
-    $('#VictorianOption').html("");
-    $('#VictorianGOption').html("");
-    $('#CranberryOption').html("");
-    $('#CranberryGOption').html("");
-    $('#ClassicSprayOption').html("");
-    $('#VictorianSprayOption').html("");
-    $('#CranberrySprayOption').html("");
-    $('#GarlandOption').html("");
     
 	// Find the number of items in the datastore.
 	// Need to set lowest price and flag the radio button
 	product.iterate(function(value, key, iterationNumber) {
 	
-	    if( (key == "25c") && value > 0 || 
-	    	(key == "28c") && value > 0 || 
-	    	(key == "36c") && value > 0 || 
-	    	(key == "48c") && value > 0 || 
-	    	(key == "60c") && value > 0
+	    if( (key == "25c") && value > 0 || (key == "25cg") && value > 0 ||
+	    	(key == "28c") && value > 0 || (key == "28cg") && value > 0 ||
+	    	(key == "36c") && value > 0 || (key == "36cg") && value > 0 ||
+	    	(key == "48c") && value > 0 || (key == "48cg") && value > 0 ||
+	    	(key == "60c") && value > 0 || (key == "60cg") && value > 0
 	    ){ //Classic Wreath is available
 		    $("#ClassicWreath").show();
-		    var buttonLabel = key.replace("c","in.");
-		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+' <span class="labelprice">$'+value+'</span></label>');
+		    var buttonLabel = key.slice(0,2) + "in.";
+		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span> <span class="labelprice">$'+value+'</span></label>');
 		    $('#ClassicOption').controlgroup('container').append(radioBtn);
 	    }
-	    if( (key == "25cg") && value > 0 || 
-	    	(key == "28cg") && value > 0 || 
-	    	(key == "36cg") && value > 0 || 
-	    	(key == "48cg") && value > 0 || 
-	    	(key == "60cg") && value > 0
-	    ){ //Classic Wreath Greenzit is available
-		    $("#ClassicWreathGreenzit").show();
-		    var buttonLabel = key.replace("cg","in.");
-		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'<span class="labelprice">$'+value+'</span></label>');
-		    $('#ClassicGOption').controlgroup('container').append(radioBtn);
-		}
-		if( (key == "25v") && value > 0 || 
-	    	(key == "28v") && value > 0 || 
-	    	(key == "36v") && value > 0 
+		if( (key == "25v") && value > 0 || (key == "25vg") && value > 0 ||
+	    	(key == "28v") && value > 0 || (key == "28vg") && value > 0 ||
+	    	(key == "36v") && value > 0 || (key == "36vg") && value > 0 
 	    ){ //Victorian Wreath is available
 		    $("#VictorianWreath").show();
-		    var buttonLabel = key.replace("v","in.");
-		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'<span class="labelprice">$'+value+'</span></label>');
+		    var buttonLabel = key.slice(0,2) + "in.";
+		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
 		    $('#VictorianOption').controlgroup('container').append(radioBtn);
 		}
-		if( (key == "25vg") && value > 0 || 
-	    	(key == "28vg") && value > 0 || 
-	    	(key == "36vg") && value > 0 
-	    ){ //Victorian Greenzit Wreath is available
-		    $("#VictorianGreenzitWreath").show();
-		    var buttonLabel = key.replace("vg","in.");
-		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'<span class="labelprice">$'+value+'</span></label>');
-		    $('#VictorianGOption').controlgroup('container').append(radioBtn);
-		}
-		if( (key == "25cs") && value > 0 || 
-	    	(key == "28cs") && value > 0 || 
-	    	(key == "36cs") && value > 0  
+		if( (key == "25cs") && value > 0 || (key == "25csg") && value > 0 || 
+	    	(key == "28cs") && value > 0 || (key == "28csg") && value > 0 ||
+	    	(key == "36cs") && value > 0 || (key == "36csg") && value > 0
 	    ){ //Cranberry Splash Wreath is available
 		    $("#CranberrySplashWreath").show();
-		    var buttonLabel = key.replace("cs","in.");
-		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'<span class="labelprice">$'+value+'</span></label>');
+		    var buttonLabel = key.slice(0,2) + "in.";
+		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
 		    $('#CranberryOption').controlgroup('container').append(radioBtn);
-		}
-		if( (key == "25csg") && value > 0 || 
-	    	(key == "28csg") && value > 0 || 
-	    	(key == "36csg") && value > 0 
-	    ){ //Cranberry Splash Wreath w Greenzit is available
-		    $("#CranberrySplashGWreath").show();
-		    var buttonLabel = key.replace("csg","in.");
-		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'">'+buttonLabel+'<span class="labelprice">$'+value+'</span></label>');
-		    $('#CranberryGOption').controlgroup('container').append(radioBtn);
 		}
 		//SPRAYS
 		if( (key == "sprayc") && value > 0 || 
 			(key == "spraycg") && value > 0
 	    ){ //Classic Spray
 		    $("#ClassicSpray").show();
-		    if(key == "sprayc"){
-			    var buttonLabel = key.replace("sprayc","Regular");
-		    }else if(key == "spraycg"){
-			    var buttonLabel = key.replace("spraycg","w Greenzit");
-		    }
-		    var radioBtn = $('<input type="radio" name="size" id="spray'+key+'" value="'+value+'" data-mini="true"/><label for="spray'+key+'">'+buttonLabel+'<span class="labelprice">$'+value+'</span></label>');
-		    $('#ClassicSprayOption').controlgroup('container').append(radioBtn);
+		    $("#ClassicSpray .price span.num").html(value);
 		}
 		if( (key == "sprayv") && value > 0 || 
 			(key == "sprayvg") && value > 0
 	    ){ //Classic Spray
 		    $("#VictorianSpray").show();
-		    if(key == "sprayv"){
-			    var buttonLabel = key.replace("sprayv","Regular");
-		    }else if(key == "sprayvg"){
-			    var buttonLabel = key.replace("sprayvg","w Greenzit");
-		    }
-		    var radioBtn = $('<input type="radio" name="size" id="spray'+key+'" value="'+value+'" data-mini="true"/><label for="spray'+key+'">'+buttonLabel+'<span class="labelprice">$'+value+'</span></label>');
-		    $('#VictorianSprayOption').controlgroup('container').append(radioBtn);
+		    $("#VictorianSpray .price span.num").html(value);
 		}
 		if( (key == "spraycs") && value > 0 || 
 			(key == "spraycsg") && value > 0 ){ //Classic Spray
 		    $("#CranberrySpray").show();
-		    if(key == "spraycs"){
-			    var buttonLabel = key.replace("spraycs","Regular");
-		    }else if(key == "spraycsg"){
-			    var buttonLabel = key.replace("spraycsg","w Greenzit"); 
-		    }
-		    var radioBtn = $('<input type="radio" name="size" id="spray'+key+'" value="'+value+'" data-mini="true"/><label for="spray'+key+'">'+buttonLabel+'<span class="labelprice">$'+value+'</span></label>');
-		    $('#CranberrySprayOption').controlgroup('container').append(radioBtn);
+		    $("#CranberrySpray .price span.num").html(value);
 		}
 		if( (key == "cc") && value > 0 ){ //Holiday Centerpiece
 			$("#HolidayCenterpiece").show();
@@ -178,22 +129,15 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 			(key == "50garg") && value > 0 
 		){ //Garland
 			$("#garland").show();
-			if(key == "25gar"){
-			    var buttonLabel = key.replace("25gar","25ft");
-		    }else if(key == "25garg"){
-			    var buttonLabel = key.replace("25garg","25ft. w Greenzit"); 
-		    }else if(key == "50gar"){
-			    var buttonLabel = key.replace("50gar","50ft");
-		    }else if(key == "50garg"){
-			    var buttonLabel = key.replace("50garg","50ft. w Greenzit"); 
-		    }
-		    var radioBtn = $('<input type="radio" name="size" id="garland'+key+'" value="'+value+'" data-mini="true"/><label for="garland'+key+'">'+buttonLabel+'<span class="labelprice">$'+value+'</span></label>');
+			var buttonLabel = key.slice(0,2) + "ft.";
+		    var radioBtn = $('<input type="radio" name="size" id="garland'+key+'" value="'+value+'" data-mini="true"/><label for="garland'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
 		    $('#GarlandOption').controlgroup('container').append(radioBtn);
 		}
 		if( (key == "hanger") && value > 0){
 			$("#EZWreathHanger").show();
 			$("#EZWreathHanger .split-custom-wrapper a").data("num",value);
 			$("#EZWreathHanger .price span.num").html(value);
+			$(".addhangerprice").html(value);
 		}
 		if( (key == "bag") && value > 0){
 			$("#Bags").show();
@@ -204,6 +148,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 			$("#LEDlights").show();
 			$("#LEDlights .split-custom-wrapper a").data("num",value);
 			$("#LEDlights .price span.num").html(value);
+			$(".addledprice").html(value);
 		}
 		if(key == "user"){
 			$(".your-profile").html(value);
@@ -266,6 +211,10 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 		$("#LEDlights .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
 		$(".slickIt").trigger("click"); //now load the carousel
+		
+		
+		
+		$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
 	    
 	}).catch(function(err) {
 	    // This code runs if there were any errors
@@ -329,7 +278,8 @@ $('.priceselect').change(function () {
   var productName = $(this).parent().parent().find('h2').text(); //grab the product name
   $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product",productName); //push the product name to the checkout area.
   
-  var radioSize = $(this).find(':radio:checked').prev('label').text();
+  var radioSize = $(this).find(':radio:checked').prev('label').find(".sizeoption").text();//need to be more specific now
+  console.log("size: " + radioSize);
   $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product-size",radioSize); //push the product option
 });
 
@@ -371,7 +321,6 @@ $('.product-button').on('click', function(){
     
     if(filtername != "All"){
          $('.product-display').slick('slickFilter','.'+ filtername +'-filter');
-         $('.product-display').slickGoTo(0);
          $('.product-display').slick('refresh');
 		 filtered = true;
 		 $(".product-button").each( function(){
