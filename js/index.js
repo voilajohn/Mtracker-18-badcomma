@@ -158,12 +158,12 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 		    if($("#ledlights").is(":checked")){//led
 			   lthumb = $(this).parent().parent().find(".cart-addons img.ledthumb").attr('src');
 			   lprice = $(this).parent().parent().find("span.addledprice").text();
-			   items.push(["ledlights",Number(lprice),lthumb]);
+			   items.push(["Led Light Set",Number(lprice),lthumb]);
 		    }
 		    if($("#ezwreathhanger").is(":checked")){
 			   ezthumb = $(this).parent().parent().find(".cart-addons img.ezthumb").attr('src');
 			   ezprice = $(this).parent().parent().find("span.addhangerprice").text();
-			   items.push(["ezhanger",Number(ezprice),ezthumb]);
+			   items.push(["EZ Wreath Hanger",Number(ezprice),ezthumb]);
 		    }
 	    }
         app.cartController.addtoCartCommand(items,radioSelected);
