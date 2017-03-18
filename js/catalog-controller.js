@@ -288,9 +288,9 @@ $('.priceselect').change(function () {
 $('.searchbtn').click(function () {
 	var imageUrl = $(this).attr("data-largerimage"); //grab the URL
 	console.log(imageUrl);
-	var frame = document.getElementById("theurl");//test a different pinch zoom option
+	var frame = document.getElementById("myframe");//test a different pinch zoom option
 	var frameDoc = frame.contentDocument;
-	frameDoc.querySelector("img").src = imageUrl;
+	frameDoc.querySelector("#theurl").src = imageUrl;
 	$("#larger img").attr("src", imageUrl); //set the url of the popup image
 	$("#larger").trigger( "updatelayout" );
 	$("#larger").popup("open");
