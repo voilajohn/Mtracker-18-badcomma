@@ -288,10 +288,12 @@ $('.priceselect').change(function () {
 $('.searchbtn').click(function () {
 	var imageUrl = $(this).attr("data-largerimage"); //grab the URL
 	console.log(imageUrl);
-	var frame = document.getElementById("myframe");
-	var frameDoc = frame.contentDocument;
-	frameDoc.querySelector("img").src = imageUrl;
+	//var frame = document.getElementById("myframe");
+	//var frameDoc = frame.contentDocument;
+	//frameDoc.querySelector("img").src = imageUrl;
+	
 	$("#larger img").attr("src", imageUrl); //set the url of the popup image
+	$("#larger img").panzoom();
 	$("#larger").trigger( "updatelayout" );
 	$("#larger").popup("open");
 });
