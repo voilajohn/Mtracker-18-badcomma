@@ -37,55 +37,7 @@ var app = {
 
 app.initialize();
 
-$( document ).on( "pagecreate", function() {
-	function scale( width, height, padding, border ) {
-        var scrWidth = $( window ).width() - 30,
-            scrHeight = $( window ).height() - 30,
-            ifrPadding = 2 * padding,
-            ifrBorder = 2 * border,
-            ifrWidth = width + ifrPadding + ifrBorder,
-            ifrHeight = height + ifrPadding + ifrBorder,
-            h, w;
-        if ( ifrWidth < scrWidth && ifrHeight < scrHeight ) {
-            w = ifrWidth;
-            h = ifrHeight;
-        } else if ( ( ifrWidth / scrWidth ) > ( ifrHeight / scrHeight ) ) {
-            w = scrWidth;
-            h = ( scrWidth / ifrWidth ) * ifrHeight;
-        } else {
-            h = scrHeight;
-            w = ( scrHeight / ifrHeight ) * ifrWidth;
-        }
-        return {
-            'width': w - ( ifrPadding + ifrBorder ),
-            'height': h - ( ifrPadding + ifrBorder )
-        };
-    };
-	$( ".ui-popup iframe" )
-        .attr( "width", 0 )
-        .attr( "height", "auto" );
-    $( "#larger iframe" ).contents().find( "#map_canvas" )
-        .css( { "width" : 0, "height" : 0 } );
-    $( "#larger" ).on({
-        popupbeforeposition: function() {
-            var size = scale( 480, 320, 0, 1 ),
-                w = size.width,
-                h = size.height;
-            $( "#larger iframe" )
-                .attr( "width", w )
-                .attr( "height", h );
-            //$( "#larger iframe" ).contents().find( "#map_canvas" )
-                //.css( { "width": w, "height" : h } );
-        },
-        popupafterclose: function() {
-            $( "#larger iframe" )
-                .attr( "width", 0 )
-                .attr( "height", 0 );
-            //$( "#larger iframe" ).contents().find( "#map_canvas" )
-              //  .css( { "width": 0, "height" : 0 } );
-        }
-    });
-});
+
 // End boilerplate code.
 $(document).on("mobileinit", function (event, ui) {
     $.mobile.defaultPageTransition = "slide";
@@ -108,6 +60,54 @@ function checkGroup(){ //find the group name and the user saved.
 	});
 	console.log("gcheck");
 }
+
+function scale( width, height, padding, border ) {
+    var scrWidth = $( window ).width() - 30,
+        scrHeight = $( window ).height() - 30,
+        ifrPadding = 2 * padding,
+        ifrBorder = 2 * border,
+        ifrWidth = width + ifrPadding + ifrBorder,
+        ifrHeight = height + ifrPadding + ifrBorder,
+        h, w;
+
+    if ( ifrWidth < scrWidth && ifrHeight < scrHeight ) {
+        w = ifrWidth;
+        h = ifrHeight;
+    } else if ( ( ifrWidth / scrWidth ) > ( ifrHeight / scrHeight ) ) {
+        w = scrWidth;
+        h = ( scrWidth / ifrWidth ) * ifrHeight;
+    } else {
+        h = scrHeight;
+        w = ( scrHeight / ifrHeight ) * ifrWidth;
+    }
+
+    return {
+        'width': w - ( ifrPadding + ifrBorder ),
+        'height': h - ( ifrPadding + ifrBorder )
+    };
+};
+$( document ).on( "pageinit", function() {
+    $( "#larger iframe" )
+        .attr( "width", 0 )
+        .attr( "height", 0 );
+		  
+    $( "#larger" ).on({
+        popupbeforeposition: function() {
+            var size = scale( 497, 298, 15, 1 ),
+                w = size.width,
+                h = size.height;
+
+            $( "#larger iframe" )
+                .attr( "width", w )
+                .attr( "height", h );
+        },
+        popupafterclose: function() {
+            $( "#larger iframe" )
+                .attr( "width", 0 )
+                .attr( "height", 0 );    
+        }
+    });
+});
 
 $(document).on("pagecontainerbeforeshow", function (event, ui) {
     if (typeof ui.toPage == "object") {
