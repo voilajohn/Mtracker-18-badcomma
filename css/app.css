@@ -171,6 +171,13 @@ h3.mc-text-danger  {
 #filter-menu .ui-btn{
 	padding:8px;
 	color:#FFF;
+	font-weight:normal;
+	font-size:12px;
+}
+.imageFrame{
+	overflow:hidden;
+	max-width:300px;
+	max-height:300px;
 }
 .centeredB{
 	margin:0px auto !important;
@@ -458,4 +465,17 @@ legend{
 	/*float:left;
 	margin-right:0px;*/
 	/*margin:0px 0px 0px 8px;*/
+}
+/*Mobile styles - smalll screens iPhone 5 / 5S*/
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 568px) { 
+	/* STYLES GO HERE */
+	#filter-menu{
+	margin:5px auto;
+	display:inline-block;
+	}
+	#filter-menu .ui-btn{
+	padding:8px;
+	}
 }
