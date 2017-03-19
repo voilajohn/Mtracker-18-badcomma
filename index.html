@@ -32,20 +32,22 @@
 	        <p style="text-align:center;">Sign in with your group login to begin.</p>
 		</div>
 	        <div id="ctn-err" class="bi-invisible"></div>
-	        
-	        <input type="text" name="txt-user-name" id="txt-user-name" class="flatfield" value="" placeholder="User Name"><input type="password" name="txt-password" id="txt-password" class="flatfield" value="" placeholder="Password">
-			<fieldset data-role="controlgroup">                
-	            <label><input type="checkbox" name="chk-keep-signed-in" data-theme="a" id="chk-keep-signed-in"> Keep me signed in</label>
-	        </fieldset>
-	        <a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-nodisc-icon ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5" name="btn-submit">Sign In</a>
+	        <input type="text" name="txt-user-name" id="txt-user-name" class="flatfield" value="" data-corners="false" placeholder="User Name"><input type="password" name="txt-password" id="txt-password" class="flatfield" value="" data-corners="false" placeholder="Password">
+			<fieldset data-role="controlgroup" id="keepsigned">                
+	            <label class='ui-icon-check'><input type="checkbox" name="chk-keep-signed-in" class="check" id="chk-keep-signed-in"> Keep me signed in</label>
+	            <!--<span class="checkbox"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i></span>-->
+			</fieldset>
+	        <div class="center-wrapper">
+		        <a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-nodisc-icon ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5 sign-in" name="btn-submit">Sign In</a>
+	        </div>
 	       
 	        <div class="ui-content-special">
 	        <p class="mc-top-margin-1-5"><a href="#begin-password-reset-page">Can't access your account?</a></p>
 	        <div data-role="popup" id="confirm-member" data-theme="a" data-overlay-theme="a" class="ui-content" data-dismissible="false" style="padding-bottom:2em;">
-			    <h3>Who are you?</h3>
-				<label for="select-choice-1" class="select">Please choose your name from the <span class="mygroup"></span> list below</label>
-				
-				 <div class="ui-grid-a">
+			    <h3>Welcome <span class="groupname"></span></h3>
+				<label for="select-choice-1" class="select">Please select your name from the list below. Don't see your name on the list? Contact your group administrator to get yourself added.<span class="mygroup"></span> list below</label>
+				<h3>I am...</h3>
+				<div class="loginpage">
 				    <div class="ui-block-a">
 						<select name="select-choice-1" id="select-choice-1">
 						    <option value="standard">Choose a Name</option>
@@ -53,17 +55,12 @@
 				    </div>
 				    <!-- secondary story block #1 -->
 				    <div class="ui-block-b">
-					<div class="ui-block-a">
-						<div class="ui-block-a">
-							<a href="index.html" class="ui-corner-all green round-buttons startSession"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i></a>
-						</div>
-						<div class="ui-block-b">
-							<a href="#" class="ui-corner-all red round-buttons" data-rel="back"><i class="zmdi zmdi-minus-circle zmdi-hc-2x"></i></a>
-						</div>
-				    </div>
-				  </div>
-				</div><!-- /rwd-example -->
-				
+						<a href="index.html" class="ui-corner-all green round-buttons startSession"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i></a>
+						<a href="#" class="ui-corner-all red round-buttons" data-rel="back"><i class="zmdi zmdi-minus-circle zmdi-hc-2x"></i></a>
+			
+					</div>
+					<div class="clear"></div>
+				</div><!-- end login-->
 			</div>
 	    </div>
 	    </div>
@@ -310,7 +307,7 @@
 				</div>
 				<!-- larger image -->
 				<div data-role="popup" id="larger" data-theme="a" data-overlay-theme="a" class="ui-content imagepop">
-				    <div class="imageFrame"><img src="images/products/classic_lg.jpg" alt=""/></div>
+				    <div class=""><img src="images/products/classic_lg.jpg" alt=""/></div>
 					<!--<iframe id="myframe" src="imageViewer.html" width="300" height="350" frameborder="0"></iframe>-->
 				    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn">Close</a>
 				</div>

@@ -10,35 +10,67 @@ body {
     font-family:"Raleway", Arial, sans-serif;
 }
 h1,h2,h3,h4,h5 {
-    color:#0071bc;
+    color:#00a65e;
 }
 
 /*input[type="text"]*/
-.flatfield{	
-	border: 0px !important;
-	border-bottom: 1px solid #CCC !important;
-	border-top:none !important;
-	
-	padding:15px 10px !important;
-	border: 0;
-	outline: 0;
-	-webkit-border-radius: inherit;
-	border-bottom-radius: inherit;	
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	
-	background: transparent none;
-	-webkit-appearance: none;
-	-webkit-border-radius: inherit;
-	border-radius: inherit;
-	
-	-webkit-border-top-right-radius: 0;
-	border-top-right-radius: 0;
-	-webkit-border-bottom-right-radius: 0;
-	border-bottom-right-radius: 0;
-	margin:0px !important;
 
+/**/
+.loginpage .ui-block-a,
+.loginpage .ui-block-c {
+	float: left;
+	width: 74.87%;
 }
+.loginpage .ui-block-b,
+.loginpage .ui-block-c {
+	float: left;	
+	width: 24.925%;
+}
+#confirm-member h3{
+	color:red;
+}
+.sign-in{
+	border:1px solid red !important;
+	background:transparent !important;
+	color:red !important;
+	width:auto !important;
+	display:inline-block !important;
+	margin:0px auto !important;
+}
+#page-signin .ui-input-text, #page-signin .ui-input-search{	
+	padding:15px 10px !important;
+	background:#FFF !important;]
+	margin:0px !important;
+	border:none !important;
+}
+.ui-input-text,.ui-input-search{
+	margin:0px;
+}
+.clear{clear:both;}
+.center-wrapper{
+  text-align: center;
+}
+#keepsigned label, #keepsigned label i{
+	font-weight:normal !important;
+	color:#888;
+	border:none !important;
+	background:transparent !important;
+}
+/*#keepsigned .ui-checkbox-on .ui-icon {
+    width: 32px!important; 
+    height: 32px!important; 
+    margin-left: -20px !important; 
+    margin-top: -15px !important; 
+    box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; 
+    -webkit-border-radius: 0 !important; border-radius: 0 !important; 
+}
+
+.keepsigned .ui-icon-checkbox-off {
+    background-image: none;
+    box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; 
+    border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+}*/
 .dark-grey .ui-btn{
 	background:#444;
 }
