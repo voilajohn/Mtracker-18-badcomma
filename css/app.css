@@ -13,18 +13,17 @@ h1,h2,h3,h4,h5 {
     color:#00a65e;
 }
 
-/*input[type="text"]*/
 
-/**/
+/*Login Screen*/
 .loginpage .ui-block-a,
 .loginpage .ui-block-c {
 	float: left;
-	width: 74.87%;
+	width: 73.87%;
 }
 .loginpage .ui-block-b,
 .loginpage .ui-block-c {
 	float: left;	
-	width: 24.925%;
+	width: 25.925%;
 }
 #confirm-member h3{
 	color:red;
@@ -36,9 +35,12 @@ h1,h2,h3,h4,h5 {
 	width:auto !important;
 	display:inline-block !important;
 	margin:0px auto !important;
+	text-shadow: none !important;
+	font-weight:normal !important;
+	padding:10px 40px;
 }
 #page-signin .ui-input-text, #page-signin .ui-input-search{	
-	padding:15px 10px !important;
+	padding:10px 10px !important;
 	background:#FFF !important;]
 	margin:0px !important;
 	border:none !important;
@@ -55,24 +57,50 @@ h1,h2,h3,h4,h5 {
 	color:#888;
 	border:none !important;
 	background:transparent !important;
+	text-align: center;
 }
-/*#keepsigned .ui-checkbox-on .ui-icon {
-    width: 32px!important; 
-    height: 32px!important; 
-    margin-left: -20px !important; 
-    margin-top: -15px !important; 
-    box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; 
-    -webkit-border-radius: 0 !important; border-radius: 0 !important; 
-}
-
-.keepsigned .ui-icon-checkbox-off {
+#keepsigned .ui-checkbox-off {
     background-image: none;
     box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; 
     border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px;
     background-color: rgba(0, 0, 0, 0);
+}
+#keepsigned .ui-checkbox-on {
+    background-image: none;
+    box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; 
+    border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+}
+#keepsigned .ui-checkbox-on i {
+    width: 32px!important; 
+    height: 32px!important; 
+    margin-left: -35px !important; 
+    margin-top: 0px !important; 
+    box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; 
+    -webkit-border-radius: 0 !important; border-radius: 0 !important; 
+    color:green !important;
+}
+#keepsigned .ui-checkbox-off i {
+    width: 32px!important; 
+    height: 32px!important; 
+    margin-left: -35px !important; 
+    margin-top: 0px !important; 
+    box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; 
+    -webkit-border-radius: 0 !important; border-radius: 0 !important; 
+    color:#444 !important;
+}
+/*.ui-page-theme-a .ui-btn.ui-checkbox-on:after{
+	display:none !important;
 }*/
+input[type='checkbox']{
+	display:none;
+}
+#keepsigned  .ui-btn.ui-checkbox-off:after, #keepsigned  .ui-btn.ui-checkbox-on:after, #keepsigned  .ui-btn.ui-radio-off:after, #keepsigned  .ui-btn.ui-radio-on:after{
+	display:none !important;
+}
 .dark-grey .ui-btn{
 	background:#444;
+	text-shadow: 2px 2px 3px #000 !important;
 }
 .ui-page-theme-a .ui-btn, .ui-page-theme-a .ui-btn:visited{
 	background:#888;
@@ -123,6 +151,9 @@ h1,h2,h3,h4,h5 {
 	border-radius:30px;
 	display:inline-block;
 	float:left;
+}
+.ui-page-theme-a .ui-btn.ui-btn-active{
+	border-color:#FFF;
 }
 .listview-active{
 	background:#888 !important;
@@ -385,7 +416,27 @@ input[type="radio"] {
 	display:inline-block;
 	float:left;
 }
-
+.searchbtn  {
+    position:absolute;
+    background:transparent !important;
+    top:0px; 
+    padding:0px 5px;
+    margin:5px;
+    right:0px;
+    border:none;
+    text-shadow: 2px 2px 3px #000000;
+}
+.unslicked .searchbtn  {
+    position:relative;
+    /*top:0px; */
+    padding:0px 5px;
+    margin:5px;
+    width:100%;
+    clear:both;
+    display:block;
+    right:0px;
+    border:none;
+}
 legend{
 	font-size:.8em;
 }
@@ -446,32 +497,12 @@ legend{
 	box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);;
 }
 .ui-content-special{
-	padding:20px 20px 0px 20px;
+	padding:15px 20px 0px 20px;
 }
 .ui-content-special-form{
 	padding:0px 20px 0px 20px;
 }
-.searchbtn  {
-    position:absolute;
-    background:transparent !important;
-    top:0px; 
-    padding:0px 5px;
-    margin:0px;
-    right:0px;
-    border:none;
-    text-shadow: 2px 2px 10px #000000;
-}
-.unslicked .searchbtn  {
-    position:relative;
-    top:0px; 
-    width:100%;
-    clear:both;
-    display:block;
-    padding:0px;
-    margin:0px;
-    right:0px;
-    border:none;
-}
+
 .table-stripe thead th,
 .table-stripe tbody tr:last-child {
     border-bottom: 1px solid #d6d6d6; /* non-RGBA fallback */
