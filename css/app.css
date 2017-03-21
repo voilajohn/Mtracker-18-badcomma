@@ -26,12 +26,12 @@ h1,h2,h3,h4,h5 {
 	width: 25.925%;
 }
 #confirm-member h3{
-	color:red;
+	color:#d2232a;
 }
 .sign-in{
-	border:1px solid red !important;
+	border:1px solid #d2232a !important;
 	background:transparent !important;
-	color:red !important;
+	color:#d2232a !important;
 	width:auto !important;
 	display:inline-block !important;
 	margin:0px auto !important;
@@ -45,7 +45,7 @@ h1,h2,h3,h4,h5 {
 	margin:0px !important;
 	border:none !important;
 }
-.ui-input-text,.ui-input-search{
+#page-signin .ui-input-text,#page-signin .ui-input-search{
 	margin:0px;
 }
 .clear{clear:both;}
@@ -78,7 +78,7 @@ h1,h2,h3,h4,h5 {
     margin-top: 0px !important; 
     box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; 
     -webkit-border-radius: 0 !important; border-radius: 0 !important; 
-    color:green !important;
+    color:#00a65e !important;
 }
 #keepsigned .ui-checkbox-off i {
     width: 32px!important; 
@@ -124,9 +124,8 @@ input[type='checkbox']{
 	   background-size:contain !important;
    */
    background:#00a65e;
-    
     border:none;
-    min-height:50px;
+    min-height:40px;
     padding:10px 0px;
 }
 .ui-page .ui-title{
@@ -168,6 +167,29 @@ input[type='checkbox']{
 	background:#00a65e;
 }
 /*PANEL*/
+.ui-btn.green-button{
+	background:#00a65e !important;
+	color:#FFF !important;
+}
+.signOut{
+	margin-top:50px;
+	margin-bottom:40px;
+}
+.bottom-button{
+	position:fixed;
+	display:inline-block;
+	width:auto;
+	bottom:10px;
+}
+#profile-panel legend{
+	font-size:14px;
+	font-weight:bold;
+	margin:10px 0px;
+}
+#profile-panel .ui-input-text, #profile-panel .ui-input-search{
+	margin:10px !important;
+	padding:5px !important;
+}
 .ui-panel-inner{
 	padding:0px;
 }
@@ -188,10 +210,10 @@ input[type='checkbox']{
 }
 h2.mc-text-danger,
 h3.mc-text-danger  {
-    color:red;
+    color:#d2232a;
 }
 .red i {
-	color:red;
+	color:#d2232a;
 }
 .green i{
 	color:#00a65e;
@@ -211,13 +233,30 @@ h3.mc-text-danger  {
 .bi-invalid-input {
     background-color:pink !important;
 }
-
+.divider-title h4{
+	color:#00a65e !important;
+	margin:0px !important;
+	padding:3px !important;
+}
+.cartlist{
+	border:none !important;
+}
+.cartlist li{
+	margin-bottom:10px !important;
+	box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+	z-index:100;
+}
+.cartlist li.divider-title{
+	margin-bottom:0px !important;
+	box-shadow:none;
+	z-index:200;
+}
 .bi-invisible {
     display:none;
 }
 
 .bi-ctn-err { /*error message*/
-    background-color:red;
+    background-color:#d2232a;
     color:#FFF;
     padding:0 .5em;
     margin-bottom:.5em;
@@ -256,7 +295,7 @@ h3.mc-text-danger  {
 /*custom styles for listview*/
 .productlist p.price{
 	font-weight:normal;
-	color:red;
+	color:#d2232a;
 }
 .productlist p.price .plabel{
 	color:#000;
@@ -327,7 +366,7 @@ p.purchaseprice:after{
 	top:0em;
 }
 .cart-addons .ui-checkbox .ui-checkbox-on .zmdi-check-circle{
-    color: green !important;
+    color: #00a65e !important;
     /*background:#FFF;*/
     padding:3px;
 }
@@ -489,10 +528,11 @@ legend{
 	height:auto;
 }
 .red{
-	color:red;
+	color:#d2232a;
 }
 .middle-image img{
 	max-width:100%;
+	width:100%;
 	height:auto;
 	box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);;
 }
@@ -529,6 +569,84 @@ legend{
 	margin-right:0px;*/
 	/*margin:0px 0px 0px 8px;*/
 }
+.steps{
+	position:relative;
+	width:75%;
+	margin:10px auto 60px auto;
+	display:block;
+}
+.steps .bar{
+	margin:20px 10px 0px 10px;
+	padding:0px;
+	background:#d2232a;
+	position:relative;
+	height:10px;
+	z-index:100;
+}
+.steps .dots div{
+	margin-top:-10px;
+	position:absolute;
+	z-index:200;
+}
+.steps .dots span{
+	border-radius:50%;
+	width:15px;
+	height:auto;
+	background:#d2232a;
+	padding:5px 8px;
+	display:inline-block;
+	color:#FFF;
+	text-align:center;
+}
+.steps .dots p{
+	font-size:14px;
+	color:#d2232a;
+}
+.steps .dots span a{
+	color:#FFF;
+	text-decoration:none;
+}
+/*
+.highlights .steps li.step1 span, .steps li.step2 span, .steps li.step3 span{
+	border-radius:50%;
+	background:red;
+	padding:5px 11px;
+	margin-top:-8px;
+	color:#FFF;
+	position:absolute;
+}*/
+.steps .dots .step1, .steps .highlights .highlight1{
+	left:-5px;
+}
+.steps .dots .step2{
+	left:50%;
+	margin-left:-15px;
+}
+.steps .highlights .highlight2{
+	left:50%;
+	margin-left:-25px !important;
+}
+.steps .dots .step3,  .steps .highlights .highlight3{
+	right:-5px;
+}
+.steps .highlights span{
+	display:none;
+}
+.steps .highlights span.active{
+	border-radius:50%;
+	width:15px;
+	height:auto;
+	display:inline-block;
+	background:#d2232a;
+	position:absolute;
+	padding:5px 8px;
+	border:10px solid rgba(255,255,255,0.8);
+	margin-top:-30px;
+	margin-left:-10px;
+	z-index:50;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+
 /*Mobile styles - smalll screens iPhone 5 / 5S*/
 @media only screen 
 and (min-device-width : 320px) 
