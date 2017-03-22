@@ -28,6 +28,11 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         app.receivedEvent('deviceready'); 
+        window.plugin.printer.isAvailable(
+		    function (isAvailable) {
+		        alert(isAvailable ? 'Service is available' : 'Service NOT available');
+		    }
+		);
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
@@ -51,11 +56,7 @@ app.catalogController = new MickmanAppLogin.CatalogController(); //call the cata
 app.cartController = new MickmanAppLogin.CartController(); //call the cart controller
 app.orderController = new MickmanAppLogin.OrderController(); //call the cart controller 
 
-window.plugin.printer.isServiceAvailable(
-    function (isAvailable) {
-        alert(isAvailable ? 'Service is available' : 'Service NOT available');
-    }
-);
+
 
 function checkGroup(){ //find the group name and the user saved.
 	product.getItem('cust_id').then( function(value){
