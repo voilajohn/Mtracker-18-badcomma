@@ -141,6 +141,8 @@ $(document).on('click', '.fullOrder', function(){ //Cart + button
 	app.orderController.addorderDatatoPopup($(this).data('orderid'));
 });
 
+mickman-session	{"userProfileModel":"John","sessionId":"3049385","expirationDate":"2017-03-22T22:55:56.587Z","keepSignedIn":true}
+
 //print page
 $(document).on('click', '.printOrders', function(){
 	//first lets organize the content of the orders
@@ -154,7 +156,7 @@ $(document).on('click', '.printOrders', function(){
 			$(".print-message").html('Orders printing');
 		}).then(function(){
 			console.log("orderContent: " + orderContent);
-			//$('order-totals').html(orderContent);
+			$('order-totals').html(orderContent);
 			var page = $('.order-totals');
 			window.plugins.printer.print(page, 'index.html', function () {
 		    	alert('printing finished or canceled');
