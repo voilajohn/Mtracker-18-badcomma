@@ -20,7 +20,7 @@
     
     <!-- third party plugins -->
 	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
-	<gap:plugin name="de.appplant.cordova.plugin.printer" />
+	<gap:plugin name="de.appplant.cordova.plugin.printer" source="npm"/>
 	 
     <!-- universal preferences -->
     <preference name="phonegap-version"           value="cli-6.5.0" />         
