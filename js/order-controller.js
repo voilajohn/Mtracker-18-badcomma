@@ -158,7 +158,7 @@ $(document).on('click', '.printOrders', function(){
 			console.log("orderContent: " + orderContent);
 			$('order-totals').html(orderContent);
 			var page = $('.order-totals');
-			window.plugins.printer.print(page, 'index.html', function () {
+			window.plugins.printer.print(page, {name:'index.html',landscape:false }, function () {
 		    	alert('printing finished or canceled');
 		    	$(".print-message").removeClass('bi-invisible');
 		    	$(".print-message").addClass("bi-ctn-err");
