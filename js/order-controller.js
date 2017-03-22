@@ -28,12 +28,13 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 		contact += "</p>";
 		contact += "<p><span style='display:block'></strong>Payment Status: </strong>"+value[2]+"</span></p>";
 		var orders = "<div>";
+		orders += "<br><p><strong>Order Details</strong></p>";
 		for(y=0;y<value[1].length;y++){
-			orders += "<h3>"+value[1][y][0]+"</h3>";
+			
 			//console.log(value[1][y][1].length);
-			for(z=0;z<value[1][y][1].length;z++){
-				orders += "<p style='display:block'>"+value[1][y][1][z]+"</p>";
-			}
+			//for(z=0;z<value[1][y][1].length;z++){
+				orders += "<p style='display:block'>"+value[1][y][0]+ " x" +value[1][y][1][1] + " $" + value[1][y][1][0]+".00</p>";
+			//}
 		}
 		
 		orders += "</div>";

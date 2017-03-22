@@ -130,6 +130,25 @@ li.even a{
 li.odd a{
 	background:#CCC !important;
 }
+#popupOrder{
+	margin:0px auto !important;
+	padding:2px 10px !important;
+}
+#popupOrder div{
+	padding:2px 0px !important;
+}
+#popupOrder p{
+	margin:0px;
+	padding:0px 10px;
+}
+.orderList{
+	box-shadow: none !important;
+	
+}
+.orderList h3{
+	margin:0px !important;
+	padding:0px !important;
+}
 ul.orderList li{
 	margin-bottom:10px !important;
 	box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
