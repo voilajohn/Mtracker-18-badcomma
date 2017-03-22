@@ -158,8 +158,8 @@ $(document).on('click', '.printOrders', function(){
 			
 			console.log("orderContent: " + orderContent);
 			$('.order-totals').html(orderContent);
-			//var page = $('.order-totals');
-			var page = '<style type="text/css">...</style><body>asdf...</body>';
+			//var page = ;
+			var page = '<style type="text/css">...</style><body>'+$('.order-totals').html()+'</body>';
 			//Print Function!!!!!
 			window.plugin.printer.print(page, { duplex: 'short' }, function(done){
 				alert(done ? 'done' : 'canceled');	
