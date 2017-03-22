@@ -105,6 +105,44 @@ input[type='checkbox']{
 .ui-page-theme-a .ui-btn, .ui-page-theme-a .ui-btn:visited{
 	background:#888;
 }
+.ui-page-theme-a .ui-select .ui-btn, .ui-page-theme-a .ui-select .ui-btn:visited{
+	background:#F8F8F8;
+}
+.personal-info .ui-input-text{
+	background:#F8F8F8 !important;
+}
+.payment-form #payment-type label{
+	background:#FFF;
+}
+.payment-form .ui-radio-on .ui-icon {
+    width: 32px!important; 
+    height: 32px!important; 
+    margin-left: -20px !important; 
+    margin-top: -15px !important; 
+    box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; 
+    -webkit-border-radius: 0 !important; border-radius: 0 !important; 
+    background: url(http://www.surveyshare.com/images/icons/check.png) 50% 50% no-repeat !important;
+    background:#ccc !important;
+}
+li.even a{
+	background:#FFF;
+}
+li.odd a{
+	background:#CCC !important;
+}
+ul.orderList li{
+	margin-bottom:10px !important;
+	box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+}
+ul.orderList{
+	padding-bottom:20px !important;
+}
+.payment-form .ui-icon-radio-off {
+    background-image: none;
+    box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; 
+    border-radius: 0px; -webkit-border-radius: 0px; -moz-border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+}
 .ui-btn-icon-notext.ui-corner-all {
     -webkit-border-radius: .3125em;
     border-radius: .3125em;
@@ -215,7 +253,7 @@ h3.mc-text-danger  {
 .red i {
 	color:#d2232a;
 }
-.green i{
+.green i, .green{
 	color:#00a65e;
 }
 .round-buttons{
@@ -240,6 +278,7 @@ h3.mc-text-danger  {
 }
 .cartlist{
 	border:none !important;
+	box-shadow:none;
 }
 .cartlist li{
 	margin-bottom:10px !important;
@@ -250,6 +289,20 @@ h3.mc-text-danger  {
 	margin-bottom:0px !important;
 	box-shadow:none;
 	z-index:200;
+	overflow:visible;
+	position:relative;
+}
+.ui-li-count{
+	border-radius:50%;
+	width:20px;
+	font-size:18px;
+	height:auto;
+	padding:5px 10px;
+	background:green !important;
+	color:#FFF !important;
+	position:absolute;
+	top:20px;
+	display:block;
 }
 .bi-invisible {
     display:none;
@@ -385,9 +438,9 @@ input[type="radio"] {
     display: none;
 }
 .linesubtotal{
-	border-top:1px solid #000;
 	padding:20px 10px;
 }
+
 .cartthumb{
 	float:left;
 	max-width:80px;
@@ -496,6 +549,15 @@ legend{
 .ui-listview li.ui-li-has-alt{
 	min-height:150px !important;
 	/*height:150px;*/
+}
+.ui-listview.orderList li.ui-li-has-alt{
+	min-height:20px !important;
+	/*height:150px;*/
+}
+.ui-listview.orderList .ui-btn-b{
+	background:#00a65e !important;
+	padding:5px;
+	border:none;
 }
 /*.searchbtn{
 	float:left;
@@ -626,9 +688,13 @@ legend{
 	left:50%;
 	margin-left:-25px !important;
 }
-.steps .dots .step3,  .steps .highlights .highlight3{
+.steps .dots .step3{
 	right:-5px;
 }
+.steps .highlights .highlight3{
+	right:-15px;
+}
+
 .steps .highlights span{
 	display:none;
 }
@@ -646,7 +712,17 @@ legend{
 	z-index:50;
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
 }
-
+/*Custom Icons*/
+.ui-icon-print:after {
+	content: '\f1b0';
+	height:15px !important;
+	padding-top:7px !important;
+}
+.ui-icon-upload:after {
+	content: '\f22a';
+	height:15px !important;
+	padding-top:7px !important;
+}
 /*Mobile styles - smalll screens iPhone 5 / 5S*/
 @media only screen 
 and (min-device-width : 320px) 

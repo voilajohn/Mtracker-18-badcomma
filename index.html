@@ -381,8 +381,7 @@
 				    <span class="highlight3">3</span>
 			    </div>
 		    </div>
-		    <form>
-		    <h3>Your Info</h3>
+		    <form class="personal-info">
 		    <div id="ctn-err" class="bi-invisible"></div>
 					<input type="text" data-mini="true" name="personal-fname" id="personal-fname" value="" data-clear-btn="true" placeholder="First Name">
 			   
@@ -421,7 +420,7 @@
 	    <div data-role="header" data-theme="b" data-position="fixed">
 	        <a href="#profile-panel" data-transition="slide" class="ui-nodisc-icon ui-btn ui-btn-right ui-btn-icon-notext"><i class="zmdi-hc-3x zmdi zmdi-account"></i></a>
 		    <a href="#menu-panel" data-transition="slide" data-direction="reverse" class="ui-nodisc-icon ui-btn ui-btn-left ui-btn-icon-notext " data-rel="popup"><i class="zmdi-hc-3x zmdi zmdi-menu"></i></a>
-	        <h1>Are you paying now or later?</h1>
+	        <h1>Payment</h1>
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content">
 		    <div class="steps">
@@ -437,11 +436,11 @@
 				    <span class="highlight3 active">3</span>
 			    </div>
 		    </div>
-		     <form>
+		     <form class="payment-form">
 			     <input type="hidden" name="personal" id="personal-data">
-			    <fieldset data-role="controlgroup" id="payment-type"><input type="radio" name="Payment" id="payment-check" value="pay-check" checked="checked"><label for="payment-check">Paying now with Check</label><input type="radio" name="Payment" id="payment-cash" value="pay-cash"><label for="payment-cash">Paying now with Cash</label><input type="radio" name="Payment" id="payment-later" value="pay-later"><label for="payment-later">Paying later</label></fieldset>
+			    <fieldset data-role="controlgroup" id="payment-type"><input type="radio" name="Payment" id="payment-check" value="pay-check" checked="checked"  ><label for="payment-check" data-icon="check">Paying now with Check</label><input type="radio" name="Payment" id="payment-cash" value="pay-cash"><label for="payment-cash"  data-icon="check">Paying now with Cash</label><input type="radio" name="Payment" id="payment-later" value="pay-later"><label for="payment-later"  data-icon="check">Paying later</label></fieldset>
 			</form>
-		     <a href="#" class="ui-btn create-order">Complete Order</a>
+		     <a href="#" class="ui-btn create-order green-button ui-corner-all">Complete Order</a>
 	    </div>
 	    <div data-role="footer" data-position="fixed">
 		
@@ -455,16 +454,16 @@
 	        <h1>Orders</h1>
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content">
-		    <ul data-role="listview" data-inset="true" class="orderList" data-filter="true" data-filter-placeholder="Search Orders...">
-			    <li>None at this time</li>
+		    <ul data-role="listview" data-split-icon="search" data-theme="a"  data-split-theme="b" data-inset="true" class="orderList" data-filter="true"   data-filter-placeholder="Search Orders...">
+			    <!--<li>None at this time</li>-->
 		    </ul>
 		    <div data-role="navbar">
 				<ul>
-					<li><a href="#" class="ui-btn">Sync</a></li>
-					<li><a href="#" class="ui-btn">Print</a></li>
+					<li><a href="#" class="ui-btn green-button ui-corner-all ui-btn-icon-left ui-icon-upload zmdi zmdi-hc-lg ui-nodisc-icon">Sync</a></li>
+					<li><a href="#" class="ui-btn green-button ui-corner-all ui-icon-print ui-btn-icon-left zmdi zmdi-hc-lg ui-nodisc-icon">Print</a></li>
 				</ul>
 			</div>
-			<p>Disclaimer down here about Sync and Printing.</p>
+			<p>Note: Sync to server requires that you have a wifi connection. Send to printer function will require access to an air print enabled printer.</p>
 	    </div>
 	    <div data-role="footer" data-position="fixed">
 		

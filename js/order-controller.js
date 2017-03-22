@@ -14,18 +14,22 @@ MickmanAppLogin.OrderController.prototype.init = function () {
 
 //add orders
 MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { //add order data to the popup then open it.
-
 	console.log("button called" + x);
 	order.getItem(x).then( function(value){
 		$('#popupOrder div').html("");
 		var orderNum = x.split("-");
 		$('#popupOrder div').append("<h3>Order "+orderNum[1]+"</h3>");
 		//console.log(value);
+		//id	key	value
+//not available-1490192290451	[["not available","John","Flottmeyer","1335 2nd Street NW","Rochester","Minnesota","55901","507-252-5125","jflottmeyer@gmail.com"],[["Classic Wreath-25in.",[30,1,"images/products/thumbs/classic_sm.jpg"]],["Led Light Set",[4,1,"images/products/thumbs/lights_sm.jpg"]],["EZ Wreath Hanger",[5,1,"images/products/thumbs/hanger_sm.jpg"]]],"pay-check"]
 		var contact = "<p>";
-		for(x=1;x<value[0].length;x++){
-			contact += "<span style='display:block'>"+value[0][x]+"</span>";
-		}
+		contact += "<span style='display:block'>"+value[0][1] + " " + value[0][2]+"</span>";
+		contact += "<span style='display:block'>"+value[0][3]+"</span>";
+		contact += "<span style='display:block'>"+value[0][4] + " " + value[0][5] + "," +  value[0][6] +"</span><br>";
+		contact += "<span style='display:block'><strong>Phone: </strong>"+value[0][6]+"</span>";
+		contact += "<span style='display:block'><strong>Email: </strong>"+value[0][7]+"</span>";
 		contact += "</p>";
+		contact += "<p><span style='display:block'></strong>Payment Status: </strong>"+value[2]+"</span></p>";
 		var orders = "<div>";
 		for(y=0;y<value[1].length;y++){
 			orders += "<h3>"+value[1][y][0]+"</h3>";
@@ -34,6 +38,7 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 				orders += "<p style='display:block'>"+value[1][y][1][z]+"</p>";
 			}
 		}
+		
 		orders += "</div>";
 		$('#popupOrder div').append(contact);
 		console.log(orders);
@@ -47,11 +52,10 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 	});
 };
 
-//delete orders - for testing only remove for final or with a ton of warnings that the orders will be gone forever. 
-
 //show orders 
 MickmanAppLogin.OrderController.prototype.buildOrders = function(){
 	$(".orderList").html("");
+	var evenOdd;
 	order.iterate(function(value, key, iterationNumber) {
 		//console.log(key + ":" + value);
 		//add orders to the listview
@@ -60,8 +64,16 @@ MickmanAppLogin.OrderController.prototype.buildOrders = function(){
 		var email = value[0][8];
 		var getdate = key;
 		var date = getdate.split("-");
+		var day = new Date(+date[1]).getUTCDate();
+		var month = new Date(+date[1]).getUTCMonth();
+		var year = new Date(+date[1]).getUTCFullYear();
 		var button = key;
-		var row = '<li data-role="list-divider">'+Date(date[1])+'<span class="ui-li-count">0</span></li><li><div class="ui-grid-c"><div class="ui-block-a"><div class="ui-bar">'+name+'</div></div><div class="ui-block-b"><div class="ui-bar">'+phone+'</div></div><div class="ui-block-c"><div class="ui-bar">'+email+'</div></div><div class="ui-block-d"><div class="ui-bar"><a href="#" class="ui-btn ui-icon-search ui-btn-icon-notext ui-nodisc-icon ui-theme-b ui-alt-icon fullOrder" data-rel="popup" data-position-to="window" data-orderid="'+key+'"></a></div></div></div></li>';
+		if(iterationNumber % 2 == 0){
+			evenOdd = "even";
+		}else{
+			evenOdd = "odd";
+		};
+		var row = '<li class="'+evenOdd+'"><a href="#"><div class="ui-grid-b"><div class="ui-block-a"><div class="ui-bar">'+Number(month+1) + "/" + day + "/" +  year+'</div></div><div class="ui-block-b"><div class="ui-bar">'+name+'</div></div><div class="ui-block-c"><div class="ui-bar">Total</div></div></div></a><a href="#popupOrder" class="fullOrder ui-nodisc-icon" data-rel="popup" data-position-to="window" data-orderid="'+key+'"></a></li>';
 		$(".orderList").append(row);
 	}).then(function(){
 		//refresh the listcontroller
