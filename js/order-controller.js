@@ -144,22 +144,28 @@ $(document).on('click', '.fullOrder', function(){ //Cart + button
 //print page
 $(document).on('click', '.printOrders', function(){
 	//first lets organize the content of the orders
+	console.log("print Clicked");
 	var orderContent;
 	if(isprintAvailable == true){
 		order.iterate(function(value, key, iterationNumber) {
 			//lets put toget the content 
 			orderContent += value;
 			//orderContent = "";
+			$(".print-message").html('Orders printing');
 		}).then(function(){
-			console.log(orderContent);
+			console.log("orderContent: " + orderContent);
 			//$('order-totals').html(orderContent);
 			var page = $('.order-totals');
 			window.plugins.printer.print(page, 'index.html', function () {
 		    	alert('printing finished or canceled');
+		    	$(".print-message").removeClass('bi-invisible');
+		    	$(".print-message").addClass("bi-ctn-err");
 		    	$(".print-message").html('Orders printed');
 			});
 		});
 	}else{
-		$(".print-message").html("sorry Airprint not available");
+		$(".print-message").removeClass('bi-invisible');
+		$(".print-message").addClass("bi-ctn-err");
+		$(".print-message").html("Sorry Airprint is not currently available.");
 	}
 });
