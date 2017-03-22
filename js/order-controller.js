@@ -159,6 +159,7 @@ $(document).on('click', '.printOrders', function(){
 			console.log("orderContent: " + orderContent);
 			$('.order-totals').html(orderContent);
 			var page = $('.order-totals');
+			//Print Function!!!!!
 			/*window.plugin.printer.print(page, {name:'index.html',landscape:false }, function () {
 		    	alert('printing finished or canceled');
 		    	$(".print-message").removeClass('bi-invisible');
