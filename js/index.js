@@ -29,7 +29,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         app.receivedEvent('deviceready'); 
-        window.plugins.printer.isAvailable(
+        window.plugin.printer.isAvailable(
 		    function (isAvailable) {
 		        alert(isAvailable ? 'Service is available' : 'Service NOT available');
 		        isprintAvailable = true;
