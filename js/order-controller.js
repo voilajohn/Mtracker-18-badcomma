@@ -19,9 +19,6 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 		$('#popupOrder div').html("");
 		var orderNum = x.split("-");
 		$('#popupOrder div').append("<h3>Order "+orderNum[1]+"</h3>");
-		//console.log(value);
-		//id	key	value
-//not available-1490192290451	[["not available","John","Flottmeyer","1335 2nd Street NW","Rochester","Minnesota","55901","507-252-5125","jflottmeyer@gmail.com"],[["Classic Wreath-25in.",[30,1,"images/products/thumbs/classic_sm.jpg"]],["Led Light Set",[4,1,"images/products/thumbs/lights_sm.jpg"]],["EZ Wreath Hanger",[5,1,"images/products/thumbs/hanger_sm.jpg"]]],"pay-check"]
 		var contact = "<p>";
 		contact += "<span style='display:block'>"+value[0][1] + " " + value[0][2]+"</span>";
 		contact += "<span style='display:block'>"+value[0][3]+"</span>";
@@ -45,8 +42,10 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 		$('#popupOrder div').append(orders);
 		
 		$('#popupOrder').enhanceWithin();
+		
 		$("#popupOrder").trigger( "updatelayout" );
 		$("#popupOrder").popup("open");
+		$("#popupOrder").popup("reposition", {positionTo: 'window'});
 	}).catch( function(err){
 		console.log("Not able to find it." + err);
 	});
@@ -138,6 +137,4 @@ $(".create-order").click(function () {
 //buttons
 $(document).on('click', '.fullOrder', function(){ //Cart + button  
 	app.orderController.addorderDatatoPopup($(this).data('orderid'));
-//$('.fullOrder').on('click', function(){
-	console.log('boo');
 });
