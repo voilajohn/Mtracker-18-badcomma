@@ -19,6 +19,7 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 		$('#popupOrder div').html("");
 		var orderNum = x.split("-");
 		$('#popupOrder div').append("<h3>Order "+orderNum[1]+"</h3>");
+		//11	John-1490123208137	[["John","asfgret","ytjhj","kgjhk","ghjk","ghjk","kghjk","ghkj","gkjh"],[["Victorian Wreath-25in.",[30,1,"images/products/thumbs/victorian_sm.jpg"]],["EZ Wreath Hanger",[5,1,"images/products/thumbs/hanger_sm.jpg"]]],"pay-check"]
 		var contact = "<p>";
 		contact += "<span style='display:block'>"+value[0][1] + " " + value[0][2]+"</span>";
 		contact += "<span style='display:block'>"+value[0][3]+"</span>";
@@ -138,4 +139,27 @@ $(".create-order").click(function () {
 //buttons
 $(document).on('click', '.fullOrder', function(){ //Cart + button  
 	app.orderController.addorderDatatoPopup($(this).data('orderid'));
+});
+
+//print page
+$(document).on('click', '.printOrders', function(){
+	//first lets organize the content of the orders
+	var orderContent;
+	if(isprintAvailable == true){
+		order.iterate(function(value, key, iterationNumber) {
+			//lets put toget the content 
+			orderContent += value;
+			//orderContent = "";
+		}).then(function(){
+			console.log(orderContent);
+			//$('order-totals').html(orderContent);
+			var page = $('.order-totals');
+			window.plugins.printer.print(page, 'index.html', function () {
+		    	alert('printing finished or canceled');
+		    	$(".print-message").html('Orders printed');
+			});
+		});
+	}else{
+		$(".print-message").html("sorry Airprint not available");
+	}
 });

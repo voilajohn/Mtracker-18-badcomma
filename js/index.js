@@ -7,6 +7,7 @@ var cart;
 var order;
 var group; //get the group name
 var currentuser; //get the user name
+var isprintAvailable = false;
 
 // Begin boilerplate code generated with Cordova project.
 
@@ -30,7 +31,8 @@ var app = {
         app.receivedEvent('deviceready'); 
         window.plugin.printer.isAvailable(
 		    function (isAvailable) {
-		        alert(isAvailable ? 'Service is available' : 'Service NOT available');
+		        //alert(isAvailable ? 'Service is available' : 'Service NOT available');
+		        isprintAvailable = true;
 		    }
 		);
     },
