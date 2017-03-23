@@ -293,7 +293,22 @@ $('.searchbtn').click(function () {
 	//frameDoc.querySelector("img").src = imageUrl;
 	
 	$("#larger img").attr("src", imageUrl); //set the url of the popup image
-	$("#larger img").panzoom();
+	$("#larger img.panzoom").panzoom({
+		 startTransform: 'scale(1.1)',
+         increment: 0.1,
+         minScale: 0.1,
+         contain: 'automatic'
+	}).panzoom('zoom');
+	/*$section.find('.panzoom').panzoom({
+            $zoomIn: $section.find(".zoom-in"),
+            $zoomOut: $section.find(".zoom-out"),
+            $zoomRange: $section.find(".zoom-range"),
+            $reset: $section.find(".reset"),
+            startTransform: 'scale(1.1)',
+            increment: 0.1,
+            minScale: 1,
+            contain: 'invert'
+          }).panzoom('zoom');*/
 	$("#larger").trigger( "updatelayout" );
 	$("#larger").popup("open");
 });

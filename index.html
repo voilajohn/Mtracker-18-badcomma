@@ -282,7 +282,7 @@
 			</ul>
 				<div data-role="popup" id="purchase" data-theme="a" data-overlay-theme="a" class="ui-content addpopup"><h2>Add to Cart</h2>
 					<p>Would you like to add this to the cart?</p>
-					<div class="purchaseAdd">
+					<div class="purchaseAdd ui-corner-all">
 					<img src="" alt="" class="cartthumb"/>
 					<p><strong>Product:</strong> <span class="sentProduct"></span></p>
 					<p><strong>Option:</strong> <span class="sentSize">none</span></p>
@@ -291,23 +291,11 @@
 					</div>
 					<h2>Would you like to add?</h2>
 					<fieldset data-role="controlgroup" data-type="horizontal" class="cart-addons">
-					    <input type="checkbox" name="addon-lights" id="ledlights"><label for="ledlights"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i><img src="images/products/thumbs/lights_sm.jpg" class="addonthumb ledthumb"/> LED Light<br>Set<br>Price: $<span class="addledprice"></span></label><input type="checkbox" name="addon-hanger" id="ezwreathhanger"><label for="ezwreathhanger"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i><img src="images/products/thumbs/hanger_sm.jpg" alt="EZ Hanger" class="addonthumb ezthumb"> EZ Wreath<br>Hangar<br>Price: $<span class="addhangerprice"></span></label>
-					</fieldset>
-					<form>
-					    <fieldset data-role="controlgroup" data-mini="true">
-					        <input type="radio" name="cart-choice" id="cart-choice-a" value="checkout" checked="checked">
-								<label for="cart-choice-a">Add & Checkout</label>
-							<input type="radio" name="cart-choice" id="cart-choice-b" value="shop">
-								<label for="cart-choice-b">Add & Shop</label>
-							<input type="radio" name="cart-choice" id="cart-choice-c" value="cancel">
-								<label for="cart-choice-c">Cancel</label>
-					    </fieldset>
-						<a href="#" class="ui-btn addCheckout">Continue</a>
-					</form>
+					    <input type="checkbox" name="addon-lights" id="ledlights"><label for="ledlights"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i><img src="images/products/thumbs/lights_sm.jpg" class="addonthumb ledthumb"/> LED Light<br>Set<br>Price: $<span class="addledprice"></span></label><input type="checkbox" name="addon-hanger" id="ezwreathhanger"><label for="ezwreathhanger"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i><img src="images/products/thumbs/hanger_sm.jpg" alt="EZ Hanger" class="addonthumb ezthumb"> EZ Wreath<br>Hangar<br>Price: $<span class="addhangerprice"></span></label></fieldset><form><fieldset data-role="controlgroup" data-mini="true" class="checkout-radio"><input type="radio" name="cart-choice" id="cart-choice-a" value="checkout" checked="checked"><label for="cart-choice-a"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i>Add & Checkout</label><input type="radio" name="cart-choice" id="cart-choice-b" value="shop"><label for="cart-choice-b"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i>Add & Shop</label><input type="radio" name="cart-choice" id="cart-choice-c" value="cancel"><label for="cart-choice-c"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i>Cancel</label></fieldset><a href="#" class="ui-btn addCheckout green-button ui-corner-all">Continue</a></form>
 				</div>
 				<!-- larger image -->
 				<div data-role="popup" id="larger" data-theme="a" data-overlay-theme="a" class="ui-content imagepop">
-				    <div class="imagecontain"><img src="images/products/classic_lg.jpg" alt=""/></div>
+				    <div class="imagecontain"><img src="images/products/classic_lg.jpg" alt="" class="panzoom"/></div>
 				    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn">Close</a>
 				</div>
 	    </div><!-- /content -->
