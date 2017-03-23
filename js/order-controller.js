@@ -154,15 +154,21 @@ $(document).on('click', '.printOrders', function(){
 			
 		}).then(function(){
 			$(".print-message").removeClass('bi-invisible');
-			$(".print-message").html('Orders printing');
+			$(".print-message").html('Sending to printer');
 			
 			console.log("orderContent: " + orderContent);
 			$('.order-totals').html(orderContent);
+			
 			//var page = ;
 			var page = '<style type="text/css">...</style><body>'+$('.order-totals').html()+'</body>';
 			//Print Function!!!!!
 			window.plugin.printer.print(page, { duplex: 'short' }, function(done){
-				alert(done ? 'done' : 'canceled');	
+				//alert(done ? 'done' : 'canceled');	
+				if(done == done){
+					$(".print-message").html('Orders printing').delay(800).fadeOut().addClass('bi-invisible');
+				}else{
+					$(".print-message").html('Printing Cancelled').delay(800).fadeOut().addClass('bi-invisible');
+				}
 			})
 			/*window.plugins.printer.print(page, {name:'index.html',landscape:false }, function () {
 		    	alert('printing finished or canceled');
