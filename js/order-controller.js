@@ -142,14 +142,32 @@ $(document).on('click', '.fullOrder', function(){ //Cart + button
 });
 
 //print page
-$(document).on('click', '.printOrders', function(){
-	//first lets organize the content of the orders
-	console.log("print Clicked");
+$(document).on('click', '.printOrders', function(){//first lets organize the content of the orders
+	
 	var orderContent;
 	if(isprintAvailable == true){
 		order.iterate(function(value, key, iterationNumber) {
 			//lets put toget the content 
-			orderContent += value;
+			var name = value[0][1] + " " + value[0][2];
+			var address = value[0][3];
+			var citystatezip = value[0][4] + value[0][5] + "," + value[0][6];
+			var phone = value[0][7];
+			var email = value[0][8];
+			var getdate = key;
+			var date = getdate.split("-");
+			var day = new Date(+date[1]).getUTCDate();
+			var month = new Date(+date[1]).getUTCMonth();
+			var year = new Date(+date[1]).getUTCFullYear();
+			
+			//build the client info
+			orderContent += '<table>';
+			orderContent += '<thead><tr><th>Name</th><th>Address</th><th>Phone</th><th>Email</th></tr></thead>';
+			orderContent += '<tbody><tr><td>'+name+'</td>';
+			orderContent += '<td>'+address+citystatezip'</td>';
+			orderContent += '<td>'+phone+'</td>';
+			orderContent += '<td>'+email+'</td>';
+			orderContent += '</tr></tbody></table>';
+			
 			//orderContent = "";
 			
 		}).then(function(){
