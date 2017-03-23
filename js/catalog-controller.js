@@ -295,7 +295,7 @@ $('.searchbtn').click(function () {
 	$("#larger img").attr("src", imageUrl); //set the url of the popup image
 	$("#larger img.panzoom").panzoom({
 		 startTransform: 'scale(1.1)',
-         increment: 0.1,
+         /*increment: 0.1,*/
          minScale: 0.1,
          contain: 'automatic'
 	}).panzoom('zoom');
@@ -312,7 +312,15 @@ $('.searchbtn').click(function () {
 	$("#larger").trigger( "updatelayout" );
 	$("#larger").popup("open");
 });
-
+ <div>
+          <img src="http://blog.millermedeiros.com/wp-content/uploads/2010/04/awesome_tiger.svg">
+        </div>
+        <div class="panzoom">
+          <img src="http://blog.millermedeiros.com/wp-content/uploads/2010/04/awesome_tiger.svg">
+        </div>
+        <div>
+          <img src="http://blog.millermedeiros.com/wp-content/uploads/2010/04/awesome_tiger.svg">
+        </div>
 //save defaults option
 //need to get USER 			
 $('.save-defaults').click(function () { //lets create a default field in the cart database
