@@ -126,9 +126,11 @@ input[type='checkbox']{
 }
 li.even a{
 	background:#FFF;
+	padding:0px !important;
 }
 li.odd a{
 	background:#CCC !important;
+	padding:0px !important;
 }
 #popupOrder{
 	margin:0px auto !important;
@@ -143,7 +145,6 @@ li.odd a{
 }
 .orderList{
 	box-shadow: none !important;
-	
 }
 .orderList h3{
 	margin:0px !important;
@@ -152,10 +153,19 @@ li.odd a{
 ul.orderList li{
 	margin-bottom:10px !important;
 	box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+	height:auto;
 }
 ul.orderList{
 	padding-bottom:20px !important;
 }
+/*ul.orderlist .ui-grid-b div{
+	padding:3px !important;
+}*/
+ul.orderlist .ui-grid-b .ui-block-a, ul.orderlist  .ui-grid-b .ui-block-b, ul.orderlist  .ui-grid-b .ui-block-c {
+    padding: 3px !important;
+    margin:0px !important;   
+}
+
 .payment-form .ui-icon-radio-off {
     background-image: none;
     box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; 
@@ -226,6 +236,10 @@ ul.orderList{
 /*PANEL*/
 .ui-btn.green-button{
 	background:#00a65e !important;
+	color:#FFF !important;
+}
+.ui-btn.grey-button{
+	background:#444 !important;
 	color:#FFF !important;
 }
 .signOut{
@@ -594,11 +608,10 @@ legend{
 	width:300px;
 	height:300px;
 }
-.imagepop{
-  /*position:fixed;
-  width:92%;
-  top:0px;
-  left:0px;*/
+.imagepop .imagecontain{
+	max-width:320px;
+	max-height:300px;
+	overflow:hidden;
 }
 .logo{
 	margin:0px auto;

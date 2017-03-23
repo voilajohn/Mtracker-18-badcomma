@@ -18,9 +18,8 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 	order.getItem(x).then( function(value){
 		$('#popupOrder div').html("");
 		var orderNum = x.split("-");
-		$('#popupOrder div').append("<h3>Order "+orderNum[1]+"</h3>");
-		//11	John-1490123208137	[["John","asfgret","ytjhj","kgjhk","ghjk","ghjk","kghjk","ghkj","gkjh"],[["Victorian Wreath-25in.",[30,1,"images/products/thumbs/victorian_sm.jpg"]],["EZ Wreath Hanger",[5,1,"images/products/thumbs/hanger_sm.jpg"]]],"pay-check"]
-		var contact = "<p>";
+		$('#popupOrder div').append("<h3>Order Details</h3>");
+		var contact = "<p><strong>"+orderNum[1]+"</strong>";
 		contact += "<span style='display:block'>"+value[0][1] + " " + value[0][2]+"</span>";
 		contact += "<span style='display:block'>"+value[0][3]+"</span>";
 		contact += "<span style='display:block'>"+value[0][4] + " " + value[0][5] + "," +  value[0][6] +"</span><br>";
@@ -74,7 +73,7 @@ MickmanAppLogin.OrderController.prototype.buildOrders = function(){
 		}else{
 			evenOdd = "odd";
 		};
-		var row = '<li class="'+evenOdd+'"><a href="#"><div class="ui-grid-b"><div class="ui-block-a"><div class="ui-bar">'+Number(month+1) + "/" + day + "/" +  year+'</div></div><div class="ui-block-b"><div class="ui-bar">'+name+'</div></div><div class="ui-block-c"><div class="ui-bar">Total</div></div></div></a><a href="#popupOrder" class="fullOrder ui-nodisc-icon" data-rel="popup" data-position-to="window" data-orderid="'+key+'"></a></li>';
+		var row = '<li class="'+evenOdd+'"><a href="#popupName" data-rel="popup" data-name="'+name+'" data-transition="pop" class="namePop"><div class="ui-grid-b"><div class="ui-block-a"><div class="ui-bar">'+Number(month+1) + "/" + day + "/" +  year+'</div></div><div class="ui-block-b"><div class="ui-bar">'+name+'</div></div><div class="ui-block-c"><div class="ui-bar">Total</div></div></div></a><a href="#popupOrder" class="fullOrder ui-nodisc-icon" data-rel="popup" data-position-to="window" data-orderid="'+key+'"></a></li>';
 		$(".orderList").append(row);
 	}).then(function(){
 		//refresh the listcontroller
@@ -110,7 +109,7 @@ $(".create-order").click(function () {
 			        order.getItem(orderStamp).then( function(value){
 				        order.setItem(orderStamp,[value[0],cartContents,value[2]]).then( function(){
 					        if (iterationNumber == (cartLength-1)) { //only do this before the interation is complete
-					        	console.log("sweet just once");
+					        	//console.log("sweet just once");
 					        	for(i=0;i<cartArr.length;i++){
 									cart.removeItem(cartArr[i]);//remove everything from the cart
 								}
@@ -140,7 +139,9 @@ $(".create-order").click(function () {
 $(document).on('click', '.fullOrder', function(){ //Cart + button  
 	app.orderController.addorderDatatoPopup($(this).data('orderid'));
 });
-
+$(document).on('click', '.namePop', function(){//send Name to the popup
+	$("#popupName p").html($(this).data('name'));
+});
 //print page
 $(document).on('click', '.printOrders', function(){//first lets organize the content of the orders
 	
@@ -181,7 +182,7 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			$(".print-message").removeClass('bi-invisible');
 			$(".print-message").html('Sending to printer');
 			
-			var page = '<style type="text/css">...</style><body>'+orderContent+'</body>'; //printed page
+			var page = '<style type="text/css">body{font:"Arial,Helvetica,sans-serif;"}table{border:1px solid #000;}</style><body>'+orderContent+'</body>'; //printed page
 			
 			window.plugin.printer.print(page, { duplex: 'short' }, function(done){ //Print Function!!!!!
 				if(done == done){
