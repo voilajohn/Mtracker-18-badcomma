@@ -182,9 +182,9 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			$(".print-message").removeClass('bi-invisible');
 			$(".print-message").html('Sending to printer');
 			
-			var page = '<style type="text/css">body{font:"Arial,Helvetica,sans-serif;"}table{border:1px solid #000;}</style><body>'+orderContent+'</body>'; //printed page
+			var page = '<style type="text/css">body{font:"\'Arial\',Helvetica,sans-serif;"}table{border:1px solid #000;width:100%;}td{border:1px solid #CCC;padding:10px;}</style><body>'+orderContent+'</body>'; //printed page
 			
-			window.plugin.printer.print(page, { duplex: 'short' }, function(done){ //Print Function!!!!!
+			window.plugin.printer.print(page, { name: 'Order Inventory', duplex: 'short' }, function(done){ //Print Function!!!!!
 				if(done == done){
 					$(".print-message").html('Orders printing').delay(800).fadeOut().delay(800).addClass('bi-invisible');
 				}else{

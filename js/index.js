@@ -31,7 +31,7 @@ var app = {
         app.receivedEvent('deviceready'); 
         window.plugin.printer.isAvailable(
 		    function (isAvailable) {
-		        alert(isAvailable ? 'Service is available' : 'Service NOT available');
+		        //alert(isAvailable ? 'Service is available' : 'Service NOT available');
 		        isprintAvailable = true;
 		    }
 		);
