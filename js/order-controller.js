@@ -169,11 +169,11 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			orderContent += '<td>'+email+'</td>';
 			orderContent += '</tr></tbody></table>';
 			
+			orderContent += '<table><thead><tr><th>Product</th><th>Number</th><th>Cost</th></tr></thead><tbody>';
 			for(x=0;x<value[1].length;x++){
-				orderContent += '<table><thead><tr><th>Product</th><th>Number</th><th>Cost</th></tr></thead><tbody>';
 				orderContent += '<tr><td>'+value[1][x][0]+'</td><td>'+value[1][x][1][1]+'</td><td>'+value[1][x][1][0]+'</td></tr>';
-				orderContent += '</tbody></table>';
 			}
+			orderContent += '</tbody></table>';
 			orderContent += '<p><strong>Payment Status: </strong>'+value[2]+'</p>';
 			
 			
@@ -182,7 +182,7 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			$(".print-message").removeClass('bi-invisible');
 			$(".print-message").html('Sending to printer');
 			
-			var page = '<style type="text/css">body{font:"\'Arial\',Helvetica,sans-serif;"}table{border:1px solid #000;width:100%;}td{border:1px solid #CCC;padding:10px;}</style><body>'+orderContent+'</body>'; //printed page
+			var page = '<style type="text/css">body{font-family:"\'Arial\',Helvetica,sans-serif;"}table{border:1px solid #000;width:100%;}td{border:1px solid #CCC;padding:10px;}</style><body>'+orderContent+'</body>'; //printed page
 			
 			window.plugin.printer.print(page, { name: 'Order Inventory', duplex: 'short' }, function(done){ //Print Function!!!!!
 				if(done == done){
