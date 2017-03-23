@@ -150,7 +150,7 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			//lets put toget the content 
 			var name = value[0][1] + " " + value[0][2];
 			var address = value[0][3];
-			var citystatezip = value[0][4] + value[0][5] + "," + value[0][6];
+			var citystatezip = value[0][4] + " " +  value[0][5] + " ," + value[0][6];
 			var phone = value[0][7];
 			var email = value[0][8];
 			var getdate = key;
@@ -163,37 +163,33 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			orderContent += '<table>';
 			orderContent += '<thead><tr><th>Name</th><th>Address</th><th>Phone</th><th>Email</th></tr></thead>';
 			orderContent += '<tbody><tr><td>'+name+'</td>';
-			orderContent += '<td>'+address+citystatezip'</td>';
+			orderContent += '<td>'+address+" "+citystatezip+'</td>';
 			orderContent += '<td>'+phone+'</td>';
 			orderContent += '<td>'+email+'</td>';
 			orderContent += '</tr></tbody></table>';
 			
-			//orderContent = "";
+			for(x=0;x<value[1].length;x++){
+				orderContent += '<table><thead><tr><th>Product</th><th>Number</th><th>Cost</th></tr></thead><tbody>';
+				orderContent += '<tr><td>'+value[1][x][0]+'</td><td>'+value[1][x][1][1]+'</td><td>'+value[1][x][1][0]+'</td></tr>';
+				orderContent += '</tbody></table>';
+			}
+			orderContent += '<p><strong>Payment Status: </strong>'+value[2]+'</p>';
+			
 			
 		}).then(function(){
+			console.log(orderContent);
 			$(".print-message").removeClass('bi-invisible');
 			$(".print-message").html('Sending to printer');
 			
-			//console.log("orderContent: " + orderContent);
-			//$('.order-totals').html(orderContent);
+			var page = '<style type="text/css">...</style><body>'+orderContent+'</body>'; //printed page
 			
-			//var page = ;
-			var page = '<style type="text/css">...</style><body>'+orderContent+'</body>';
-			//Print Function!!!!!
-			window.plugin.printer.print(page, { duplex: 'short' }, function(done){
-				//alert(done ? 'done' : 'canceled');	
+			window.plugin.printer.print(page, { duplex: 'short' }, function(done){ //Print Function!!!!!
 				if(done == done){
 					$(".print-message").html('Orders printing').delay(800).fadeOut().delay(800).addClass('bi-invisible');
 				}else{
 					$(".print-message").html('Printing Cancelled').delay(800).fadeOut().delay(800).addClass('bi-invisible');
 				}
-			})
-			/*window.plugins.printer.print(page, {name:'index.html',landscape:false }, function () {
-		    	alert('printing finished or canceled');
-		    	$(".print-message").removeClass('bi-invisible');
-		    	$(".print-message").addClass("bi-ctn-err");
-		    	$(".print-message").html('Orders printed');
-			});*/
+			});
 		});
 	}else{
 		$(".print-message").removeClass('bi-invisible');
