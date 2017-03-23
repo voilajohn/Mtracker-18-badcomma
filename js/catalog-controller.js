@@ -312,15 +312,6 @@ $('.searchbtn').click(function () {
 	$("#larger").trigger( "updatelayout" );
 	$("#larger").popup("open");
 });
- <div>
-          <img src="http://blog.millermedeiros.com/wp-content/uploads/2010/04/awesome_tiger.svg">
-        </div>
-        <div class="panzoom">
-          <img src="http://blog.millermedeiros.com/wp-content/uploads/2010/04/awesome_tiger.svg">
-        </div>
-        <div>
-          <img src="http://blog.millermedeiros.com/wp-content/uploads/2010/04/awesome_tiger.svg">
-        </div>
 //save defaults option
 //need to get USER 			
 $('.save-defaults').click(function () { //lets create a default field in the cart database
