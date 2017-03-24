@@ -19,7 +19,7 @@ MickmanAppLogin.CartController.prototype.init = function () {//gather the variab
     this.$btnSave = $(".saveCart", this.$checkoutPage);
     this.$ctnErr = $("#ctn-err", this.$storePage);
 };
-//10	Classic Wreath-25in. $30	[30,1,"images/products/thumbs/classic_sm.jpg"]
+
 //##### add to cart #####
 MickmanAppLogin.CartController.prototype.addProduct = function (e) {//add one product to the cart
 	cart.getItem(e[0]).then(function(value) {
@@ -122,7 +122,7 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 };
 
 MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the cart by grabbing saved db items
-	console.log("getcart run");
+	//console.log("getcart run");
 	$(".cartlist").html("");
 	var cartCount = 0;
 	cart.iterate(function(value, key, iterationNumber) {
@@ -133,17 +133,17 @@ MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the c
 			$(".cartlist").hide();
 			$(".cartlist").append("<li class='divider-title' data-role='list-divider'><h4>"+key+"</h4><span class='ui-li-count'>"+value[1]+"</span></li><li><div class='ui-grid-b'><div class='ui-block-a' style='width:60%'><img src='"+value[2]+"' alt='"+key+"' class='cartthumb'/><p style='margin:0px;'>$"+value[0]+" each</span> <div class='total green'>$<span>"+Number(value[0]*value[1])+"</span></div></p></div><div class='ui-block-b' style='width:15%;'></div><div class='ui-block-c' style='width:15%;float:right;vertical-align:top;'><div data-role='controlgroup' data-type='vertical' data-mini='true' class='ui-group-theme-a' data-product-name='"+key+"' data-product-cost='"+value[0]+"' data-product-thumb='"+value[2]+"'><a href='#' class='ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext addProduct'>+</a><a href='#' class='ui-btn ui-corner-all ui-icon-minus ui-btn-icon-notext removeProduct'>-</a></div></div></li>");
 			$(".cartlist").fadeIn();
-			console.log("some");
+			//console.log("some");
 			cartCount++;
 		}
 	}).then(function() {
 		if(cartCount == 0){
 			console.log("there is nothing in the cart");
-			$(".checkoutNow").addClass("ui-state-disabled");
+			//$(".checkoutNow").addClass("ui-state-disabled");
 			$(".emptyCart").addClass("ui-state-disabled");
 		}else{
-			console.log(cartCount);
-			$(".checkoutNow").removeClass("ui-state-disabled");
+			//console.log(cartCount);
+			//$(".checkoutNow").removeClass("ui-state-disabled");
 			$(".emptyCart").removeClass("ui-state-disabled");
 		}
 		$(".cartlist").enhanceWithin();

@@ -43,6 +43,7 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
+	console.log("Fill out the Catalog");
 	//hide everything
 	$("#ClassicWreath").hide(); 
 	$("#VictorianWreath").hide(); 
@@ -211,16 +212,13 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 		$("#LEDlights .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
 		$(".slickIt").trigger("click"); //now load the carousel
-		
-		
-		
 		$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
 	    
 	}).catch(function(err) {
 	    // This code runs if there were any errors
 	    console.log(err);
 	});
-	
+	//grab the defaults if they are saved.
 	cart.getItem("defaults").then( function(value) { //let's add in our defaults if they are saved
 		$("#default-city").val(value[0]);
 		$("#default-state").val(value[1]);
@@ -243,6 +241,7 @@ MickmanAppLogin.CatalogController.prototype.getUserData = function(){ //gather u
 				$("#"+fieldArr[x]).val(savedcart[x+1]);
 			}
 		}else{
+			//check for defaults saved
 			cart.getItem("defaults").then( function(value) { //let's add in our defaults if they are saved
 				$("#default-city").val(value[0]);
 				$("#default-state").val(value[1]);
@@ -279,7 +278,7 @@ $('.priceselect').change(function () {
   $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product",productName); //push the product name to the checkout area.
   
   var radioSize = $(this).find(':radio:checked').prev('label').find(".sizeoption").text();//need to be more specific now
-  console.log("size: " + radioSize);
+  //console.log("size: " + radioSize);
   $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product-size",radioSize); //push the product option
 });
 
@@ -299,16 +298,7 @@ $('.searchbtn').click(function () {
          minScale: 0.1,
          contain: 'automatic'
 	}).panzoom('zoom');
-	/*$section.find('.panzoom').panzoom({
-            $zoomIn: $section.find(".zoom-in"),
-            $zoomOut: $section.find(".zoom-out"),
-            $zoomRange: $section.find(".zoom-range"),
-            $reset: $section.find(".reset"),
-            startTransform: 'scale(1.1)',
-            increment: 0.1,
-            minScale: 1,
-            contain: 'invert'
-          }).panzoom('zoom');*/
+	
 	$("#larger").trigger( "updatelayout" );
 	$("#larger").popup("open");
 });
@@ -359,6 +349,7 @@ $(".slickIt").on('click', function(){ //rotating area
     	centerMode: true,
 		centerPadding: '60px',
 		slidesToShow: 3,
+		infinite: true,
 		responsive: [
 	    {
 	      breakpoint: 768,
@@ -380,8 +371,10 @@ $(".slickIt").on('click', function(){ //rotating area
 	    }
 		] 	
 	});
+	console.log("slick called");
 	$('.product-display').addClass("slicked");
 	$('.product-display').removeClass("unslicked");
+	
 	$(this).addClass("ui-btn-active");
 	$('.unslickIt').removeClass("ui-btn-active");
 	//remove the listview layout

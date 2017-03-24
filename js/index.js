@@ -116,7 +116,7 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
                 var session = MickmanAppLogin.Session.getInstance().get(),
                     today = new Date();
                 if (session && session.keepSignedIn && new Date(session.expirationDate).getTime() > today.getTime()) {
-                    ui.toPage = $("#page-main-menu");  
+                    //ui.toPage = $("#page-main-menu");  
                     console.log("Redirect");              
                 }else{
 	                console.log("Not Logged in");
@@ -192,32 +192,14 @@ $(document).delegate("#page-orders", "pageshow", function () {
     app.orderController.buildOrders(); //lets gather the cart info each time the cart is visited.
 });
  
-//Add to Cart Button
-/*$(document).delegate("#page-main-menu", "pagebeforecreate", function () {
-    //app.cartController.init();
-    app.cartController.$btnAdd.off("tap").on("tap", function () {
-        app.cartController.addpricetoPopup($(this).data("num"),$(this).data("product-size"),$(this).data("product"),$(this).data("thumb"));
-        console.log("activated");
-    });
-    app.cartController.$btnCheck.off("tap").on("tap", function (event) {
-	    //first check cart data, then add to if there is existing
-	    
-	    cost = $(this).parent().find("span.sentPrice").text();
-	    product = $(this).parent().find("span.sentProduct").text();
-	    size = $(this).parent().find("span.sentSize").text();
-	    thumb = $(this).parent().find("img").attr('src');
-	    var items = [product+"-"+size,cost,thumb];
-        app.cartController.addtoCartCommand(items);
-    });
-});*/
 function updatePageHighlight(x){
-	console.log(x);
+	//console.log(x);
 	$( "#menu-panel li a" ).each( function( index, element ){
     	$( this ).removeClass("listview-active");
 	});
 	var currentmenu = $("#menu-panel a[href="+x+"]");
 	currentmenu.addClass("listview-active");
-	console.log(currentmenu);
+	//console.log(currentmenu);
 }
 
 localforage.config({

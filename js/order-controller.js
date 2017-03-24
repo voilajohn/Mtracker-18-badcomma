@@ -147,8 +147,8 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 	
 	var orderContent;
 	if(isprintAvailable == true){
-		order.iterate(function(value, key, iterationNumber) {
-			//lets put toget the content 
+		order.iterate(function(value, key, iterationNumber) { //lets put toget the content 
+	
 			var name = value[0][1] + " " + value[0][2];
 			var address = value[0][3];
 			var citystatezip = value[0][4] + " " +  value[0][5] + " ," + value[0][6];
