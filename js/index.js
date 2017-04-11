@@ -116,7 +116,7 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
                 var session = MickmanAppLogin.Session.getInstance().get(),
                     today = new Date();
                 if (session && session.keepSignedIn && new Date(session.expirationDate).getTime() > today.getTime()) {
-                    //ui.toPage = $("#page-main-menu");  
+                    ui.toPage = $("#page-main-menu");  
                     console.log("Redirect");              
                 }else{
 	                console.log("Not Logged in");
@@ -152,8 +152,15 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
     
     app.cartController.init();
     app.cartController.$btnAdd.off("tap").on("tap", function () {
-        app.cartController.addpricetoPopup($(this).data("num"),$(this).data("product-size"),$(this).data("product"),$(this).data("thumb"));
-        console.log("activated");
+	    // last item - added db-name this one adds variables to the popup
+	    //e,s,p,t,r
+	    app.cartController.addpricetoPopup(
+	    	$(this).data("num"),
+	    	$(this).data("product-size"),
+	    	$(this).data("product"),
+	    	$(this).data("thumb"),
+	    	$(this).data("db-name")
+	    );
     });
     app.cartController.$btnCheck.off("tap").on("tap", function (event) {
 	    //first check cart data, then add to if there is existing
@@ -161,6 +168,8 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	    product = $(this).parent().parent().find("span.sentProduct").text();
 	    size = $(this).parent().parent().find("span.sentSize").text();
 	    thumb = $(this).parent().parent().find("img").attr('src');
+	    //dbname = $(this).parent().parent().find().attr();
+	    //var items = [[product+"-"+size,Number(cost),thumb,dbname]];
 	    var items = [[product+"-"+size,Number(cost),thumb]];
 	    var radioSelected = $(this).parent().find(':radio:checked').val();
 	    //lets check for addons

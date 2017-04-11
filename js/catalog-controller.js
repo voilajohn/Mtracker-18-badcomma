@@ -45,6 +45,11 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
 	console.log("Fill out the Catalog");
 	//hide everything
+	$('#ClassicOption').html("");
+	$('#VictorianOption').html("");
+	$('#CranberryOption').html("");
+	$('#GarlandOption').html("");
+	
 	$("#ClassicWreath").hide(); 
 	$("#VictorianWreath").hide(); 
 	$("#CranberrySplashWreath").hide();
@@ -76,6 +81,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		    var buttonLabel = key.slice(0,2) + "in.";
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span> <span class="labelprice">$'+value+'</span></label>');
 		    $('#ClassicOption').controlgroup('container').append(radioBtn);
+		    $("#ClassicWreath .split-custom-wrapper a").data("db-name",key);
 	    }
 		if( (key == "25v") && value > 0 || (key == "25vg") && value > 0 ||
 	    	(key == "28v") && value > 0 || (key == "28vg") && value > 0 ||
@@ -85,6 +91,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		    var buttonLabel = key.slice(0,2) + "in.";
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
 		    $('#VictorianOption').controlgroup('container').append(radioBtn);
+		    $("#VictorianWreath .split-custom-wrapper a").data("db-name",key);
 		}
 		if( (key == "25cs") && value > 0 || (key == "25csg") && value > 0 || 
 	    	(key == "28cs") && value > 0 || (key == "28csg") && value > 0 ||
@@ -94,35 +101,44 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		    var buttonLabel = key.slice(0,2) + "in.";
 		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
 		    $('#CranberryOption').controlgroup('container').append(radioBtn);
+		    $("#CranberrySplashWreath .split-custom-wrapper a").data("db-name",key);
 		}
 		//SPRAYS
 		if( (key == "sprayc") && value > 0 || 
 			(key == "spraycg") && value > 0
 	    ){ //Classic Spray
 		    $("#ClassicSpray").show();
+		    $("#ClassicSpray .split-custom-wrapper a").data("num",value);
 		    $("#ClassicSpray .price span.num").html(value);
+		    $("#ClassicSpray .split-custom-wrapper a").data("db-name",key);
 		}
 		if( (key == "sprayv") && value > 0 || 
 			(key == "sprayvg") && value > 0
 	    ){ //Classic Spray
 		    $("#VictorianSpray").show();
+		    $("#VictorianSpray .split-custom-wrapper a").data("num",value);
 		    $("#VictorianSpray .price span.num").html(value);
+		    $("#VictorianSpray .split-custom-wrapper a").data("db-name",key);
 		}
 		if( (key == "spraycs") && value > 0 || 
 			(key == "spraycsg") && value > 0 ){ //Classic Spray
 		    $("#CranberrySpray").show();
+		    $("#CranberrySpray .split-custom-wrapper a").data("num",value);
 		    $("#CranberrySpray .price span.num").html(value);
+		    $("#CranberrySpray .split-custom-wrapper a").data("db-name",key);
 		}
 		if( (key == "cc") && value > 0 ){ //Holiday Centerpiece
 			$("#HolidayCenterpiece").show();
 			$("#HolidayCenterpiece .split-custom-wrapper a").data("num",value);
 			$("#HolidayCenterpiece .price span.num").html(value);
+			$("#HolidayCenterpiece .split-custom-wrapper a").data("db-name",key);
 		}
 		if( (key == "tlt") && value > 0
 		){ //Tiny Living Tree
 			$("#tabletoptree").show();
 			$("#tabletoptree .split-custom-wrapper a").data("num",value);
 			$("#tabletoptree .price span.num").html(value);
+			$("#tabletoptree .split-custom-wrapper a").data("db-name",key);
 		}
 		if( (key == "25gar") && value > 0 ||
 			(key == "50gar") && value > 0 ||
@@ -133,21 +149,25 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 			var buttonLabel = key.slice(0,2) + "ft.";
 		    var radioBtn = $('<input type="radio" name="size" id="garland'+key+'" value="'+value+'" data-mini="true"/><label for="garland'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
 		    $('#GarlandOption').controlgroup('container').append(radioBtn);
+		    $("#GarlandOption .split-custom-wrapper a").data("db-name",key);
 		}
 		if( (key == "hanger") && value > 0){
 			$("#EZWreathHanger").show();
 			$("#EZWreathHanger .split-custom-wrapper a").data("num",value);
+			$("#EZWreathHanger .split-custom-wrapper a").data("db-name",key);
 			$("#EZWreathHanger .price span.num").html(value);
 			$(".addhangerprice").html(value);
 		}
-		if( (key == "bag") && value > 0){
+		/*if( (key == "bag") && value > 0){
 			$("#Bags").show();
 			$("#Bags .split-custom-wrapper a").data("num",value);
+			$("#Bags .split-custom-wrapper a").data("db-name",key);
 			$("#Bags .price span.num").html(value);
-		}
+		}*/
 		if( (key == "led") && value > 0){
 			$("#LEDlights").show();
 			$("#LEDlights .split-custom-wrapper a").data("num",value);
+			$("#LEDlights .split-custom-wrapper a").data("db-name",key);
 			$("#LEDlights .price span.num").html(value);
 			$(".addledprice").html(value);
 		}
@@ -164,31 +184,25 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    $("#ClassicOption").enhanceWithin().controlgroup("refresh");
 	    $("#ClassicOption").find(".ui-btn:first").trigger('click');//click the first button
 	    
-	    $("#ClassicGOption").enhanceWithin().controlgroup("refresh");
-	    $("#ClassicGOption").find(".ui-btn:first").trigger('click');//click the first button
-	    
 	    $("#VictorianOption").enhanceWithin().controlgroup("refresh"); 
 	    $("#VictorianOption").find(".ui-btn:first").trigger('click');//click the first button
-	    
-	    $("#VictorianGOption").enhanceWithin().controlgroup("refresh"); 
-	    $("#VictorianGOption").find(".ui-btn:first").trigger('click');//click the first button
 	    
 	    $("#CranberryOption").enhanceWithin().controlgroup("refresh");
 	    $("#CranberryOption").find(".ui-btn:first").trigger('click');//click the first button
 	    
-	    $("#CranberryGOption").enhanceWithin().controlgroup("refresh");
-	    $("#CranberryGOption").find(".ui-btn:first").trigger('click');//click the first button
-	    
-	    $("#ClassicSprayOption").enhanceWithin().controlgroup("refresh");
-	    $("#ClassicSprayOption").find(".ui-btn:first").trigger('click');//click the first button
-	    
-	    $("#VictorianSprayOption").enhanceWithin().controlgroup("refresh");
-	    $("#VictorianSprayOption").find(".ui-btn:first").trigger('click');//click the first button
-	    
-	    $("#CranberrySprayOption").enhanceWithin().controlgroup("refresh");
-	    $("#CranberrySprayOption").find(".ui-btn:first").trigger('click');//click the first button
-	    
 	    //activate non radio buttons
+	    var productName = $("#ClassicSpray h2").text();
+		$("#ClassicSpray .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
+	    $("#ClassicSpray .split-custom-wrapper a").data("product-size","none available");
+	    
+	    var productName = $("#VictorianSpray h2").text();
+		$("#VictorianSpray .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
+	    $("#VictorianSpray .split-custom-wrapper a").data("product-size","none available");
+	    
+	    var productName = $("#CranberrySpray h2").text();
+		$("#CranberrySpray .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
+	    $("#CranberrySpray .split-custom-wrapper a").data("product-size","none available"); 
+	    
 		var productName = $("#HolidayCenterpiece h2").text();
 		$("#HolidayCenterpiece .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 		$("#HolidayCenterpiece .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
@@ -203,10 +217,6 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		var productName = $("#EZWreathHanger h2").text();
 		$("#EZWreathHanger .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 		$("#EZWreathHanger .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
-		
-		var productName = $("#Bags h2").text();
-		$("#Bags .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-		$("#Bags .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
 		
 		var productName = $("#LEDlights h2").text();
 		$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
@@ -277,6 +287,9 @@ $('.priceselect').change(function () {
   var productName = $(this).parent().parent().find('h2').text(); //grab the product name
   $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product",productName); //push the product name to the checkout area.
   
+  //var getName = $(this).parent().parent().parent().find('.split-custom-wrapper a').data("db-name");
+  //$(this).parent().parent().parent().find('.split-custom-wrapper a').data("db-name",getName);
+  
   var radioSize = $(this).find(':radio:checked').prev('label').find(".sizeoption").text();//need to be more specific now
   //console.log("size: " + radioSize);
   $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product-size",radioSize); //push the product option
@@ -302,6 +315,7 @@ $('.searchbtn').click(function () {
 	$("#larger").trigger( "updatelayout" );
 	$("#larger").popup("open");
 });
+
 //save defaults option
 //need to get USER 			
 $('.save-defaults').click(function () { //lets create a default field in the cart database

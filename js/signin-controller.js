@@ -21,6 +21,7 @@ MickmanAppLogin.SignInController.prototype.init = function () {
     this.$ctnErr = $("#ctn-err", this.$signInPage);
     this.$txtUserName = $("#txt-user-name", this.$signInPage);
     this.$txtPassword = $("#txt-password", this.$signInPage);
+    this.$tryLogin = $("#try-login", this.$signInPage);
     this.$chkKeepSignedIn = $("#chk-keep-signed-in", this.$signInPage);
 };
 
@@ -39,10 +40,10 @@ MickmanAppLogin.SignInController.prototype.resetSignInForm = function () {
 };
 
 MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
-	
     var me = this,
         userName = me.$txtUserName.val().trim(),
         password = me.$txtPassword.val().trim(),
+        tryLogin = me.$tryLogin.val().trim(),
         invalidInput = false,
         invisibleStyle = "bi-invisible",
         invalidInputStyle = "bi-invalid-input";
@@ -74,14 +75,14 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
     $.ajax({
         type: 'POST',
         url: MickmanAppLogin.Settings.signInUrl,
-        data: "user=" + userName + "&password=" + password,
+        data: "user=" + userName + "&password=" + password + "&try-login=" + tryLogin,
         success: function (resp) {
 	        
             $.mobile.loading("hide");
             console.log(resp);
             if (resp.success === true) { // If the login method changes this part can be skipped
                 if(resp.extras.users){//build out the menu
-	                 $('#select-choice-1').html(""); //prevent big lists from multiple logins
+	                $('#select-choice-1').html(""); //prevent big lists from multiple logins
 	                var users = resp.extras.users;
 	                $.each(users, function(bb){
 		                var Uname = (users[bb]);
@@ -90,24 +91,50 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 		            $(".mygroup").html(resp.extras.cust_id);
 		            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load
                 	$(".startSession").click(function(){//They need to choose a user
-	                	//put the additional stuff into the DB
-	                	console.log("clicked");
-		                app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);
-	                	//lets get the selected name and create the session variable.
+		                app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);//put the additional stuff into the DB
+	            
 	                	var today = new Date();
 		                var expirationDate = new Date();
 		                expirationDate.setTime(today.getTime() + MickmanAppLogin.Settings.sessionTimeoutInMSec);
 		                
-		                //left save all this stuff to a local database to get later - this may take over for the localdata stuff			
+		                //left save all this stuff to a local database to get later - this may take over for the localdata stuff	
+		                var token = resp.extras.sessionID;
+		                var memberProf = $('#select-choice-1').val()	
 						//local variable for checking the sessions
 		                MickmanAppLogin.Session.getInstance().set({
-		                    userProfileModel:  $('#select-choice-1').val(),
-		                    sessionId: resp.extras.sessionID,
+		                    userProfileModel:  memberProf,
+		                    sessionId: token,
 		                    expirationDate: expirationDate,
 		                    keepSignedIn:me.$chkKeepSignedIn.is(":checked")
 		                });
 		                
-		                $.mobile.navigate(me.mainMenuPageId); // if that is successful we will reroute them to the catalog page
+		                $.mobile.loading("show");
+		               
+		                $.ajax({  //save this the users token to his db. 
+					        type: 'POST',
+					        url: MickmanAppLogin.Settings.tokenUrl,
+					        data: "user=" + userName + "&password=" + password + "&member=" + memberProf + "&senttoken=" + token,
+					        success: function (response) {
+						    	$.mobile.loading("hide");
+								if(response.success === true){
+									token = response.extras.token;
+									product.setItem("token",token);//push the token to the database 
+									$.mobile.navigate(me.mainMenuPageId); //if that is successful we will reroute them to the catalog page
+								}else{ //show an error message.
+									  me.$ctnErr.html("<p>There was an error loading your profile. Please check your connection and try again.</p>");
+									  me.$ctnErr.addClass("bi-ctn-err").slideDown();
+									  me.$txtUserName.addClass(invalidInputStyle);
+								}
+							},
+							//YOU WERE ADDING THE RESPONSE TO THE PHP AND TRYING TO GET IT TO LOGIN AND STORE THE TOKEN TO BE USED IN THE SYNC OPERATION
+					        error: function (e) {
+					            $.mobile.loading("hide");
+					            console.log(e);
+					            // TODO: Use a friendlier error message below.
+					            me.$ctnErr.html("<p>Oops! It looks like we had a problem and could not log you on.  Please try again in a few minutes.</p>");
+					            me.$ctnErr.addClass("bi-ctn-err").slideDown();
+					        }
+		                });
                 	});
 					//pop up window with selection
 					$( "#confirm-member" ).popup( "open");
@@ -117,7 +144,6 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
                 }
                 return;
             } else {
-	            //console.log("should be an error here");
                 if (resp.extras.msg) {
                     switch (resp.extras.msg) {
                         case 0: //MickmanAppLogin.ApiMessages.DB_ERROR:

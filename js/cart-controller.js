@@ -60,11 +60,17 @@ MickmanAppLogin.CartController.prototype.removeProduct = function (e) {
 	});
 };
 
-MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t) {//save cart to db 
+MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t,r) {//save cart to db 
 	$('#purchase img.cartthumb').attr('src',t);
 	$('#purchase span.sentPrice').html(e);
-	$('#purchase span.sentSize').html(s);
+	if(s != ""){
+		$('#purchase span.sentSize').html(s);
+	}else{
+		$('#purchase span.sentSize').html("");
+	}
 	$('#purchase span.sentProduct').html(p);
+	//$('#purchase').data('fieldrealName').val(r);
+	console.log("r:"+r);
 	$('#purchase').enhanceWithin();
 };
 
@@ -81,7 +87,7 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 		for(x=0;x<itemsLength;x++){
 			itemList.push(e[x][0]);
 		}
-		itemList.push(["Classic Wreath-25in. $30"]);
+		////itemList.push(["Classic Wreath-25in. $30"]); ////?
 		
 		cart.iterate(function(value,key,iterationNumber){
 			if(key != "personal" && key != "defaults"){ //list everything in the cart as an array
@@ -93,6 +99,7 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 				console.log("add new ones to the db");
 				for(x=0;x<itemList.length;x++){
 					cart.setItem(e[x][0],[e[x][1],1,e[x][2]]);
+					//cart.setItem(e[x][0],[e[x][1],1,e[x][2],e[x][3]]);
 				}
 			}else{
 				//lets add in items that are not on this list and if they are we are going to add one
