@@ -56,9 +56,7 @@ $(document).on("mobileinit", function (event, ui) {
 app.signInController = new MickmanAppLogin.SignInController(); //call the signin controller
 app.catalogController = new MickmanAppLogin.CatalogController(); //call the catalog controller 
 app.cartController = new MickmanAppLogin.CartController(); //call the cart controller
-app.orderController = new MickmanAppLogin.OrderController(); //call the cart controller 
-
-
+app.orderController = new MickmanAppLogin.OrderController(); //call the order controller 
 
 function checkGroup(){ //find the group name and the user saved.
 	product.getItem('cust_id').then( function(value){
@@ -166,23 +164,24 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	    //first check cart data, then add to if there is existing
 	    cost = $(this).parent().parent().find("span.sentPrice").text();
 	    product = $(this).parent().parent().find("span.sentProduct").text();
+	    productID = $(this).parent().parent().data("fieldrealName");
 	    size = $(this).parent().parent().find("span.sentSize").text();
 	    thumb = $(this).parent().parent().find("img").attr('src');
 	    //dbname = $(this).parent().parent().find().attr();
 	    //var items = [[product+"-"+size,Number(cost),thumb,dbname]];
-	    var items = [[product+"-"+size,Number(cost),thumb]];
+	    var items = [[product+"-"+size,Number(cost),thumb,productID]];
 	    var radioSelected = $(this).parent().find(':radio:checked').val();
 	    //lets check for addons
 	    if($("#ledlights").is(":checked") || $("#ezwreathhanger").is(":checked")){
 		    if($("#ledlights").is(":checked")){//led
 			   lthumb = $(this).parent().parent().find(".cart-addons img.ledthumb").attr('src');
 			   lprice = $(this).parent().parent().find("span.addledprice").text();
-			   items.push(["Led Light Set",Number(lprice),lthumb]);
+			   items.push(["Led Light Set",Number(lprice),lthumb,"led"]);
 		    }
 		    if($("#ezwreathhanger").is(":checked")){
 			   ezthumb = $(this).parent().parent().find(".cart-addons img.ezthumb").attr('src');
 			   ezprice = $(this).parent().parent().find("span.addhangerprice").text();
-			   items.push(["EZ Wreath Hanger",Number(ezprice),ezthumb]);
+			   items.push(["EZ Wreath Hanger",Number(ezprice),ezthumb,"hanger"]);
 		    }
 	    }
         app.cartController.addtoCartCommand(items,radioSelected);

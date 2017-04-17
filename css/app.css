@@ -52,6 +52,17 @@ h1,h2,h3,h4,h5 {
 .center-wrapper{
   text-align: center;
 }
+.synced1:before{
+	content: "\2713 ";
+	font-size:12px;
+	position:absolute;
+	background:black;
+	padding:5px 8px;
+	z-index:500;
+	top:-10px;
+	left:-10px;
+	border-radius:50%;	
+}
 /*#keepsigned label, */
 #keepsigned label i{
 	font-weight:normal !important;

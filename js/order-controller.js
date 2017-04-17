@@ -67,13 +67,14 @@ MickmanAppLogin.OrderController.prototype.buildOrders = function(){
 		var day = new Date(+date[1]).getUTCDate();
 		var month = new Date(+date[1]).getUTCMonth();
 		var year = new Date(+date[1]).getUTCFullYear();
+		var synced = "synced"+value[3];
 		var button = key;
 		if(iterationNumber % 2 == 0){
 			evenOdd = "even";
 		}else{
 			evenOdd = "odd";
 		};
-		var row = '<li class="'+evenOdd+'"><a href="#popupName" data-rel="popup" data-name="'+name+'" data-transition="pop" class="namePop"><div class="ui-grid-b"><div class="ui-block-a"><div class="ui-bar">'+Number(month+1) + "/" + day + "/" +  year+'</div></div><div class="ui-block-b"><div class="ui-bar">'+name+'</div></div><div class="ui-block-c"><div class="ui-bar">Total</div></div></div></a><a href="#popupOrder" class="fullOrder ui-nodisc-icon" data-rel="popup" data-position-to="window" data-orderid="'+key+'"></a></li>';
+		var row = '<li class="'+evenOdd+" "+synced+'"><a href="#popupName" data-rel="popup" data-name="'+name+'" data-transition="pop" class="namePop"><div class="ui-grid-b"><div class="ui-block-a"><div class="ui-bar">'+Number(month+1) + "/" + day + "/" +  year+'</div></div><div class="ui-block-b"><div class="ui-bar">'+name+'</div></div><div class="ui-block-c"><div class="ui-bar">Total</div></div></div></a><a href="#popupOrder" class="fullOrder ui-nodisc-icon" data-rel="popup" data-position-to="window" data-orderid="'+key+'"></a></li>';
 		$(".orderList").append(row);
 	}).then(function(){
 		//refresh the listcontroller
@@ -82,8 +83,8 @@ MickmanAppLogin.OrderController.prototype.buildOrders = function(){
 		console.log(err);
 	})
 };
-//order details
 
+//CHECKOUT - CREATE ORDER COMMAND
 $(".create-order").click(function () {
 	//create an entry in the orders database
 	var pdataA = $("#personal-data").val().split(",");
@@ -91,6 +92,7 @@ $(".create-order").click(function () {
 	var orderStamp = pdataA[0]+"-"+orderDate.getTime();
 	var cartArr = ["personal"];
 	var cartContents = [];
+	var cartItems = []; //new to create a promise chain
 	var cartLength;
 	var cartLength = cart.length().then(function(value){
 		console.log("cart:" + value);
@@ -101,19 +103,21 @@ $(".create-order").click(function () {
 		//console.log(product);
 		order.setItem(orderStamp,[pdataA,"order-info",$("#payment-type :radio:checked").val()]).then( function(){
 			cart.iterate(function(value, key, iterationNumber) {//iterate over the cart 
-				//console.log("iter: "+iterationNumber);
 			   if (key != "personal" && key != "defaults") {
-			        //console.log(value);
 			        cartArr.push(key); //push all the keys into an array
 			        cartContents.push([key,value]);
 			        order.getItem(orderStamp).then( function(value){
-				        order.setItem(orderStamp,[value[0],cartContents,value[2]]).then( function(){
+				        order.setItem(orderStamp,[value[0],cartContents,value[2],0]).then( function(){
+					        //added a value to track whether it is synced or not
 					        if (iterationNumber == (cartLength-1)) { //only do this before the interation is complete
-					        	//console.log("sweet just once");
 					        	for(i=0;i<cartArr.length;i++){
-									cart.removeItem(cartArr[i]);//remove everything from the cart
+									cartItems.push(cartArr[i]); //create a collection to remove
 								}
-								$(':mobile-pagecontainer').pagecontainer('change', '#page-orders');//go to next page
+								var promises = cartItems.map(function(item) { return  cart.removeItem(item); });
+								Promise.all(promises).then(function(results) {
+								    //console.log("r-"+results);
+								    $(':mobile-pagecontainer').pagecontainer('change', '#page-orders');//go to next page
+								});
 					        }
 				        }).catch(function(err){
 					        console.log("ORDER ARRAY NOT ADDED TO ORDER: " + err);
@@ -125,8 +129,7 @@ $(".create-order").click(function () {
 			}).then(function(result) {
 			    //console.log('Iteration has completed, last iterated pair:');
 			    //console.log(result);
-			}).catch(function(err) {
-			    // This code runs if there were any errors
+			}).catch(function(err) {// This code runs if there were any errors
 			    console.log("CART ITERATION FAILED: "+err);
 			});
 		}).catch(function(err){
@@ -142,12 +145,84 @@ $(document).on('click', '.fullOrder', function(){ //Cart + button
 $(document).on('click', '.namePop', function(){//send Name to the popup
 	$("#popupName p").html($(this).data('name'));
 });
+//sync
+$(document).on('click', '.syncOrders', function(){//first lets organize the content of the orders
+	//console.log("sync the orders");
+	
+	//iterate through the orders and assemble into something to pass to the php
+	var token;
+	var key = Array();
+	var orderArray = Array();
+	var restoreArray = Array();
+	product.getItem('token').then(function(value){
+		token = value;
+		//console.log(token);
+		//now lets iterate through the orders
+		order.iterate(function(value, key, iterationNumber) {
+			//console.log("value:"+value[1]);
+			if(value[3] == 0){
+				//lets assemble all the bits into a nice package to send to the server. 
+				orderArray.push([key,value]);
+				restoreArray.push([value[0],value[1],value[2],value[3]]);
+			}
+			//first lets try connecting using the token - 
+			$.mobile.loading("show");  // Show loading graphic
+		   
+		}).then(function(result){ //now we will send all that stuff to the db 
+			if(orderArray.length > 0){
+				$.ajax({
+			        type: 'POST',
+			        url: MickmanAppLogin.Settings.syncDataUrl,
+			        data: "token=" + token + "&data=" + JSON.stringify(orderArray) + "&sync-data=true",
+			        success: function (resp) {
+				        if(resp.success == true){//now lets mark the columns that we saved.
+					        str = String(resp.extras.marksaved);//we need to mark the returned as a string 
+					        syncedArray = str.split(",");//to create an array
+					        syncedItems = orderArray.length;
+					        var key = [];
+					        
+					        for(x=0;x<syncedItems;x++){ //now we can loop through
+							    syncedVar = restoreArray[x][3];
+							    
+							    if(syncedVar == 0){ syncedVar = 1;}//change the status of the order column
+								thisItem = syncedArray[x];
+								console.log(thisItem);
+								order.getItem(String(thisItem)).then( function(value){
+									//console.log(value);
+									data = [value[0],value[1],value[2],syncedVar];
+									order.setItem(String(thisItem),data).then(function(value){
+										console.log("updated" + syncedArray[x]);
+										//refresh the page
+										$(".orderList").enhanceWithin().listview("refresh");
+									});
+								});
+							}
+				        }else{
+					        console.log("not saved");
+				        }
+				        $.mobile.loading("hide");
+					},
+					error: function(e){
+						console.log(e);
+					}
+				});
+			}else{
+				console.log("these orders appear to have been synced.");
+				$.mobile.loading("hide");
+			}
+		}).catch(function(err) {
+			
+		});
+		
+	});
+	
+});
 //print page
 $(document).on('click', '.printOrders', function(){//first lets organize the content of the orders
 	
 	var orderContent;
 	if(isprintAvailable == true){
-		order.iterate(function(value, key, iterationNumber) { //lets put toget the content 
+		order.iterate(function(value, key, iterationNumber) { //lets put together the content 
 	
 			var name = value[0][1] + " " + value[0][2];
 			var address = value[0][3];

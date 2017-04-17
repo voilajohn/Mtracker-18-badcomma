@@ -25,7 +25,7 @@ MickmanAppLogin.CartController.prototype.addProduct = function (e) {//add one pr
 	cart.getItem(e[0]).then(function(value) {
 		if(value){ //the record is there.
 			if(e != "" && value[1] != ""){//one up the quantity 
-				cart.setItem(e[0],[e[1],Number(value[1]+1),e[2]]); //name / cost / quantity / thumbnail
+				cart.setItem(e[0],[e[1],Number(value[1]+1),e[2],e[3]]); //name / cost / quantity / thumbnail / dbcode
 			}
 		}
 		var total = 0;
@@ -69,8 +69,8 @@ MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t,r) 
 		$('#purchase span.sentSize').html("");
 	}
 	$('#purchase span.sentProduct').html(p);
-	//$('#purchase').data('fieldrealName').val(r);
-	console.log("r:"+r);
+	$('#purchase').data('fieldrealName',r);
+	//console.log("r:"+r);
 	$('#purchase').enhanceWithin();
 };
 
@@ -98,7 +98,7 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 			if(cartList.length == 0){
 				console.log("add new ones to the db");
 				for(x=0;x<itemList.length;x++){
-					cart.setItem(e[x][0],[e[x][1],1,e[x][2]]);
+					cart.setItem(e[x][0],[e[x][1],1,e[x][2],e[x][3]]);
 					//cart.setItem(e[x][0],[e[x][1],1,e[x][2],e[x][3]]);
 				}
 			}else{
@@ -109,7 +109,7 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 						savedData = cartValues[Number(listNum)];
 						cart.setItem(cartList[Number(listNum)],[cartValues[Number(listNum)][0],Number(cartValues[Number(listNum)][1]+1),cartValues[Number(listNum)][2]]);
 					}else{
-						cart.setItem(e[x][0],[e[x][1],1,e[x][2]]);
+						cart.setItem(e[x][0],[e[x][1],1,e[x][2],e[x][3]]);
 					}
 				}
 			}
@@ -138,7 +138,7 @@ MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the c
 		}else if(key == "defaults"){
 		}else{
 			$(".cartlist").hide();
-			$(".cartlist").append("<li class='divider-title' data-role='list-divider'><h4>"+key+"</h4><span class='ui-li-count'>"+value[1]+"</span></li><li><div class='ui-grid-b'><div class='ui-block-a' style='width:60%'><img src='"+value[2]+"' alt='"+key+"' class='cartthumb'/><p style='margin:0px;'>$"+value[0]+" each</span> <div class='total green'>$<span>"+Number(value[0]*value[1])+"</span></div></p></div><div class='ui-block-b' style='width:15%;'></div><div class='ui-block-c' style='width:15%;float:right;vertical-align:top;'><div data-role='controlgroup' data-type='vertical' data-mini='true' class='ui-group-theme-a' data-product-name='"+key+"' data-product-cost='"+value[0]+"' data-product-thumb='"+value[2]+"'><a href='#' class='ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext addProduct'>+</a><a href='#' class='ui-btn ui-corner-all ui-icon-minus ui-btn-icon-notext removeProduct'>-</a></div></div></li>");
+			$(".cartlist").append("<li class='divider-title' data-role='list-divider'><h4>"+key+"</h4><span class='ui-li-count'>"+value[1]+"</span></li><li><div class='ui-grid-b'><div class='ui-block-a' style='width:60%'><img src='"+value[2]+"' alt='"+key+"' class='cartthumb'/><p style='margin:0px;'>$"+value[0]+" each</span> <div class='total green'>$<span>"+Number(value[0]*value[1])+"</span></div></p></div><div class='ui-block-b' style='width:15%;'></div><div class='ui-block-c' style='width:15%;float:right;vertical-align:top;'><div data-role='controlgroup' data-type='vertical' data-mini='true' class='ui-group-theme-a' data-product-name='"+key+"' data-product-cost='"+value[0]+"' data-product-thumb='"+value[2]+"' data-product-id='"+value[3]+"'><a href='#' class='ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext addProduct'>+</a><a href='#' class='ui-btn ui-corner-all ui-icon-minus ui-btn-icon-notext removeProduct'>-</a></div></div></li>");
 			$(".cartlist").fadeIn();
 			//console.log("some");
 			cartCount++;
@@ -203,10 +203,11 @@ MickmanAppLogin.CartController.prototype.saveCartData = function(){
 		var state = $("#personal-state").val();
 		var zip  = $("#personal-zip").val();
 		var phone = $("#personal-phone").val();
+		var phonetype = $("#personal-phone-type").val();
 		var email = $("#personal-email").val();
 		
 		cart.setItem("personal",[userN, fname, lname, address, city, state, zip, phone, email]).then( function(){
-			$('#personal-data').val([userN, fname, lname, address, city, state, zip, phone, email]);
+			$('#personal-data').val([userN, fname, lname, address, city, state, zip, phone, phonetype, email]);
 			$(':mobile-pagecontainer').pagecontainer('change', '#page-payment');//go to next page
 		});	
 	}
@@ -306,7 +307,8 @@ $(document).on('click', '.addProduct', function(){ //Cart + button
 	var prodname = $(this).parent().parent().data('product-name');
 	var prodprice = $(this).parent().parent().data('product-cost');
 	var prodthumb = $(this).parent().parent().data('product-thumb');
-	prod = [prodname,prodprice,prodthumb];
+	var prodid = $(this).parent().parent().data('product-id');
+	prod = [prodname,prodprice,prodthumb,prodid];
 	app.cartController.addProduct(prod);
 });
 
@@ -315,6 +317,7 @@ $(document).on('click', '.removeProduct', function(){ //Cart - button
 	var prodname = $(this).parent().parent().data('product-name');
 	var prodprice = $(this).parent().parent().data('product-cost');
 	var prodthumb = $(this).parent().parent().data('product-thumb');
-	prod = [prodname,prodprice,prodthumb];
+	var prodid = $(this).parent().parent().data('product-id');
+	prod = [prodname,prodprice,prodthumb,prodid];
 	app.cartController.removeProduct(prod);
 }); 
