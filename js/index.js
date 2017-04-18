@@ -59,6 +59,8 @@ app.cartController = new MickmanAppLogin.CartController(); //call the cart contr
 app.orderController = new MickmanAppLogin.OrderController(); //call the order controller 
 
 function checkGroup(){ //find the group name and the user saved.
+	//first point at which we are querying the database
+	//CHECK DB
 	product.getItem('cust_id').then( function(value){
 		group = value;
 	});
@@ -144,6 +146,7 @@ $(document).delegate("#page-checkout", "pagebeforecreate", function () {
 
 //Catalog Page is Loaded
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
+//$(document).delegate("#page-main-menu", "pagebeforecreate", function () {
     checkGroup(); 
 	app.catalogController.init();
     app.catalogController.getSavedData();
@@ -209,12 +212,3 @@ function updatePageHighlight(x){
 	currentmenu.addClass("listview-active");
 	//console.log(currentmenu);
 }
-
-localforage.config({
-    driver      : localforage.WEBSQL, // Force WebSQL; same as using setDriver()
-    name        : 'mickApp',
-    version     : 1.0,
-    size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
-    storeName   : 'keyvalue_pairs', // Should be alphanumeric, with underscores.
-    description : 'products'
-});

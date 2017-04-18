@@ -113,11 +113,15 @@ $(".create-order").click(function () {
 					        	for(i=0;i<cartArr.length;i++){
 									cartItems.push(cartArr[i]); //create a collection to remove
 								}
+								/*******************************
+									SOMETHING ABOUT UPDATING THE CART IS MESSING UP THE DATABASES*? or is it not what the heck?
+								********************************/
 								var promises = cartItems.map(function(item) { return  cart.removeItem(item); });
 								Promise.all(promises).then(function(results) {
-								    //console.log("r-"+results);
-								    $(':mobile-pagecontainer').pagecontainer('change', '#page-orders');//go to next page
+								    console.log("r-"+results);
+								    
 								});
+								$(':mobile-pagecontainer').pagecontainer('change', '#page-orders');//go to next page
 					        }
 				        }).catch(function(err){
 					        console.log("ORDER ARRAY NOT ADDED TO ORDER: " + err);
@@ -154,21 +158,27 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 	var key = Array();
 	var orderArray = Array();
 	var restoreArray = Array();
-	product.getItem('token').then(function(value){
-		token = value;
-		//console.log(token);
-		//now lets iterate through the orders
-		order.iterate(function(value, key, iterationNumber) {
-			//console.log("value:"+value[1]);
-			if(value[3] == 0){
-				//lets assemble all the bits into a nice package to send to the server. 
+	
+	// what if we store the token to a local variable? - this doesn't matter it is something else
+	// after the products gets kicked out all product requests fail. 
+	
+	var checkSession = MickmanAppLogin.Session.getInstance().get();
+	var myToken = checkSession.sessionId;
+	console.log(myToken);
+	
+	//product.getItem('token').then(function(err,value){ //maybe it is this line?
+	//I think eliminating this line has fixed some issues??
+		token = myToken;
+		order.iterate(function(value, key, iterationNumber) {//now lets iterate through the orders
+			if(value[3] == 0){ //find the orders that aren't synced yet
 				orderArray.push([key,value]);
 				restoreArray.push([value[0],value[1],value[2],value[3]]);
 			}
 			//first lets try connecting using the token - 
 			$.mobile.loading("show");  // Show loading graphic
-		   
+			
 		}).then(function(result){ //now we will send all that stuff to the db 
+			console.log("# to send for update: " + orderArray.length);
 			if(orderArray.length > 0){
 				$.ajax({
 			        type: 'POST',
@@ -176,27 +186,28 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 			        data: "token=" + token + "&data=" + JSON.stringify(orderArray) + "&sync-data=true",
 			        success: function (resp) {
 				        if(resp.success == true){//now lets mark the columns that we saved.
-					        str = String(resp.extras.marksaved);//we need to mark the returned as a string 
-					        syncedArray = str.split(",");//to create an array
+					        markedOrder = String(resp.extras.marksaved);//we need to mark the returned as a string 
+					        syncedArray = markedOrder.split(",");//to create an array
+					        savedOrders = resp.extras.data;
 					        syncedItems = orderArray.length;
 					        var key = [];
 					        
-					        for(x=0;x<syncedItems;x++){ //now we can loop through
-							    syncedVar = restoreArray[x][3];
-							    
-							    if(syncedVar == 0){ syncedVar = 1;}//change the status of the order column
-								thisItem = syncedArray[x];
-								console.log(thisItem);
-								order.getItem(String(thisItem)).then( function(value){
-									//console.log(value);
-									data = [value[0],value[1],value[2],syncedVar];
-									order.setItem(String(thisItem),data).then(function(value){
-										console.log("updated" + syncedArray[x]);
-										//refresh the page
-										$(".orderList").enhanceWithin().listview("refresh");
-									});
-								});
+					        for(x=0;x<savedOrders.length;x++){
+								savedOrders[x][1][3] = 1;//switch the number to done
+								key.push(savedOrders[x]);
 							}
+					        
+							var promises = key.map(function(item) { 
+								return order.setItem(item[0],item[1]); 
+							});
+							
+							console.log(key);
+							console.log("--");
+							Promise.all(promises).then(function(results) {
+								console.log(results);
+								//refresh the Orders
+								app.orderController.buildOrders();
+							});
 				        }else{
 					        console.log("not saved");
 				        }
@@ -207,16 +218,17 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 					}
 				});
 			}else{
-				console.log("these orders appear to have been synced.");
+				alert("these orders appear to have been synced.");
 				$.mobile.loading("hide");
 			}
 		}).catch(function(err) {
 			
 		});
 		
-	});
+	//});
 	
 });
+
 //print page
 $(document).on('click', '.printOrders', function(){//first lets organize the content of the orders
 	

@@ -91,6 +91,7 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 		            $(".mygroup").html(resp.extras.cust_id);
 		            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load
                 	$(".startSession").click(function(){//They need to choose a user
+	                	//ADD TO DB - PRODUCTS
 		                app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);//put the additional stuff into the DB
 	            
 	                	var today = new Date();
@@ -99,15 +100,17 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 		                
 		                //left save all this stuff to a local database to get later - this may take over for the localdata stuff	
 		                var token = resp.extras.sessionID;
-		                var memberProf = $('#select-choice-1').val()	
-						//local variable for checking the sessions
-		                MickmanAppLogin.Session.getInstance().set({
+		                var memberProf = $('#select-choice-1').val();
+		                var groupName = resp.extras.products[2][1];//find this in the code
+		                console.log("id-" + groupName);
+		                MickmanAppLogin.Session.getInstance().set({//local variable for checking the sessions
 		                    userProfileModel:  memberProf,
+		                    userGroup: groupName,
 		                    sessionId: token,
 		                    expirationDate: expirationDate,
 		                    keepSignedIn:me.$chkKeepSignedIn.is(":checked")
 		                });
-		                
+		               
 		                $.mobile.loading("show");
 		               
 		                $.ajax({  //save this the users token to his db. 
@@ -118,7 +121,9 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 						    	$.mobile.loading("hide");
 								if(response.success === true){
 									token = response.extras.token;
+									//ADD TO DB - PRODUCTS 
 									product.setItem("token",token);//push the token to the database 
+								
 									$.mobile.navigate(me.mainMenuPageId); //if that is successful we will reroute them to the catalog page
 								}else{ //show an error message.
 									  me.$ctnErr.html("<p>There was an error loading your profile. Please check your connection and try again.</p>");
