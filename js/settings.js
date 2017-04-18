@@ -5,3 +5,13 @@ MickmanAppLogin.Settings.tokenUrl = "http://cpanel-2101-20.datarealm.com/~farasi
 MickmanAppLogin.Settings.syncDataUrl = "http://cpanel-2101-20.datarealm.com/~farasisc/test-mick/sync.php";
 //MickmanAppLogin.Settings.signInUrl = "http://mickman.com/login.php";
 MickmanAppLogin.Settings.sessionTimeoutInMSec = 31500000; //364 days 14 hours
+
+//database storage
+localforage.config({
+    driver      : localforage.WEBSQL, // Force WebSQL; same as using setDriver() - indexDB
+    name        : 'mickApp',
+    version     : 1.0,
+    size        : 4980736, // Size of database, in bytes. WebSQL-only for now.
+    storeName   : 'keyvalue_pairs', // Should be alphanumeric, with underscores.
+    description : 'products'
+});

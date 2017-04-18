@@ -27,9 +27,11 @@ MickmanAppLogin.CatalogController.prototype.init = function () {
 MickmanAppLogin.CatalogController.prototype.addpricetoPopup = function (e) { //push the price to the popup
 	$('#purchase span').html(e);
 };
+//ADD TO PRODUCT DB
 MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write the server items to the database
 	var data = y;
 	data.unshift(['user',x]);//push username selected to the front of the list
+	data.unshift(['token',x]);//push username selected to the front of the list
 	console.log(data);
 	for(j=0;j<data.length;j++){
 		if(data[j][1] != "" || data[j][1] != 0){//check for blanks
@@ -193,34 +195,34 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    //activate non radio buttons
 	    var productName = $("#ClassicSpray h2").text();
 		$("#ClassicSpray .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-	    $("#ClassicSpray .split-custom-wrapper a").data("product-size","none available");
+	    $("#ClassicSpray .split-custom-wrapper a").data("product-size","");
 	    
 	    var productName = $("#VictorianSpray h2").text();
 		$("#VictorianSpray .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-	    $("#VictorianSpray .split-custom-wrapper a").data("product-size","none available");
+	    $("#VictorianSpray .split-custom-wrapper a").data("product-size","");
 	    
 	    var productName = $("#CranberrySpray h2").text();
 		$("#CranberrySpray .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-	    $("#CranberrySpray .split-custom-wrapper a").data("product-size","none available"); 
+	    $("#CranberrySpray .split-custom-wrapper a").data("product-size",""); 
 	    
 		var productName = $("#HolidayCenterpiece h2").text();
 		$("#HolidayCenterpiece .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-		$("#HolidayCenterpiece .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
+		$("#HolidayCenterpiece .split-custom-wrapper a").data("product-size",""); //push the product size to the checkout area.
 		
 		var productName = $("#tabletoptree h2").text();
 		$("#tabletoptree .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-		$("#tabletoptree .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
+		$("#tabletoptree .split-custom-wrapper a").data("product-size",""); //push the product size to the checkout area.
 
 	    $('#GarlandOption').enhanceWithin().controlgroup("refresh");
 	    $('#GarlandOption').find(".ui-btn:first").trigger('click');//click the first button
 	    
 		var productName = $("#EZWreathHanger h2").text();
 		$("#EZWreathHanger .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-		$("#EZWreathHanger .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
+		$("#EZWreathHanger .split-custom-wrapper a").data("product-size",""); //push the product size to the checkout area.
 		
 		var productName = $("#LEDlights h2").text();
 		$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-		$("#LEDlights .split-custom-wrapper a").data("product-size","none available"); //push the product size to the checkout area.
+		$("#LEDlights .split-custom-wrapper a").data("product-size",""); //push the product size to the checkout area.
 		$(".slickIt").trigger("click"); //now load the carousel
 		$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
 	    
@@ -229,12 +231,10 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    console.log(err);
 	});
 	//grab the defaults if they are saved.
-	cart.getItem("defaults").then( function(value) { //let's add in our defaults if they are saved
+	cart.getItem("defaults").then( function(err, value) { //let's add in our defaults if they are saved
 		$("#default-city").val(value[0]);
 		$("#default-state").val(value[1]);
 		$("#default-zip").val(value[2]);
-	}).catch(function(err) {
-		console.log(err);
 	});
 	console.log("Get Saved Data");
 	//lets query for the user data too
@@ -243,7 +243,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 
 MickmanAppLogin.CatalogController.prototype.getUserData = function(){ //gather user info from the cart table
 	var savedcart;
-	cart.getItem("personal").then( function(value){//lets first check the cart for any data on the user 
+	cart.getItem("personal").then( function(err, value){//lets first check the cart for any data on the user 
 		savedcart = value;
 		if(savedcart != null){ //if there is a cart saved lets load that information in there. 
 			var fieldArr = ['personal-fname','personal-lname','personal-address','personal-city','personal-state','personal-zip','personal-phone','personal-email'];
@@ -252,7 +252,7 @@ MickmanAppLogin.CatalogController.prototype.getUserData = function(){ //gather u
 			}
 		}else{
 			//check for defaults saved
-			cart.getItem("defaults").then( function(value) { //let's add in our defaults if they are saved
+			cart.getItem("defaults").then( function(err, value) { //let's add in our defaults if they are saved
 				$("#default-city").val(value[0]);
 				$("#default-state").val(value[1]);
 				$("#default-zip").val(value[2]);
@@ -268,8 +268,6 @@ MickmanAppLogin.CatalogController.prototype.getUserData = function(){ //gather u
 					$("#personal-zip").val(value[2]);
 					$("#default-zip").val(value[2]);
 				}
-			}).catch(function(err) {
-				console.log(err);
 			});
 		}
 		
@@ -326,6 +324,7 @@ $('.save-defaults').click(function () { //lets create a default field in the car
 	var zip = $("#default-zip").val();
 	
 	var defaults = [city,state,zip];
+	//ADD TO CART DB
 	cart.setItem("defaults",defaults).then(function(){
 		console.log("saved");
 		app.catalogController.getUserData(); //refresh the form
