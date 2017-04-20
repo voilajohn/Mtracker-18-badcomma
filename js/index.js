@@ -190,7 +190,9 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
         app.cartController.addtoCartCommand(items,radioSelected);
     });
 });
-
+$(document).delegate("#page-main-menu", "pageshow", function () {
+	$(".slickIt").trigger("click"); //making sure to call this after the page has loaded.
+});
 //Cart Page is Loaded
 $(document).delegate("#page-cart", "pageshow", function () {
 	app.cartController.init();

@@ -223,7 +223,9 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		var productName = $("#LEDlights h2").text();
 		$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 		$("#LEDlights .split-custom-wrapper a").data("product-size",""); //push the product size to the checkout area.
-		$(".slickIt").trigger("click"); //now load the carousel
+		
+		//need to make sure the page is loaded.
+		//$(".slickIt").trigger("click"); //now load the carousel
 		$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
 	    
 	}).catch(function(err) {
@@ -359,8 +361,8 @@ $('.product-button').on('click', function(){
 
 $(".slickIt").on('click', function(){ //rotating area
 	$('.product-display').slick({ 
-    	centerMode: true,
-		centerPadding: '60px',
+    	//centerMode: true,
+		//centerPadding: '60px',
 		slidesToShow: 3,
 		infinite: true,
 		responsive: [
