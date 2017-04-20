@@ -364,8 +364,9 @@ $(".slickIt").on('click', function(){ //rotating area
     	//centerMode: true,
 		//centerPadding: '60px',
 		slidesToShow: 3,
-		infinite: true//,
-		/*responsive: [
+		trl: true,
+		infinite: true,
+		responsive: [
 	    {
 	      breakpoint: 768,
 	      settings: {
@@ -384,7 +385,7 @@ $(".slickIt").on('click', function(){ //rotating area
 	        slidesToShow: 1
 	      }
 	    }
-		] 	*/
+		] 	
 	});
 	console.log("slick called");
 	$('.product-display').addClass("slicked");
