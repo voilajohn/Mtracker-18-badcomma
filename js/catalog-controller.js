@@ -312,7 +312,7 @@ $('.searchbtn').click(function () {
          contain: 'automatic'
 	}).panzoom('zoom');
 	****/
-	var swiperZoom = new Swiper('.swiper-zoom-container', {
+	var swiper = new Swiper('.swiper-zoom-container', {
         zoom: true
     });
 	

@@ -550,6 +550,7 @@ input[type="radio"] {
 	max-width:100%;
 	height:auto;
 	width:100%;
+	display:block !important;
 }
 .product-display div.slider .inner{
 	background:#FFF;
@@ -655,13 +656,13 @@ legend{
 	height:300px;
 }
 .imagepop .imagecontain{
-	max-width:320px;
+	/*max-width:320px;
 	max-height:300px;
-	overflow:hidden;
+	overflow:hidden;*/
 }
 .imagecontain img{
-	width:100%;
-	height:auto;
+	/*width:100%;
+	height:auto;*/
 }
 .logo{
 	margin:0px auto;
@@ -811,11 +812,11 @@ legend{
     height: 100%;
 }
 .swiper-slide {
-    text-align: center;
+    /*text-align: center;
     font-size: 18px;
-    background: #fff;
+    background: #fff;*/
     /* Center slide text vertically */
-    display: -webkit-box;
+    /*display: -webkit-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -826,7 +827,7 @@ legend{
     -webkit-box-align: center;
     -ms-flex-align: center;
     -webkit-align-items: center;
-    align-items: center;
+    align-items: center;*/
 }
 /*Mobile styles - smalll screens iPhone 5 / 5S*/
 @media only screen 
