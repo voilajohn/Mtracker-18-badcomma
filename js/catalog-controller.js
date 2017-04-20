@@ -345,11 +345,11 @@ $('.product-button').on('click', function(){
 	//lets make it so that when you click it switches to the other filter unless it is the all button then it shows everything.
 	
     var filtername = $(this).attr('id');
-    $('.product-display').slick('slickUnfilter');
+    //$('.product-display').slick('slickUnfilter');
     
     if(filtername != "All"){
-         $('.product-display').slick('slickFilter','.'+ filtername +'-filter');
-         $('.product-display').slick('refresh');
+         //$('.product-display').slick('slickFilter','.'+ filtername +'-filter');
+         //$('.product-display').slick('refresh');
 		 filtered = true;
 		 $(".product-button").each( function(){
 			 $(this).removeClass('ui-btn-active');
@@ -368,7 +368,8 @@ $(".slickIt").on('click', function(){ //rotating area
         pagination: '.swiper-pagination',
         paginationClickable: true,
         slidesPerView: 5,
-        spaceBetween: 50,
+        spaceBetween: 30,
+        centeredSlides: true,
         grabCursor: true,
         breakpoints: {
             1024: {
@@ -385,7 +386,7 @@ $(".slickIt").on('click', function(){ //rotating area
             },
             320: {
                 slidesPerView: 1,
-                spaceBetween: 10
+                spaceBetween: 30
             }
         }
     });
