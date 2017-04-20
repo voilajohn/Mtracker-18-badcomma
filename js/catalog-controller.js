@@ -305,16 +305,16 @@ $('.searchbtn').click(function () {
 	//frameDoc.querySelector("img").src = imageUrl;
 	
 	$("#larger img").attr("src", imageUrl); //set the url of the popup image
-	/****
-		$("#larger img.panzoom").panzoom({
+	
+	$("#larger img.panzoom").panzoom({
 		 startTransform: 'scale(1.1)',
          minScale: 0.1,
          contain: 'automatic'
 	}).panzoom('zoom');
-	****/
-	var swiper = new Swiper('.swiper-zoom-container', {
+
+	/*var swiper = new Swiper('.swiper-zoom-container', {
         zoom: true
-    });
+    });*/
 	
 	$("#larger").trigger( "updatelayout" );
 	$("#larger").popup("open");
