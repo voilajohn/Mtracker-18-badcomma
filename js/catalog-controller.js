@@ -364,14 +364,14 @@ $(".slickIt").on('click', function(){ //rotating area
     	//centerMode: true,
 		//centerPadding: '60px',
 		slidesToShow: 3,
-		infinite: true,
-		responsive: [
+		infinite: true//,
+		/*responsive: [
 	    {
 	      breakpoint: 768,
 	      settings: {
 	        arrows: true,
-	        centerMode: true,
-	        centerPadding: '40px',
+	        //centerMode: true,
+	        //centerPadding: '40px',
 	        slidesToShow: 3
 	      }
 	    },
@@ -379,12 +379,12 @@ $(".slickIt").on('click', function(){ //rotating area
 	      breakpoint: 480,
 	      settings: {
 	        arrows: true,
-	        centerMode: true,
-	        centerPadding: '40px',
+	        //centerMode: true,
+	        //centerPadding: '40px',
 	        slidesToShow: 1
 	      }
 	    }
-		] 	
+		] 	*/
 	});
 	console.log("slick called");
 	$('.product-display').addClass("slicked");
