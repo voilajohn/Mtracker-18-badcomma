@@ -360,7 +360,14 @@ $('.product-button').on('click', function(){
 });
 
 $(".slickIt").on('click', function(){ //rotating area
-	$('.product-display').slick({ 
+	var swiper = new Swiper('.product-display', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 3,
+        centeredSlides: true,
+        paginationClickable: true,
+        spaceBetween: 30
+    });
+	/*$('.product-display').slick({ 
     	//centerMode: true,
 		//centerPadding: '60px',
 		slidesToShow: 3,
@@ -385,8 +392,8 @@ $(".slickIt").on('click', function(){ //rotating area
 	        slidesToShow: 1
 	      }
 	    }
-		] 	
-	});
+		]	
+	}); */
 	console.log("slick called");
 	$('.product-display').addClass("slicked");
 	$('.product-display').removeClass("unslicked");
