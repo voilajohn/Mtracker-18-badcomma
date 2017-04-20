@@ -225,7 +225,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		$("#LEDlights .split-custom-wrapper a").data("product-size",""); //push the product size to the checkout area.
 		
 		//need to make sure the page is loaded.
-		//$(".slickIt").trigger("click"); //now load the carousel
+		$(".slickIt").trigger("click"); //now load the carousel
 		$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
 	    
 	}).catch(function(err) {
@@ -305,12 +305,16 @@ $('.searchbtn').click(function () {
 	//frameDoc.querySelector("img").src = imageUrl;
 	
 	$("#larger img").attr("src", imageUrl); //set the url of the popup image
-	$("#larger img.panzoom").panzoom({
+	/****
+		$("#larger img.panzoom").panzoom({
 		 startTransform: 'scale(1.1)',
-         /*increment: 0.1,*/
          minScale: 0.1,
          contain: 'automatic'
 	}).panzoom('zoom');
+	****/
+	var swiper = new Swiper('.swiper-zoom-container', {
+        zoom: true
+    });
 	
 	$("#larger").trigger( "updatelayout" );
 	$("#larger").popup("open");
@@ -360,12 +364,30 @@ $('.product-button').on('click', function(){
 });
 
 $(".slickIt").on('click', function(){ //rotating area
-	var swiper = new Swiper('.product-display', {
+	 var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
-        slidesPerView: 3,
-        centeredSlides: true,
         paginationClickable: true,
-        spaceBetween: 30
+        slidesPerView: 5,
+        spaceBetween: 50,
+        grabCursor: true,
+        breakpoints: {
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 40
+            },
+            768: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            },
+            320: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            }
+        }
     });
 	/*$('.product-display').slick({ 
     	//centerMode: true,
@@ -403,11 +425,12 @@ $(".slickIt").on('click', function(){ //rotating area
 	//remove the listview layout
 });
 $(".unslickIt").on('click', function(){ //list view
-	$('.product-display').slick("unslick");
-	console.log("unslcked");
+	//$('.product-display').slick("unslick");
+	swiper.destroy();
+	/*console.log("unslcked");
 	$('.product-display').removeClass("slicked");
 	$('.product-display').addClass("unslicked");
 	$('.slickIt').removeClass("ui-btn-active");
-	$(this).addClass("ui-btn-active");
+	$(this).addClass("ui-btn-active");*/
 	//style it as a listview
 });

@@ -530,6 +530,7 @@ input[type="radio"] {
 	background:#ebebeb;
 	display:inline-block;
 }
+/*Product Display*/
 .product-display{
 	list-style:none;
 	margin:0px;
@@ -539,51 +540,51 @@ input[type="radio"] {
 	font-size:16px;
 	color:#00a65e;
 }
-.product-display li.slider{
+.product-display div.slider{
 	position:relative;
 	margin:10px;
 	list-style:none;
 	padding:0px;
 }
-.product-display li.slider img{
+.product-display div.slider img{
 	max-width:100%;
 	height:auto;
 	width:100%;
 }
-.product-display li.slider .inner{
+.product-display div.slider .inner{
 	background:#FFF;
 	padding:20px;
 }
 
-.product-display.unslicked{
+/*.product-display.unslicked{
 	list-style:none;
 	margin:0px;
 	padding:0px;
 }
-.product-display.unslicked li.slider{
+.product-display.unslicked div.slider{
 	position:relative;
 	margin:10px;
 	list-style:none;
 	padding:0px;
 }
-.product-display.unslicked li.slider img{
+.product-display.unslicked div.slider img{
 	max-width:20%;
 	height:auto;
 	float:left;
 	width:100%;
 }
-.product-display.unslicked li.slider:after{
+.product-display.unslicked div.slider:after{
 	content:"";
 	clear:both;
 }
-.product-display.unslicked li.slider .inner{
+.product-display.unslicked div.slider .inner{
 	background:#FFF;
 	max-width:65%;
 	width:55%;
 	padding:20px;
 	display:inline-block;
 	float:left;
-}
+}*/
 .searchbtn  {
     position:absolute;
     background:transparent !important;
@@ -804,36 +805,27 @@ legend{
 }
 
 .swiper-container {
-        width: 100%;
-        height: 300px;
-        margin: 20px auto;
-    }
-    .swiper-slide {
-        text-align: center;
-        font-size: 18px;
-        background: #fff;
-        width: 60%;
-
-        /* Center slide text vertically */
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        -webkit-justify-content: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        -webkit-align-items: center;
-        align-items: center;
-    }
-    .swiper-slide:nth-child(2n) {
-        width: 40%;
-    }
-    .swiper-slide:nth-child(3n) {
-        width: 20%;
-    }
+    width: 100%;
+    height: 100%;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
 /*Mobile styles - smalll screens iPhone 5 / 5S*/
 @media only screen 
 and (min-device-width : 320px) 
