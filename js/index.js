@@ -8,6 +8,7 @@ var order;
 var group; //get the group name
 var currentuser; //get the user name
 var isprintAvailable = false;
+var swiper;
 
 // Begin boilerplate code generated with Cordova project.
 

@@ -542,7 +542,7 @@ input[type="radio"] {
 }
 .product-display div.slider{
 	position:relative;
-	margin:10px;
+	margin:10px 0px;
 	list-style:none;
 	padding:0px;
 }
