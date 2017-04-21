@@ -350,10 +350,9 @@ $('.product-button').on('click', function(){
     if(filtername != "All"){
 	   // console.log(filtername);
 	   //.('.slider').css( "backgground-color", "red" );
-	    $('.product-display').filter('.'+filtername+'-filter').css( "background-color", "red" );
+	    $('.product-display').filter('.'+filtername+'-filter').css( "border-color", "red" );
          //$('.product-display').slick('slickFilter','.'+ filtername +'-filter');
          //$('.product-display').slick('refresh');
-         swiper.update();
 		 filtered = true;
 		 $(".product-button").each( function(){
 			 $(this).removeClass('ui-btn-active');
@@ -368,7 +367,7 @@ $('.product-button').on('click', function(){
 });
 
 $(".slickIt").on('click', function(){ //rotating area
-	 swiper = new Swiper('.swiper-container', {
+	 var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
         slidesPerView: 5,
@@ -432,7 +431,6 @@ $(".slickIt").on('click', function(){ //rotating area
 $(".unslickIt").on('click', function(){ //list view
 	//$('.product-display').slick("unslick");
 	swiper.destroy();
-	swiper.updateClasses();
 	/*console.log("unslcked");
 	$('.product-display').removeClass("slicked");
 	$('.product-display').addClass("unslicked");
