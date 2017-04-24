@@ -343,36 +343,43 @@ $('.save-defaults').click(function () { //lets create a default field in the car
 var filtered = false;
 $('.product-button').on('click', function(){
 	//lets make it so that when you click it switches to the other filter unless it is the all button then it shows everything.
-	
     var filtername = $(this).attr('id');
     //$('.product-display').slick('slickUnfilter');
+    var swiper = $(".swiper-container");
     
     if(filtername != "All"){
-	   // console.log(filtername);
-	   //.('.slider').css( "backgground-color", "red" );
-	    $('.product-display').filter('.'+filtername+'-filter').css( "border-color", "red" );
-         //$('.product-display').slick('slickFilter','.'+ filtername +'-filter');
-         //$('.product-display').slick('refresh');
-		 filtered = true;
-		 $(".product-button").each( function(){
-			 $(this).removeClass('ui-btn-active');
-		 });
+	    //console.log(filtername);
+	    $('.swiper-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
+		$(".product-button").each( function(){
+			$(this).removeClass('ui-btn-active');
+		});
+        filtered = true;
     }else{
-		 filtered = false;
-		 $(".product-button").each( function(){
-			 $(this).removeClass('ui-btn-active');
-		 });
+		$(".product-button").each( function(){
+			$(this).removeClass('ui-btn-active');
+		});
+	    $('.swiper-wrapper div.slider').show();
+	    filtered = false;
     }
+    var mySwiper = $('.swiper-container')[0].swiper;
+    mySwiper.update();
+    mySwiper.slideTo(0);
     $(this).addClass('ui-btn-active');
 });
 
 $(".slickIt").on('click', function(){ //rotating area
+	$(".product-display").addClass('swiper-container');
+	$(".product-wrapper").addClass('swiper-wrapper');
+	//$('.swiper-wrapper').removeClass( "disabled" );
+    //$('.swiper-pagination').removeClass( "disabled" );
 	 var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
+        //direction: 'horizontal',
         slidesPerView: 5,
         spaceBetween: 30,
         centeredSlides: true,
+        slidesPerView: 'auto',
         grabCursor: true,
         breakpoints: {
             1024: {
@@ -429,12 +436,23 @@ $(".slickIt").on('click', function(){ //rotating area
 	//remove the listview layout
 });
 $(".unslickIt").on('click', function(){ //list view
+	var mySwiper = $('.swiper-container')[0].swiper;
+	////mySwiper.params.direction = 'vertical'; //? not working
+    ////mySwiper.update();
+    mySwiper.destroy();
+    mySwiper = undefined;
+    $('.swiper-wrapper').removeAttr('style');
+    $('.swiper-slide').removeAttr('style');  
+	$(".product-display").removeClass('swiper-container');
+	$(".product-wrapper").removeClass('swiper-wrapper');
+	//$('.swiper-wrapper').addClass( "disabled" );
+    //$('.swiper-pagination').addClass( "disabled" );
 	//$('.product-display').slick("unslick");
-	swiper.destroy();
-	/*console.log("unslcked");
+	//swiper.destroy();
+	console.log("unslcked");
 	$('.product-display').removeClass("slicked");
 	$('.product-display').addClass("unslicked");
 	$('.slickIt').removeClass("ui-btn-active");
-	$(this).addClass("ui-btn-active");*/
+	$(this).addClass("ui-btn-active");
 	//style it as a listview
 });
