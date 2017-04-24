@@ -556,9 +556,7 @@ input[type="radio"] {
 	background:#FFF;
 	padding:20px;
 }
-/*.swiper-slide {
-    overflow: hidden;
-}*/
+
 .product-display.unslicked{
 	list-style:none;
 	margin:0px;
@@ -586,7 +584,7 @@ input[type="radio"] {
 	width:55%;
 	padding:20px;
 	display:inline-block;
-	float:left;
+	/*float:left;*/
 }
 .swiper-wrapper.disabled {
     transform: translate3d(0px, 0, 0) !important;
