@@ -18,12 +18,12 @@ h1,h2,h3,h4,h5 {
 .loginpage .ui-block-a,
 .loginpage .ui-block-c {
 	float: left;
-	width: 70.87%;
+	width: 65.87%;
 }
 .loginpage .ui-block-b,
 .loginpage .ui-block-c {
 	float: left;	
-	width: 28.925%;
+	width: 33.925%; 
 }
 #confirm-member h3{
 	color:#d2232a;

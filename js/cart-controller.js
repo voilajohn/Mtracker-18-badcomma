@@ -146,11 +146,8 @@ MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the c
 	}).then(function() {
 		if(cartCount == 0){
 			console.log("there is nothing in the cart");
-			//$(".checkoutNow").addClass("ui-state-disabled");
 			$(".emptyCart").addClass("ui-state-disabled");
 		}else{
-			//console.log(cartCount);
-			//$(".checkoutNow").removeClass("ui-state-disabled");
 			$(".emptyCart").removeClass("ui-state-disabled");
 		}
 		$(".cartlist").enhanceWithin();
@@ -160,6 +157,7 @@ MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the c
 		    total += Number($( this ).text());//add up the totals
 		});
 		$(".subtotal").html("$" + String(total));
+		console.log("refresh Cart");
 	}).catch(function(err) {// This code runs if there were any errors
 		console.log(err);
 	});
