@@ -554,6 +554,7 @@ input[type="radio"] {
 }
 .product-display div.slider .inner{
 	background:#FFF;
+	min-height:300px;
 	padding:20px;
 }
 
