@@ -58,12 +58,12 @@ MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 		}
 	});
 	//get user and group
-	product.getItem("user").then( function(value) { //let's add in our defaults if they are saved
+	/*product.getItem("user").then( function(value) { //let's add in our defaults if they are saved
 		$(".your-profile").html(value);
 	});
 	product.getItem("cust_id").then( function(value) { //let's add in our defaults if they are saved
 		$(".your-group").html(value);
-	});
+	});*/
 	
 	
 }
