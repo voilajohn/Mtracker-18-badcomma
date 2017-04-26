@@ -25,15 +25,17 @@ MickmanAppLogin.CartController.prototype.addProduct = function (e) {//add one pr
 	cart.getItem(e[0]).then(function(value) {
 		if(value){ //the record is there.
 			if(e != "" && value[1] != ""){//one up the quantity 
-				cart.setItem(e[0],[e[1],Number(value[1]+1),e[2],e[3]]); //name / cost / quantity / thumbnail / dbcode
+				cart.setItem(e[0],[e[1],Number(value[1]+1),e[2],e[3]]).then(function(){ 
+					//make sure to wait until it is set before refreshing it. 
+					var total = 0;
+					$( ".cartlist li .total span" ).each( function( index, element ){
+					    total += Number($( this ).text());
+					});
+					$(".subtotal").html("$" + String(total)); //add up the totals
+					app.cartController.getCartData();
+				}); //name / cost / quantity / thumbnail / dbcode
 			}
 		}
-		var total = 0;
-		$( ".cartlist li .total span" ).each( function( index, element ){
-		    total += Number($( this ).text());
-		});
-		$(".subtotal").html("$" + String(total)); //add up the totals
-		app.cartController.getCartData();
 	}).catch(function(err) {// This code runs if there were any errors
 		console.log(err);
 	});
@@ -44,17 +46,26 @@ MickmanAppLogin.CartController.prototype.removeProduct = function (e) {
 	cart.getItem(e[0]).then(function(value) {
 		if(value){ //the record is there.
 			if(e != "" && value[1] != 1){
-				cart.setItem(e[0],[e[1],Number(value[1]-1),e[2]]);
+				cart.setItem(e[0],[e[1],Number(value[1]-1),e[2]]).then(function(){
+					var total = 0;
+					$( ".cartlist .total span" ).each( function( index, element ){
+					    total += Number($( this ).text());
+					});
+					$(".subtotal").html("$" + String(total));
+					app.cartController.getCartData(); //what if we update this after the number is called?
+				});
 			}else if(e != "" && value[1] == 1){
-				cart.removeItem(e[0]); //one up the quantity
+				cart.removeItem(e[0]).then(function(){
+					var total = 0;
+					$( ".cartlist .total span" ).each( function( index, element ){
+					    total += Number($( this ).text());
+					});
+					$(".subtotal").html("$" + String(total));
+					app.cartController.getCartData(); //what if we update this after the number is called?
+				}); //one up the quantity
 			}
 		}
-		var total = 0;
-		$( ".cartlist .total span" ).each( function( index, element ){
-		    total += Number($( this ).text());
-		});
-		$(".subtotal").html("$" + String(total));
-		app.cartController.getCartData();
+		
 	}).catch(function(err) {// This code runs if there were any errors
 		console.log(err);
 	});
@@ -75,7 +86,7 @@ MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t,r) 
 };
 
 MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
-	//console.log(r);
+	//console.log(e + " " + r);
 	if(r != "cancel"){
 		var cartList = []; //stuff that exists in the cart already
 		var cartValues = [];
@@ -129,7 +140,6 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 };
 
 MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the cart by grabbing saved db items
-	//console.log("getcart run");
 	$(".cartlist").html("");
 	var cartCount = 0;
 	cart.iterate(function(value, key, iterationNumber) {
@@ -137,6 +147,7 @@ MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the c
 		if(key == "personal"){
 		}else if(key == "defaults"){
 		}else{
+			console.log(value[1]);
 			$(".cartlist").hide();
 			$(".cartlist").append("<li class='divider-title' data-role='list-divider'><h4>"+key+"</h4><span class='ui-li-count'>"+value[1]+"</span></li><li><div class='ui-grid-b'><div class='ui-block-a' style='width:60%'><img src='"+value[2]+"' alt='"+key+"' class='cartthumb'/><p style='margin:0px;'>$"+value[0]+" each</span> <div class='total green'>$<span>"+Number(value[0]*value[1])+"</span></div></p></div><div class='ui-block-b' style='width:15%;'></div><div class='ui-block-c' style='width:15%;float:right;vertical-align:top;'><div data-role='controlgroup' data-type='vertical' data-mini='true' class='ui-group-theme-a' data-product-name='"+key+"' data-product-cost='"+value[0]+"' data-product-thumb='"+value[2]+"' data-product-id='"+value[3]+"'><a href='#' class='ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext addProduct'>+</a><a href='#' class='ui-btn ui-corner-all ui-icon-minus ui-btn-icon-notext removeProduct'>-</a></div></div></li>");
 			$(".cartlist").fadeIn();
@@ -157,7 +168,6 @@ MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the c
 		    total += Number($( this ).text());//add up the totals
 		});
 		$(".subtotal").html("$" + String(total));
-		console.log("refresh Cart");
 	}).catch(function(err) {// This code runs if there were any errors
 		console.log(err);
 	});
