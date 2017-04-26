@@ -42,7 +42,31 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 	}
 	this.getSavedData(); //now lets boot up the page
 });
-
+MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
+	cart.getItem("defaults").then( function(value) { //let's add in our defaults if they are saved
+		if(value[0] != ""){
+			$("#personal-city").val(value[0]);
+			$("#default-city").val(value[0]);
+		}
+		if(value[1] != ""){
+			$("#personal-state").val(value[1]);
+			$("#default-state").val(value[1]);
+		}
+		if(value[2] != ""){
+			$("#personal-zip").val(value[2]);
+			$("#default-zip").val(value[2]);
+		}
+	});
+	//get user and group
+	product.getItem("user").then( function(value) { //let's add in our defaults if they are saved
+		$(".your-profile").html(value);
+	});
+	product.getItem("cust_id").then( function(value) { //let's add in our defaults if they are saved
+		$(".your-group").html(value);
+	});
+	
+	
+}
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
 	console.log("Fill out the Catalog");
@@ -232,12 +256,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    // This code runs if there were any errors
 	    console.log(err);
 	});
-	//grab the defaults if they are saved.
-	cart.getItem("defaults").then( function(err, value) { //let's add in our defaults if they are saved
-		$("#default-city").val(value[0]);
-		$("#default-state").val(value[1]);
-		$("#default-zip").val(value[2]);
-	});
+	
 	console.log("Get Saved Data");
 	//lets query for the user data too
 	this.getUserData(); //only load this on the first time around after the catalog is in there

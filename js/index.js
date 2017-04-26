@@ -91,8 +91,9 @@ $(document).on("pagecontainerbeforeshow", function (event, ui) {
             	break;
             case "page-checkout":
             	app.catalogController.getUserData();
+            	app.catalogController.showDefaults();
             	updatePageHighlight("#page-cart");//update navigation
-				$('#page-checkout div[data-role=header]').find('h1').html(group);//replace title 
+				$('#page-checkout div[data-role=header]').find('h1').html(group);//replace title
             	break;
             case "page-payment":
             	updatePageHighlight("#page-cart");//update navigation
@@ -202,7 +203,9 @@ $(document).delegate("#page-orders", "pageshow", function () {
 	app.orderController.init();
     app.orderController.buildOrders(); //lets gather the cart info each time the cart is visited.
 });
- 
+$( ".ppanel" ).on( "panelbeforeopen", function( event, ui ) {//lets gather all the info we need to display in there.
+	app.catalogController.showDefaults();//grab the defaults if they are saved.
+});
 function updatePageHighlight(x){
 	//console.log(x);
 	$( "#menu-panel li a" ).each( function( index, element ){

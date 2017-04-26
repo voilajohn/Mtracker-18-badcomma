@@ -161,7 +161,7 @@ MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the c
 		}else{
 			$(".emptyCart").removeClass("ui-state-disabled");
 		}
-		$(".cartlist").enhanceWithin();
+		$(".cartlist").enhanceWithin(); //this will refresh the cart list. 
 		$(".cartlist").listview("refresh");
 		var total = 0;
 		$( ".cartlist li .total span" ).each( function( index, element ){
