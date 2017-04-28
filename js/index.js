@@ -206,6 +206,10 @@ $(document).delegate("#page-orders", "pageshow", function () {
 $( ".ppanel" ).on( "panelbeforeopen", function( event, ui ) {//lets gather all the info we need to display in there.
 	app.catalogController.showDefaults();//grab the defaults if they are saved.
 });
+$( "#purchase" ).on( "popupbeforeposition", function( event, ui ) {
+	console.log("we should check which products are showing.");
+});
+
 function updatePageHighlight(x){
 	//console.log(x);
 	$( "#menu-panel li a" ).each( function( index, element ){
