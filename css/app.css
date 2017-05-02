@@ -465,7 +465,7 @@ p.purchaseprice:after{
 }
 .cartthumb{
 	float:left;
-	max-width:80px;
+	max-width:100%;
 	height:auto;
 }
 #ledlights label{
@@ -552,6 +552,19 @@ input[type="radio"] {
 	width:100%;
 	display:block !important;
 }
+.product-display div.slider a.searchbtn{
+	margin:0px;
+	padding:0px;
+	display:block !important;
+}
+.product-display i{
+	position:absolute;
+	top:5px;
+	right:5px;
+}
+.product-display div.slider a.searchbtn img{
+	display:block;
+}
 .product-display div.slider .inner{
 	background:#FFF;
 	min-height:300px;
@@ -594,7 +607,7 @@ input[type="radio"] {
     display: none;
 }
 .searchbtn  {
-    position:absolute;
+    /*position:absolute;*/
     background:transparent !important;
     top:0px; 
     padding:0px 5px;
@@ -637,7 +650,7 @@ legend{
 }
 .ui-listview > .ui-li-has-thumb > .ui-btn,
 .ui-listview > .ui-li-static.ui-li-has-thumb {
-    min-height: 150px;
+    /*min-height: 150px;*/
     padding: .7em 1em .7em 160px;
 }
 .ui-listview li.ui-li-has-alt{
@@ -670,13 +683,17 @@ legend{
 	height:300px;
 }
 .imagepop .imagecontain{
-	/*max-width:320px;
+	max-width:320px;
 	max-height:300px;
-	overflow:hidden;*/
+	overflow:hidden;
 }
 .imagecontain img{
-	/*width:100%;
-	height:auto;*/
+	width:100%;
+	height:auto;
+}
+.imagepop .proddescription{
+	padding:20px;
+	overflow-y:scroll;
 }
 .logo{
 	margin:0px auto;
@@ -688,6 +705,18 @@ legend{
 }
 .red{
 	color:#d2232a;
+}
+.banner{
+	background:#d2232a;
+	color:#FFF;
+	padding:5px 5px;
+	font-size:12px;
+	text-align:center;
+}
+.bannertext{
+	padding:5px 0px 8px 20px !important;
+	display:inline-block;
+	width:62%;
 }
 .middle-image img{
 	max-width:100%;

@@ -149,7 +149,8 @@ MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the c
 		}else{
 			console.log(value[1]);
 			$(".cartlist").hide();
-			$(".cartlist").append("<li class='divider-title' data-role='list-divider'><h4>"+key+"</h4><span class='ui-li-count'>"+value[1]+"</span></li><li><div class='ui-grid-b'><div class='ui-block-a' style='width:60%'><img src='"+value[2]+"' alt='"+key+"' class='cartthumb'/><p style='margin:0px;'>$"+value[0]+" each</span> <div class='total green'>$<span>"+Number(value[0]*value[1])+"</span></div></p></div><div class='ui-block-b' style='width:15%;'></div><div class='ui-block-c' style='width:15%;float:right;vertical-align:top;'><div data-role='controlgroup' data-type='vertical' data-mini='true' class='ui-group-theme-a' data-product-name='"+key+"' data-product-cost='"+value[0]+"' data-product-thumb='"+value[2]+"' data-product-id='"+value[3]+"'><a href='#' class='ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext addProduct'>+</a><a href='#' class='ui-btn ui-corner-all ui-icon-minus ui-btn-icon-notext removeProduct'>-</a></div></div></li>");
+			$(".cartlist").append("<li class='divider-title' data-role='list-divider'><h4>"+key+"</h4></li><li><img src='"+value[2]+"' alt='"+key+"' class='cartthumb'/><p style='margin:0px;'>$"+value[0]+" each <div class='total green'>$<span>"+Number(value[0]*value[1])+"</span></div><div class='ui-grid-a'><div class='ui-block-a ui-bar' style='width:20%;padding:10px;'>"+value[1]+"</div><div class='ui-block-b' style='width:80%'><div data-role='controlgroup' data-type='horizontal' data-mini='true' class='ui-group-theme-a' data-product-name='"+key+"' data-product-cost='"+value[0]+"' data-product-thumb='"+value[2]+"' data-product-id='"+value[3]+"'><a href='#' class='ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext addProduct' style='padding:5px !important;'>+</a><a href='#' class='ui-btn ui-corner-all ui-icon-minus ui-btn-icon-notext removeProduct' style='padding:5px !important;'>-</a></div></div></div></p></li>");
+			//<span class='ui-li-count'>"+value[1]+"</span>
 			$(".cartlist").fadeIn();
 			//console.log("some");
 			cartCount++;
@@ -167,7 +168,7 @@ MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the c
 		$( ".cartlist li .total span" ).each( function( index, element ){
 		    total += Number($( this ).text());//add up the totals
 		});
-		$(".subtotal").html("$" + String(total));
+		$(".subtotal").html(format1(total, "$"));
 	}).catch(function(err) {// This code runs if there were any errors
 		console.log(err);
 	});

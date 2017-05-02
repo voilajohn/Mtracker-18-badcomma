@@ -121,7 +121,13 @@ $(".create-order").click(function () {
 								    console.log("r-"+results);
 								    
 								});
-								$(':mobile-pagecontainer').pagecontainer('change', '#page-orders');//go to next page
+								if(deliverydate != null){
+									$('#page-order-complete .delivery-time').html(deliverydate);
+								}
+								if(group != null){
+									$("#page-order-complete .group").html(group);
+								}
+								$(':mobile-pagecontainer').pagecontainer('change', '#page-order-complete');//go to next page
 					        }
 				        }).catch(function(err){
 					        console.log("ORDER ARRAY NOT ADDED TO ORDER: " + err);

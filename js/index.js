@@ -7,6 +7,7 @@ var cart;
 var order;
 var group; //get the group name
 var currentuser; //get the user name
+var deliverydate;
 var isprintAvailable = false;
 var swiper;
 
@@ -68,7 +69,15 @@ function checkGroup(){ //find the group name and the user saved.
 	product.getItem('user').then( function(value){
 		currentuser = value;
 	});
+	product.getItem('wod').then( function(value){
+		deliverydate = value;
+	});
 	console.log("gcheck");
+}
+function format1(n, currency) {
+    return currency + " " + n.toFixed(2).replace(/./g, function(c, i, a) {
+        return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "," + c : c;
+    });
 }
 
 $(document).on("pagecontainerbeforeshow", function (event, ui) {
@@ -130,7 +139,7 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
     }
 });
 
-//Login Button
+//Login Button - pagebeforecreate
 $(document).delegate("#page-signin", "pagebeforecreate", function () {
     app.signInController.init();
     app.signInController.$btnSubmit.off("tap").on("tap", function () {
@@ -138,7 +147,7 @@ $(document).delegate("#page-signin", "pagebeforecreate", function () {
     });
 });
 
-//Login Button
+//Login Button - pagebeforecreate
 $(document).delegate("#page-checkout", "pagebeforecreate", function () {
     app.cartController.init();
     app.cartController.$btnSave.off("tap").on("tap", function () {
@@ -146,13 +155,13 @@ $(document).delegate("#page-checkout", "pagebeforecreate", function () {
     });
 });
 
-//Catalog Page is Loaded
+//Catalog Page is Loaded - pagebeforecreate
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 //$(document).delegate("#page-main-menu", "pagebeforecreate", function () {
     checkGroup(); 
 	app.catalogController.init();
     app.catalogController.getSavedData();
-    
+    console.log("page-main-menu");
     app.cartController.init();
     app.cartController.$btnAdd.off("tap").on("tap", function () {
 	    // last item - added db-name this one adds variables to the popup
@@ -177,6 +186,7 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	    var items = [[product+"-"+size,Number(cost),thumb,productID]];
 	    var radioSelected = $(this).parent().find(':radio:checked').val();
 	    //lets check for addons
+	    //need to check the DB-ID to see where it needs to get added to.
 	    if($("#ledlights").is(":checked") || $("#ezwreathhanger").is(":checked")){
 		    if($("#ledlights").is(":checked")){//led
 			   lthumb = $(this).parent().parent().find(".cart-addons img.ledthumb").attr('src');
@@ -207,7 +217,24 @@ $( ".ppanel" ).on( "panelbeforeopen", function( event, ui ) {//lets gather all t
 	app.catalogController.showDefaults();//grab the defaults if they are saved.
 });
 $( "#purchase" ).on( "popupbeforeposition", function( event, ui ) {
-	console.log("we should check which products are showing.");
+	var productName = $(this).data('fieldrealName');
+	console.log(productName);
+	if(productName == "hanger" || productName == "25gar" || productName == "50gar" || productName == "led" || productName == "tlt"){
+		//EZ wreath hanger / Garland / LED lights / Tiny Living Tree
+		console.log(productName);
+		$(this).find(".addon-wrapper").css("display","none");
+		$(this).find(".addon-wrapper").css("display","none");
+		$(this).find(".addon-wrapper .hangerwrapper").show();
+	}else if(productName == "cc"){
+		console.log("centerpiece");
+		$(this).find(".addon-wrapper").css("display","block");
+		$(this).find(".addon-wrapper .hangerwrapper").hide();
+	}else{
+		console.log("other" + productName);
+		$(this).find(".addon-wrapper").css("display","block");
+		$(this).find(".addon-wrapper").css("display","block");	
+		$(this).find(".addon-wrapper .hangerwrapper").show();
+	}
 });
 
 function updatePageHighlight(x){

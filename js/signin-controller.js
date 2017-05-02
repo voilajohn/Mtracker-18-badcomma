@@ -189,5 +189,19 @@ $(".signOut").on('click', function(){
 	//page-signin
 	window.localStorage.removeItem('mickman-session');//remove the session key
 	//log out 
+	//clear out the products listing and swiper
+	/*var mySwiper = $('.swiper-container')[0].swiper;
+    mySwiper.destroy();
+    mySwiper = undefined;
+	$('#ClassicOption').html("");
+	$('#VictorianOption').html("");
+	$('#CranberryOption').html("");
+	$('#GarlandOption').html("");
+	
+	$("#ClassicOption").enhanceWithin().controlgroup("refresh");
+	$("#VictorianOption").enhanceWithin().controlgroup("refresh"); 
+	$("#CranberryOption").enhanceWithin().controlgroup("refresh");
+	$('#GarlandOption').enhanceWithin().controlgroup("refresh");*/
+
 	$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
-});
+	});

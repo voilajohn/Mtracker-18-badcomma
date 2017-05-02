@@ -2,6 +2,29 @@
 
 var MickmanAppLogin = MickmanAppLogin || {};
 
+var ClassicWreathDescription = "This popular wreath is as traditional as Christmas itself. The Balsam Fir Classic Wreath is tastefully decorated with a long tailed, gold-backed velveteen bow and white tipped and glittered Ponderosa pine cones accented with red jingle bells which match the generous red bow.";
+
+var VictorianWreathDescription = "These most popular Balsam Fir Holiday Evergree feature an exquisite satin bow with imprinted wired-gold edges to hold the generous loops of the ribbon. Trimmings include natural pine cones accented with gold jingle bells, and the matchin Christmas bulbs finish off the look of these elegaHoliday Decorations.";
+
+var CranberryWreathDescription = "This traditionally festive wreath is made from natural Balsam Fir boughs and is decorated with a generous, 4” wide, fabric bow with gold wired edges. The ornamental trimmings include faux cranberry sprigs and gold Juniper twigs. Three naturally bronzed Ponderosa Pine cones laced with gold jingle bells set the finishing touches for this stunning addition to your holiday décor.";
+
+var ClassicSprayDescription = "The combination of mixed evergreens of the Classic Spray are accented with a generous gold backed red velveteen bow which has wonderfully long tails. The white tipped & glittered pine cones are highlighted with festive red jingle bells which match the red bow. Either used by itself as a unique door decoration, or in concert with the Classic Wreath, the Classic Door Spray is appreciated by all.";
+
+var VictorianSprayDescription = "These most popular Balsam Fir Holiday Evergree feature an exquisite satin bow with imprinted wired-gold edges to hold the generous loops of the ribbon. Trimmings include natural pine cones accented with gold jingle bells, and the matching Christmas bulbs finish off the look of these elegant Holiday Decorations.";
+
+var CranberrySprayDescription = "The Cranberry Splash Spray is made from natural mixed evergreen boughs and is decorated with a generous, 4” wide, fabric bow with gold wired edges. The ornamental trimmings include faux cranberry sprigs and gold Juniper twigs. Natural bronze Ponderosa pine cones laced with gold jingle bells set the finishing touches for this stunning addition to your Holiday Décor.";
+
+var tabletoptreeDescription = "Each living tree arrives with 7 frosted and glittered cones with a ‘star garland’ accent. The container is wrapped in burlap with a generous matching ribbon and bow that adds to the natural ‘organic’ theme of this wonderful Table Top Christmas Tree. The LED light set, with timer, adds just the right amount of twinkle to this festive Table Top Christmas Tree. These nursery grown Dwarf Alberta Spruce Trees are about 22” tall. They will remain fresh through the holidays with regular watering as per the care instructions which accompany each tree. These trees can be planted outdoors after the holidays to enjoy for years to come!";
+
+var garlandDescription = "Available in both 25’ or 50’ lengths, these garlands add the perfect holiday touch to entryways, deck railings and a host of other outdoor home applications.";
+
+var CenterpieceDescription = "This seasonal centerpiece, as pictured, is bursting with naturally scented mixed evergreens which stay fresh and moist from the  oral foam base. The festive decorations are certain to delight your guests and lend a joyful air to your Holiday Celebrations!";
+
+var LEDlightsDescription = "Add just the right amount of twinkle to all of your holiday evergreens! <ul><li>23 - miniature ‘dew drop’ lights</li><li>Choose a steady light setting or a gently twinkling setting for additional interest.<li>Automatic Timer features 6 hours on & 18 hours off.</li><li>Uses 3 – AA Batteries lasting for about a week* (not included)</li><li>Thin  exible wire allows for effortless installation</li></ul><br>*Battery life is an estimate based upon timer use. Cold weather may decrease battery life.";
+
+var EZWreathHangerDescription = "Our customized EZ Hanger® allows you to easily display your wreath or spray in seconds.<ul><li>No Nails</li><li>No Hammers</li><li>Easy Installation</li></ul>";
+
+
 MickmanAppLogin.CatalogController = function () {//reset the variables
     this.$storePage = null;
     this.$btnAdd = null; //add to cart button
@@ -17,9 +40,7 @@ MickmanAppLogin.CatalogController.prototype.init = function () {
 	$('#VictorianOption').html("");
 	$('#CranberryOption').html("");
 	$('#GarlandOption').html("");
-	    
-	$('#CranberrySprayOption').html("");
-	$('#GarlandOption').html("");
+	
 	$("#purchase #ledlights").hide();
     $("#purchase #ezwreathhanger").hide();
 };
@@ -71,10 +92,10 @@ MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
 	console.log("Fill out the Catalog");
 	//hide everything
-	$('#ClassicOption').html("");
-	$('#VictorianOption').html("");
-	$('#CranberryOption').html("");
-	$('#GarlandOption').html("");
+	//$('#ClassicOption').html("");
+	//$('#VictorianOption').html("");
+	//$('#CranberryOption').html("");
+	//$('#GarlandOption').html("");
 	
 	$("#ClassicWreath").hide(); 
 	$("#VictorianWreath").hide(); 
@@ -105,9 +126,8 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    ){ //Classic Wreath is available
 		    $("#ClassicWreath").show();
 		    var buttonLabel = key.slice(0,2) + "in.";
-		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span> <span class="labelprice">$'+value+'</span></label>');
+		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span> <span class="labelprice">$'+value+'</span></label>');
 		    $('#ClassicOption').controlgroup('container').append(radioBtn);
-		    $("#ClassicWreath .split-custom-wrapper a").data("db-name",key);
 	    }
 		if( (key == "25v") && value > 0 || (key == "25vg") && value > 0 ||
 	    	(key == "28v") && value > 0 || (key == "28vg") && value > 0 ||
@@ -115,9 +135,8 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    ){ //Victorian Wreath is available
 		    $("#VictorianWreath").show();
 		    var buttonLabel = key.slice(0,2) + "in.";
-		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
+		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
 		    $('#VictorianOption').controlgroup('container').append(radioBtn);
-		    $("#VictorianWreath .split-custom-wrapper a").data("db-name",key);
 		}
 		if( (key == "25cs") && value > 0 || (key == "25csg") && value > 0 || 
 	    	(key == "28cs") && value > 0 || (key == "28csg") && value > 0 ||
@@ -125,9 +144,8 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    ){ //Cranberry Splash Wreath is available
 		    $("#CranberrySplashWreath").show();
 		    var buttonLabel = key.slice(0,2) + "in.";
-		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
+		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
 		    $('#CranberryOption').controlgroup('container').append(radioBtn);
-		    $("#CranberrySplashWreath .split-custom-wrapper a").data("db-name",key);
 		}
 		//SPRAYS
 		if( (key == "sprayc") && value > 0 || 
@@ -173,9 +191,8 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		){ //Garland
 			$("#garland").show();
 			var buttonLabel = key.slice(0,2) + "ft.";
-		    var radioBtn = $('<input type="radio" name="size" id="garland'+key+'" value="'+value+'" data-mini="true"/><label for="garland'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
+		    var radioBtn = $('<input type="radio" name="size" id="garland'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="garland'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
 		    $('#GarlandOption').controlgroup('container').append(radioBtn);
-		    $("#GarlandOption .split-custom-wrapper a").data("db-name",key);
 		}
 		if( (key == "hanger") && value > 0){
 			$("#EZWreathHanger").show();
@@ -184,12 +201,6 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 			$("#EZWreathHanger .price span.num").html(value);
 			$(".addhangerprice").html(value);
 		}
-		/*if( (key == "bag") && value > 0){
-			$("#Bags").show();
-			$("#Bags .split-custom-wrapper a").data("num",value);
-			$("#Bags .split-custom-wrapper a").data("db-name",key);
-			$("#Bags .price span.num").html(value);
-		}*/
 		if( (key == "led") && value > 0){
 			$("#LEDlights").show();
 			$("#LEDlights .split-custom-wrapper a").data("num",value);
@@ -203,10 +214,14 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		if(key == "cust_id"){
 			$(".your-group").html(value);
 		}
+		if(key == "wod"){
+			$(".your-delivery").html(value);
+		}
 	
 		//other parts
 	    
 	}).then(function() {
+		console.log("refresh");
 	    $("#ClassicOption").enhanceWithin().controlgroup("refresh");
 	    $("#ClassicOption").find(".ui-btn:first").trigger('click');//click the first button
 	    
@@ -215,6 +230,9 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    
 	    $("#CranberryOption").enhanceWithin().controlgroup("refresh");
 	    $("#CranberryOption").find(".ui-btn:first").trigger('click');//click the first button
+	    
+	    $('#GarlandOption').enhanceWithin().controlgroup("refresh");
+	    $('#GarlandOption').find(".ui-btn:first").trigger('click');//click the first button
 	    
 	    //activate non radio buttons
 	    var productName = $("#ClassicSpray h2").text();
@@ -236,9 +254,6 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		var productName = $("#tabletoptree h2").text();
 		$("#tabletoptree .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 		$("#tabletoptree .split-custom-wrapper a").data("product-size",""); //push the product size to the checkout area.
-
-	    $('#GarlandOption').enhanceWithin().controlgroup("refresh");
-	    $('#GarlandOption').find(".ui-btn:first").trigger('click');//click the first button
 	    
 		var productName = $("#EZWreathHanger h2").text();
 		$("#EZWreathHanger .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
@@ -300,30 +315,37 @@ MickmanAppLogin.CatalogController.prototype.getUserData = function(){ //gather u
 $('.priceselect').change(function () {
   var radioSelected = $(this).find(':radio:checked');
   var optradioSelected = radioSelected.val();
+  var Id = $(this).find(':radio:checked').data('prod-id');//find the ID 
+  
   $(this).parent().parent().find('.price span.num').html(optradioSelected); //show the price on the listview
   $(this).parent().parent().parent().find('.split-custom-wrapper a').data("num",optradioSelected); //show the price in the cart
   
   var productName = $(this).parent().parent().find('h2').text(); //grab the product name
   $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product",productName); //push the product name to the checkout area.
   
-  //var getName = $(this).parent().parent().parent().find('.split-custom-wrapper a').data("db-name");
-  //$(this).parent().parent().parent().find('.split-custom-wrapper a').data("db-name",getName);
+  var getName = $(this).parent().data("prod-id");
+  $(this).parent().parent().parent().find('.split-custom-wrapper a').data("db-name",Id);
   
   var radioSize = $(this).find(':radio:checked').prev('label').find(".sizeoption").text();//need to be more specific now
-  //console.log("size: " + radioSize);
   $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product-size",radioSize); //push the product option
+  
 });
-
+$('#personal-phone').change(function(){
+	var myphone = String($('#personal-phone').val());
+	console.log(myphone);
+	var formattedPhone = myphone.replace(/(\d\d\d)(\d\d\d)(\d\d\d\d)/, '$1-$2-$3');
+	$('#personal-phone').val(formattedPhone);
+});
 /********* POPUP ZOOM */
 //update the popup image
 $('.searchbtn').click(function () {
 	var imageUrl = $(this).attr("data-largerimage"); //grab the URL
-	console.log(imageUrl);
-	//var frame = document.getElementById("myframe");
-	//var frameDoc = frame.contentDocument;
-	//frameDoc.querySelector("img").src = imageUrl;
+	var description = window[$(this).parent().attr("id") + "Description"];
+	
+	$("#larger .proddescription").html("");
 	
 	$("#larger img").attr("src", imageUrl); //set the url of the popup image
+	$("#larger .proddescription").html(description);
 	
 	$("#larger img.panzoom").panzoom({
 		 startTransform: 'scale(1.1)',
