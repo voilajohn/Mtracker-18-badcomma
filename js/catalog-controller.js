@@ -18,7 +18,7 @@ var tabletoptreeDescription = "Each living tree arrives with 7 frosted and glitt
 
 var garlandDescription = "Available in both 25’ or 50’ lengths, these garlands add the perfect holiday touch to entryways, deck railings and a host of other outdoor home applications.";
 
-var CenterpieceDescription = "This seasonal centerpiece, as pictured, is bursting with naturally scented mixed evergreens which stay fresh and moist from the  oral foam base. The festive decorations are certain to delight your guests and lend a joyful air to your Holiday Celebrations!";
+var HolidayCenterpieceDescription = "This seasonal centerpiece, as pictured, is bursting with naturally scented mixed evergreens which stay fresh and moist from the  oral foam base. The festive decorations are certain to delight your guests and lend a joyful air to your Holiday Celebrations!";
 
 var LEDlightsDescription = "Add just the right amount of twinkle to all of your holiday evergreens! <ul><li>23 - miniature ‘dew drop’ lights</li><li>Choose a steady light setting or a gently twinkling setting for additional interest.<li>Automatic Timer features 6 hours on & 18 hours off.</li><li>Uses 3 – AA Batteries lasting for about a week* (not included)</li><li>Thin  exible wire allows for effortless installation</li></ul><br>*Battery life is an estimate based upon timer use. Cold weather may decrease battery life.";
 
