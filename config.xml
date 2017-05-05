@@ -9,7 +9,7 @@
     <description>
 	    A Customizable App to collect scout orders for an on the go sales tool. 
 	    Droid and iOS compatible.
-	   
+	   *See Readme for version details
     </description>
 
     <author href="https://build.phonegap.com" email="j_flottmeyer@voilamediagroup.com">
@@ -34,7 +34,7 @@
    
     <!-- ios icons 7+ -->
     <!-- iPhone 6 / 6+ -->
-	<icon src="icon-60@3x.png" platform="ios" width="180" height="180" />
+	<icon src="images/icons/icon-60@3x.png" platform="ios" width="180" height="180" />
 
     <!-- iPhone / iPod Touch  -->
 	<icon src="images/icons/icon-60.png" platform="ios" width="60" height="60" />
@@ -66,8 +66,8 @@
 	<icon src="fr-xxhdpi.png" platform="android" qualifier="fr-xxhdpi" />-->
 
     <!-- iPhone and iPod touch -->
-	<splash src="Default.png" platform="ios" width="320" height="480" />
-	<splash src="Default@2x.png" platform="ios" width="640" height="960" />
+	<splash src="images/splash/Default.png" platform="ios" width="320" height="480" />
+	<splash src="images/splash/Default@2x.png" platform="ios" width="640" height="960" />
 	
 	<!-- iPhone 5 / iPod Touch (5th Generation) -->
     <splash src="images/splash/Default-568h@2x.png" platform="ios" width="640" height="1136" />

@@ -10,6 +10,8 @@ Droid and iOS compatible.
 ~ New images for the Larger LED
 ~ New images for the Tree thumb
 ~ View Cart added to main product page
+~ Fixed iPad icons paths
+~ Fixed iPad splash image paths
 
 /**************** vs 1.12-1.13  || 5-1-17**************/
 Added in Date 
