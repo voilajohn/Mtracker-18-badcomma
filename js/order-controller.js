@@ -127,6 +127,7 @@ $(".create-order").click(function () {
 								if(group != null){
 									$("#page-order-complete .group").html(group);
 								}
+								//$("#page-order-complete order-details").html(promises);
 								$(':mobile-pagecontainer').pagecontainer('change', '#page-order-complete');//go to next page
 					        }
 				        }).catch(function(err){

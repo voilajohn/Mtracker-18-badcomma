@@ -699,9 +699,18 @@ legend{
 	margin:0px auto;
 	text-align:center;
 }
-.logo img{
-	max-width:50%;
+.logo div{
+	padding:5px 5px 0px 5px;
+	margin:0px;
+	display:inline-block;
+	font-size:12px;
+	width:60%;
+	vertical-align:top;
+}
+.logo img.logoimg{
+	max-width:50px;
 	height:auto;
+	display:inline-block;
 }
 .red{
 	color:#d2232a;
@@ -709,20 +718,51 @@ legend{
 .banner{
 	background:#d2232a;
 	color:#FFF;
-	padding:5px 5px;
+	padding:0px 5px;
 	font-size:12px;
 	text-align:center;
 }
 .bannertext{
-	padding:5px 0px 8px 20px !important;
-	display:inline-block;
-	width:62%;
+	padding:5px 10px 0px 10px !important;
+	text-align:center;
+	margin:0px auto;
+}
+.controlgroup-textinput{
+    padding-top:.22em;
+    padding-bottom:.22em;
+    height: 28px;
+}
+.quantity-input{
+	width:25%;
+	padding:5px !important;
+	height:20px !important;
+}
+ input#quantity{
+	padding:2px !important;
+	height: 15px;
+	min-height:1.2em;
+	font-size:16px !important;
+	line-height:12px;
+}
+.smaller{
+	font-size:14px;
+	color:#000;
+}
+.removeProduct, .addProduct{
+	padding:5px 2px !important;
+}
+.middle-image{
+	margin:0px !important;
+	border:none;
+	background:#EBEBEB;
+	box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
 }
 .middle-image img{
 	max-width:100%;
+	margin:0px !important;
 	width:100%;
 	height:auto;
-	box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);;
+	/*box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);*/
 }
 .ui-content-special{
 	padding:15px 20px 0px 20px;
