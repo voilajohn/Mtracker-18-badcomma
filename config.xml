@@ -3,15 +3,13 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "A8FETR73Y9.com.phonegap.MickmanTracker"
         versionCode = "10" 
-        version     = "1.13" >
+        version     = "1.14" >
 	
     <name>Mickman Digital Sales Aid</name>
     <description>
 	    A Customizable App to collect scout orders for an on the go sales tool. 
 	    Droid and iOS compatible.
-	    
-	    /****************5-1-17**************/
-	    Added in Date ~ Zoom improvements ~ added descriptions ~ Updated Addon logic ~ Added thank you page ~ Replaced some photos
+	   
     </description>
 
     <author href="https://build.phonegap.com" email="j_flottmeyer@voilamediagroup.com">
