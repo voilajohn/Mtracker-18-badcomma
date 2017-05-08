@@ -91,11 +91,17 @@ MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
 	console.log("Fill out the Catalog");
-	//hide everything
-	//$('#ClassicOption').html("");
-	//$('#VictorianOption').html("");
-	//$('#CranberryOption').html("");
-	//$('#GarlandOption').html("");
+	//hide everything - this is messign stuff up 
+	
+	/*$('#ClassicOption').html("");
+	$('#VictorianOption').html("");
+	$('#CranberryOption').html("");
+	$('#GarlandOption').html("");*/
+	$('#ClassicOption[data-role=controlgroup]').children().each(function(index, value){
+        if(index === 0) {
+           $(value).remove();
+        }
+     });
 	
 	$("#ClassicWreath").hide(); 
 	$("#VictorianWreath").hide(); 
