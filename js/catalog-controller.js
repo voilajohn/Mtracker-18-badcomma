@@ -24,6 +24,10 @@ var LEDlightsDescription = "Add just the right amount of twinkle to all of your 
 
 var EZWreathHangerDescription = "Our customized EZ Hanger® allows you to easily display your wreath or spray in seconds.<ul><li>No Nails</li><li>No Hammers</li><li>Easy Installation</li></ul>";
 
+var CradioBtn = ""; //Classic
+var VradioBtn = ""; //Victorian
+var SradioBtn = ""; //Cranberry Splash
+var GradioBtn = ""; //Garland
 
 MickmanAppLogin.CatalogController = function () {//reset the variables
     this.$storePage = null;
@@ -36,6 +40,7 @@ MickmanAppLogin.CatalogController = function () {//reset the variables
 MickmanAppLogin.CatalogController.prototype.init = function () {
     this.$storePage = "#page-main-menu";
     this.$btnAdd = $(".addtocart", this.$storePage);
+    
     $('#ClassicOption').html("");
 	$('#VictorianOption').html("");
 	$('#CranberryOption').html("");
@@ -98,8 +103,6 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	$('#CranberryOption').html("");
 	$('#GarlandOption').html("");*/
 	
-    //$('#ClassicOption').controlgroup('container').destroy();
-	
 	$("#ClassicWreath").hide(); 
 	$("#VictorianWreath").hide(); 
 	$("#CranberrySplashWreath").hide();
@@ -114,13 +117,11 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	$("#EZWreathHanger").hide();
 	$("#Bags").hide();
 	$("#LEDlights").hide();
-	
-	var radioBtn = "";
     
 	// Find the number of items in the datastore.
 	// Need to set lowest price and flag the radio button
 	product.iterate(function(value, key, iterationNumber) {
-	
+		
 	    if( (key == "25c") && value > 0 || (key == "25cg") && value > 0 ||
 	    	(key == "28c") && value > 0 || (key == "28cg") && value > 0 ||
 	    	(key == "36c") && value > 0 || (key == "36cg") && value > 0 ||
@@ -129,8 +130,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    ){ //Classic Wreath is available
 		    $("#ClassicWreath").show();
 		    var buttonLabel = key.slice(0,2) + "in.";
-		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span> <span class="labelprice">$'+value+'</span></label>');
-		    $('#ClassicOption').controlgroup('container').append(radioBtn);
+		    CradioBtn += '<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span> <span class="labelprice">$'+value+'</span></label>';
 	    }
 		if( (key == "25v") && value > 0 || (key == "25vg") && value > 0 ||
 	    	(key == "28v") && value > 0 || (key == "28vg") && value > 0 ||
@@ -138,18 +138,14 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    ){ //Victorian Wreath is available
 		    $("#VictorianWreath").show();
 		    var buttonLabel = key.slice(0,2) + "in.";
-		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
-		    $('#VictorianOption').controlgroup('container').append(radioBtn);
-		}
+		    VradioBtn += '<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>';		}
 		if( (key == "25cs") && value > 0 || (key == "25csg") && value > 0 || 
 	    	(key == "28cs") && value > 0 || (key == "28csg") && value > 0 ||
 	    	(key == "36cs") && value > 0 || (key == "36csg") && value > 0
 	    ){ //Cranberry Splash Wreath is available
 		    $("#CranberrySplashWreath").show();
 		    var buttonLabel = key.slice(0,2) + "in.";
-		    var radioBtn = $('<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
-		    $('#CranberryOption').controlgroup('container').append(radioBtn);
-		}
+		    SradioBtn += '<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>';		}
 		//SPRAYS
 		if( (key == "sprayc") && value > 0 || 
 			(key == "spraycg") && value > 0
@@ -194,8 +190,8 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		){ //Garland
 			$("#garland").show();
 			var buttonLabel = key.slice(0,2) + "ft.";
-		    var radioBtn = $('<input type="radio" name="size" id="garland'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="garland'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>');
-		    $('#GarlandOption').controlgroup('container').append(radioBtn);
+		    GradioBtn += '<input type="radio" name="size" id="garland'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="garland'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>';
+		    //$('#GarlandOption').controlgroup('container').append(radioBtn);
 		}
 		if( (key == "hanger") && value > 0){
 			$("#EZWreathHanger").show();
@@ -224,6 +220,11 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		//other parts
 	    
 	}).then(function() {
+		$('#ClassicOption').controlgroup('container').html(CradioBtn);
+		$('#VictorianOption').controlgroup('container').html(VradioBtn);
+		$('#CranberryOption').controlgroup('container').html(SradioBtn);
+		$('#GarlandOption').controlgroup('container').html(GradioBtn);
+		
 		console.log("refresh");
 	    $("#ClassicOption").enhanceWithin().controlgroup("refresh");
 	    $("#ClassicOption").find(".ui-btn:first").trigger('click');//click the first button

@@ -1,7 +1,12 @@
 # Mtracker
-####### Version 1.15 ####### 
-Customizable App to collect scout orders for an on the go sales tool.
+####### Version 1.16 ####### 
+Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible. 
+
+
+/**************** vs 1.16  || 5-9-17**************/
+~ New Method for setting up the product pricing so that it does not produce duplicates and or errors
+~ Updated Carousel for larger resolutions
 
 /**************** vs 1.15  || 5-8-17**************/
 ~ Added Droid icons
