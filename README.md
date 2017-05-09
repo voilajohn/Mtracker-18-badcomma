@@ -5,6 +5,8 @@ Droid and iOS compatible.
 
 /**************** vs 1.15  || 5-8-17**************/
 ~ Added Droid icons
+~ Added Droid Splash screens
+~ Fixed Droid / Cordova whitelist issue - added whitelist plugin to allow Ajax call
  
 /**************** vs 1.12-1.14  || 5-5-17**************/
 ~ Connected Phone type dropdown to field
@@ -16,7 +18,7 @@ Droid and iOS compatible.
 ~ Fixed iPad splash image paths
 
 /**************** vs 1.12-1.13  || 5-1-17**************/
-Added in Date 
+~ Added in Date 
 ~ Zoom improvements 
 ~ added descriptions 
 ~ Updated Addon logic 
