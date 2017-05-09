@@ -97,11 +97,8 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	$('#VictorianOption').html("");
 	$('#CranberryOption').html("");
 	$('#GarlandOption').html("");*/
-	$('#ClassicOption[data-role=controlgroup]').children().each(function(index, value){
-        if(index === 0) {
-           $(value).remove();
-        }
-     });
+	
+    //$('#ClassicOption').controlgroup('container').destroy();
 	
 	$("#ClassicWreath").hide(); 
 	$("#VictorianWreath").hide(); 

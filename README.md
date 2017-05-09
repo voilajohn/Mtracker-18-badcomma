@@ -3,6 +3,8 @@
 Customizable App to collect scout orders for an on the go sales tool.
 Droid and iOS compatible. 
 
+/**************** vs 1.15  || 5-8-17**************/
+~ Added Droid icons
  
 /**************** vs 1.12-1.14  || 5-5-17**************/
 ~ Connected Phone type dropdown to field

@@ -696,12 +696,12 @@ legend{
 	overflow-y:scroll;
 }
 .logo{
-	margin:0px auto;
+	margin:10px auto;
 	text-align:center;
 }
 .logo div{
 	padding:5px 5px 0px 5px;
-	margin:0px;
+	margin:0px auto;
 	display:inline-block;
 	font-size:12px;
 	width:60%;
@@ -752,14 +752,18 @@ legend{
 	padding:5px 2px !important;
 }
 .middle-image{
-	margin:0px !important;
+	margin:0px auto !important;
 	border:none;
-	background:#EBEBEB;
-	box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);
+	background:#FFF;
+	/*padding:0px 15px;*/
+	border-bottom:1px solid #ebebeb;
+	width:100%;
+	text-align:center;
+	/*box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);*/
 }
 .middle-image img{
-	max-width:100%;
-	margin:0px !important;
+	max-width:90%;
+	margin:0px auto !important;
 	width:100%;
 	height:auto;
 	/*box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.2);*/
@@ -767,8 +771,15 @@ legend{
 .ui-content-special{
 	padding:15px 20px 0px 20px;
 }
+.ui-header .ui-title {
+    margin-right: 10%;
+    margin-left: 10%;
+}
 .ui-content-special-form{
 	padding:0px 20px 0px 20px;
+	width:80% !important;
+	margin:0px auto;
+	display:block;
 }
 
 .table-stripe thead th,
