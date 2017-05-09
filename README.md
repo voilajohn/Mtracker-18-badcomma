@@ -7,6 +7,7 @@ Droid and iOS compatible.
 ~ Added Droid icons
 ~ Added Droid Splash screens
 ~ Fixed Droid / Cordova whitelist issue - added whitelist plugin to allow Ajax call
+~ Revised Startpage
  
 /**************** vs 1.12-1.14  || 5-5-17**************/
 ~ Connected Phone type dropdown to field

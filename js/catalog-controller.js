@@ -435,10 +435,15 @@ $(".slickIt").on('click', function(){ //rotating area
         paginationClickable: true,
         slidesPerView: 5,
         spaceBetween: 30,
+        mode: 'horizontal',
         centeredSlides: true,
         slidesPerView: 'auto',
         grabCursor: true,
         breakpoints: {
+            2000: {
+                slidesPerView: 6,
+                spaceBetween: 40
+            },
             1024: {
                 slidesPerView: 4,
                 spaceBetween: 40
