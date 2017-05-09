@@ -22,6 +22,7 @@
     <!-- third party plugins -->
 	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
 	<gap:plugin name="de.appplant.cordova.plugin.printer" source="npm"/>
+	<gap:plugin name="cordova-plugin-whitelist" source="npm"/>
 	 
     <!-- universal preferences -->
     <preference name="phonegap-version"           value="cli-6.5.0" />         
@@ -31,6 +32,9 @@
     <preference name="target-device" value="universal" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#000000" />
+    
+    <!-- Allow links to example.com -->
+	<allow-navigation href="http://cpanel-2101-20.datarealm.com/*" />
    
     <!-- ios icons 7+ -->
     <!-- iPhone 6 / 6+ -->
@@ -58,12 +62,12 @@
 	<!-- ios icons  6.1 -->
 	
 	<!--DROID ICONS-->
-	<!--<icon src="ldpi.png" platform="android" qualifier="ldpi" />
-	<icon src="mdpi.png" platform="android" qualifier="mdpi" />
-	<icon src="hdpi.png" platform="android" qualifier="hdpi" />
-	<icon src="xhdpi.png" platform="android" qualifier="xhdpi" />
-	<icon src="xxhdpi.png" platform="android" qualifier="xxhdpi" />
-	<icon src="fr-xxhdpi.png" platform="android" qualifier="fr-xxhdpi" />-->
+	<icon src="images/icons/ldpi.png" platform="android" qualifier="ldpi" />
+	<icon src="images/icons/mdpi.png" platform="android" qualifier="mdpi" />
+	<icon src="images/icons/hdpi.png" platform="android" qualifier="hdpi" />
+	<icon src="images/icons/xhdpi.png" platform="android" qualifier="xhdpi" />
+	<icon src="images/icons/xxhdpi.png" platform="android" qualifier="xxhdpi" />
+	<icon src="images/icons/fr-xxhdpi.png" platform="android" qualifier="fr-xxhdpi" />
 
     <!-- iPhone and iPod touch -->
 	<splash src="images/splash/Default.png" platform="ios" width="320" height="480" />
@@ -84,6 +88,20 @@
 	<!-- Retina iPad -->
 	<splash src="images/splash/Default-Portrait@2x.png" platform="ios" width="1536" height="2048" />
 	<splash src="images/splash/Default-Landscape@2x.png" platform="ios" width="2048" height="1536" />
+	
+	<!--Droid Splash-->
+	<splash src="port-ldpi.png" platform="android" qualifier="port-ldpi" />
+	<splash src="land-ldpi.png" platform="android" qualifier="land-ldpi" />
+	<splash src="port-mdpi.png" platform="android" qualifier="port-mdpi" />
+	<splash src="land-mdpi.png" platform="android" qualifier="land-mdpi" />
+	<splash src="port-hdpi.png" platform="android" qualifier="port-hdpi" />
+	<splash src="land-hdpi.png" platform="android" qualifier="land-hdpi" />
+	<splash src="port-xhdpi.png" platform="android" qualifier="port-xhdpi" />
+	<splash src="land-xhdpi.png" platform="android" qualifier="land-xhdpi" />
+	<splash src="port-xxhdpi.png" platform="android" qualifier="port-xxhdpi" />
+	<splash src="land-xxhdpi.png" platform="android" qualifier="land-xxhdpi" />
+	<splash src="port-xxxhdpi.png" platform="android" qualifier="port-xxxhdpi" />
+	<splash src="land-xxxhdpi.png" platform="android" qualifier="land-xxxhdpi" />
 	
 <gap:config-file platform="ios" parent="ITSAppUsesNonExemptEncryption" mode="add">
 	<false/>
