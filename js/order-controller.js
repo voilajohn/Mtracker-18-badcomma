@@ -242,7 +242,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 $(document).on('click', '.printOrders', function(){//first lets organize the content of the orders
 	
 	var orderContent;
-	//if(isprintAvailable == true){
+	if(isprintAvailable == true){
 		order.iterate(function(value, key, iterationNumber) { //lets put together the content 
 	
 			var name = value[0][1] + " " + value[0][2];
@@ -294,9 +294,9 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 				}
 			});
 		});
-	//}else{
-		//$(".print-message").removeClass('bi-invisible');
-		//$(".print-message").addClass("bi-ctn-err");
-		//$(".print-message").html("Sorry Airprint is not currently available.");
-	//}
+	}else{
+		$(".print-message").removeClass('bi-invisible');
+		$(".print-message").addClass("bi-ctn-err");
+		$(".print-message").html("Sorry Airprint is not currently available.");
+	}
 });
