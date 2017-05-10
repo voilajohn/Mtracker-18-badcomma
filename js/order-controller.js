@@ -259,9 +259,9 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 
 //print page
 $(document).on('click', '.printOrders', function(){//first lets organize the content of the orders
-	
+	var gtotal = 0;
 	var orderContent;
-	if(isprintAvailable == true){
+	///if(isprintAvailable == true){
 		order.iterate(function(value, key, iterationNumber) { //lets put together the content 
 	
 			var name = value[0][1] + " " + value[0][2];
@@ -275,7 +275,7 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			var month = new Date(+date[1]).getUTCMonth();
 			var year = new Date(+date[1]).getUTCFullYear();
 			var subtotal = 0;
-			var gtotal = 0;
+			
 			
 			//build the client info
 			orderContent += '<table>';
@@ -291,14 +291,15 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 				orderContent += '<tr><td>'+value[1][x][0]+'</td><td>'+value[1][x][1][1]+'</td><td>'+value[1][x][1][0]+'</td></tr>';
 				subtotal += Number(value[1][x][1][1])*Number(value[1][x][1][0]);
 			}
-			gtotal += subtotal;
+			gtotal += Number(subtotal);
 			orderContent += '</tbody></table>';
 			orderContent += '<p><strong>Order subtotal: </strong>'+subtotal+'</p>';
-			orderContent += '<p><strong>Payment Status: </strong>'+format1(value[2],"$")+'</p>';
+			orderContent += '<p><strong>Payment Status: </strong>'+format1(Number(value[2]),"$")+'</p>';
 			
 		}).then(function(){
 			//console.log(orderContent);
-			orderContent += "<p><strong>Grand Total</strong>"+format1(gtotal,"$")+"</p>"
+			orderContent += "<p><strong>Grand Total </strong>"+format1(gtotal,"$")+"</p>";
+			
 			$(".print-message").removeClass('bi-invisible');
 			$(".print-message").html('Sending to printer');
 			
@@ -312,9 +313,9 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 				}
 			});
 		});
-	}else{
+	/*}else{
 		$(".print-message").removeClass('bi-invisible');
 		$(".print-message").addClass("bi-ctn-err");
 		$(".print-message").html("Sorry Airprint is not currently available.");
-	}
+	}*/
 });
