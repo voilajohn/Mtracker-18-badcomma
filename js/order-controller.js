@@ -275,6 +275,7 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			var month = new Date(+date[1]).getUTCMonth();
 			var year = new Date(+date[1]).getUTCFullYear();
 			var subtotal = 0;
+			var gtotal = 0;
 			
 			//build the client info
 			orderContent += '<table>';
@@ -290,12 +291,14 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 				orderContent += '<tr><td>'+value[1][x][0]+'</td><td>'+value[1][x][1][1]+'</td><td>'+value[1][x][1][0]+'</td></tr>';
 				subtotal += Number(value[1][x][1][1])*Number(value[1][x][1][0]);
 			}
+			gtotal += subtotal;
 			orderContent += '</tbody></table>';
 			orderContent += '<p><strong>Order subtotal: </strong>'+subtotal+'</p>';
-			orderContent += '<p><strong>Payment Status: </strong>'+value[2]+'</p>';
+			orderContent += '<p><strong>Payment Status: </strong>'+format1(value[2],"$")+'</p>';
 			
 		}).then(function(){
 			//console.log(orderContent);
+			orderContent += "<p><strong>Grand Total</strong>"+format1(gtotal,"$")+"</p>"
 			$(".print-message").removeClass('bi-invisible');
 			$(".print-message").html('Sending to printer');
 			
