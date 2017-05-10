@@ -162,6 +162,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 	
 	//iterate through the orders and assemble into something to pass to the php
 	var token;
+	var myID;
 	var key = Array();
 	var orderArray = Array();
 	var restoreArray = Array();
@@ -171,7 +172,8 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 	
 	var checkSession = MickmanAppLogin.Session.getInstance().get();
 	var myToken = checkSession.sessionId;
-	console.log(myToken);
+	var myID = checkSession.userId;
+	console.log(myID);
 	
 	//product.getItem('token').then(function(err,value){ //maybe it is this line?
 	//I think eliminating this line has fixed some issues??
@@ -190,7 +192,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 				$.ajax({
 			        type: 'POST',
 			        url: MickmanAppLogin.Settings.syncDataUrl,
-			        data: "token=" + token + "&data=" + JSON.stringify(orderArray) + "&sync-data=true",
+			        data: "token=" + token + "&id="+ myID +"&data=" + JSON.stringify(orderArray) + "&sync-data=true",
 			        success: function (resp) {
 				        if(resp.success == true){//now lets mark the columns that we saved.
 					        markedOrder = String(resp.extras.marksaved);//we need to mark the returned as a string 
@@ -240,7 +242,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 $(document).on('click', '.printOrders', function(){//first lets organize the content of the orders
 	
 	var orderContent;
-	if(isprintAvailable == true){
+	//if(isprintAvailable == true){
 		order.iterate(function(value, key, iterationNumber) { //lets put together the content 
 	
 			var name = value[0][1] + " " + value[0][2];
@@ -253,6 +255,7 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			var day = new Date(+date[1]).getUTCDate();
 			var month = new Date(+date[1]).getUTCMonth();
 			var year = new Date(+date[1]).getUTCFullYear();
+			var subtotal = 0;
 			
 			//build the client info
 			orderContent += '<table>';
@@ -266,12 +269,17 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			orderContent += '<table><thead><tr><th>Product</th><th>Number</th><th>Cost</th></tr></thead><tbody>';
 			for(x=0;x<value[1].length;x++){
 				orderContent += '<tr><td>'+value[1][x][0]+'</td><td>'+value[1][x][1][1]+'</td><td>'+value[1][x][1][0]+'</td></tr>';
+				subtotal += Number(value[1][x][1][0]);
 			}
-			orderContent += '</tbody></table>';
+			
+			
+			orderContent += '<tr><td colspan="3">Subtotal: '+subtotal+'</td></tr></tbody></table>';
+			//orderContent += '<p><strong>Subtotal: </strong>'+subtotal+'</p>';
 			orderContent += '<p><strong>Payment Status: </strong>'+value[2]+'</p>';
 			
 			
 		}).then(function(){
+			console.log("-" + subtotal);
 			//console.log(orderContent);
 			$(".print-message").removeClass('bi-invisible');
 			$(".print-message").html('Sending to printer');
@@ -286,9 +294,9 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 				}
 			});
 		});
-	}else{
-		$(".print-message").removeClass('bi-invisible');
-		$(".print-message").addClass("bi-ctn-err");
-		$(".print-message").html("Sorry Airprint is not currently available.");
-	}
+	//}else{
+		//$(".print-message").removeClass('bi-invisible');
+		//$(".print-message").addClass("bi-ctn-err");
+		//$(".print-message").html("Sorry Airprint is not currently available.");
+	//}
 });

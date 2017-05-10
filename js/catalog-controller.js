@@ -57,7 +57,7 @@ MickmanAppLogin.CatalogController.prototype.addpricetoPopup = function (e) { //p
 MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write the server items to the database
 	var data = y;
 	data.unshift(['user',x]);//push username selected to the front of the list
-	data.unshift(['token',x]);//push username selected to the front of the list
+	//data.unshift(['token',x]);//push username selected to the front of the list
 	console.log(data);
 	for(j=0;j<data.length;j++){
 		if(data[j][1] != "" || data[j][1] != 0){//check for blanks

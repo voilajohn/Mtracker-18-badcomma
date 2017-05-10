@@ -84,16 +84,19 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
                 if(resp.extras.users){//build out the menu
 	                $('#select-choice-1').html(""); //prevent big lists from multiple logins
 	                var users = resp.extras.users;
+	                var ids = resp.extras.ids;
 	                $.each(users, function(bb){
 		                var Uname = (users[bb]);
-		                $('#select-choice-1').append('<option value="'+Uname+'">'+Uname+'</option>');
+		                var Uid = (ids[bb]);
+		                $('#select-choice-1').append('<option value="'+Uname+'" id="'+Uid+'">'+Uname+'</option>');
 		            });
 		            $(".mygroup").html(resp.extras.cust_id);
 		            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load
                 	$(".startSession").click(function(){//They need to choose a user
 	                	//ADD TO DB - PRODUCTS
+	                	product.setItem("id",$('#select-choice-1 :selected').attr('id'));//push the userID to the database 
 		                app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);//put the additional stuff into the DB
-	            
+		              
 	                	var today = new Date();
 		                var expirationDate = new Date();
 		                expirationDate.setTime(today.getTime() + MickmanAppLogin.Settings.sessionTimeoutInMSec);
@@ -102,11 +105,13 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 		                var token = resp.extras.sessionID;
 		                var memberProf = $('#select-choice-1').val();
 		                var groupName = resp.extras.products[2][1];//find this in the code
+		                var UserID = $('#select-choice-1 :selected').attr('id');
 		                console.log("id-" + groupName);
 		                MickmanAppLogin.Session.getInstance().set({//local variable for checking the sessions
 		                    userProfileModel:  memberProf,
 		                    userGroup: groupName,
 		                    sessionId: token,
+		                    userId: UserID,
 		                    expirationDate: expirationDate,
 		                    keepSignedIn:me.$chkKeepSignedIn.is(":checked")
 		                });

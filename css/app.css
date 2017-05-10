@@ -564,6 +564,16 @@ input[type="radio"] {
 .product-display div.slider a.searchbtn img{
 	display:block;
 }
+.swiper-slide{
+	width: 1024px;
+	max-width: 100vw;
+}
+.slider .split-custom-wrapper .ui-btn {
+  white-space:normal !important;
+  text-overflow: inherit !important;
+  overflow: visible !important;
+  padding:5px !important;
+}
 .product-display div.slider .inner{
 	background:#FFF;
 	min-height:300px;
@@ -900,32 +910,8 @@ legend{
 	padding-top:7px !important;
 }
 
-.swiper-container {
-/*    width: 100%;
-    height: 100%;*/
-}
-.swiper-slide {
-    /*text-align: center;
-    font-size: 18px;
-    background: #fff;*/
-    /* Center slide text vertically */
-    /*display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;*/
-}
- .swiper-slide{
-width: 1024px;
-max-width: 100vw;
-}
+
+ 
 /*Mobile styles - smalll screens iPhone 5 / 5S*/
 @media only screen 
 and (min-device-width : 320px) 
