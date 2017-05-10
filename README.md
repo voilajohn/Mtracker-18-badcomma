@@ -7,6 +7,9 @@ Droid and iOS compatible.
 ~ Added a DB Variable for the User order logging
 ~ Added subtotal and grand total to Printed page
 ~ Added Thank you page details for after checkout
+~ Fixed some formatting issues on the checkout page on smaller screens
+~ updated text on Add to Cart buttons so text was not truncated
+~ validation added to the checkout form
 
 /**************** vs 1.16  || 5-9-17 **************/
 ~ New Method for setting up the product pricing so that it does not produce duplicates and or errors

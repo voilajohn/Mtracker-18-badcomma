@@ -183,7 +183,12 @@ MickmanAppLogin.CartController.prototype.saveCartData = function(){
     var invalidInput = false;
     var invisibleStyle = "bi-invisible";
     var invalidInputStyle = "bi-invalid-input";
-    
+    var emailReg = /^([a-zA-Z0-9\\.]+)@([a-zA-Z0-9\\-\\_\\.]+)\.([a-zA-Z0-9]+)$/i;
+    var phoneReg = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+    var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+
+
+    //lets validate the fields
     for(x=0;x<fieldArr.length;x++){
 		$('#'+fieldArr[x]).removeClass(invalidInputStyle);
 		//console.log($('#'+fieldArr[x]).val().length);
@@ -193,8 +198,27 @@ MickmanAppLogin.CartController.prototype.saveCartData = function(){
 			$('#'+fieldArr[y]).addClass(invalidInputStyle);
 			invalidInput = true;
 		}
+		if('#'+fieldArr[y] == "#personal-email"){
+			if(!emailReg.test($("#personal-email").val())){
+	    		invalidInput = true;
+				$("#personal-email").addClass(invalidInputStyle);
+			}
+    	}
+    	if('#'+fieldArr[y] == "#personal-phone"){
+			if(!phoneReg.test($("#personal-phone").val())){
+	    		invalidInput = true;
+				$("#personal-phone").addClass(invalidInputStyle);
+			}
+    	}
+    	if('#'+fieldArr[y] == "#personal-zip"){
+			if(!isValidZip.test($("#personal-zip").val())){
+	    		invalidInput = true;
+				$("#personal-zip").addClass(invalidInputStyle);
+			}
+    	}
+    	
     }
-    
+   
 	if(invalidInput === true){
 		$('#page-checkout #ctn-err').html("<p>Please enter all the required fields.</p>");
         $('#page-checkout #ctn-err').addClass("bi-ctn-err").slideDown();
