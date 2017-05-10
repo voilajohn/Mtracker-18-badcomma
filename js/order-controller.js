@@ -269,11 +269,11 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			orderContent += '<table><thead><tr><th>Product</th><th>Number</th><th>Cost</th></tr></thead><tbody>';
 			for(x=0;x<value[1].length;x++){
 				orderContent += '<tr><td>'+value[1][x][0]+'</td><td>'+value[1][x][1][1]+'</td><td>'+value[1][x][1][0]+'</td></tr>';
-				subtotal += Number(value[1][x][1][0]);
+				subtotal += Number(value[1][x][1][1])*Number(value[1][x][1][0]);
 			}
 			orderContent += '</tbody></table>';
+			orderContent += '<p><strong>Order subtotal: </strong>'+subtotal+'</p>';
 			orderContent += '<p><strong>Payment Status: </strong>'+value[2]+'</p>';
-			orderContent += '<p><strong>Order subtotal: </strong>'+subtotal+'</p>'
 			
 		}).then(function(){
 			//console.log(orderContent);
