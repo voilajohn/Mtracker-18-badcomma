@@ -748,6 +748,20 @@ legend{
     padding-bottom:.22em;
     height: 28px;
 }
+.phone-fields{
+	margin-left:5px !important;
+}
+div.ui-input-text.controlgroup-textinput{
+	width:100px;
+	
+}
+/*.phone-fields .controlgroup-textinput{
+	width:60% !important;
+}
+#personal-phone-type{
+	width:10% !important;
+	border:1px solid #000;
+}*/
 .quantity-input{
 	width:25%;
 	padding:5px !important;
