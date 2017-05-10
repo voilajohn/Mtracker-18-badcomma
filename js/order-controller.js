@@ -255,7 +255,6 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			var day = new Date(+date[1]).getUTCDate();
 			var month = new Date(+date[1]).getUTCMonth();
 			var year = new Date(+date[1]).getUTCFullYear();
-			var subtotal = 0;
 			
 			//build the client info
 			orderContent += '<table>';
@@ -269,17 +268,12 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			orderContent += '<table><thead><tr><th>Product</th><th>Number</th><th>Cost</th></tr></thead><tbody>';
 			for(x=0;x<value[1].length;x++){
 				orderContent += '<tr><td>'+value[1][x][0]+'</td><td>'+value[1][x][1][1]+'</td><td>'+value[1][x][1][0]+'</td></tr>';
-				subtotal += Number(value[1][x][1][0]);
 			}
-			
-			
-			orderContent += '<tr><td colspan="3">Subtotal: '+subtotal+'</td></tr></tbody></table>';
-			//orderContent += '<p><strong>Subtotal: </strong>'+subtotal+'</p>';
+			orderContent += '</tbody></table>';
 			orderContent += '<p><strong>Payment Status: </strong>'+value[2]+'</p>';
 			
 			
 		}).then(function(){
-			console.log("-" + subtotal);
 			//console.log(orderContent);
 			$(".print-message").removeClass('bi-invisible');
 			$(".print-message").html('Sending to printer');
