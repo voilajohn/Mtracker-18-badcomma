@@ -736,6 +736,13 @@ legend{
 	text-align:center;
 	margin:0px auto;
 }
+.thanks-banner{
+	padding:20px 10px !important;
+}
+.reciept-table td{
+	padding:10px;
+	vertical-align:top;
+}
 .controlgroup-textinput{
     padding-top:.22em;
     padding-bottom:.22em;

@@ -119,7 +119,6 @@ $(".create-order").click(function () {
 								var promises = cartItems.map(function(item) { return  cart.removeItem(item); });
 								Promise.all(promises).then(function(results) {
 								    console.log("r-"+results);
-								    
 								});
 								if(deliverydate != null){
 									$('#page-order-complete .delivery-time').html(deliverydate);
@@ -127,7 +126,27 @@ $(".create-order").click(function () {
 								if(group != null){
 									$("#page-order-complete .group").html(group);
 								}
-								//$("#page-order-complete order-details").html(promises);
+								var orderData = "<h2>Your Order Details</h2>";
+								var subtotal = 0;
+								//for(y=0;y<pdataA.length;y++){ //personal data
+								orderData += "<table class='reciept-table'>";
+								orderData += "<tr><td><strong>Name: </strong>"+pdataA[1]+" "+pdataA[2]+"</td></tr>";
+								orderData += "<tr><td><strong>Address: </strong>"+pdataA[3]+"</td></tr>";
+								orderData += "<tr><td><strong>City: </strong>"+pdataA[4]+"</td></tr>";
+								orderData += "<tr><td><strong>State: </strong>"+pdataA[5]+"</td></tr>";
+								orderData += "<tr><td><strong>Zip: </strong>"+pdataA[6]+"</td></tr>";
+								orderData += "<tr><td><strong>Phone: </strong>"+pdataA[7]+" ["+pdataA[8]+"]</td></tr>";
+								orderData += "<tr><td><strong>Email: </strong>"+pdataA[9]+"</td></tr>";
+								orderData += "</table>";
+								//}
+								for(x=0;x<cartContents.length;x++){ //cart data
+									orderData += "<table class='reciept-table'><tr><td><img src='"+cartContents[x][1][2]+"' class='cartimg'/></td><td><strong>"+cartContents[x][0]+"</strong><br><p>Quantity:"+cartContents[x][1][1]+"</br>cost per:"+format1(cartContents[x][1][0], "$")+"</p></td></tr></table>";
+									subtotal += Number(cartContents[x][1][1])*Number(cartContents[x][1][0]);
+								}
+								orderData += "<p>Order Subtotal: "+format1(subtotal, "$")+"</p>";
+								//orderData = cartContents;
+								console.log(pdataA);
+								$("#page-order-complete .order-details").html(orderData);
 								$(':mobile-pagecontainer').pagecontainer('change', '#page-order-complete');//go to next page
 					        }
 				        }).catch(function(err){
