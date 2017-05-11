@@ -95,6 +95,8 @@ MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 }
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
+
+	alert("DEBUG: saved data");
 	console.log("Fill out the Catalog");
 	//hide everything - this is messign stuff up 
 	
