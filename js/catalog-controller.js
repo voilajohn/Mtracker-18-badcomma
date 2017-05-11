@@ -117,7 +117,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	// Find the number of items in the datastore.
 	// Need to set lowest price and flag the radio button
 	product.iterate(function(value, key, iterationNumber) {
-		alert("DEBUG: "+key);
+		
 	    if( (key == "25c") && value > 0 || (key == "25cg") && value > 0 ||
 	    	(key == "28c") && value > 0 || (key == "28cg") && value > 0 ||
 	    	(key == "36c") && value > 0 || (key == "36cg") && value > 0 ||
