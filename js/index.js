@@ -72,7 +72,7 @@ function checkGroup(){ //find the group name and the user saved.
 	product.getItem('wod').then( function(value){
 		deliverydate = value;
 	});
-	alert("DEBUG: group - "+group);
+	//alert("DEBUG: group - "+group);
 }
 function format1(n, currency) {
     return currency + " " + n.toFixed(2).replace(/./g, function(c, i, a) {
@@ -159,7 +159,7 @@ $(document).delegate("#page-checkout", "pagebeforecreate", function () {
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 //$(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	app.catalogController.init();
-    //app.catalogController.getSavedData();
+    app.catalogController.getSavedData();
     //checkGroup(); 
     console.log("page-main-menu");
     app.cartController.init();
@@ -242,4 +242,10 @@ function updatePageHighlight(x){
 	});
 	var currentmenu = $("#menu-panel a[href="+x+"]");
 	currentmenu.addClass("listview-active");
+}
+//check for many items in the cart already
+function setAll(arr){
+	return Promise.all( arr.map(function(key){
+		return product.setItem(key);
+	}) );
 }

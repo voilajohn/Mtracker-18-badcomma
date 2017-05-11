@@ -56,6 +56,7 @@ MickmanAppLogin.CatalogController.prototype.addpricetoPopup = function (e) { //p
 //ADD TO PRODUCT DB
 MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write the server items to the database
 	var data = y;
+	var productList = [];
 	data.unshift(['user',x]);//push username selected to the front of the list
 	//data.unshift(['token',x]);//push username selected to the front of the list
 	console.log(data);
@@ -63,14 +64,28 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 		if(data[j][1] != "" || data[j][1] != 0){//check for blanks
 			//need to send this all at once then return the info
 			
-			product.setItem(data[j][0], data[j][1]).then( function(value){
+			//product.setItem(data[j][0], data[j][1]).then( function(value){
 				//alert("DEBUG: DB SAVED!");
-			});
+			//});
+			//let's turn this into a promise chain so it can all be done at once then fire the getsaveddata after
+			productList.push([data[j][0], data[j][1]]);
 		}else{
 			console.log(data[j][0] + "is empty");
 		}
 	}
-	this.getSavedData(); //now lets boot up the page
+	
+	//new
+	var promises = productList.map(function(item) {
+		return product.setItem(item[0],item[1]);
+	});
+	
+	Promise.all(promises).then(function(results) {
+	    //console.log("r-"+results);
+	    //getSavedData();
+	    app.catalogController.getSavedData();
+	});
+	
+	//this.getSavedData(); //now lets boot up the page
 });
 MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 	cart.getItem("defaults").then( function(value) { //let's add in our defaults if they are saved
@@ -100,7 +115,7 @@ MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
 
-	//console.log("Fill out the Catalog");
+	console.log("Fill out the Catalog");
 	//hide everything 
 	
 	$("#ClassicWreath").hide(); 
