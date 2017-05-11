@@ -158,9 +158,9 @@ $(document).delegate("#page-checkout", "pagebeforecreate", function () {
 //Catalog Page is Loaded - pagebeforecreate
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 //$(document).delegate("#page-main-menu", "pagebeforecreate", function () {
-    checkGroup(); 
 	app.catalogController.init();
-    app.catalogController.getSavedData();
+    //app.catalogController.getSavedData();
+    //checkGroup(); 
     console.log("page-main-menu");
     app.cartController.init();
     app.cartController.$btnAdd.off("tap").on("tap", function () {

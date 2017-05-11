@@ -268,6 +268,9 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		//need to make sure the page is loaded.
 		$(".slickIt").trigger("click"); //now load the carousel
 		$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
+		
+		//update the page titles
+		checkGroup();
 	    
 	}).catch(function(err) {
 	    // This code runs if there were any errors
