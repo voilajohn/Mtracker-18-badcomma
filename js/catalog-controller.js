@@ -64,7 +64,7 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 			//need to send this all at once then return the info
 			
 			product.setItem(data[j][0], data[j][1]).then( function(value){
-				alert("DEBUG: DB SAVED!");
+				//alert("DEBUG: DB SAVED!");
 			});
 		}else{
 			console.log(data[j][0] + "is empty");
