@@ -7,7 +7,8 @@ Droid and iOS compatible.
 ~ Fixed bug that was stopping checkout when using the default settings
 ~ Cleared out address info when order is completed so that it doesn't show up on the next order
 ~ Default Address - added feedback and validation 
-
+~ Refigured how the catalog loads which fixed the iPhone / iPod first loading issue
+~ replaced the centerpiece on the front image.
 
 /**************** vs 1.17  || 5-10-17 **************/
 ~ Added a DB Variable for the User order logging
