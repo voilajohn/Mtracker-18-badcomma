@@ -99,7 +99,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	//console.log("Fill out the Catalog");
 	//hide everything 
 	
-	$("#ClassicWreath").hide(); 
+	/*$("#ClassicWreath").hide(); 
 	$("#VictorianWreath").hide(); 
 	$("#CranberrySplashWreath").hide();
 	
@@ -112,7 +112,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	$("#garland").hide();
 	$("#EZWreathHanger").hide();
 	$("#Bags").hide();
-	$("#LEDlights").hide();
+	$("#LEDlights").hide();*/
     
 	// Find the number of items in the datastore.
 	// Need to set lowest price and flag the radio button
