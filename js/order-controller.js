@@ -133,6 +133,7 @@ $(".create-order").click(function () {
 							var orderData = "<h2>Your Order Details</h2>";
 							var subtotal = 0;
 							//for(y=0;y<pdataA.length;y++){ //personal data
+							orderData += "<a href='#page-main-menu' class='ui-btn'>Close</a>";
 							orderData += "<table class='reciept-table'>";
 							orderData += "<tr><td><strong>Name: </strong>"+pdataA[1]+" "+pdataA[2]+"</td></tr>";
 							orderData += "<tr><td><strong>Address: </strong>"+pdataA[3]+"</td></tr>";
