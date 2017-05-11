@@ -72,6 +72,7 @@ function checkGroup(){ //find the group name and the user saved.
 	product.getItem('wod').then( function(value){
 		deliverydate = value;
 	});
+	alert("DEBUG: group - "+group);
 }
 function format1(n, currency) {
     return currency + " " + n.toFixed(2).replace(/./g, function(c, i, a) {

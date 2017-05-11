@@ -99,7 +99,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	//console.log("Fill out the Catalog");
 	//hide everything 
 	
-	/*$("#ClassicWreath").hide(); 
+	$("#ClassicWreath").hide(); 
 	$("#VictorianWreath").hide(); 
 	$("#CranberrySplashWreath").hide();
 	
@@ -112,7 +112,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	$("#garland").hide();
 	$("#EZWreathHanger").hide();
 	$("#Bags").hide();
-	$("#LEDlights").hide();*/
+	$("#LEDlights").hide();
     
 	// Find the number of items in the datastore.
 	// Need to set lowest price and flag the radio button
@@ -217,7 +217,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    
 	}).then(function() {
 		
-		alert("DEBUG: catalog should be showing");
+		//alert("DEBUG: catalog should be showing");
 		$('#ClassicOption').controlgroup('container').html(CradioBtn);
 		$('#VictorianOption').controlgroup('container').html(VradioBtn);
 		$('#CranberryOption').controlgroup('container').html(SradioBtn);
@@ -444,7 +444,7 @@ $('.product-button').on('click', function(){
 });
 
 $(".slickIt").on('click', function(){ //rotating area
-	alert("DEBUG: slickit triggered");
+	//alert("DEBUG: slickit triggered");
 	$(".product-display").addClass('swiper-container');
 	$(".product-wrapper").addClass('swiper-wrapper');
 	var swiper = new Swiper('.swiper-container', {
