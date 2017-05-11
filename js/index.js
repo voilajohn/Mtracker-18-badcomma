@@ -72,7 +72,8 @@ function checkGroup(){ //find the group name and the user saved.
 	product.getItem('wod').then( function(value){
 		deliverydate = value;
 	});
-	console.log("gcheck");
+	//console.log("gcheck");
+	alert("DEBUG: group -" + group);
 }
 function format1(n, currency) {
     return currency + " " + n.toFixed(2).replace(/./g, function(c, i, a) {
@@ -181,9 +182,12 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	    productID = $(this).parent().parent().data("fieldrealName");
 	    size = $(this).parent().parent().find("span.sentSize").text();
 	    thumb = $(this).parent().parent().find("img").attr('src');
-	    //dbname = $(this).parent().parent().find().attr();
-	    //var items = [[product+"-"+size,Number(cost),thumb,dbname]];
-	    var items = [[product+"-"+size,Number(cost),thumb,productID]];
+	    
+	    if(product == "LED Lights" || product == "EZ Wreath Hanger"){ 
+		    var items = [[product,Number(cost),thumb,productID]];
+		}else{ 
+			var items = [[product+"-"+size,Number(cost),thumb,productID]];
+		}
 	    var radioSelected = $(this).parent().find(':radio:checked').val();
 	    //lets check for addons
 	    //need to check the DB-ID to see where it needs to get added to.
@@ -218,19 +222,15 @@ $( ".ppanel" ).on( "panelbeforeopen", function( event, ui ) {//lets gather all t
 });
 $( "#purchase" ).on( "popupbeforeposition", function( event, ui ) {
 	var productName = $(this).data('fieldrealName');
-	console.log(productName);
 	if(productName == "hanger" || productName == "25gar" || productName == "50gar" || productName == "led" || productName == "tlt"){
 		//EZ wreath hanger / Garland / LED lights / Tiny Living Tree
-		console.log(productName);
 		$(this).find(".addon-wrapper").css("display","none");
 		$(this).find(".addon-wrapper").css("display","none");
 		$(this).find(".addon-wrapper .hangerwrapper").show();
 	}else if(productName == "cc"){
-		console.log("centerpiece");
 		$(this).find(".addon-wrapper").css("display","block");
 		$(this).find(".addon-wrapper .hangerwrapper").hide();
 	}else{
-		console.log("other" + productName);
 		$(this).find(".addon-wrapper").css("display","block");
 		$(this).find(".addon-wrapper").css("display","block");	
 		$(this).find(".addon-wrapper .hangerwrapper").show();
@@ -238,11 +238,9 @@ $( "#purchase" ).on( "popupbeforeposition", function( event, ui ) {
 });
 
 function updatePageHighlight(x){
-	//console.log(x);
 	$( "#menu-panel li a" ).each( function( index, element ){
     	$( this ).removeClass("listview-active");
 	});
 	var currentmenu = $("#menu-panel a[href="+x+"]");
 	currentmenu.addClass("listview-active");
-	//console.log(currentmenu);
 }

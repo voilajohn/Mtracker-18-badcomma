@@ -368,20 +368,37 @@ $('.searchbtn').click(function () {
 //save defaults option
 //need to get USER 			
 $('.save-defaults').click(function () { //lets create a default field in the cart database
+	$("#profile-panel #ctn-err").removeClass("bi-ctn-err");
+	$("#profile-panel #ctn-err").removeClass("bi-ctn-suc");
 	var username = $(".your-profile").text(); //this should be set already
 	//get the values of the three fields
 	var city = $("#default-city").val();
 	var state = $("#default-state").val();
 	var zip = $("#default-zip").val();
+	var isValidZip = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+	//lets validate these quick
+	if(city != "" && state != "" && zip != ""){ //check that they aren't blank
+		if(!isValidZip.test(zip)){
+			$("#profile-panel #ctn-err").text("Please check that you've filled in the zip properly.");
+			$("#profile-panel #ctn-err").addClass("bi-ctn-err").slideDown();
+		}else{
+			var defaults = [city,state,zip];
+			//ADD TO CART DB
+			cart.setItem("defaults",defaults).then(function(){
+				console.log("saved");
+				app.catalogController.getUserData(); //refresh the form
+				//show a confirmation message
+				$("#profile-panel #ctn-err").text("Default settings saved");
+				$("#profile-panel #ctn-err").addClass("bi-ctn-suc").slideDown();
+			}).catch(function(err){
+				console.log(err);
+			});
+		}
+	}else{		
+		$("#profile-panel #ctn-err").text("Please fill in all the fields to save.");
+		$("#profile-panel #ctn-err").addClass("bi-ctn-err").slideDown();
+	}
 	
-	var defaults = [city,state,zip];
-	//ADD TO CART DB
-	cart.setItem("defaults",defaults).then(function(){
-		console.log("saved");
-		app.catalogController.getUserData(); //refresh the form
-	}).catch(function(err){
-		console.log(err);
-	});
 });
 
 //filter buttons on the bottom of the page
@@ -442,7 +459,7 @@ $(".slickIt").on('click', function(){ //rotating area
         grabCursor: true,
         breakpoints: {
             2000: {
-                slidesPerView: 6,
+                slidesPerView: 4,
                 spaceBetween: 40
             },
             1024: {

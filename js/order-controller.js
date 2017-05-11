@@ -94,77 +94,89 @@ $(".create-order").click(function () {
 	var cartContents = [];
 	var cartItems = []; //new to create a promise chain
 	var cartLength;
+	
 	var cartLength = cart.length().then(function(value){
-		console.log("cart:" + value);
-		cartLength = value;
+		cart.getItem('default').then(function(){ //check for the default cart settings entry
+			cartLength = (value-1); //if its there remove it from the count
+		}).catch(function(err){
+			cartLength = 1;
+		});
 	});
 	//Key:User-Date, Value:[personal-info,order-info,payment]
 	//Create the order record - then when we go through the cart add the orders to the record. 
-		//console.log(product);
-		order.setItem(orderStamp,[pdataA,"order-info",$("#payment-type :radio:checked").val()]).then( function(){
-			cart.iterate(function(value, key, iterationNumber) {//iterate over the cart 
-			   if (key != "personal" && key != "defaults") {
-			        cartArr.push(key); //push all the keys into an array
-			        cartContents.push([key,value]);
-			        order.getItem(orderStamp).then( function(value){
-				        order.setItem(orderStamp,[value[0],cartContents,value[2],0]).then( function(){
-					        //added a value to track whether it is synced or not
-					        if (iterationNumber == (cartLength-1)) { //only do this before the interation is complete
-					        	for(i=0;i<cartArr.length;i++){
-									cartItems.push(cartArr[i]); //create a collection to remove
-								}
-								/*******************************
-									SOMETHING ABOUT UPDATING THE CART IS MESSING UP THE DATABASES*? or is it not what the heck?
-								********************************/
-								var promises = cartItems.map(function(item) { return  cart.removeItem(item); });
-								Promise.all(promises).then(function(results) {
-								    console.log("r-"+results);
-								});
-								if(deliverydate != null){
-									$('#page-order-complete .delivery-time').html(deliverydate);
-								}
-								if(group != null){
-									$("#page-order-complete .group").html(group);
-								}
-								var orderData = "<h2>Your Order Details</h2>";
-								var subtotal = 0;
-								//for(y=0;y<pdataA.length;y++){ //personal data
-								orderData += "<table class='reciept-table'>";
-								orderData += "<tr><td><strong>Name: </strong>"+pdataA[1]+" "+pdataA[2]+"</td></tr>";
-								orderData += "<tr><td><strong>Address: </strong>"+pdataA[3]+"</td></tr>";
-								orderData += "<tr><td><strong>City: </strong>"+pdataA[4]+"</td></tr>";
-								orderData += "<tr><td><strong>State: </strong>"+pdataA[5]+"</td></tr>";
-								orderData += "<tr><td><strong>Zip: </strong>"+pdataA[6]+"</td></tr>";
-								orderData += "<tr><td><strong>Phone: </strong>"+pdataA[7]+" ["+pdataA[8]+"]</td></tr>";
-								orderData += "<tr><td><strong>Email: </strong>"+pdataA[9]+"</td></tr>";
-								orderData += "</table>";
-								//}
-								for(x=0;x<cartContents.length;x++){ //cart data
-									orderData += "<table class='reciept-table'><tr><td><img src='"+cartContents[x][1][2]+"' class='cartimg'/></td><td><strong>"+cartContents[x][0]+"</strong><br><p>Quantity:"+cartContents[x][1][1]+"</br>cost per:"+format1(cartContents[x][1][0], "$")+"</p></td></tr></table>";
-									subtotal += Number(cartContents[x][1][1])*Number(cartContents[x][1][0]);
-								}
-								orderData += "<p>Order Subtotal: "+format1(subtotal, "$")+"</p>";
-								//orderData = cartContents;
-								console.log(pdataA);
-								$("#page-order-complete .order-details").html(orderData);
-								$(':mobile-pagecontainer').pagecontainer('change', '#page-order-complete');//go to next page
-					        }
-				        }).catch(function(err){
-					        console.log("ORDER ARRAY NOT ADDED TO ORDER: " + err);
-					    });
+	//console.log(product);
+	order.setItem(orderStamp,[pdataA,"order-info",$("#payment-type :radio:checked").val()]).then( function(){
+		cart.iterate(function(value, key, iterationNumber) {//iterate over the cart 
+		   if (key != "personal" && key != "defaults") {
+		        cartArr.push(key); //push all the keys into an array
+		        cartContents.push([key,value]);
+		        order.getItem(orderStamp).then( function(value){
+			        order.setItem(orderStamp,[value[0],cartContents,value[2],0]).then( function(){
+				        //added a value to track whether it is synced or not
+				        if (iterationNumber == (cartLength-1)) { //only do this before the interation is complete
+				        	for(i=0;i<cartArr.length;i++){
+								cartItems.push(cartArr[i]); //create a collection to remove
+							}
+							/*******************************
+								SOMETHING ABOUT UPDATING THE CART IS MESSING UP THE DATABASES*? or is it not what the heck?
+							********************************/
+							var promises = cartItems.map(function(item) { return  cart.removeItem(item); });
+							Promise.all(promises).then(function(results) {
+							    console.log("r-"+results);
+							});
+							if(deliverydate != null){
+								$('#page-order-complete .delivery-time').html(deliverydate);
+							}
+							if(group != null){
+								$("#page-order-complete .group").html(group);
+							}
+							var orderData = "<h2>Your Order Details</h2>";
+							var subtotal = 0;
+							//for(y=0;y<pdataA.length;y++){ //personal data
+							orderData += "<table class='reciept-table'>";
+							orderData += "<tr><td><strong>Name: </strong>"+pdataA[1]+" "+pdataA[2]+"</td></tr>";
+							orderData += "<tr><td><strong>Address: </strong>"+pdataA[3]+"</td></tr>";
+							orderData += "<tr><td><strong>City: </strong>"+pdataA[4]+"</td></tr>";
+							orderData += "<tr><td><strong>State: </strong>"+pdataA[5]+"</td></tr>";
+							orderData += "<tr><td><strong>Zip: </strong>"+pdataA[6]+"</td></tr>";
+							orderData += "<tr><td><strong>Phone: </strong>"+pdataA[7]+" ["+pdataA[8]+"]</td></tr>";
+							orderData += "<tr><td><strong>Email: </strong>"+pdataA[9]+"</td></tr>";
+							orderData += "</table>";
+							//}
+							for(x=0;x<cartContents.length;x++){ //cart data
+								orderData += "<table class='reciept-table'><tr><td><img src='"+cartContents[x][1][2]+"' class='cartimg'/></td><td><strong>"+cartContents[x][0]+"</strong><br><p>Quantity:"+cartContents[x][1][1]+"</br>cost per:"+format1(cartContents[x][1][0], "$")+"</p></td></tr></table>";
+								subtotal += Number(cartContents[x][1][1])*Number(cartContents[x][1][0]);
+							}
+							orderData += "<p>Order Subtotal: "+format1(subtotal, "$")+"</p>";
+							console.log(pdataA);
+							$("#page-order-complete .order-details").html(orderData);
+							$(':mobile-pagecontainer').pagecontainer('change', '#page-order-complete');//go to next page
+							//clear out the fields 
+							$("#personal-fname").val("");
+							$("#personal-lname").val("");
+							$("#personal-address").val("");
+							$("#personal-city").val("");
+							$("#personal-state").val("");
+							$("#personal-zip").val("");
+							$("#personal-phone").val("");
+							$("#personal-email").val("");
+				        }
 			        }).catch(function(err){
-				        console.log("ORDER ITEM NOT FOUND TO ADD ARRAY TO: "+err)
-			        });
-			    }
-			}).then(function(result) {
-			    //console.log('Iteration has completed, last iterated pair:');
-			    //console.log(result);
-			}).catch(function(err) {// This code runs if there were any errors
-			    console.log("CART ITERATION FAILED: "+err);
-			});
-		}).catch(function(err){
-			console.log("ORDER ITEM NOT ABLE TO BE CREATED: "+err);
+				        console.log("ORDER ARRAY NOT ADDED TO ORDER: " + err);
+				    });
+		        }).catch(function(err){
+			        console.log("ORDER ITEM NOT FOUND TO ADD ARRAY TO: "+err)
+		        });
+		    }
+		}).then(function(result) {
+		    //console.log('Iteration has completed, last iterated pair:');
+		    //console.log(result);
+		}).catch(function(err) {// This code runs if there were any errors
+		    console.log("CART ITERATION FAILED: "+err);
 		});
+	}).catch(function(err){
+		console.log("ORDER ITEM NOT ABLE TO BE CREATED: "+err);
+	});
 
 });
 

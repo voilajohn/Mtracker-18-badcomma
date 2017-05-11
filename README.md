@@ -1,7 +1,13 @@
 # Mtracker
-####### Version 1.17 ####### 
+####### Version 1.18 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible. 
+
+/**************** vs 1.18  || 5-11-17 **************/
+~ Fixed bug that was stopping checkout when using the default settings
+~ Cleared out address info when order is completed so that it doesn't show up on the next order
+~ Default Address - added feedback and validation 
+
 
 /**************** vs 1.17  || 5-10-17 **************/
 ~ Added a DB Variable for the User order logging

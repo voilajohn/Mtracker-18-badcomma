@@ -220,7 +220,7 @@ MickmanAppLogin.CartController.prototype.saveCartData = function(){
     }
    
 	if(invalidInput === true){
-		$('#page-checkout #ctn-err').html("<p>Please enter all the required fields.</p>");
+		$('#page-checkout #ctn-err').html("<p>Please check that all the required fields are filled in properly.</p>");
         $('#page-checkout #ctn-err').addClass("bi-ctn-err").slideDown();
 	}else{
 		var userN;
@@ -279,61 +279,6 @@ $('.emptyProducts').click(function () { //temporary
 		console.log(err);
 	});
 });
-
-/*$(document).on('click', '.saveCart', function(e){     
-	//grab the fields and save them to the database.
-	var fieldArr = ['personal-fname','personal-lname','personal-address','personal-city','personal-state','personal-zip','personal-phone','personal-email'];
-    $('#page-checkout #ctn-err').html();
-    $('#page-checkout #ctn-err').removeClass("bi-ctn-err");
-    
-    var invalidInput = false;
-    var invisibleStyle = "bi-invisible";
-    var invalidInputStyle = "bi-invalid-input";
-    
-    for(x=0;x<fieldArr.length;x++){
-		$('#'+fieldArr[x]).removeClass(invalidInputStyle);
-		//console.log($('#'+fieldArr[x]).val().length);
-    }
-    for(y=0;y<fieldArr.length;y++){
-		if($('#'+fieldArr[y]).val().length === 0){
-			$('#'+fieldArr[y]).addClass(invalidInputStyle);
-			invalidInput = true;
-		}
-		//$('#'+fieldArr[x]).val()
-    }
-    
-	if(invalidInput === true){
-		$('#page-checkout #ctn-err').html("<p>Please enter all the required fields.</p>");
-        $('#page-checkout #ctn-err').addClass("bi-ctn-err").slideDown();
-	}else{
-		var userN;
-		product.getItem('user').then( function(value){ //this is failing randomly??
-			console.log("user:"+value);
-			userN = value;
-		});
-			if(userN != null){
-			}else{
-				userN = "not available";
-			}
-			var fname = $("#personal-fname").val();
-			var lname = $("#personal-lname").val();
-			var address = $("#personal-address").val();
-			var city = $("#personal-city").val();
-			var state = $("#personal-state").val();
-			var zip  = $("#personal-zip").val();
-			var phone = $("#personal-phone").val();
-			var email = $("#personal-email").val();
-			
-			cart.setItem("personal",[userN, fname, lname, address, city, state, zip, phone, email]).then( function(){
-				$('#personal-data').val([userN, fname, lname, address, city, state, zip, phone, email]);
-				$(':mobile-pagecontainer').pagecontainer('change', '#page-payment');//go to next page
-			});
-		///}).catch(function(err){
-			///console.log(err);
-		///});		
-	}
-	e.preventDefault();
-});*/
 
 $(document).on('click', '.addProduct', function(){ //Cart + button  
 	var prod;

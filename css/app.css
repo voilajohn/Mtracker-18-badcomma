@@ -391,6 +391,13 @@ h3.mc-text-danger  {
     border: 1px solid #e9cfbd;
     border-radius:3px 3px;
 }
+.bi-ctn-suc { /*error message*/
+    background-color:#00a65e;
+    color:#FFF;
+    padding:0 .5em;
+    margin-bottom:.5em;
+    border-radius:3px 3px;
+}
 .bi-header {
     border: 0px; position: fixed; width: 100%; top: 0px; left: 0px; z-index: 21;
 }
