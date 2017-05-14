@@ -102,9 +102,9 @@ $(".create-order").click(function () {
 			cartLength = 1;
 		});
 	});
+	//console.log(newcartLength);
 	//Key:User-Date, Value:[personal-info,order-info,payment]
 	//Create the order record - then when we go through the cart add the orders to the record. 
-	//console.log(product);
 	order.setItem(orderStamp,[pdataA,"order-info",$("#payment-type :radio:checked").val()]).then( function(){
 		cart.iterate(function(value, key, iterationNumber) {//iterate over the cart 
 		   if (key != "personal" && key != "defaults") {
@@ -113,7 +113,8 @@ $(".create-order").click(function () {
 		        order.getItem(orderStamp).then( function(value){
 			        order.setItem(orderStamp,[value[0],cartContents,value[2],0]).then( function(){
 				        //added a value to track whether it is synced or not
-				        if (iterationNumber == (cartLength-1)) { //only do this before the interation is complete
+				        //console.log(iterationNumber + " : " + cartLength);
+					        ////if (iterationNumber == (cartLength-1)) { <!-- overkill removed
 				        	for(i=0;i<cartArr.length;i++){
 								cartItems.push(cartArr[i]); //create a collection to remove
 							}
@@ -161,7 +162,7 @@ $(".create-order").click(function () {
 							$("#personal-zip").val("");
 							$("#personal-phone").val("");
 							$("#personal-email").val("");
-				        }
+				        ////}
 			        }).catch(function(err){
 				        console.log("ORDER ARRAY NOT ADDED TO ORDER: " + err);
 				    });

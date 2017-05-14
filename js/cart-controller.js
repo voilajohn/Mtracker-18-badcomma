@@ -253,6 +253,7 @@ function getAll(arr){
 	}) );
 }
 
+
 //contact info submitted - store it in A 
 /* #### BUTTONS ### */
 $('.emptyCart').click(function () { //clear the cart db

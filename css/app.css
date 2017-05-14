@@ -758,9 +758,11 @@ legend{
 .phone-fields{
 	margin-left:5px !important;
 }
-div.ui-input-text.controlgroup-textinput{
+#page-checkout div.ui-input-text.controlgroup-textinput{
 	width:100px;
-	
+}
+fieldset#keepsigned{
+	border:none !important;
 }
 /*.phone-fields .controlgroup-textinput{
 	width:60% !important;
