@@ -3,7 +3,7 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "A8FETR73Y9.com.phonegap.MickmanTracker"
         versionCode = "10" 
-        version     = "1.18" >
+        version     = "1.19" >
 	
     <name>Mickman Digital Sales Aid</name>
     <description>
@@ -35,6 +35,7 @@
     
     <!-- Droid permissions settings allow links-->
 	<allow-navigation href="http://cpanel-2101-20.datarealm.com/*" />
+	<allow-navigation href="https://online.mickman.com/*" />
    
     <!-- ios icons 7+ -->
     <!-- iPhone 6 / 6+ -->
@@ -103,7 +104,7 @@
 	<splash src="images/splash/port-xxxhdpi.png" platform="android" qualifier="port-xxxhdpi" />
 	<splash src="images/splash/land-xxxhdpi.png" platform="android" qualifier="land-xxxhdpi" />
 	
-<gap:config-file platform="ios" parent="ITSAppUsesNonExemptEncryption" mode="add">
-	<false/>
-</gap:config-file>
+	<gap:config-file platform="ios" parent="ITSAppUsesNonExemptEncryption" mode="add">
+		<false/>
+	</gap:config-file>
 </widget>

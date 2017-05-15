@@ -150,7 +150,7 @@ $(".create-order").click(function () {
 								subtotal += Number(cartContents[x][1][1])*Number(cartContents[x][1][0]);
 							}
 							orderData += "<p>Order Subtotal: "+format1(subtotal, "$")+"</p>";
-							console.log(pdataA);
+							//console.log(pdataA);
 							$("#page-order-complete .order-details").html(orderData);
 							$(':mobile-pagecontainer').pagecontainer('change', '#page-order-complete');//go to next page
 							//clear out the fields 

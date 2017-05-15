@@ -761,7 +761,7 @@ legend{
 #page-checkout div.ui-input-text.controlgroup-textinput{
 	width:100px;
 }
-fieldset#keepsigned{
+#keepsigned.ui-controlgroup .ui-btn{
 	border:none !important;
 }
 /*.phone-fields .controlgroup-textinput{

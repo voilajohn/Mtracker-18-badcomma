@@ -147,7 +147,7 @@ MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the c
 		if(key == "personal"){
 		}else if(key == "defaults"){
 		}else{
-			console.log(value[1]);
+			//console.log(value[1]);
 			$(".cartlist").hide();
 			$(".cartlist").append("<li class='divider-title' data-role='list-divider'><h4>"+key+"</h4></li><li><img src='"+value[2]+"' alt='"+key+"' class='cartthumb'/><p style='margin:0px;'>$"+value[0]+" each <div class='total green'>$<span>"+Number(value[0]*value[1])+"</span><br><strong class='smaller'>Quantity ordered:</strong></div><div data-role='controlgroup' data-type='horizontal' class='ui-group-theme-a' data-product-name='"+key+"' data-product-cost='"+value[0]+"' data-product-thumb='"+value[2]+"' data-product-id='"+value[3]+"'><input id='quantity' type='text' data-wrapper-class='controlgroup-textinput ui-btn quantity-input' value='"+value[1]+"'><a href='#' class='ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext addProduct'>+</a><a href='#' class='ui-btn ui-corner-all ui-icon-minus ui-btn-icon-notext removeProduct'>-</a></div></p></li>");
 			//<span class='ui-li-count'>"+value[1]+"</span>
