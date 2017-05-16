@@ -1,7 +1,10 @@
 # Mtracker
 ####### Version 1.20 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
-Droid and iOS compatible. 
+Droid and iOS compatible.
+
+/**************** vs 1.20  || 5-15-2017 **************/
+~ Removed link from the main page it was opening over the app instead of opening a web browser.
 
 /**************** vs 1.19  || 5-12-17-5-15-2017 **************/
 ~ Adding in real links to the Mickman Database
