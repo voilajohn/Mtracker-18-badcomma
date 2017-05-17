@@ -3,6 +3,10 @@
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
+/**************** vs 1.21  || 5-17-2017 **************/
+~ Fix products showing in filter when they are not available. 
+~ Hide the filter button if no product in that section is available.
+
 /**************** vs 1.20  || 5-15-2017 **************/
 ~ Removed link from the main page it was opening over the app instead of opening a web browser.
 

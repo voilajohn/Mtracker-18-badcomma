@@ -41,6 +41,7 @@ MickmanAppLogin.CatalogController.prototype.init = function () {
     this.$storePage = "#page-main-menu";
     this.$btnAdd = $(".addtocart", this.$storePage);
     
+    //remove the options ?is this causing log out - in issues?
     $('#ClassicOption').html("");
 	$('#VictorianOption').html("");
 	$('#CranberryOption').html("");
@@ -118,7 +119,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	console.log("Fill out the Catalog");
 	//hide everything 
 	
-	$("#ClassicWreath").hide(); 
+	/*$("#ClassicWreath").hide(); 
 	$("#VictorianWreath").hide(); 
 	$("#CranberrySplashWreath").hide();
 	
@@ -131,7 +132,22 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	$("#garland").hide();
 	$("#EZWreathHanger").hide();
 	$("#Bags").hide();
-	$("#LEDlights").hide();
+	$("#LEDlights").hide();*/
+	
+	$("#ClassicWreath").addClass('hidden'); 
+	$("#VictorianWreath").addClass('hidden');  
+	$("#CranberrySplashWreath").addClass('hidden'); 
+	
+	$("#ClassicSpray").addClass('hidden'); 
+	$("#VictorianSpray").addClass('hidden'); 
+	$("#CranberrySpray").addClass('hidden'); 
+	
+	$("#HolidayCenterpiece").addClass('hidden'); 
+	$("#tabletoptree").addClass('hidden'); 
+	$("#garland").addClass('hidden'); 
+	$("#EZWreathHanger").addClass('hidden'); 
+	$("#Bags").addClass('hidden'); 
+	$("#LEDlights").addClass('hidden'); 
 	
 	//clear buttons to make sure there isn't duplicates
 	CradioBtn = "";
@@ -149,7 +165,8 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    	(key == "48c") && value > 0 && value != null || (key == "48cg") && value > 0 && value != null ||
 	    	(key == "60c") && value > 0 && value != null || (key == "60cg") && value > 0 && value != null
 	    ){ //Classic Wreath is available
-		    $("#ClassicWreath").show();
+		    //$("#ClassicWreath").show();
+		    $("#ClassicWreath").removeClass('hidden'); 
 		    var buttonLabel = key.slice(0,2) + "in.";
 		    CradioBtn += '<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span> <span class="labelprice">$'+value+'</span></label>';
 	    }
@@ -157,21 +174,31 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    	(key == "28v") && value > 0 && value != null || (key == "28vg") && value > 0 && value != null ||
 	    	(key == "36v") && value > 0 && value != null || (key == "36vg") && value > 0 && value != null 
 	    ){ //Victorian Wreath is available
-		    $("#VictorianWreath").show();
+		    //$("#VictorianWreath").show();
+		    $("#VictorianWreath").removeClass('hidden'); 
 		    var buttonLabel = key.slice(0,2) + "in.";
 		    VradioBtn += '<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>';		}
 		if( (key == "25cs") && value > 0 && value != null || (key == "25csg") && value > 0 && value != null || 
 	    	(key == "28cs") && value > 0 && value != null || (key == "28csg") && value > 0 && value != null ||
 	    	(key == "36cs") && value > 0 && value != null || (key == "36csg") && value > 0 && value != null
 	    ){ //Cranberry Splash Wreath is available
-		    $("#CranberrySplashWreath").show();
+		    //$("#CranberrySplashWreath").show();
+		    $("#CranberrySplashWreath").removeClass('hidden'); 
 		    var buttonLabel = key.slice(0,2) + "in.";
 		    SradioBtn += '<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>';		}
+		    if($("#ClassicWreath").hasClass('hidden') && $("#VictorianWreath").hasClass('hidden') && $("#CranberrySplashWreath").hasClass('hidden')){
+			    //hide the wreath filter button
+				$("#wreath").addClass('hidden');//hide the other category
+				$('#filterset').trigger('create');
+		    }else{
+				$("#wreath").removeClass('hidden');//hide the other category
+		    }
 		//SPRAYS
 		if( (key == "sprayc") && value > 0 && value != null || 
 			(key == "spraycg") && value > 0 && value != null
 	    ){ //Classic Spray
-		    $("#ClassicSpray").show();
+		    //$("#ClassicSpray").show();
+		    $("#ClassicSpray").removeClass('hidden'); 
 		    $("#ClassicSpray .split-custom-wrapper a").data("num",value);
 		    $("#ClassicSpray .price span.num").html(value);
 		    $("#ClassicSpray .split-custom-wrapper a").data("db-name",key);
@@ -179,54 +206,91 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		if( (key == "sprayv") && value > 0 && value != null || 
 			(key == "sprayvg") && value > 0 && value != null
 	    ){ //Classic Spray
-		    $("#VictorianSpray").show();
+		    //$("#VictorianSpray").show();
+		    $("#VictorianSpray").removeClass('hidden'); 
 		    $("#VictorianSpray .split-custom-wrapper a").data("num",value);
 		    $("#VictorianSpray .price span.num").html(value);
 		    $("#VictorianSpray .split-custom-wrapper a").data("db-name",key);
 		}
 		if( (key == "spraycs") && value > 0 && value != null || 
 			(key == "spraycsg") && value > 0 && value != null ){ //Classic Spray
-		    $("#CranberrySpray").show();
+		    //$("#CranberrySpray").show();
+		    $("#CranberrySpray").removeClass('hidden');
 		    $("#CranberrySpray .split-custom-wrapper a").data("num",value);
 		    $("#CranberrySpray .price span.num").html(value);
 		    $("#CranberrySpray .split-custom-wrapper a").data("db-name",key);
 		}
+		if($("#ClassicSpray").hasClass('hidden') &&  $("#VictorianSpray").hasClass('hidden') && $("#CranberrySpray").hasClass('hidden')){
+			//hide wreath sort button
+		    //hide the wreath filter button
+			$("#spray").addClass('hidden');//hide the other category
+			$('#filterset').trigger('create');
+		}else{
+			$("#spray").removeClass('hidden');//hide the other category
+	    }
 		if( (key == "cc") && value > 0 && value != null ){ //Holiday Centerpiece
-			$("#HolidayCenterpiece").show();
+			//$("#HolidayCenterpiece").show();
+			$("#HolidayCenterpiece").removeClass('hidden');
+
 			$("#HolidayCenterpiece .split-custom-wrapper a").data("num",value);
 			$("#HolidayCenterpiece .price span.num").html(value);
 			$("#HolidayCenterpiece .split-custom-wrapper a").data("db-name",key);
 		}
+		if($("#HolidayCenterpiece").hasClass('hidden')){
+			$("#centerpiece").addClass('hidden');//hide the other category
+			$('#filterset').trigger('create');
+		}else{
+			$("#centerpiece").removeClass('hidden');
+		}
+		
 		if( (key == "tlt") && value > 0 && value != null
 		){ //Tiny Living Tree
-			$("#tabletoptree").show();
+			//$("#tabletoptree").show();
+			
+			$("#tabletoptree").removeClass('hidden');
 			$("#tabletoptree .split-custom-wrapper a").data("num",value);
 			$("#tabletoptree .price span.num").html(value);
 			$("#tabletoptree .split-custom-wrapper a").data("db-name",key);
+		}
+		if($("#tabletoptree").hasClass('hidden')){
+			$("#tree").addClass('hidden');//hide the other category
+			$('#filterset').trigger('create');
+		}else{
+			$("#tree").removeClass('hidden');
 		}
 		if( (key == "25gar") && value > 0 && value != null ||
 			(key == "50gar") && value > 0 && value != null ||
 			(key == "25garg") && value > 0 && value != null ||
 			(key == "50garg") && value > 0 && value != null 
 		){ //Garland
-			$("#garland").show();
+			//$("#garland").show();
+			$("#garland").removeClass('hidden');
 			var buttonLabel = key.slice(0,2) + "ft.";
 		    GradioBtn += '<input type="radio" name="size" id="garland'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="garland'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>';
 		    //$('#GarlandOption').controlgroup('container').append(radioBtn);
 		}
 		if( (key == "hanger") && value > 0 && value != null){
-			$("#EZWreathHanger").show();
+			//$("#EZWreathHanger").show();
+			$("#EZWreathHanger").removeClass('hidden');
 			$("#EZWreathHanger .split-custom-wrapper a").data("num",value);
 			$("#EZWreathHanger .split-custom-wrapper a").data("db-name",key);
 			$("#EZWreathHanger .price span.num").html(value);
 			$(".addhangerprice").html(value);
 		}
 		if( (key == "led") && value > 0 && value != null){
-			$("#LEDlights").show();
+			//$("#LEDlights").show();
+			$("#LEDlights").removeClass('hidden');
+			
 			$("#LEDlights .split-custom-wrapper a").data("num",value);
 			$("#LEDlights .split-custom-wrapper a").data("db-name",key);
 			$("#LEDlights .price span.num").html(value);
 			$(".addledprice").html(value);
+		}
+		if($("#garland").hasClass('hidden') && $("#EZWreathHanger").hasClass('hidden') && $("#LEDlights").hasClass('hidden')){
+			$("#other").addClass('hidden');//hide the other category
+			$('#filterset').trigger('create');
+		}else{
+			$("#other").removeClass('hidden');
 		}
 		if(key == "user"){
 			$(".your-profile").html(value);
