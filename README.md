@@ -1,16 +1,21 @@
 # Mtracker
-####### Version 1.20 ####### 
+####### Version 1.22 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
-/**************** vs 1.21  || 5-17-2017 **************/
+/**************** vs 1.22  || 5-18-17/5-19-17 **************/
+~ Adding iOS 6.1 icons
+~ Fixing add-ons layout in cart for the 2 decimal placeholder 
+~ Fixing zoom on product details
+
+/**************** vs 1.21  || 5-17-17 **************/
 ~ Fix products showing in filter when they are not available. 
 ~ Hide the filter button if no product in that section is available.
 
-/**************** vs 1.20  || 5-15-2017 **************/
+/**************** vs 1.20  || 5-15-17 **************/
 ~ Removed link from the main page it was opening over the app instead of opening a web browser.
 
-/**************** vs 1.19  || 5-12-17-5-15-2017 **************/
+/**************** vs 1.19  || 5-12-17-5-15-17 **************/
 ~ Adding in real links to the Mickman Database
 ~ Updating some minor css rules
 ~ Removing the database debug stuff

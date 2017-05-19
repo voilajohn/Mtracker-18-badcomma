@@ -2,8 +2,8 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.phonegap.MickmanTracker"
-        versionCode = "10.1" 
-        version     = "1.21" >
+        versionCode = "10.11" 
+        version     = "1.22" >
 	
     <name>Mickman Digital Sales Aid</name>
     <description>
@@ -38,6 +38,7 @@
 	<allow-navigation href="https://online.mickman.com/*" />
    
     <!-- ios icons 7+ -->
+    
     <!-- iPhone 6 / 6+ -->
 	<icon src="images/icons/icon-60@3x.png" platform="ios" width="180" height="180" />
 
@@ -60,7 +61,18 @@
 	<icon src="images/icons/icon-40@2x.png" platform="ios" width="80" height="80" />
 	<icon src="images/icons/icon-40@3x.png" platform="ios" width="120" height="120" />
 	
-	<!-- ios icons  6.1 -->
+	<!--ios 6.1 -->
+	<!-- iPhone / iPod Touch -->
+	<icon src="images/icons/icon.png" platform="ios" width="57" height="57" />
+	<icon src="images/icons/icon@2x.png" platform="ios" width="114" height="114" />
+	
+	<!-- iPad -->
+	<icon src="images/icons/icon-72.png" platform="ios" width="72" height="72" />
+	<icon src="images/icons/icon-72@2x.png" platform="ios" width="144" height="144" />
+	
+	<!-- iPad Spotlight and Settings Icon -->
+	<icon src="images/icons/icon-small-50.png" platform="ios" width="50" height="50" />
+	<icon src="images/icons/icon-small-50@2x.png" platform="ios" width="100" height="100" />
 	
 	<!--DROID ICONS-->
 	<icon src="images/icons/ldpi.png" platform="android" qualifier="ldpi" />
