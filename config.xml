@@ -92,7 +92,7 @@
 	<!-- iPhone 6 -->
 	<splash src="images/splash/Default-667h@2x.png" platform="ios" width="750" height="1334" />
 	<splash src="images/splash/Default-Portrait-736h@3x.png" platform="ios" width="1242" height="2208" />
-	<splash src="images/splash/Default-Landscape-736h@3x.png" platform="ios" width="2208" height="1242" />
+	<splash src="images/splash/Default-Landscape-736@3x.png" platform="ios" width="2208" height="1242" />
 	
 	<!-- iPad -->
 	<splash src="images/splash/Default-Portrait.png" platform="ios" width="768" height="1024" />
