@@ -441,16 +441,23 @@ $('.searchbtn').click(function () {
 	$("#larger img").attr("src", imageUrl); //set the url of the popup image
 	$("#larger .proddescription").html(description);
 	
-	$("#larger img.panzoom").panzoom({
-		 startTransform: 'scale(1.1)',
+	/*$("#larger img.panzoom").panzoom({
+		 startTransform: 'scale(0.75)',
          minScale: 0.1,
          contain: 'automatic'
-	}).panzoom('zoom');
-
-	/*var swiper = new Swiper('.swiper-zoom-container', {
-        zoom: true
-    });*/
-	
+	}).panzoom();*/
+	$('#larger').find('.panzoom').panzoom("reset");
+	(function() {
+          var $section = $('#larger');
+          $section.find('.panzoom').panzoom({
+            $zoomIn: $section.find(".zoom-in"),
+            $zoomOut: $section.find(".zoom-out"),
+            $reset: $section.find(".reset"),
+            //panOnlyWhenZoomed: true,
+            minScale: 0.1
+          });
+    })();
+    
 	$("#larger").trigger( "updatelayout" );
 	$("#larger").popup("open");
 });

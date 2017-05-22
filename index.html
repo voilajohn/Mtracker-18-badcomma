@@ -292,11 +292,18 @@
 						<h2>Would you like to add?</h2>
 					<fieldset data-role="controlgroup" data-type="horizontal" class="cart-addons">
 						<span class="ledlightwrapper">
-					    <input type="checkbox" name="addon-lights" id="ledlights"><label for="ledlights"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i><img src="images/products/thumbs/lights_sm.jpg" class="addonthumb ledthumb"/> LED Light<br>Set<br>Price: $<span class="addledprice"></span></label></span><span class="hangerwrapper"><input type="checkbox" name="addon-hanger" id="ezwreathhanger"><label for="ezwreathhanger"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i><img src="images/products/thumbs/hanger_sm.jpg" alt="EZ Hanger" class="addonthumb ezthumb"> EZ Wreath<br>Hangar<br>Price: $<span class="addhangerprice"></span></label></span></fieldset></div><form><fieldset data-role="controlgroup" data-mini="true" class="checkout-radio"><input type="radio" name="cart-choice" id="cart-choice-a" value="checkout" checked="checked"><label for="cart-choice-a"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i>Add & Checkout</label><input type="radio" name="cart-choice" id="cart-choice-b" value="shop"><label for="cart-choice-b"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i>Add & Shop</label><input type="radio" name="cart-choice" id="cart-choice-c" value="cancel"><label for="cart-choice-c"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i>Cancel</label></fieldset><a href="#" class="ui-btn addCheckout green-button ui-corner-all">Continue</a></form>
+					    <input type="checkbox" name="addon-lights" id="ledlights"><label for="ledlights"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i><img src="images/products/thumbs/lights_sm.jpg" class="addonthumb ledthumb"/> LED Light<br>Set<br><div class="addonpricing">Price: $<span class="addledprice"></span></div></label></span><span class="hangerwrapper"><input type="checkbox" name="addon-hanger" id="ezwreathhanger"><label for="ezwreathhanger"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i><img src="images/products/thumbs/hanger_sm.jpg" alt="EZ Hanger" class="addonthumb ezthumb"> EZ Wreath<br>Hangar<br><div class="addonpricing">Price: $<span class="addhangerprice"></span></div></label></span></fieldset></div><form><fieldset data-role="controlgroup" data-mini="true" class="checkout-radio"><input type="radio" name="cart-choice" id="cart-choice-a" value="checkout" checked="checked"><label for="cart-choice-a"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i>Add & Checkout</label><input type="radio" name="cart-choice" id="cart-choice-b" value="shop"><label for="cart-choice-b"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i>Add & Shop</label><input type="radio" name="cart-choice" id="cart-choice-c" value="cancel"><label for="cart-choice-c"><i class="zmdi zmdi-check-circle zmdi-hc-2x"></i>Cancel</label></fieldset><a href="#" class="ui-btn addCheckout green-button ui-corner-all">Continue</a></form>
 				</div>
 				<!-- larger image -->
 				<div data-role="popup" id="larger" data-theme="a" data-overlay-theme="a" class="ui-content imagepop">
 				    <div class="imagecontain"><img src="images/products/classic_lg.jpg" alt="" class="panzoom"/></div>
+					<div class="buttons">
+						 <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+				        <button class="zoom-in">Zoom In</button>
+				        <button class="zoom-out">Zoom Out</button>
+				        <button class="reset">Reset</button>
+				        </fieldset>
+				      </div>
 					<div class="proddescription"></div>
 				    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn">Close</a>
 				</div>

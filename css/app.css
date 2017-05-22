@@ -484,11 +484,15 @@ p.purchaseprice:after{
 	margin-right:5px;
 	/*display:none;*/
 }
+
 .cart-addons{
 	/*position:relative;*/
 	margin:0px !important;
 	padding:0px !important;
 	font-size:11px !important;
+}
+.cart-addons #ledlights{
+	border:1px solid #000;
 }
 .cart-addons label{
 	font-size:12px;
@@ -496,6 +500,14 @@ p.purchaseprice:after{
 	padding:5px !important;
 	/*overflow:visible;*/
 }
+.addonpricing{
+	font-size:10px;
+}
+/*.ledlightwrapper, .hangerwrapper{
+	border:3px solid #000;
+	display:inline-block;
+	width:48%;
+}*/
 .cart-addons .ui-checkbox .ui-checkbox-on .zmdi-check-circle, .cart-addons .ui-checkbox .ui-checkbox-off .zmdi-check-circle{
 	position:absolute;
 	left:0px;
@@ -710,6 +722,7 @@ legend{
 .imagecontain img{
 	width:100%;
 	height:auto;
+	position:relative;
 }
 .imagepop .proddescription{
 	padding:20px;
