@@ -67,20 +67,20 @@ function checkGroup(){ //find the group name and the user saved.
 	product.getItem('cust_id').then( function(value){
 		group = value;
 		console.log("G: "+group);
+		$(".your-group").html(group);
 	});
 	product.getItem('user').then( function(value){
 		currentuser = value;
 		app.orderController.CreateOrderDB(value);
+		console.log("U: "+currentuser);
+		$(".your-profile").html(currentuser);
 		//lets create the custom db for the user - also sets the orderdb value
 	});
 	product.getItem('wod').then( function(value){
 		deliverydate = value;
+		$(".your-delivery").html(deliverydate);
 	});
 	//update the sidebar data
-	$(".your-profile").html(currentuser);
-	$(".your-group").html(group);
-	$(".your-delivery").html(deliverydate);
-	
 	console.log("checkgroup");
 }
 function format1(n, currency) {
