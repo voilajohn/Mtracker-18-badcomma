@@ -294,7 +294,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		}else{
 			$("#other").removeClass('hidden');
 		}
-		if(key == "user"){
+		/*if(key == "user"){
 			$(".your-profile").html(value);
 		}
 		if(key == "cust_id"){
@@ -302,7 +302,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		}
 		if(key == "wod"){
 			$(".your-delivery").html(value);
-		}
+		}*/
 	
 		//other parts
 	    
@@ -355,14 +355,14 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		$(".slickIt").trigger("click"); //now load the carousel
 		$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
 		
-		//update the page titles
-		checkGroup();
+		
 	    
 	}).catch(function(err) {
 	    // This code runs if there were any errors
 	    console.log(err);
 	});
-	
+	//update the page titles
+		checkGroup();
 	console.log("Get Saved Data");
 	//lets query for the user data too
 	this.getUserData(); //only load this on the first time around after the catalog is in there

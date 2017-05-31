@@ -66,7 +66,7 @@ function checkGroup(){ //find the group name and the user saved.
 	//CHECK DB
 	product.getItem('cust_id').then( function(value){
 		group = value;
-		console.log(group);
+		console.log("G: "+group);
 	});
 	product.getItem('user').then( function(value){
 		currentuser = value;

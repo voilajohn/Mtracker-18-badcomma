@@ -230,7 +230,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 			        url: MickmanAppLogin.Settings.syncDataUrl,
 			        data: "token=" + token + "&id="+ myID +"&data=" + JSON.stringify(orderArray) + "&sync-data=true",
 			        success: function (resp) {
-				        alert(resp);
+				        //alert(resp);
 				        if(resp.success == true){//now lets mark the columns that we saved.
 					        markedOrder = String(resp.extras.marksaved);//we need to mark the returned as a string 
 					        syncedArray = markedOrder.split(",");//to create an array
