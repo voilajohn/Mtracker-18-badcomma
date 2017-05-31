@@ -449,14 +449,62 @@ h3.mc-text-danger  {
 	font-size:12px;
 	background:#EBEBEB;
 }
+.priceselect, .priceselect li{
+	list-style:none;
+	margin:0px;
+	padding:0px;
+	font-size:8px !important;
+}
+.slider .ui-block-a{
+	width:35% !important;
+}
+.priceselect .controlgroup-textinput{
+	padding:0px !important;
+}
+input.q{
+	padding:0px !important;
+	width:25px;
+	text-align:center;
+}
+.slider .ui-block-c{
+	width:35%;
+	/*padding:3px !important;*/
+	padding:0px;
+}
+.slider .ui-block-b{
+	width:30% !important;
+	vertical-align:top;
+}
+.priceselect .ui-block-a{
+	width:40% !important;
+	margin:0px;
+}
+.priceselect .ui-block-c{
+	width:30% !important;
+	padding:3px 0px 0px 0px;
+}
+.priceselect .ui-block-b{
+	width:30% !important;
+	padding:3px 0px 0px 0px;
+}
+.priceselect .plus,.priceselect .minus{
+	padding:5px !important;
+	display:inline-block;
+}
+
 .labelprice{
-	position:absolute;
+	/*position:absolute;*/
+	display:inline-block;
 	right:4px;
 	top:4px;
 	background:#00a65e;
 	color:white;
 	padding:5px;
+	margin:5px auto !important;
+	font-size:12px;
+	text-align:center;
 	border-radius:5px;
+	width:80%;
 }
 .purchaseAdd p{
 	margin:5px;
@@ -473,6 +521,7 @@ p.purchaseprice:after{
 	float:left;
 	max-width:100%;
 	height:auto;
+	margin-bottom:10px;
 }
 #ledlights label{
 	padding:5px;
@@ -597,10 +646,13 @@ input[type="radio"] {
   overflow: visible !important;
   padding:5px !important;
 }
+.slider{
+	width:240px !important;
+}
 .product-display div.slider .inner{
 	background:#FFF;
 	min-height:300px;
-	padding:20px;
+	padding:20px 10px;
 }
 
 .product-display.unslicked{
@@ -612,6 +664,7 @@ input[type="radio"] {
 	position:relative;
 	margin:10px;
 	list-style:none;
+	width:100% !important;
 	padding:0px;
 }
 .product-display.unslicked div.slider img{
@@ -628,7 +681,7 @@ input[type="radio"] {
 	background:#FFF;
 	max-width:65%;
 	width:55%;
-	padding:20px;
+	padding:10px;
 	display:inline-block;
 	/*float:left;*/
 }
@@ -776,7 +829,7 @@ legend{
 	margin-left:5px !important;
 }
 #page-checkout div.ui-input-text.controlgroup-textinput{
-	width:100px;
+	/*width:100px;*/
 }
 #keepsigned.ui-controlgroup .ui-btn{
 	border:none !important;

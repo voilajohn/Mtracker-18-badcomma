@@ -71,22 +71,52 @@ MickmanAppLogin.CartController.prototype.removeProduct = function (e) {
 	});
 };
 
-MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t,r) {//save cart to db 
-	$('#purchase img.cartthumb').attr('src',t);
-	$('#purchase span.sentPrice').html(e);
-	if(s != ""){
-		$('#purchase span.sentSize').html(s);
+MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t,r,q) {
+	//save cart to db 
+	//added q 
+	console.log(e + ":" + e.length);//5
+	if(Array.isArray(e)){ //check if it is multiples
+		//fill in the first one 
+		console.log("isArray");
+		//hide original
+		$('.purchaseAdd').addClass('hidden');
+		var appendHtml = "";
+		for(x=0;x<e.length;x++){//e is the prices array
+			appendHtml += '<div class="purchaseAdd ui-corner-all clone new'+x+'" id="'+r[x]+'">';
+			appendHtml += '<img src="'+t+'" alt="" class="cartthumb"/>';
+			appendHtml += '<p><strong>Product:</strong> <span class="sentProduct">'+p+'</span></p>';
+			if(s != ""){
+				appendHtml += '<p><strong>Option:</strong> <span class="sentSize">'+s[x]+'</span></p>';
+			}else{
+				appendHtml += '<p><strong>Option:</strong> <span class="sentSize">none</span></p>';
+			}
+			appendHtml += '<p><strong>Price:</strong> $<span class="sentPrice">'+e[x]+'</span></p>';
+			appendHtml += '<p><strong>Quantity:</strong> <span class="sentQuantity">'+q[x]+'</span></p>';
+			appendHtml += '<div style="clear:both"></div>';
+			appendHtml += '</div>';
+		}
+		$(".cart-items").append(appendHtml);
+		$('#purchase').enhanceWithin();
 	}else{
-		$('#purchase span.sentSize').html("");
+		//adding quantity for 
+		$('#purchase img.cartthumb').attr('src',t);
+		$('#purchase span.sentPrice').html(e);
+		$('#purchase span.sentQuantity').html(q);
+		if(s != ""){
+			$('#purchase span.sentSize').html(s);
+		}else{
+			$('#purchase span.sentSize').html("");
+		}
+		$('#purchase span.sentProduct').html(p);
+		$('#purchase').data('fieldrealName',r);
+		$('#purchase').enhanceWithin();
 	}
-	$('#purchase span.sentProduct').html(p);
-	$('#purchase').data('fieldrealName',r);
-	//console.log("r:"+r);
-	$('#purchase').enhanceWithin();
+	
 };
 
 MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
-	//console.log(e + " " + r);
+	console.log(e + " --- " + r);
+	
 	if(r != "cancel"){
 		var cartList = []; //stuff that exists in the cart already
 		var cartValues = [];
@@ -98,7 +128,6 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 		for(x=0;x<itemsLength;x++){
 			itemList.push(e[x][0]);
 		}
-		////itemList.push(["Classic Wreath-25in. $30"]); ////?
 		
 		cart.iterate(function(value,key,iterationNumber){
 			if(key != "personal" && key != "defaults"){ //list everything in the cart as an array
@@ -109,8 +138,8 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 			if(cartList.length == 0){
 				console.log("add new ones to the db");
 				for(x=0;x<itemList.length;x++){
-					cart.setItem(e[x][0],[e[x][1],1,e[x][2],e[x][3]]);
-					//cart.setItem(e[x][0],[e[x][1],1,e[x][2],e[x][3]]);
+					cart.setItem(e[x][0],[e[x][1],e[x][4],e[x][2],e[x][3]]);
+					//added e[x]4 in place of default 1 for the multiples option
 				}
 			}else{
 				//lets add in items that are not on this list and if they are we are going to add one
@@ -118,9 +147,9 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 					if(jQuery.inArray(String(itemList[x]),cartList) !== -1){
 						listNum = jQuery.inArray(String(itemList[x]),cartList);
 						savedData = cartValues[Number(listNum)];
-						cart.setItem(cartList[Number(listNum)],[cartValues[Number(listNum)][0],Number(cartValues[Number(listNum)][1]+1),cartValues[Number(listNum)][2]]);
+						cart.setItem(cartList[Number(listNum)],[cartValues[Number(listNum)][0],Number(cartValues[Number(listNum)][1]+e[x][4]),cartValues[Number(listNum)][2]]);
 					}else{
-						cart.setItem(e[x][0],[e[x][1],1,e[x][2],e[x][3]]);
+						cart.setItem(e[x][0],[e[x][1],e[x][4],e[x][2],e[x][3]]);
 					}
 				}
 			}
@@ -129,6 +158,28 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 		$("#ledlights").attr("checked",false).checkboxradio("refresh");
 		$("#ezwreathhanger").attr("checked",false).checkboxradio("refresh");
 		
+		//clear quantities items
+		//$(".inner .q").val(0);
+		
+		//clear checked items
+		$('.inner').find('.checkbox-check').each(function () {
+			if(this.checked){ 
+				$(this).click().checkboxradio("refresh");
+			}
+		});
+		
+		//clear cart variables
+		$('#purchase img.cartthumb').attr('src',"");
+		$('#purchase span.sentPrice').html("");
+		$('#purchase span.sentQuantity').html("");
+		$('#purchase span.sentSize').html("");
+		$('#purchase span.sentProduct').html("");
+		
+		
+		//$('#purchase').removeData('fieldrealName');
+		$('#purchase .clone').remove();//remove clones
+		$('.purchaseAdd').removeClass('hidden');//restore single checkout
+		
 		if(r == "checkout"){
 	    	$(':mobile-pagecontainer').pagecontainer('change', '#page-cart');
 	    }else{
@@ -136,6 +187,20 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 	    }
     }else{
 	    $("#purchase").popup("close");
+	    console.log("clear");
+	    //uncheck options if they are checked
+		$("#ledlights").attr("checked",false).checkboxradio("refresh");
+		$("#ezwreathhanger").attr("checked",false).checkboxradio("refresh");
+		
+		//clear cart variables
+		$('#purchase img.cartthumb').attr('src',"");
+		$('#purchase span.sentPrice').html("");
+		$('#purchase span.sentQuantity').html("");
+		$('#purchase span.sentSize').html("");
+		$('#purchase span.sentProduct').html("");
+		//$('#purchase').removeData('fieldrealName');
+		$('#purchase .clone').remove();//remove clones
+		$('.purchaseAdd').removeClass('hidden');//restore single checkout
     }
 };
 

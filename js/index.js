@@ -9,6 +9,7 @@ var group; //get the group name
 var currentuser; //get the user name
 var deliverydate;
 var isprintAvailable = false;
+var orderdb;
 var swiper;
 
 // Begin boilerplate code generated with Cordova project.
@@ -50,7 +51,6 @@ app.initialize();
 // End boilerplate code.
 $(document).on("mobileinit", function (event, ui) {
     $.mobile.defaultPageTransition = "slide";
-    //$.mobile.defaultPageTransition = "none";
 	$( "body>[data-role='panel']" ).panel(); //global panel
 	$("#menu-panel").trigger("create");
 });
@@ -62,17 +62,21 @@ app.orderController = new MickmanAppLogin.OrderController(); //call the order co
 
 function checkGroup(){ //find the group name and the user saved.
 	//first point at which we are querying the database
+	//this is not saving across pages if the page is reloaded
 	//CHECK DB
 	product.getItem('cust_id').then( function(value){
 		group = value;
+		console.log(group);
 	});
 	product.getItem('user').then( function(value){
 		currentuser = value;
+		app.orderController.CreateOrderDB(value);
+		//lets create the custom db for the user - also sets the orderdb value
 	});
 	product.getItem('wod').then( function(value){
 		deliverydate = value;
 	});
-	//alert("DEBUG: group - "+group);
+	console.log("checkgroup");
 }
 function format1(n, currency) {
     return currency + " " + n.toFixed(2).replace(/./g, function(c, i, a) {
@@ -134,13 +138,12 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
                 }
             }
         case "page-checkout": //if it's the second step of the cart let's check for saved 
-        	//app.catalogController.getUserData();
-			//console.log("check for saved profile info - check the db for saved cart data");
     }
 });
 
 //Login Button - pagebeforecreate
 $(document).delegate("#page-signin", "pagebeforecreate", function () {
+	console.log("signin");
     app.signInController.init();
     app.signInController.$btnSubmit.off("tap").on("tap", function () {
         app.signInController.onSignInCommand();
@@ -157,49 +160,90 @@ $(document).delegate("#page-checkout", "pagebeforecreate", function () {
 
 //Catalog Page is Loaded - pagebeforecreate
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
-//$(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	app.catalogController.init();
     app.catalogController.getSavedData();
     //checkGroup(); 
     console.log("page-main-menu");
     app.cartController.init();
-    app.cartController.$btnAdd.off("tap").on("tap", function () {
+    //this adds the info to the cart pop up
+    app.cartController.$btnAdd.off("tap").on("tap", function (event) {
 	    // last item - added db-name this one adds variables to the popup
-	    //e,s,p,t,r
-	    app.cartController.addpricetoPopup(
-	    	$(this).data("num"),
-	    	$(this).data("product-size"),
-	    	$(this).data("product"),
-	    	$(this).data("thumb"),
-	    	$(this).data("db-name")
-	    );
+	    //e,s,p,t,r,q
+	    console.log($(this).data("num"));
+	    if($(this).data("num") != ""){
+		    app.cartController.addpricetoPopup(
+		    	$(this).data("num"), //e
+		    	$(this).data("product-size"), //s
+		    	$(this).data("product"), //p
+		    	$(this).data("thumb"), //t
+		    	$(this).data("db-name"), //r
+		    	$(this).data("quantity") //q
+		    );
+	    }else{
+		    $(this).parent().find('.product-error').html("<p>You need to select a product option.</p>");
+		    $(this).parent().find('.product-error').addClass("bi-ctn-err").slideDown().delay(4000).fadeOut().removeClass("bt-ctn-err");
+		    event.preventDefault();
+	    }
     });
+    //this function adds to the cart from the product popup
+    
     app.cartController.$btnCheck.off("tap").on("tap", function (event) {
-	    //first check cart data, then add to if there is existing
-	    cost = $(this).parent().parent().find("span.sentPrice").text();
-	    product = $(this).parent().parent().find("span.sentProduct").text();
-	    productID = $(this).parent().parent().data("fieldrealName");
-	    size = $(this).parent().parent().find("span.sentSize").text();
-	    thumb = $(this).parent().parent().find("img").attr('src');
+	    //lets check here to see if there are more than one item being added
+	    console.log("push to the cart");
+	    var costA = []; 
+	    var productA = []; 
+	    var productIDA = []; 
+	    var sizeA = []; 
+	    var thumbA = []; 
+	    var quantityA = [];
+	    var Num = 0;
+	    //loop through item list
 	    
-	    if(product == "LED Lights" || product == "EZ Wreath Hanger"){ 
-		    var items = [[product,Number(cost),thumb,productID]];
-		}else{ 
-			var items = [[product+"-"+size,Number(cost),thumb,productID]];
+	    $(this).parent().parent().find('.cart-items .clone').each(function(i, obj) {
+		    costA.push($(this).find("span.sentPrice").text());
+		    productA.push($(this).find("span.sentProduct").text());
+		    productIDA.push($(this).attr("id"));
+		    sizeA.push($(this).find("span.sentSize").text());
+		    thumb = $(this).find("img").attr('src');
+		    quantityA.push($(this).find("span.sentQuantity").text());
+		    Num++;
+	    });
+	    if(Num == 0){
+		    //first check cart data, then add to if there is existing
+		    cost = $(this).parent().parent().find("span.sentPrice").text();
+		    product = $(this).parent().parent().find("span.sentProduct").text();
+		    productID = $(this).parent().parent().data("fieldrealName");
+		    size = $(this).parent().parent().find("span.sentSize").text();
+		    thumb = $(this).parent().parent().find("img").attr('src');
+		    
+		    if(product == "LED Lights" || product == "EZ Wreath Hanger"){ 
+			    var items = [[product,Number(cost),thumb,productID,1]];
+			}else{ 
+				var items = [[product+"-"+size,Number(cost),thumb,productID,1]];//just adding one
+			}//added a quantity to the end
+		}else{//put together an order for each item. 
+			var items = [];
+			for(y=0;y<costA.length;y++){
+				items.push([String(productA[y]+"-"+sizeA[y]),Number(costA[y]),thumb,productIDA[y],Number(quantityA[y])]);
+			}
 		}
+		
+		//option chosen from the popup on what they want to do
 	    var radioSelected = $(this).parent().find(':radio:checked').val();
+	    
 	    //lets check for addons
 	    //need to check the DB-ID to see where it needs to get added to.
+	    //need to make sure that this is getting added if there is already one in there.
 	    if($("#ledlights").is(":checked") || $("#ezwreathhanger").is(":checked")){
 		    if($("#ledlights").is(":checked")){//led
 			   lthumb = $(this).parent().parent().find(".cart-addons img.ledthumb").attr('src');
 			   lprice = $(this).parent().parent().find("span.addledprice").text();
-			   items.push(["Led Light Set",Number(lprice),lthumb,"led"]);
+			   items.push(["Led Light Set",Number(lprice),lthumb,"led",1]);
 		    }
 		    if($("#ezwreathhanger").is(":checked")){
 			   ezthumb = $(this).parent().parent().find(".cart-addons img.ezthumb").attr('src');
 			   ezprice = $(this).parent().parent().find("span.addhangerprice").text();
-			   items.push(["EZ Wreath Hanger",Number(ezprice),ezthumb,"hanger"]);
+			   items.push(["EZ Wreath Hanger",Number(ezprice),ezthumb,"hanger",1]);
 		    }
 	    }
         app.cartController.addtoCartCommand(items,radioSelected);

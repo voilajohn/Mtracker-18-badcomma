@@ -19,3 +19,4 @@ localforage.config({
     storeName   : 'keyvalue_pairs', // Should be alphanumeric, with underscores.
     description : 'products'
 });
+//Error inserting into database: 

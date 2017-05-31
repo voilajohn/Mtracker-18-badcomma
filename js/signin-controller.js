@@ -188,25 +188,22 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
         }
     });
 };
+// keep startup url (in case your app is an SPA with html5 url routing)
+var initialHref = window.location.href;
+
+function restartApplication() {
+  // Show splash screen (useful if your app takes time to load) 
+  //navigator.splashscreen.show();
+  // Reload original app url (ie your index.html file)
+  window.location = initialHref;
+}
 
 //sign out button
 $(".signOut").on('click', function(){ 
+	console.log("sign-out");
 	//page-signin
 	window.localStorage.removeItem('mickman-session');//remove the session key
-	//log out 
-	//clear out the products listing and swiper
-	/*var mySwiper = $('.swiper-container')[0].swiper;
-    mySwiper.destroy();
-    mySwiper = undefined;
-	$('#ClassicOption').html("");
-	$('#VictorianOption').html("");
-	$('#CranberryOption').html("");
-	$('#GarlandOption').html("");
-	
-	$("#ClassicOption").enhanceWithin().controlgroup("refresh");
-	$("#VictorianOption").enhanceWithin().controlgroup("refresh"); 
-	$("#CranberryOption").enhanceWithin().controlgroup("refresh");
-	$('#GarlandOption').enhanceWithin().controlgroup("refresh");*/
-
+	//$(':mobile-pagecontainer').pagecontainer('change', '#page-signin',{ reloadPage:true });//go to next page
 	$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
-	});
+	//restartApplication();
+});

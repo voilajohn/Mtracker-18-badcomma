@@ -10,12 +10,21 @@ MickmanAppLogin.OrderController = function () {
 //gather the variables that we will need 
 MickmanAppLogin.OrderController.prototype.init = function () {
     this.$storePage = "#page-checkout";
+    checkGroup();
 };
+
+//create custom db per user - new #1.23
+MickmanAppLogin.OrderController.prototype.CreateOrderDB = function (name) {
+	orderdb = "order"+name;
+	orderdb = localforage.createInstance({ //Orders Database
+		name: orderdb
+	});
+	console.log(orderdb);
+}
 
 //add orders
 MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { //add order data to the popup then open it.
-	console.log("button called" + x);
-	order.getItem(x).then( function(value){
+	orderdb.getItem(x).then( function(value){
 		$('#popupOrder div').html("");
 		var orderNum = x.split("-");
 		$('#popupOrder div').append("<h3>Order Details</h3>");
@@ -30,11 +39,7 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 		var orders = "<div>";
 		orders += "<br><p><strong>Order Details</strong></p>";
 		for(y=0;y<value[1].length;y++){
-			
-			//console.log(value[1][y][1].length);
-			//for(z=0;z<value[1][y][1].length;z++){
-				orders += "<p style='display:block'>"+value[1][y][0]+ " x" +value[1][y][1][1] + " $" + value[1][y][1][0]+".00</p>";
-			//}
+			orders += "<p style='display:block'>"+value[1][y][0]+ " x" +value[1][y][1][1] + " $" + value[1][y][1][0]+".00</p>";
 		}
 		
 		orders += "</div>";
@@ -56,8 +61,7 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 MickmanAppLogin.OrderController.prototype.buildOrders = function(){
 	$(".orderList").html("");
 	var evenOdd;
-	order.iterate(function(value, key, iterationNumber) {
-		//console.log(key + ":" + value);
+	orderdb.iterate(function(value, key, iterationNumber) {
 		//add orders to the listview
 		var name = value[0][1] + " " + value[0][2];
 		var phone = value[0][7];
@@ -102,18 +106,18 @@ $(".create-order").click(function () {
 			cartLength = 1;
 		});
 	});
+	console.log(orderdb);
 	//console.log(newcartLength);
 	//Key:User-Date, Value:[personal-info,order-info,payment]
 	//Create the order record - then when we go through the cart add the orders to the record. 
-	order.setItem(orderStamp,[pdataA,"order-info",$("#payment-type :radio:checked").val()]).then( function(){
+	orderdb.setItem(orderStamp,[pdataA,"order-info",$("#payment-type :radio:checked").val()]).then( function(){
 		cart.iterate(function(value, key, iterationNumber) {//iterate over the cart 
 		   if (key != "personal" && key != "defaults") {
 		        cartArr.push(key); //push all the keys into an array
 		        cartContents.push([key,value]);
-		        order.getItem(orderStamp).then( function(value){
-			        order.setItem(orderStamp,[value[0],cartContents,value[2],0]).then( function(){
+				orderdb.getItem(orderStamp).then( function(value){
+			        orderdb.setItem(orderStamp,[value[0],cartContents,value[2],0]).then( function(){
 				        //added a value to track whether it is synced or not
-				        //console.log(iterationNumber + " : " + cartLength);
 					        ////if (iterationNumber == (cartLength-1)) { <!-- overkill removed
 				        	for(i=0;i<cartArr.length;i++){
 								cartItems.push(cartArr[i]); //create a collection to remove
@@ -134,7 +138,7 @@ $(".create-order").click(function () {
 							var orderData = "<h2>Your Order Details</h2>";
 							var subtotal = 0;
 							//for(y=0;y<pdataA.length;y++){ //personal data
-							orderData += "<a href='#page-main-menu' class='ui-btn'>Close</a>";
+							orderData += "<a href='#' class='ui-btn closesummary'>Close</a>";
 							orderData += "<table class='reciept-table'>";
 							orderData += "<tr><td><strong>Name: </strong>"+pdataA[1]+" "+pdataA[2]+"</td></tr>";
 							orderData += "<tr><td><strong>Address: </strong>"+pdataA[3]+"</td></tr>";
@@ -150,7 +154,7 @@ $(".create-order").click(function () {
 								subtotal += Number(cartContents[x][1][1])*Number(cartContents[x][1][0]);
 							}
 							orderData += "<p>Order Subtotal: "+format1(subtotal, "$")+"</p>";
-							//console.log(pdataA);
+							
 							$("#page-order-complete .order-details").html(orderData);
 							$(':mobile-pagecontainer').pagecontainer('change', '#page-order-complete');//go to next page
 							//clear out the fields 
@@ -191,7 +195,6 @@ $(document).on('click', '.namePop', function(){//send Name to the popup
 });
 //sync
 $(document).on('click', '.syncOrders', function(){//first lets organize the content of the orders
-	//console.log("sync the orders");
 	
 	//iterate through the orders and assemble into something to pass to the php
 	var token;
@@ -211,7 +214,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 	//product.getItem('token').then(function(err,value){ //maybe it is this line?
 	//I think eliminating this line has fixed some issues??
 		token = myToken;
-		order.iterate(function(value, key, iterationNumber) {//now lets iterate through the orders
+		orderdb.iterate(function(value, key, iterationNumber) {//now lets iterate through the orders
 			if(value[3] == 0){ //find the orders that aren't synced yet
 				orderArray.push([key,value]);
 				restoreArray.push([value[0],value[1],value[2],value[3]]);
@@ -227,6 +230,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 			        url: MickmanAppLogin.Settings.syncDataUrl,
 			        data: "token=" + token + "&id="+ myID +"&data=" + JSON.stringify(orderArray) + "&sync-data=true",
 			        success: function (resp) {
+				        alert(resp);
 				        if(resp.success == true){//now lets mark the columns that we saved.
 					        markedOrder = String(resp.extras.marksaved);//we need to mark the returned as a string 
 					        syncedArray = markedOrder.split(",");//to create an array
@@ -240,7 +244,8 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 							}
 					        
 							var promises = key.map(function(item) { 
-								return order.setItem(item[0],item[1]); 
+								//return order.setItem(item[0],item[1]); 
+								return orderdb.setItem(item[0],item[1]);
 							});
 							
 							console.log(key);
@@ -257,6 +262,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 					},
 					error: function(e){
 						console.log(e);
+						alert("error");
 					}
 				});
 			}else{
@@ -266,17 +272,17 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 		}).catch(function(err) {
 			
 		});
-		
-	//});
-	
 });
-
+//close summary
+$(document).on('click', '.closesummary', function(){
+	$(':mobile-pagecontainer').pagecontainer('change', '#page-main-menu');
+});
 //print page
 $(document).on('click', '.printOrders', function(){//first lets organize the content of the orders
 	var gtotal = 0;
 	var orderContent;
 	if(isprintAvailable == true){
-		order.iterate(function(value, key, iterationNumber) { //lets put together the content 
+		orderdb.iterate(function(value, key, iterationNumber) { //lets put together the content 
 	
 			var name = value[0][1] + " " + value[0][2];
 			var address = value[0][3];
@@ -311,7 +317,6 @@ $(document).on('click', '.printOrders', function(){//first lets organize the con
 			orderContent += '<p><strong>Payment Status: </strong>'+value[2]+'</p>';
 			
 		}).then(function(){
-			//console.log(orderContent);
 			orderContent += "<p><strong>Grand Total </strong>"+format1(gtotal,"$")+"</p>";
 			
 			$(".print-message").removeClass('bi-invisible');

@@ -59,15 +59,10 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 	var data = y;
 	var productList = [];
 	data.unshift(['user',x]);//push username selected to the front of the list
-	//data.unshift(['token',x]);//push username selected to the front of the list
 	console.log(data);
 	for(j=0;j<data.length;j++){
 		if(data[j][1] != "" || data[j][1] != 0){//check for blanks
 			//need to send this all at once then return the info
-			
-			//product.setItem(data[j][0], data[j][1]).then( function(value){
-				//alert("DEBUG: DB SAVED!");
-			//});
 			//let's turn this into a promise chain so it can all be done at once then fire the getsaveddata after
 			productList.push([data[j][0], data[j][1]]);
 		}else{
@@ -81,9 +76,9 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 	});
 	
 	Promise.all(promises).then(function(results) {
-	    //console.log("r-"+results);
-	    //getSavedData();
-	    app.catalogController.getSavedData();
+		//this should be there I think but lets turn it off to see what happens
+	    //app.catalogController.getSavedData();
+	    console.log("store promise chain");
 	});
 	
 	//this.getSavedData(); //now lets boot up the page
@@ -165,27 +160,30 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    	(key == "48c") && value > 0 && value != null || (key == "48cg") && value > 0 && value != null ||
 	    	(key == "60c") && value > 0 && value != null || (key == "60cg") && value > 0 && value != null
 	    ){ //Classic Wreath is available
-		    //$("#ClassicWreath").show();
 		    $("#ClassicWreath").removeClass('hidden'); 
 		    var buttonLabel = key.slice(0,2) + "in.";
-		    CradioBtn += '<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span> <span class="labelprice">$'+value+'</span></label>';
+		    CradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
+		    CradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
+		 
 	    }
 		if( (key == "25v") && value > 0 && value != null || (key == "25vg") && value > 0 && value != null ||
 	    	(key == "28v") && value > 0 && value != null || (key == "28vg") && value > 0 && value != null ||
 	    	(key == "36v") && value > 0 && value != null || (key == "36vg") && value > 0 && value != null 
 	    ){ //Victorian Wreath is available
-		    //$("#VictorianWreath").show();
 		    $("#VictorianWreath").removeClass('hidden'); 
 		    var buttonLabel = key.slice(0,2) + "in.";
-		    VradioBtn += '<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>';		}
+		    VradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
+		    VradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
+		}
 		if( (key == "25cs") && value > 0 && value != null || (key == "25csg") && value > 0 && value != null || 
 	    	(key == "28cs") && value > 0 && value != null || (key == "28csg") && value > 0 && value != null ||
 	    	(key == "36cs") && value > 0 && value != null || (key == "36csg") && value > 0 && value != null
 	    ){ //Cranberry Splash Wreath is available
-		    //$("#CranberrySplashWreath").show();
 		    $("#CranberrySplashWreath").removeClass('hidden'); 
-		    var buttonLabel = key.slice(0,2) + "in.";
-		    SradioBtn += '<input type="radio" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>';		}
+		    var buttonLabel = key.slice(0,2) + "in.";	
+		    SradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
+		    SradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>'; 
+		}
 		    if($("#ClassicWreath").hasClass('hidden') && $("#VictorianWreath").hasClass('hidden') && $("#CranberrySplashWreath").hasClass('hidden')){
 			    //hide the wreath filter button
 				$("#wreath").addClass('hidden');//hide the other category
@@ -263,10 +261,11 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 			(key == "25garg") && value > 0 && value != null ||
 			(key == "50garg") && value > 0 && value != null 
 		){ //Garland
-			//$("#garland").show();
 			$("#garland").removeClass('hidden');
 			var buttonLabel = key.slice(0,2) + "ft.";
-		    GradioBtn += '<input type="radio" name="size" id="garland'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="garland'+key+'"><span class="sizeoption">'+buttonLabel+'</span><span class="labelprice">$'+value+'</span></label>';
+			GradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
+		    GradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
+		   
 		    //$('#GarlandOption').controlgroup('container').append(radioBtn);
 		}
 		if( (key == "hanger") && value > 0 && value != null){
@@ -305,25 +304,19 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		//other parts
 	    
 	}).then(function() {
+		//put the pricing on the items that need pricing added.
+		//$('#ClassicOption').controlgroup('container').html(CradioBtn);
+		$('#ClassicOption').html(CradioBtn);
+		$('#VictorianOption').html(VradioBtn);
+		$('#CranberryOption').html(SradioBtn);
+		$('#GarlandOption').html(GradioBtn);
 		
-		//alert("DEBUG: catalog should be showing");
-		$('#ClassicOption').controlgroup('container').html(CradioBtn);
-		$('#VictorianOption').controlgroup('container').html(VradioBtn);
-		$('#CranberryOption').controlgroup('container').html(SradioBtn);
-		$('#GarlandOption').controlgroup('container').html(GradioBtn);
-		
-		console.log("refresh");
-	    $("#ClassicOption").enhanceWithin().controlgroup("refresh");
-	    $("#ClassicOption").find(".ui-btn:first").trigger('click');//click the first button
-	    
-	    $("#VictorianOption").enhanceWithin().controlgroup("refresh"); 
-	    $("#VictorianOption").find(".ui-btn:first").trigger('click');//click the first button
-	    
-	    $("#CranberryOption").enhanceWithin().controlgroup("refresh");
-	    $("#CranberryOption").find(".ui-btn:first").trigger('click');//click the first button
-	    
-	    $('#GarlandOption').enhanceWithin().controlgroup("refresh");
-	    $('#GarlandOption').find(".ui-btn:first").trigger('click');//click the first button
+		//console.log("refresh");
+	    //$("#ClassicOption").enhanceWithin().controlgroup("refresh");
+	    $("#ClassicOption").enhanceWithin();
+	    $("#VictorianOption").enhanceWithin(); 
+	    $("#CranberryOption").enhanceWithin();
+	    $('#GarlandOption').enhanceWithin();
 	    
 	    //activate non radio buttons
 	    var productName = $("#ClassicSpray h2").text();
@@ -353,6 +346,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		var productName = $("#LEDlights h2").text();
 		$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 		$("#LEDlights .split-custom-wrapper a").data("product-size",""); //push the product size to the checkout area.
+		$("#LEDlights .split-custom-wrapper a").data("quantities","");
 		
 		//need to make sure the page is loaded.
 		$(".slickIt").trigger("click"); //now load the carousel
@@ -404,26 +398,42 @@ MickmanAppLogin.CatalogController.prototype.getUserData = function(){ //gather u
 	});
 };
 
-/********* RADIO UPDATE PRICING */
-//update the price display
-$('.priceselect').change(function () {
-  var radioSelected = $(this).find(':radio:checked');
-  var optradioSelected = radioSelected.val();
-  var Id = $(this).find(':radio:checked').data('prod-id');//find the ID 
-  
-  $(this).parent().parent().find('.price span.num').html(optradioSelected); //show the price on the listview
-  $(this).parent().parent().parent().find('.split-custom-wrapper a').data("num",optradioSelected); //show the price in the cart
-  
-  var productName = $(this).parent().parent().find('h2').text(); //grab the product name
-  $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product",productName); //push the product name to the checkout area.
-  
-  var getName = $(this).parent().data("prod-id");
-  $(this).parent().parent().parent().find('.split-custom-wrapper a').data("db-name",Id);
-  
-  var radioSize = $(this).find(':radio:checked').prev('label').find(".sizeoption").text();//need to be more specific now
-  $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product-size",radioSize); //push the product option
-  
+/********* CHECKBOX UPDATE PRICING */
+$(document).on('change', '.priceselect', function(event){ 
+	var checkSelected = $(event.target).is('.checkbox-check:checked');
+	var productID = $(this).parent().parent().parent().attr('id');
+	var buttonID = $(event.target).parent().parent().parent().attr('id');//get the specific ID
+	var data = $('#'+buttonID).find('.q').val();//field value
+	if(checkSelected == true){//lets check if it is checked 
+		//if it has not been clicked before
+		if(data == 0){ var setVal = Number(data) + 1; $('#'+buttonID).find('.q').val(setVal); }
+	}else{
+		var setVal = 0; $('#'+buttonID).find('.q').val(setVal);
+	}
+	//now then lets set the values?
+	//loop through all of the checked options
+	var  optradioSelected = []; var Id = [];  var checkSize = []; var quantities = [];
+	$('#'+productID).find('.checkbox-check').each(function () {
+		if(this.checked){ 
+			Id.push($(this).data('prod-id')); 
+			optradioSelected.push($(this).val());
+			checkSize.push($(this).prev('label').find(".sizeoption").text());
+			quantities.push($(this).parent().parent().parent().find('.q').val());
+		}
+		//find the ID
+	});
+	//console.log(quantities);
+	//set the ID's 
+	$(this).parent().parent().parent().find('.split-custom-wrapper a').data("db-name",Id);
+	$(this).parent().parent().parent().find('.split-custom-wrapper a').data("num",optradioSelected);
+	var productName = $(this).parent().parent().find('h2').text(); //grab the product name
+    $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product",productName);
+    $(this).parent().parent().parent().find('.split-custom-wrapper a').data("quantity",quantities); 
+    $(this).parent().parent().parent().find('.split-custom-wrapper a').data("product-size",checkSize); 
+    //push the product option
 });
+
+
 $('#personal-phone').change(function(){
 	var myphone = String($('#personal-phone').val());
 	console.log(myphone);
@@ -553,6 +563,7 @@ $(".slickIt").on('click', function(){ //rotating area
         spaceBetween: 30,
         mode: 'horizontal',
         centeredSlides: true,
+        
         slidesPerView: 'auto',
         grabCursor: true,
         breakpoints: {
@@ -569,12 +580,13 @@ $(".slickIt").on('click', function(){ //rotating area
                 spaceBetween: 30
             },
             640: {
-                slidesPerView: 2,
+                slidesPerView: 8,
                 spaceBetween: 20
             },
             320: {
-                slidesPerView: 2,
-                spaceBetween: 5
+                slidesPerView: 'auto',
+                spaceBetween: 8,
+                centeredSlides: false
             }
         }
     });
@@ -585,6 +597,55 @@ $(".slickIt").on('click', function(){ //rotating area
 	$('.unslickIt').removeClass("ui-btn-active");
 	//remove the listview layout
 });
+
+$(document).on('click', '.plus', function(event){ //Cart - button  
+	//these have changed
+	var productID = $(event.target).parent().parent().parent().parent().parent().attr('id');
+	var buttonID = $(event.target).parent().parent().parent().parent().attr('id');//get the specific ID
+	console.log(productID + " :" + buttonID);
+	var data = $('#'+buttonID).find('.q').val();
+	var setVal = Number(data) + 1;
+	$('#'+buttonID).find('.q').val(setVal);
+	if (!$('#'+ buttonID).find('input.checkbox-check').is(':checked')) { //if the product is unchecked lets check it. 
+		//$('#'+ buttonID).find('input.checkbox-check').prop('checked',true).checkboxradio("refresh");
+		$('#'+ buttonID).find('input.checkbox-check').click().checkboxradio("refresh");
+	}
+	console.log(productID);
+	var quantities = [];
+	console.log($(this).parent().parent().parent().find('.q').val());
+	$('#'+productID).find('.checkbox-check').each(function () {
+		console.log(this);
+		
+		if(this.checked){ //?
+			quantities.push($(this).parent().parent().parent().find('.q').val());
+		}
+		//find the ID
+	});
+	console.log("Q: "+quantities);
+	//set the ID's 
+    $(this).parent().parent().parent().parent().parent().parent().parent().parent().find('.split-custom-wrapper a').data("quantity",quantities); //set the quantity
+	console.log(buttonID + " - " + data + " - " + productID);
+	console.log(event.target);
+});
+
+$(document).on('click', '.minus', function(event){ //Cart - button 
+	var productID = $(event.target).parent().parent().parent().parent().parent().parent().parent().parent().parent().attr('id');
+	var buttonID = $(event.target).parent().parent().parent().parent().attr('id');//get the specific ID
+	var data = $('#'+buttonID).find('.q').val();
+	if(Number(data) == 1){ //if we are at 1 it will be 0 
+		var setVal = 0;
+		//$('#'+ buttonID).find('input.checkbox-check').prop('checked',false).checkboxradio("refresh"); //uncheck
+		$('#'+ buttonID).find('input.checkbox-check').click().checkboxradio("refresh");
+	}else{
+		var setVal = Number(data) - 1;
+	}
+	if(Number(data) != 0){ //no negative numbers
+		$('#'+buttonID).find('.q').val(setVal);
+		console.log(buttonID + " - " + data + " - " + productID);
+		console.log(event.target);
+	}
+});
+
 $(".unslickIt").on('click', function(){ //list view
 	var mySwiper = $('.swiper-container')[0].swiper;
     mySwiper.destroy();

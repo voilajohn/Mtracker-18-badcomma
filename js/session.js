@@ -11,6 +11,12 @@ var order = localforage.createInstance({ //Orders Database
 	name: "order"
 });
 
+//var name = "john";
+//orderdb = "order"+name;
+//var orderdb = localforage.createInstance({ //Orders Database
+	//name: orderdb
+//});
+
 console.log("db created");
 		
 //create the session
