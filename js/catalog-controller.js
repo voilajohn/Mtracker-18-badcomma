@@ -78,6 +78,7 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 	Promise.all(promises).then(function(results) {
 		//this should be there I think but lets turn it off to see what happens
 	    //app.catalogController.getSavedData();
+	    checkGroup();
 	    console.log("store promise chain");
 	});
 	
@@ -110,7 +111,9 @@ MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 }
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
-
+	//clear out the orders section
+	$(".orderList").html("");
+	$(".orderList").enhanceWithin();
 	console.log("Fill out the Catalog");
 	//hide everything 
 	
@@ -607,7 +610,6 @@ $(document).on('click', '.plus', function(event){ //Cart - button
 	var setVal = Number(data) + 1;
 	$('#'+buttonID).find('.q').val(setVal);
 	if (!$('#'+ buttonID).find('input.checkbox-check').is(':checked')) { //if the product is unchecked lets check it. 
-		//$('#'+ buttonID).find('input.checkbox-check').prop('checked',true).checkboxradio("refresh");
 		$('#'+ buttonID).find('input.checkbox-check').click().checkboxradio("refresh");
 	}
 	console.log(productID);

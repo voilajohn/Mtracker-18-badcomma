@@ -76,6 +76,11 @@ function checkGroup(){ //find the group name and the user saved.
 	product.getItem('wod').then( function(value){
 		deliverydate = value;
 	});
+	//update the sidebar data
+	$(".your-profile").html(currentuser);
+	$(".your-group").html(group);
+	$(".your-delivery").html(deliverydate);
+	
 	console.log("checkgroup");
 }
 function format1(n, currency) {
