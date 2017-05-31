@@ -40,6 +40,8 @@ MickmanAppLogin.CatalogController = function () {//reset the variables
 MickmanAppLogin.CatalogController.prototype.init = function () {
     this.$storePage = "#page-main-menu";
     this.$btnAdd = $(".addtocart", this.$storePage);
+    console.log("cat init");
+    checkGroup();
     
     //remove the options ?is this causing log out - in issues?
     $('#ClassicOption').html("");

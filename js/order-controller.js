@@ -59,6 +59,8 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 
 //show orders 
 MickmanAppLogin.OrderController.prototype.buildOrders = function(){
+	console.log("build");
+	$(".orderList").removeClass("hidden");
 	$(".orderList").html("");
 	var evenOdd;
 	orderdb.iterate(function(value, key, iterationNumber) {

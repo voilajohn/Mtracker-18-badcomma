@@ -203,6 +203,7 @@ $(".signOut").on('click', function(){
 	console.log("sign-out");
 	//page-signin
 	window.localStorage.removeItem('mickman-session');//remove the session key
+	$(".orderList").addClass("hidden");
 	//$(':mobile-pagecontainer').pagecontainer('change', '#page-signin',{ reloadPage:true });//go to next page
 	$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
 	//restartApplication();
