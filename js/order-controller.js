@@ -37,12 +37,16 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 		contact += "</p>";
 		contact += "<p><span style='display:block'></strong>Payment Status: </strong>"+value[2]+"</span></p>";
 		var orders = "<div>";
+		var total = 0;
 		orders += "<br><p><strong>Order Details</strong></p>";
 		for(y=0;y<value[1].length;y++){
-			orders += "<p style='display:block'>"+value[1][y][0]+ " x" +value[1][y][1][1] + " $" + value[1][y][1][0]+".00</p>";
+			orders += "<p style='display:block'>"+value[1][y][0]+ " x " +value[1][y][1][1] + " " + format1(value[1][y][1][0], "$") + "</p>";
+			total += Number(value[1][y][1][1])*Number(value[1][y][1][0]);
 		}
 		
 		orders += "</div>";
+		
+		orders += "<p><strong>Order Total:</strong> <span>"+format1(total, "$")+"</span></p>";
 		$('#popupOrder div').append(contact);
 		console.log(orders);
 		$('#popupOrder div').append(orders);
@@ -277,7 +281,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 });
 //close summary
 $(document).on('click', '.closesummary', function(){
-	$(':mobile-pagecontainer').pagecontainer('change', '#page-main-menu');
+	$(':mobile-pagecontainer').pagecontainer('change', '#page-orders');
 });
 //print page
 $(document).on('click', '.printOrders', function(){//first lets organize the content of the orders

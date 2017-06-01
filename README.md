@@ -1,9 +1,19 @@
 # Mtracker
-####### Version 1.23 ####### 
+####### Version 1.24 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
-/**************** vs 1.23  || 5-23-28-17 **************/
+/**************** vs 1.24  || 6-1-17 **************/
+~ Clearing the Cart updates the contents in addition to removing the Database info
+~ Logging out clears the carts contents
+~ Decimal Issue on Orders Page
+~ Display total at bottom for order total
+~ Darker Quantity Display
+~ Larger Plus / Minus Buttons
+~ Listview cleaned up - made it more like the other view only Vertical
+~ New images for the LED lights
+
+/**************** vs 1.23  || 5-23-31-17 **************/
 ~ Wreaths and Garland Options allow for several of each as well as multiple sizes to be ordered at one time. 
 ~ Revised all of the images with newer larger higher quality ones. 
 ~ Updated text on the Orders page

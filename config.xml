@@ -2,8 +2,8 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.phonegap.MickmanTracker"
-        versionCode = "10.12" 
-        version     = "1.23" >
+        versionCode = "10.13" 
+        version     = "1.24" >
 	
     <name>Mickman Digital Sales Aid</name>
     <description>

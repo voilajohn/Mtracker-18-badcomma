@@ -202,6 +202,8 @@ function restartApplication() {
 $(".signOut").on('click', function(){ 
 	console.log("sign-out");
 	//page-signin
+	//empty the cart
+	$('.emptyCart').click();
 	window.localStorage.removeItem('mickman-session');//remove the session key
 	$(".orderList").addClass("hidden");
 	//$(':mobile-pagecontainer').pagecontainer('change', '#page-signin',{ reloadPage:true });//go to next page

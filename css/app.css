@@ -465,30 +465,48 @@ input.q{
 	padding:0px !important;
 	width:25px;
 	text-align:center;
+	color:blue !important;
+	/*-webkit-text-fill-color: rgba(0, 0, 0, 1); */
+	-webkit-opacity: 1;
 }
+input[type="text"].q:disabled, .priceselect .ui-disabled,.priceselect .ui-state-disabled,.priceselect .ui-btn.ui-state-disable {
+    color: #000 !important;
+    opacity:1 !important;
+    -webkit-opacity: 1 !important;
+}
+/*.ui-disabled, .ui-state-disabled, button[disabled], .ui-select .ui-btn.ui-state-disable*/
 .slider .ui-block-c{
 	width:35%;
 	/*padding:3px !important;*/
 	padding:0px;
 }
 .slider .ui-block-b{
-	width:30% !important;
+	width:40% !important;
 	vertical-align:top;
 }
 .priceselect .ui-block-a{
-	width:40% !important;
+	width:32% !important;
 	margin:0px;
+	padding:0px;
+}
+.priceselect .ui-block-a label{
+	margin:2px 0px 0px 0px;
+	padding:5px 0px 5px 28px;
+}
+.priceselect .ui-block-a .ui-checkbox{
+	padding:0px !important;
 }
 .priceselect .ui-block-c{
 	width:30% !important;
 	padding:3px 0px 0px 0px;
 }
 .priceselect .ui-block-b{
-	width:30% !important;
+	width:38% !important;
 	padding:3px 0px 0px 0px;
+	text-align:center;
 }
 .priceselect .plus,.priceselect .minus{
-	padding:5px !important;
+	padding:5px 8px !important;
 	display:inline-block;
 }
 
@@ -601,6 +619,7 @@ input[type="radio"] {
 .addonpricing{
 	white-space: nowrap;
 }
+
 /*Product Display*/
 .product-display{
 	list-style:none;
@@ -654,8 +673,13 @@ input[type="radio"] {
 	min-height:300px;
 	padding:20px 10px;
 }
-
-.product-display.unslicked{
+.product-display.unslicked div.slider .inner{
+	min-height:auto;
+}
+.product-display.unslicked div.slider{
+	width:100% !important;
+}
+/*.product-display.unslicked{
 	list-style:none;
 	margin:0px;
 	padding:0px;
@@ -683,8 +707,7 @@ input[type="radio"] {
 	width:55%;
 	padding:10px;
 	display:inline-block;
-	/*float:left;*/
-}
+}*/
 .swiper-wrapper.disabled {
     transform: translate3d(0px, 0, 0) !important;
 }
@@ -701,11 +724,10 @@ input[type="radio"] {
     border:none;
     text-shadow: 2px 2px 3px #000000;
 }
-.unslicked .searchbtn  {
+/*.unslicked .searchbtn  {
     position:relative;
     background:#888 !important;
     border-radius:5px;
-    /*top:0px; */
     padding:5px 10px;
     margin:5px 0px 10px 0px;
     width:90%;
@@ -720,7 +742,7 @@ input[type="radio"] {
     text-decoration:none !important;
     margin-left:5px;
     color:#FFF;
-}
+}*/
 legend{
 	font-size:.8em;
 }
@@ -819,6 +841,10 @@ legend{
 .reciept-table td{
 	padding:10px;
 	vertical-align:top;
+}
+.reciept-table img{
+	max-width:50px;
+	height:auto;
 }
 .controlgroup-textinput{
     padding-top:.22em;

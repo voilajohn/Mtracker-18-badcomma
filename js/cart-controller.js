@@ -324,6 +324,7 @@ function getAll(arr){
 $('.emptyCart').click(function () { //clear the cart db
 	cart.clear().then(function(){
 		console.log("cart db is empty");
+		app.cartController.getCartData();
 	}).catch(function(err){
 		console.log(err);
 	});
@@ -341,6 +342,8 @@ $('.emptyOrders').click(function () { //temporary
 $('.emptyProducts').click(function () { //temporary
 	product.clear().then(function(){
 		console.log("product db is empty");
+		//clear out the cart contents
+		
 	}).catch(function(err){
 		console.log(err);
 	});
