@@ -174,8 +174,9 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
     app.cartController.$btnAdd.off("tap").on("tap", function (event) {
 	    // last item - added db-name this one adds variables to the popup
 	    //e,s,p,t,r,q
-	    console.log($(this).data("num"));
-	    if($(this).data("num") != ""){
+	    console.log($(this).data("quantity"));
+	    //if($(this).data("num") != ""){
+		if($(this).data("quantity") != 0){ 
 		    app.cartController.addpricetoPopup(
 		    	$(this).data("num"), //e
 		    	$(this).data("product-size"), //s
@@ -185,13 +186,12 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 		    	$(this).data("quantity") //q
 		    );
 	    }else{
-		    $(this).parent().find('.product-error').html("<p>You need to select a product option.</p>");
+		    $(this).parent().find('.product-error').html("<p>You need to select a valid quantity.</p>");
 		    $(this).parent().find('.product-error').addClass("bi-ctn-err").slideDown().delay(4000).fadeOut().removeClass("bt-ctn-err");
 		    event.preventDefault();
 	    }
     });
     //this function adds to the cart from the product popup
-    
     app.cartController.$btnCheck.off("tap").on("tap", function (event) {
 	    //lets check here to see if there are more than one item being added
 	    console.log("push to the cart");

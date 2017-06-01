@@ -14,6 +14,7 @@ Droid and iOS compatible.
 ~ New images for the LED lights
 ~ Order Details page - smaller images 
 ~ Close order now goes to the orders screen hopefully stopping the double click issue to close the order details
+~ Added Quantity for all Products
 
 /**************** vs 1.23  || 5-23-31-17 **************/
 ~ Wreaths and Garland Options allow for several of each as well as multiple sizes to be ordered at one time. 

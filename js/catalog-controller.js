@@ -26,8 +26,15 @@ var EZWreathHangerDescription = "Our customized EZ Hanger® allows you to easily
 
 var CradioBtn = ""; //Classic
 var VradioBtn = ""; //Victorian
-var SradioBtn = ""; //Cranberry Splash
+var SradioBtn = ""; //Cranberry 
+var CSradioBtn = ""; //Classic Spray
+var VSradioBtn = ""; //Victorian Spray
+var CSSradioBtn = ""; //Cranberry Splash Spray
+var CLCradioBtn = ""; //Candlelit Centerpiece
 var GradioBtn = ""; //Garland
+var NSTradioBtn = ""; //NorthStarTree
+var EZWradioBtn = ""; //EZ Wreath Hanger
+var LLradioBtn = ""; //LED Lights
 
 MickmanAppLogin.CatalogController = function () {//reset the variables
     this.$storePage = null;
@@ -119,21 +126,6 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	console.log("Fill out the Catalog");
 	//hide everything 
 	
-	/*$("#ClassicWreath").hide(); 
-	$("#VictorianWreath").hide(); 
-	$("#CranberrySplashWreath").hide();
-	
-	$("#ClassicSpray").hide();
-	$("#VictorianSpray").hide();
-	$("#CranberrySpray").hide();
-	
-	$("#HolidayCenterpiece").hide();
-	$("#tabletoptree").hide();
-	$("#garland").hide();
-	$("#EZWreathHanger").hide();
-	$("#Bags").hide();
-	$("#LEDlights").hide();*/
-	
 	$("#ClassicWreath").addClass('hidden'); 
 	$("#VictorianWreath").addClass('hidden');  
 	$("#CranberrySplashWreath").addClass('hidden'); 
@@ -153,7 +145,14 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	CradioBtn = "";
 	VradioBtn = "";
 	SradioBtn = "";
+	CSradioBtn = "";
+	VSradioBtn = "";
+	CSSradioBtn = "";
+	CLCradioBtn = "";
 	GradioBtn = "";
+	NSTradioBtn = "";
+	EZWradioBtn = "";
+	LLradioBtn = "";
     
 	// Find the number of items in the datastore.
 	// Need to set lowest price and flag the radio button
@@ -205,6 +204,9 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		    $("#ClassicSpray .split-custom-wrapper a").data("num",value);
 		    $("#ClassicSpray .price span.num").html(value);
 		    $("#ClassicSpray .split-custom-wrapper a").data("db-name",key);
+		    var buttonLabel = "";
+		    CSradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
+		    CSradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
 		}
 		if( (key == "sprayv") && value > 0 && value != null || 
 			(key == "sprayvg") && value > 0 && value != null
@@ -214,6 +216,9 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		    $("#VictorianSpray .split-custom-wrapper a").data("num",value);
 		    $("#VictorianSpray .price span.num").html(value);
 		    $("#VictorianSpray .split-custom-wrapper a").data("db-name",key);
+		    var buttonLabel = "";
+		    VSradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
+		    VSradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
 		}
 		if( (key == "spraycs") && value > 0 && value != null || 
 			(key == "spraycsg") && value > 0 && value != null ){ //Classic Spray
@@ -222,12 +227,16 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		    $("#CranberrySpray .split-custom-wrapper a").data("num",value);
 		    $("#CranberrySpray .price span.num").html(value);
 		    $("#CranberrySpray .split-custom-wrapper a").data("db-name",key);
+		    var buttonLabel = "";
+		    CSSradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
+		    CSSradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
 		}
 		if($("#ClassicSpray").hasClass('hidden') &&  $("#VictorianSpray").hasClass('hidden') && $("#CranberrySpray").hasClass('hidden')){
 			//hide wreath sort button
 		    //hide the wreath filter button
 			$("#spray").addClass('hidden');//hide the other category
 			$('#filterset').trigger('create');
+			
 		}else{
 			$("#spray").removeClass('hidden');//hide the other category
 	    }
@@ -238,6 +247,9 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 			$("#HolidayCenterpiece .split-custom-wrapper a").data("num",value);
 			$("#HolidayCenterpiece .price span.num").html(value);
 			$("#HolidayCenterpiece .split-custom-wrapper a").data("db-name",key);
+			var buttonLabel = "";
+			CLCradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
+		    CLCradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
 		}
 		if($("#HolidayCenterpiece").hasClass('hidden')){
 			$("#centerpiece").addClass('hidden');//hide the other category
@@ -254,6 +266,9 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 			$("#tabletoptree .split-custom-wrapper a").data("num",value);
 			$("#tabletoptree .price span.num").html(value);
 			$("#tabletoptree .split-custom-wrapper a").data("db-name",key);
+			var buttonLabel = "";
+			NSTradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
+		    NSTradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
 		}
 		if($("#tabletoptree").hasClass('hidden')){
 			$("#tree").addClass('hidden');//hide the other category
@@ -280,7 +295,10 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 			$("#EZWreathHanger .split-custom-wrapper a").data("db-name",key);
 			$("#EZWreathHanger .price span.num").html(value);
 			$(".addhangerprice").html(value);
-		}
+			var buttonLabel = "";
+			EZWradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
+		    EZWradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';		
+		    }
 		if( (key == "led") && value > 0 && value != null){
 			//$("#LEDlights").show();
 			$("#LEDlights").removeClass('hidden');
@@ -289,6 +307,10 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 			$("#LEDlights .split-custom-wrapper a").data("db-name",key);
 			$("#LEDlights .price span.num").html(value);
 			$(".addledprice").html(value);
+			var buttonLabel = "";
+			LLradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
+		    LLradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';	
+			
 		}
 		if($("#garland").hasClass('hidden') && $("#EZWreathHanger").hasClass('hidden') && $("#LEDlights").hasClass('hidden')){
 			$("#other").addClass('hidden');//hide the other category
@@ -314,14 +336,28 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		$('#ClassicOption').html(CradioBtn);
 		$('#VictorianOption').html(VradioBtn);
 		$('#CranberryOption').html(SradioBtn);
+		$('#ClassicSprayOption').html(CSradioBtn);
+		$('#VictorianSprayOption').html(VSradioBtn);
+		$('#CranberrySprayOption').html(CSSradioBtn);
+		$('#CandlelitCenterpieceOption').html(CLCradioBtn);
 		$('#GarlandOption').html(GradioBtn);
+		$('#NorthStarTreeOption').html(NSTradioBtn);
+		$('#EZWreathHangerOption').html(EZWradioBtn);
+		$('#LedLightOption').html(LLradioBtn);
 		
 		//console.log("refresh");
 	    //$("#ClassicOption").enhanceWithin().controlgroup("refresh");
 	    $("#ClassicOption").enhanceWithin();
 	    $("#VictorianOption").enhanceWithin(); 
 	    $("#CranberryOption").enhanceWithin();
+	    $("#ClassicSprayOption").enhanceWithin();
+	    $("#VictorianSprayOption").enhanceWithin();
+	    $("#CranberrySprayOption").enhanceWithin();
+	    $("#CandlelitCenterpieceOption").enhanceWithin();
 	    $('#GarlandOption').enhanceWithin();
+	    $('#NorthStarTreeOption').enhanceWithin();
+	    $('#EZWreathHangerOption').enhanceWithin();
+		$('#LedLightOption').enhanceWithin();
 	    
 	    //activate non radio buttons
 	    var productName = $("#ClassicSpray h2").text();
