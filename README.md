@@ -12,6 +12,8 @@ Droid and iOS compatible.
 ~ Larger Plus / Minus Buttons
 ~ Listview cleaned up - made it more like the other view only Vertical
 ~ New images for the LED lights
+~ Order Details page - smaller images 
+~ Close order now goes to the orders screen hopefully stopping the double click issue to close the order details
 
 /**************** vs 1.23  || 5-23-31-17 **************/
 ~ Wreaths and Garland Options allow for several of each as well as multiple sizes to be ordered at one time. 

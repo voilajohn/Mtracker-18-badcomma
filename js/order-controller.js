@@ -263,6 +263,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 							});
 				        }else{
 					        console.log("not saved");
+					        console.log(resp);
 				        }
 				        $.mobile.loading("hide");
 					},
