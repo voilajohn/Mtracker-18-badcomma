@@ -3,7 +3,7 @@
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
-/**************** vs 1.25  || 6-1-17 **************/
+/**************** vs 1.25  || 6-2-17 **************/
 ~ Getting Trapped in the Orders area - if there weren't any records in the orders db the user could get trapped in the orders area 
 ~ Multiple versions of the LED and Others - if the product got listed as "- " for the options it was considering it a different product instead of adding on to the existing
 ~ Messages added to Cancel and Close and Shop options from the cart
