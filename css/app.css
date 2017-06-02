@@ -474,7 +474,6 @@ input[type="text"].q:disabled, .priceselect .ui-disabled,.priceselect .ui-state-
     opacity:1 !important;
     -webkit-opacity: 1 !important;
 }
-/*.ui-disabled, .ui-state-disabled, button[disabled], .ui-select .ui-btn.ui-state-disable*/
 .slider .ui-block-c{
 	width:35%;
 	/*padding:3px !important;*/
@@ -490,8 +489,13 @@ input[type="text"].q:disabled, .priceselect .ui-disabled,.priceselect .ui-state-
 	padding:0px;
 }
 .priceselect .ui-block-a label{
-	margin:2px 0px 0px 0px;
-	padding:5px 0px 5px 28px;
+	margin:4px 0px 0px 0px;
+	padding:10px 0px 5px 28px;
+	border:none;
+}
+.smallcheck .ui-block-a label{
+	padding:10px 0px 5px 5px !important;
+	border:none;
 }
 .priceselect .ui-block-a .ui-checkbox{
 	padding:0px !important;
@@ -506,7 +510,7 @@ input[type="text"].q:disabled, .priceselect .ui-disabled,.priceselect .ui-state-
 	text-align:center;
 }
 .priceselect .plus,.priceselect .minus{
-	padding:5px 8px !important;
+	padding:6px 9px 6px 9px !important;
 	display:inline-block;
 }
 
