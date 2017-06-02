@@ -14,6 +14,15 @@ MickmanAppLogin.SignInController = function () {
     this.mainMenuPageId = null;
 };
 
+//create custom db per user for products - new #1.25
+MickmanAppLogin.SignInController.prototype.CreateOrderDB = function (name) {
+	productdb = "product"+name;
+	productdb = localforage.createInstance({ //Orders Database
+		name: productdb
+	});
+	console.log(productdb);
+}
+
 MickmanAppLogin.SignInController.prototype.init = function () {
     this.$signInPage = $("#page-signin");
     this.mainMenuPageId = "#page-main-menu";
@@ -85,16 +94,28 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 	                $('#select-choice-1').html(""); //prevent big lists from multiple logins
 	                var users = resp.extras.users;
 	                var ids = resp.extras.ids;
+	                
 	                $.each(users, function(bb){
 		                var Uname = (users[bb]);
 		                var Uid = (ids[bb]);
 		                $('#select-choice-1').append('<option value="'+Uname+'" id="'+Uid+'">'+Uname+'</option>');
 		            });
+		            var userDeets = resp.extras.products;
+		            var group = userDeets[userDeets.indexOf('cust_id') + 1][1];
+		            var wod = userDeets[userDeets.indexOf('wod') + 2][1];
+		            console.log("W: " + wod + " G: " + group);
+		            
 		            $(".mygroup").html(resp.extras.cust_id);
 		            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load
                 	$(".startSession").click(function(){//They need to choose a user
 	                	//ADD TO DB - PRODUCTS
-	                	product.setItem("id",$('#select-choice-1 :selected').attr('id'));//push the userID to the database 
+	                	
+	                	app.signInController.CreateOrderDB($('#select-choice-1').val() + "-" + $('#select-choice-1 :selected').attr('id'));
+	                	console.log("newDB should be created");
+	                	user.setItem("user",$('#select-choice-1').val()); //user
+	                	user.setItem("id",$('#select-choice-1 :selected').attr('id'));//push the userID to the database 
+	                	user.setItem("wod",wod);
+	                	user.setItem("group",group);
 		                app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);//put the additional stuff into the DB
 		              
 	                	var today = new Date();
@@ -106,7 +127,7 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 		                var memberProf = $('#select-choice-1').val();
 		                var groupName = resp.extras.products[2][1];//find this in the code
 		                var UserID = $('#select-choice-1 :selected').attr('id');
-		                console.log("id-" + groupName);
+		                
 		                MickmanAppLogin.Session.getInstance().set({//local variable for checking the sessions
 		                    userProfileModel:  memberProf,
 		                    userGroup: groupName,
@@ -127,7 +148,7 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 								if(response.success === true){
 									token = response.extras.token;
 									//ADD TO DB - PRODUCTS 
-									product.setItem("token",token);//push the token to the database 
+									user.setItem("token",token);//push the token to the database 
 								
 									$.mobile.navigate(me.mainMenuPageId); //if that is successful we will reroute them to the catalog page
 								}else{ //show an error message.

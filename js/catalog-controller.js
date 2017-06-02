@@ -86,7 +86,7 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 	
 	Promise.all(promises).then(function(results) {
 		//this should be there I think but lets turn it off to see what happens
-	    //app.catalogController.getSavedData();
+	    //app.catalogController.getSavedData(); --old 
 	    checkGroup();
 	    console.log("store promise chain");
 	});
@@ -108,15 +108,6 @@ MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 			$("#default-zip").val(value[2]);
 		}
 	});
-	//get user and group
-	/*product.getItem("user").then( function(value) { //let's add in our defaults if they are saved
-		$(".your-profile").html(value);
-	});
-	product.getItem("cust_id").then( function(value) { //let's add in our defaults if they are saved
-		$(".your-group").html(value);
-	});*/
-	
-	
 }
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
@@ -362,32 +353,32 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    //activate non radio buttons
 	    var productName = $("#ClassicSpray h2").text();
 		$("#ClassicSpray .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-	    $("#ClassicSpray .split-custom-wrapper a").data("product-size","");
+	    $("#ClassicSpray .split-custom-wrapper a").data("product-size",0);
 	    
 	    var productName = $("#VictorianSpray h2").text();
 		$("#VictorianSpray .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-	    $("#VictorianSpray .split-custom-wrapper a").data("product-size","");
+	    $("#VictorianSpray .split-custom-wrapper a").data("product-size",0);
 	    
 	    var productName = $("#CranberrySpray h2").text();
 		$("#CranberrySpray .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-	    $("#CranberrySpray .split-custom-wrapper a").data("product-size",""); 
+	    $("#CranberrySpray .split-custom-wrapper a").data("product-size",0); 
 	    
 		var productName = $("#HolidayCenterpiece h2").text();
 		$("#HolidayCenterpiece .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-		$("#HolidayCenterpiece .split-custom-wrapper a").data("product-size",""); //push the product size to the checkout area.
+		$("#HolidayCenterpiece .split-custom-wrapper a").data("product-size",0); //push the product size to the checkout area.
 		
 		var productName = $("#tabletoptree h2").text();
 		$("#tabletoptree .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-		$("#tabletoptree .split-custom-wrapper a").data("product-size",""); //push the product size to the checkout area.
+		$("#tabletoptree .split-custom-wrapper a").data("product-size",0); //push the product size to the checkout area.
 	    
 		var productName = $("#EZWreathHanger h2").text();
 		$("#EZWreathHanger .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-		$("#EZWreathHanger .split-custom-wrapper a").data("product-size",""); //push the product size to the checkout area.
+		$("#EZWreathHanger .split-custom-wrapper a").data("product-size",0); //push the product size to the checkout area.
 		
 		var productName = $("#LEDlights h2").text();
 		$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
-		$("#LEDlights .split-custom-wrapper a").data("product-size",""); //push the product size to the checkout area.
-		$("#LEDlights .split-custom-wrapper a").data("quantities","");
+		$("#LEDlights .split-custom-wrapper a").data("product-size",0); //push the product size to the checkout area.
+		//$("#LEDlights .split-custom-wrapper a").data("quantities","");
 		
 		//need to make sure the page is loaded.
 		$(".slickIt").trigger("click"); //now load the carousel
@@ -609,11 +600,11 @@ $(".slickIt").on('click', function(){ //rotating area
         grabCursor: true,
         breakpoints: {
             2000: {
-                slidesPerView: 4,
+                slidesPerView: 3,
                 spaceBetween: 40
             },
             1024: {
-                slidesPerView: 4,
+                slidesPerView: 3,
                 spaceBetween: 40
             },
             768: {
@@ -621,7 +612,7 @@ $(".slickIt").on('click', function(){ //rotating area
                 spaceBetween: 30
             },
             640: {
-                slidesPerView: 8,
+                slidesPerView: 3,
                 spaceBetween: 20
             },
             320: {
@@ -690,6 +681,7 @@ $(".unslickIt").on('click', function(){ //list view
 	var mySwiper = $('.swiper-container')[0].swiper;
     mySwiper.destroy();
     mySwiper = undefined;
+    
     $(".product-button").each( function(){
 		$(this).removeClass('ui-btn-active');
 	});

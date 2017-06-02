@@ -4,6 +4,15 @@ Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
 /**************** vs 1.24  || 6-1-17 **************/
+~ Getting Trapped in the Orders area - if there weren't any records in the orders db the user could get trapped in the orders area 
+~ Multiple versions of the LED and Others - if the product got listed as "- " for the options it was considering it a different product instead of adding on to the existing
+~ Messages added to Cancel and Close and Shop options from the cart
+~ Weird decimal layout in cart - multiple LED were rounding to one decimal place 7.5 instead of 7.50
+~ Bug for cart totals over 1000 numbers were adding commas and javascript was reading it as a string instead of number breaking the subtotal
+~ Refined Catalog button layout
+
+
+/**************** vs 1.24  || 6-1-17 **************/
 ~ Clearing the Cart updates the contents in addition to removing the Database info
 ~ Logging out clears the carts contents
 ~ Decimal Issue on Orders Page

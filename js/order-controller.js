@@ -11,6 +11,7 @@ MickmanAppLogin.OrderController = function () {
 MickmanAppLogin.OrderController.prototype.init = function () {
     this.$storePage = "#page-checkout";
     checkGroup();
+    console.log("init");
 };
 
 //create custom db per user - new #1.23
@@ -63,10 +64,15 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 
 //show orders 
 MickmanAppLogin.OrderController.prototype.buildOrders = function(){
+	checkGroup(); //let's try adding this in to make sure that it knows there is an orderdb db to iterate over.
 	console.log("build");
 	$(".orderList").removeClass("hidden");
 	$(".orderList").html("");
 	var evenOdd;
+	
+	
+	if(orderdb){
+		
 	orderdb.iterate(function(value, key, iterationNumber) {
 		//add orders to the listview
 		var name = value[0][1] + " " + value[0][2];
@@ -91,7 +97,10 @@ MickmanAppLogin.OrderController.prototype.buildOrders = function(){
 		$(".orderList").enhanceWithin().listview("refresh");
 	}).catch(function(err){
 		console.log(err);
-	})
+	});
+	}else{
+		console.log("nothing in the db yet");
+	}
 };
 
 //CHECKOUT - CREATE ORDER COMMAND

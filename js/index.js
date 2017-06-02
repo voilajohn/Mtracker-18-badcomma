@@ -9,7 +9,8 @@ var group; //get the group name
 var currentuser; //get the user name
 var deliverydate;
 var isprintAvailable = false;
-var orderdb;
+var orderdb; //new 1.23
+var productdb; //new 1.25
 var swiper;
 
 // Begin boilerplate code generated with Cordova project.
@@ -55,35 +56,37 @@ $(document).on("mobileinit", function (event, ui) {
 	$("#menu-panel").trigger("create");
 });
 
+//prepare the attached JS
 app.signInController = new MickmanAppLogin.SignInController(); //call the signin controller
 app.catalogController = new MickmanAppLogin.CatalogController(); //call the catalog controller 
 app.cartController = new MickmanAppLogin.CartController(); //call the cart controller
 app.orderController = new MickmanAppLogin.OrderController(); //call the order controller 
 
 function checkGroup(){ //find the group name and the user saved.
-	//first point at which we are querying the database
-	//this is not saving across pages if the page is reloaded
+	//1.25 this will need to be updated to be the new listing - user data now stored in 'user'
 	//CHECK DB
-	product.getItem('cust_id').then( function(value){
+	//product.getItem('cust_id').then( function(value){ -- old
+	user.getItem('group').then( function(value){
 		group = value;
-		console.log("G: "+group);
-		$(".your-group").html(group);
+		//console.log("G: "+group);
+		$(".your-group").html(group); //display on profile section
 	});
-	product.getItem('user').then( function(value){
+	//product.getItem('user').then( function(value){ -- old 
+	user.getItem('user').then( function(value){
 		currentuser = value;
 		app.orderController.CreateOrderDB(value);
-		console.log("U: "+currentuser);
-		$(".your-profile").html(currentuser);
-		//lets create the custom db for the user - also sets the orderdb value
+		//console.log("U: "+currentuser);
+		$(".your-profile").html(currentuser); //display on profile section
 	});
-	product.getItem('wod').then( function(value){
+	//product.getItem('wod').then( function(value){
+	user.getItem('wod').then( function(value){
 		deliverydate = value;
-		$(".your-delivery").html(deliverydate);
+		$(".your-delivery").html(deliverydate); //display on profile section
 	});
-	//update the sidebar data
 	console.log("checkgroup");
 }
-function format1(n, currency) {
+
+function format1(n, currency) {  //currency format
     return currency + " " + n.toFixed(2).replace(/./g, function(c, i, a) {
         return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "," + c : c;
     });
@@ -98,8 +101,7 @@ $(document).on("pagecontainerbeforeshow", function (event, ui) {
 				$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
                 break;
             case "page-signin":
-                // Reset signin form.
-                app.signInController.resetSignInForm();
+                app.signInController.resetSignInForm(); // Reset signin form.
                 updatePageHighlight("page-signin");//update navigation
                 break;
             case "page-cart":
@@ -108,7 +110,7 @@ $(document).on("pagecontainerbeforeshow", function (event, ui) {
 				$('#page-cart div[data-role=header]').find('h1').html(group);//replace title 
             	break;
             case "page-checkout":
-            	app.catalogController.getUserData();
+            	app.catalogController.getUserData(); //load saved defaults
             	app.catalogController.showDefaults();
             	updatePageHighlight("#page-cart");//update navigation
 				$('#page-checkout div[data-role=header]').find('h1').html(group);//replace title
@@ -211,6 +213,7 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 		    sizeA.push($(this).find("span.sentSize").text());
 		    thumb = $(this).find("img").attr('src');
 		    quantityA.push($(this).find("span.sentQuantity").text());
+		    console.log($(this).find("span.sentSize").text());
 		    Num++;
 	    });
 	    if(Num == 0){
@@ -224,12 +227,23 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 		    if(product == "LED Lights" || product == "EZ Wreath Hanger"){ 
 			    var items = [[product,Number(cost),thumb,productID,1]];
 			}else{ 
-				var items = [[product+"-"+size,Number(cost),thumb,productID,1]];//just adding one
+				console.log(size);
+				if(size != 0){
+					var items = [[product+"-"+size,Number(cost),thumb,productID,1]];//just adding one
+				}else{
+					var items = [[product,Number(cost),thumb,productID,1]];//just adding one
+				}
+				
 			}//added a quantity to the end
 		}else{//put together an order for each item. 
 			var items = [];
 			for(y=0;y<costA.length;y++){
-				items.push([String(productA[y]+"-"+sizeA[y]),Number(costA[y]),thumb,productIDA[y],Number(quantityA[y])]);
+				console.log("Siza:" + sizeA[y] + "-");
+				if(sizeA[y] != 0){
+					items.push([String(productA[y]+"-"+sizeA[y]),Number(costA[y]),thumb,productIDA[y],Number(quantityA[y])]);
+				}else{
+					items.push([String(productA[y]),Number(costA[y]),thumb,productIDA[y],Number(quantityA[y])]);
+				}
 			}
 		}
 		
@@ -243,7 +257,7 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 		    if($("#ledlights").is(":checked")){//led
 			   lthumb = $(this).parent().parent().find(".cart-addons img.ledthumb").attr('src');
 			   lprice = $(this).parent().parent().find("span.addledprice").text();
-			   items.push(["Led Light Set",Number(lprice),lthumb,"led",1]);
+			   items.push(["LED Light Set",Number(lprice),lthumb,"led",1]);
 		    }
 		    if($("#ezwreathhanger").is(":checked")){
 			   ezthumb = $(this).parent().parent().find(".cart-addons img.ezthumb").attr('src');

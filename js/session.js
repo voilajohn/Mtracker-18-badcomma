@@ -7,8 +7,8 @@ var product = localforage.createInstance({ //Product Database
 var cart = localforage.createInstance({ //Cart Database
 	name: "cart"
 });
-var order = localforage.createInstance({ //Orders Database
-	name: "order"
+var user = localforage.createInstance({ //Orders Database
+	name: "user"
 });
 
 //var name = "john";
