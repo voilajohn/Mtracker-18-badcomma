@@ -7,6 +7,7 @@ var cart;
 var order;
 var group; //get the group name
 var currentuser; //get the user name
+var wod; var id;
 var deliverydate;
 var isprintAvailable = false;
 var orderdb; //new 1.23
@@ -66,7 +67,7 @@ app.orderController = new MickmanAppLogin.OrderController(); //call the order co
 function checkGroup(x){ //find the group name and the user saved.
 	//1.25 this will need to be updated to be the new listing - user data now stored in 'user'
 	//CHECK DB
-	var group; var currentuser; var wod; var id;
+	
 	user.iterate(function(value, key, iterationNumber) {
 		if(key == "group"){      group = value;
 		}else if(key == "user"){ currentuser = value;

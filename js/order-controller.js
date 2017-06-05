@@ -16,7 +16,7 @@ MickmanAppLogin.OrderController.prototype.init = function () {
 
 //create custom db per user - new #1.23
 MickmanAppLogin.OrderController.prototype.CreateOrderDB = function (name,id) {
-	orderdb = "order"+name;
+	orderdb = "order"+name+"-"+id;
 	orderdb = localforage.createInstance({ //Orders Database
 		name: orderdb
 	});
