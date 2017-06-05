@@ -85,7 +85,7 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 		//this should be there I think but lets turn it off to see what happens
 	    //app.catalogController.getSavedData(); --old 
 	    checkGroup("promise"); //-- 1.25 turned this off - turned off the init but turned this one back on
-	    console.log("store promise chain");
+	    //console.log("store promise chain");
 	});
 	
 	//this.getSavedData(); //now lets boot up the page
@@ -317,17 +317,6 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		}else{
 			$("#other").removeClass('hidden');
 		}
-		/*if(key == "user"){
-			$(".your-profile").html(value);
-		}
-		if(key == "cust_id"){
-			$(".your-group").html(value);
-		}
-		if(key == "wod"){
-			$(".your-delivery").html(value);
-		}*/
-	
-		//other parts
 	    
 	}).then(function() {
 		//put the pricing on the items that need pricing added.
@@ -643,53 +632,6 @@ $(".slickIt").on('click', function(){ //rotating area
 	//remove the listview layout
 });
 
-$(document).on('click', '.plus', function(event){ //Cart - button  
-	//these have changed
-	var productID = $(event.target).parent().parent().parent().parent().parent().attr('id');
-	var buttonID = $(event.target).parent().parent().parent().parent().attr('id');//get the specific ID
-	console.log(productID + " :" + buttonID);
-	var data = $('#'+buttonID).find('.q').val();
-	var setVal = Number(data) + 1;
-	$('#'+buttonID).find('.q').val(setVal);
-	if (!$('#'+ buttonID).find('input.checkbox-check').is(':checked')) { //if the product is unchecked lets check it. 
-		$('#'+ buttonID).find('input.checkbox-check').click().checkboxradio("refresh");
-	}
-	console.log(productID);
-	var quantities = [];
-	console.log($(this).parent().parent().parent().find('.q').val());
-	$('#'+productID).find('.checkbox-check').each(function () {
-		console.log(this);
-		
-		if(this.checked){ //?
-			quantities.push($(this).parent().parent().parent().find('.q').val());
-		}
-		//find the ID
-	});
-	console.log("Q: "+quantities);
-	//set the ID's 
-    $(this).parent().parent().parent().parent().parent().parent().parent().parent().find('.split-custom-wrapper a').data("quantity",quantities); //set the quantity
-	console.log(buttonID + " - " + data + " - " + productID);
-	console.log(event.target);
-});
-
-$(document).on('click', '.minus', function(event){ //Cart - button 
-	var productID = $(event.target).parent().parent().parent().parent().parent().parent().parent().parent().parent().attr('id');
-	var buttonID = $(event.target).parent().parent().parent().parent().attr('id');//get the specific ID
-	var data = $('#'+buttonID).find('.q').val();
-	if(Number(data) == 1){ //if we are at 1 it will be 0 
-		var setVal = 0;
-		//$('#'+ buttonID).find('input.checkbox-check').prop('checked',false).checkboxradio("refresh"); //uncheck
-		$('#'+ buttonID).find('input.checkbox-check').click().checkboxradio("refresh");
-	}else{
-		var setVal = Number(data) - 1;
-	}
-	if(Number(data) != 0){ //no negative numbers
-		$('#'+buttonID).find('.q').val(setVal);
-		console.log(buttonID + " - " + data + " - " + productID);
-		console.log(event.target);
-	}
-});
-
 $(".unslickIt").on('click', function(){ //list view
 	var mySwiper = $('.swiper-container')[0].swiper;
     mySwiper.destroy();
@@ -712,3 +654,52 @@ $(".unslickIt").on('click', function(){ //list view
 	$(this).addClass("ui-btn-active");
 	//style it as a listview
 });
+
+$(document).on('click', '.plus', function(event){ //Cart - button  
+	//these have changed
+	var productID = $(event.target).parent().parent().parent().parent().parent().attr('id');
+	var buttonID = $(event.target).parent().parent().parent().parent().attr('id');//get the specific ID
+	console.log(productID + " :" + buttonID);
+	var data = $('#'+buttonID).find('.q').val();
+	var setVal = Number(data) + 1;
+	$('#'+buttonID).find('.q').val(setVal);
+	if (!$('#'+ buttonID).find('input.checkbox-check').is(':checked')) { //if the product is unchecked lets check it. 
+		$('#'+ buttonID).find('input.checkbox-check').click().checkboxradio("refresh");
+	}
+	console.log(productID);
+	var quantities = [];
+	console.log($(this).parent().parent().parent().find('.q').val());
+	$('#'+productID).find('.checkbox-check').each(function () {
+		//console.log(this);
+		
+		if(this.checked){ //?
+			quantities.push($(this).parent().parent().parent().find('.q').val());
+		}
+		//find the ID
+	});
+	//console.log("Q: "+quantities);
+	//set the ID's 
+    $(this).parent().parent().parent().parent().parent().parent().parent().parent().find('.split-custom-wrapper a').data("quantity",quantities); //set the quantity
+	//console.log(buttonID + " - " + data + " - " + productID);
+	//console.log(event.target);
+});
+
+$(document).on('click', '.minus', function(event){ //Cart - button 
+	var productID = $(event.target).parent().parent().parent().parent().parent().parent().parent().parent().parent().attr('id');
+	var buttonID = $(event.target).parent().parent().parent().parent().attr('id');//get the specific ID
+	var data = $('#'+buttonID).find('.q').val();
+	if(Number(data) == 1){ //if we are at 1 it will be 0 
+		var setVal = 0;
+		//$('#'+ buttonID).find('input.checkbox-check').prop('checked',false).checkboxradio("refresh"); //uncheck
+		$('#'+ buttonID).find('input.checkbox-check').click().checkboxradio("refresh");
+	}else{
+		var setVal = Number(data) - 1;
+	}
+	if(Number(data) != 0){ //no negative numbers
+		$('#'+buttonID).find('.q').val(setVal);
+		//console.log(buttonID + " - " + data + " - " + productID);
+		//console.log(event.target);
+	}
+});
+
+

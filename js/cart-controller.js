@@ -74,7 +74,7 @@ MickmanAppLogin.CartController.prototype.removeProduct = function (e) {
 MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t,r,q) {
 	//save cart to db 
 	//added q 
-	console.log(e + ":" + e.length);//5
+	console.log(e + ":" +  s + ":" + p + ":" + t + ":" + q + e.length);//5
 	if(Array.isArray(e)){ //check if it is multiples
 		//fill in the first one 
 		console.log("isArray");
@@ -94,10 +94,12 @@ MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t,r,q
 			appendHtml += '<p><strong>Quantity:</strong> <span class="sentQuantity">'+q[x]+'</span></p>';
 			appendHtml += '<div style="clear:both"></div>';
 			appendHtml += '</div>';
+			//console.log(appendHtml);
 		}
 		$(".cart-items").append(appendHtml);
 		$('#purchase').enhanceWithin();
 	}else{
+		console.log("notArray");
 		//adding quantity for 
 		$('#purchase img.cartthumb').attr('src',t);
 		$('#purchase span.sentPrice').html(e);
@@ -115,7 +117,7 @@ MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t,r,q
 };
 
 MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
-	console.log(e + " --- " + r);
+	//console.log(e + " --- " + r);
 	
 	if(r != "cancel"){
 		var cartList = []; //stuff that exists in the cart already
@@ -136,20 +138,27 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 			}
 		}).then(function(){
 			if(cartList.length == 0){
-				console.log("add new ones to the db");
+				//console.log("add new ones to the db");
 				for(x=0;x<itemList.length;x++){
-					cart.setItem(e[x][0],[e[x][1],e[x][4],e[x][2],e[x][3]]);
+					cart.setItem(e[x][0],[e[x][1],e[x][4],e[x][2],e[x][3]]).then( function(){
+						app.cartController.getCartData(); //lets make sure that we refresh after updating the 
+					});
 					//added e[x]4 in place of default 1 for the multiples option
 				}
 			}else{
+				//console.log(cartList.length);
 				//lets add in items that are not on this list and if they are we are going to add one
 				for(x=0;x<itemList.length;x++){
 					if(jQuery.inArray(String(itemList[x]),cartList) !== -1){
 						listNum = jQuery.inArray(String(itemList[x]),cartList);
 						savedData = cartValues[Number(listNum)];
-						cart.setItem(cartList[Number(listNum)],[cartValues[Number(listNum)][0],Number(cartValues[Number(listNum)][1]+e[x][4]),cartValues[Number(listNum)][2]]);
+						cart.setItem(cartList[Number(listNum)],[cartValues[Number(listNum)][0],Number(cartValues[Number(listNum)][1]+e[x][4]),cartValues[Number(listNum)][2]]).then( function(){
+							app.cartController.getCartData(); //lets make sure that we refresh after updating the 
+						});
 					}else{
-						cart.setItem(e[x][0],[e[x][1],e[x][4],e[x][2],e[x][3]]);
+						cart.setItem(e[x][0],[e[x][1],e[x][4],e[x][2],e[x][3]]).then( function(){
+							app.cartController.getCartData(); //lets make sure that we refresh after updating the 
+						});
 					}
 				}
 			}
@@ -181,6 +190,7 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 		$('.purchaseAdd').removeClass('hidden');//restore single checkout
 		
 		if(r == "checkout"){
+			//app.cartController.getCartData();//1.26 refresh the cart
 	    	$(':mobile-pagecontainer').pagecontainer('change', '#page-cart');
 	    }else{
 		    $('.product-message').removeClass("bi-ctn-err");
@@ -190,12 +200,14 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 		    $("#purchase").popup("close");
 	    }
     }else{
+	    
 	    $('.product-message').removeClass("bi-ctn-suc");
 	    $('.product-message').html("<p>Add to cart cancelled.</p>").fadeIn('slow');
 		$('.product-message').addClass("bi-ctn-err").delay(4000).fadeOut('slow');
 		$('body').scrollTop(0);
 	    $("#purchase").popup("close");
-	    console.log("clear");
+	    
+	   // console.log("clear");
 	    //uncheck options if they are checked
 		$("#ledlights").attr("checked",false).checkboxradio("refresh");
 		$("#ezwreathhanger").attr("checked",false).checkboxradio("refresh");
@@ -212,21 +224,26 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 };
 
 MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the cart by grabbing saved db items
+	//console.log("getCartData");
 	$(".cartlist").html("");
 	var cartCount = 0;
 	var cartContent = "";
 	var addNum = 0;
 	cart.iterate(function(value, key, iterationNumber) {
+		console.log("get cart items");
 		//leave off the personal data
 		if(key == "personal"){
 		}else if(key == "defaults"){
 		}else{
 			$(".cartlist").hide();
+			//console.log(key);
 			cartContent += "<li class='divider-title' data-role='list-divider'><h4>"+key+"</h4></li><li><img src='"+value[2]+"' alt='"+key+"' class='cartthumb'/><p style='margin:0px;'>$"+Number(value[0])+" each <div class='total green'>$<span>"+format1(Number(value[0]*value[1]),"")+"</span><br><strong class='smaller'>Quantity ordered:</strong></div><div data-role='controlgroup' data-type='horizontal' class='ui-group-theme-a' data-product-name='"+key+"' data-product-cost='"+value[0]+"' data-product-thumb='"+value[2]+"' data-product-id='"+value[3]+"'><input id='quantity' type='text' data-wrapper-class='controlgroup-textinput ui-btn quantity-input' value='"+value[1]+"'><a href='#' class='ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext addProduct'>+</a><a href='#' class='ui-btn ui-corner-all ui-icon-minus ui-btn-icon-notext removeProduct'>-</a></div></p></li>";//switched this from append to load it all at once 
-			$(".cartlist").html(cartContent);
+			
 			cartCount++;
 		}
 	}).then(function() {
+		console.log("show items");
+		$(".cartlist").html(cartContent);
 		if(cartCount == 0){
 			console.log("there is nothing in the cart");
 			$(".emptyCart").addClass("ui-state-disabled");
@@ -339,33 +356,6 @@ $('.emptyCart').click(function () { //clear the cart db
 	//$(".cartlist").listview("refresh"); //1.25
 });
 
-$('.emptyOrders').click(function () { //temporary
-	/*order.clear().then(function(){
-		console.log("order db is empty");
-	}).catch(function(err){
-		console.log(err);
-	});*/
-	
-	//temporary
-	orderBoone.clear().then(function(){
-		console.log("order db is empty");
-	});
-	orderCherie.clear().then(function(){
-		console.log("order db is empty");
-	});
-	orderjohn.clear().then(function(){
-		console.log("order db is empty");
-	});
-	ordermandy.clear().then(function(){
-		console.log("order db is empty");
-	});
-	orderKatie.clear().then(function(){
-		console.log("order db is empty");
-	});
-	orderKermit.clear().then(function(){
-		console.log("order db is empty");
-	});
-});
 
 $('.emptyProducts').click(function () { //temporary
 	product.clear().then(function(){

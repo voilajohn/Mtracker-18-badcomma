@@ -236,6 +236,7 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 				
 			}//added a quantity to the end
 		}else{//put together an order for each item. 
+			console.log('put together');
 			var items = [];
 			for(y=0;y<costA.length;y++){
 				console.log("Siza:" + sizeA[y] + "-");
