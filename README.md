@@ -3,7 +3,7 @@
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
-/**************** vs 1.26  || 6-2-17 **************/
+/**************** vs 1.26  || 6-5-17 **************/
 ~ Separate group login - clear old product data from separate groups logging in. 
 ~ Update the listview - fixing some bugs
 
