@@ -12,6 +12,7 @@ var isprintAvailable = false;
 var orderdb; //new 1.23
 var productdb; //new 1.25
 var swiper;
+var loadCatCalled = 0;
 
 // Begin boilerplate code generated with Cordova project.
 
@@ -62,31 +63,31 @@ app.catalogController = new MickmanAppLogin.CatalogController(); //call the cata
 app.cartController = new MickmanAppLogin.CartController(); //call the cart controller
 app.orderController = new MickmanAppLogin.OrderController(); //call the order controller 
 
-function checkGroup(){ //find the group name and the user saved.
+function checkGroup(x){ //find the group name and the user saved.
 	//1.25 this will need to be updated to be the new listing - user data now stored in 'user'
 	//CHECK DB
-	//product.getItem('cust_id').then( function(value){ -- old
-	user.getItem('group').then( function(value){
-		group = value;
-		//console.log("G: "+group);
-		$(".your-group").html(group); //display on profile section
-	});
-	//product.getItem('user').then( function(value){ -- old 
-	user.getItem('user').then( function(value){
-		currentuser = value;
-		app.orderController.CreateOrderDB(value);
-		//console.log("U: "+currentuser);
+	var group; var currentuser; var wod; var id;
+	user.iterate(function(value, key, iterationNumber) {
+		if(key == "group"){      group = value;
+		}else if(key == "user"){ currentuser = value;
+		}else if(key == "wod"){  wod = value;
+		}else if(key == "id"){   id = value;
+		}
+	}).then(function() {	                  //update the profile display
+		//console.log(group + ":" + currentuser + ":" + wod);
+		$(".your-group").html(group);         //display on profile section
 		$(".your-profile").html(currentuser); //display on profile section
+		$(".your-delivery").html(wod);        //display on profile section
+		
+		//make sure that the dbs are displaying
+		app.orderController.CreateOrderDB(currentuser,id); //load the db
+		app.signInController.CreateProductDB(currentuser,id,x); //load the db 
+		//console.log("Create DBS called");
 	});
-	//product.getItem('wod').then( function(value){
-	user.getItem('wod').then( function(value){
-		deliverydate = value;
-		$(".your-delivery").html(deliverydate); //display on profile section
-	});
-	console.log("checkgroup");
+	console.log("checkgroup" + x);
 }
 
-function format1(n, currency) {  //currency format
+function format1(n, currency) {  // decimal currency format 00.00
     return currency + " " + n.toFixed(2).replace(/./g, function(c, i, a) {
         return i > 0 && c !== "." && (a.length - i) % 3 === 0 ? "," + c : c;
     });
@@ -105,7 +106,6 @@ $(document).on("pagecontainerbeforeshow", function (event, ui) {
                 updatePageHighlight("page-signin");//update navigation
                 break;
             case "page-cart":
-            	app.cartController.getCartData(); 
             	updatePageHighlight("#page-cart");//update navigation
 				$('#page-cart div[data-role=header]').find('h1').html(group);//replace title 
             	break;
@@ -150,10 +150,10 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
 
 //Login Button - pagebeforecreate
 $(document).delegate("#page-signin", "pagebeforecreate", function () {
-	console.log("signin");
-    app.signInController.init();
+	app.signInController.init();
     app.signInController.$btnSubmit.off("tap").on("tap", function () {
         app.signInController.onSignInCommand();
+        console.log("signin");
     });
 });
 
@@ -168,8 +168,8 @@ $(document).delegate("#page-checkout", "pagebeforecreate", function () {
 //Catalog Page is Loaded - pagebeforecreate
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	app.catalogController.init();
-    app.catalogController.getSavedData();
-    //checkGroup(); 
+    //app.catalogController.getSavedData();
+    checkGroup('pagebeforecreate'); 
     console.log("page-main-menu");
     app.cartController.init();
     //this adds the info to the cart pop up

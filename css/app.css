@@ -1057,7 +1057,7 @@ and (max-device-width : 568px) {
 	width:240px !important;
 	}
 }
-/*@media only screen 
+@media only screen 
 and (min-width : 320px) 
 and (max-width : 568px) { 
 	#filter-menu{
@@ -1070,4 +1070,4 @@ and (max-width : 568px) {
 	.slider{
 		width:240px !important;
 	}
-}*/
+}

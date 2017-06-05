@@ -10,14 +10,6 @@ var cart = localforage.createInstance({ //Cart Database
 var user = localforage.createInstance({ //Orders Database
 	name: "user"
 });
-
-//var name = "john";
-//orderdb = "order"+name;
-//var orderdb = localforage.createInstance({ //Orders Database
-	//name: orderdb
-//});
-
-console.log("db created");
 		
 //create the session
 MickmanAppLogin.Session = (function () {

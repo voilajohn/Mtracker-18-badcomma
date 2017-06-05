@@ -47,10 +47,7 @@ MickmanAppLogin.CatalogController = function () {//reset the variables
 MickmanAppLogin.CatalogController.prototype.init = function () {
     this.$storePage = "#page-main-menu";
     this.$btnAdd = $(".addtocart", this.$storePage);
-    console.log("cat init");
-    checkGroup();
-    
-    //remove the options ?is this causing log out - in issues?
+    //remove the options ? - is this causing log out - in issues?
     $('#ClassicOption').html("");
 	$('#VictorianOption').html("");
 	$('#CranberryOption').html("");
@@ -68,7 +65,7 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 	var data = y;
 	var productList = [];
 	data.unshift(['user',x]);//push username selected to the front of the list
-	console.log(data);
+	//console.log(data);
 	for(j=0;j<data.length;j++){
 		if(data[j][1] != "" || data[j][1] != 0){//check for blanks
 			//need to send this all at once then return the info
@@ -81,13 +78,13 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 	
 	//new
 	var promises = productList.map(function(item) {
-		return product.setItem(item[0],item[1]);
+		return productdb.setItem(item[0],item[1]);
 	});
 	
 	Promise.all(promises).then(function(results) {
 		//this should be there I think but lets turn it off to see what happens
 	    //app.catalogController.getSavedData(); --old 
-	    checkGroup();
+	    checkGroup("promise"); //-- 1.25 turned this off - turned off the init but turned this one back on
 	    console.log("store promise chain");
 	});
 	
@@ -111,9 +108,11 @@ MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 }
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
+	$.mobile.loading("show");  // Show loading graphic
 	//clear out the orders section
 	$(".orderList").html("");
 	$(".orderList").enhanceWithin();
+	
 	console.log("Fill out the Catalog");
 	//hide everything 
 	
@@ -144,11 +143,20 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	NSTradioBtn = "";
 	EZWradioBtn = "";
 	LLradioBtn = "";
+	
+	$('#ClassicOption').html("");
+	$('#VictorianOption').html("");
+	$('#CranberryOption').html("");
+	$('#GarlandOption').html("");
     
 	// Find the number of items in the datastore.
+	console.log("pdb: " + productdb);
 	// Need to set lowest price and flag the radio button
-	product.iterate(function(value, key, iterationNumber) {
-		
+	if(productdb){
+		console.log(productdb);
+	productdb.iterate(function(value, key, iterationNumber) {
+		console.log(key + "-" + iterationNumber);
+		//console.log(CradioBtn);
 	    if( (key == "25c") && value > 0 && value != null || (key == "25cg") && value > 0 && value != null ||
 	    	(key == "28c") && value > 0 && value != null || (key == "28cg") && value > 0 && value != null ||
 	    	(key == "36c") && value > 0 && value != null || (key == "36cg") && value > 0 && value != null ||
@@ -324,6 +332,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	}).then(function() {
 		//put the pricing on the items that need pricing added.
 		//$('#ClassicOption').controlgroup('container').html(CradioBtn);
+		//console.log(CradioBtn);
 		$('#ClassicOption').html(CradioBtn);
 		$('#VictorianOption').html(VradioBtn);
 		$('#CranberryOption').html(SradioBtn);
@@ -390,9 +399,13 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    // This code runs if there were any errors
 	    console.log(err);
 	});
+	}else{
+		console.log("no db set");
+	}
 	//update the page titles
-		checkGroup();
+	//checkGroup();
 	console.log("Get Saved Data");
+	$.mobile.loading("hide");
 	//lets query for the user data too
 	this.getUserData(); //only load this on the first time around after the catalog is in there
 }

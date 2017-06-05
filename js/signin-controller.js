@@ -15,12 +15,19 @@ MickmanAppLogin.SignInController = function () {
 };
 
 //create custom db per user for products - new #1.25
-MickmanAppLogin.SignInController.prototype.CreateOrderDB = function (name) {
-	productdb = "product"+name;
+MickmanAppLogin.SignInController.prototype.CreateProductDB = function (name,id,x) {
+	productdb = "product"+name+"-"+id;
 	productdb = localforage.createInstance({ //Orders Database
 		name: productdb
 	});
-	console.log(productdb);
+	if(loadCatCalled == 0 && x != "createProducts"){ //lets try only calling this function once only the first time the new products db is loaded.
+		app.catalogController.getSavedData(); //load the saved data into the catalog
+		loadCatCalled = 1;
+	}else{
+		console.log("already called");
+	}
+	// turned off 1.26
+	console.log("catalog called - " + x);
 }
 
 MickmanAppLogin.SignInController.prototype.init = function () {
@@ -35,7 +42,6 @@ MickmanAppLogin.SignInController.prototype.init = function () {
 };
 
 MickmanAppLogin.SignInController.prototype.resetSignInForm = function () {
-	
     var invisibleStyle = "bi-invisible",
         invalidInputStyle = "bi-invalid-input";
 
@@ -49,6 +55,7 @@ MickmanAppLogin.SignInController.prototype.resetSignInForm = function () {
 };
 
 MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
+	console.log("prod-db: "+productdb);
     var me = this,
         userName = me.$txtUserName.val().trim(),
         password = me.$txtPassword.val().trim(),
@@ -88,7 +95,7 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
         success: function (resp) {
 	        
             $.mobile.loading("hide");
-            console.log(resp);
+            //console.log(resp);
             if (resp.success === true) { // If the login method changes this part can be skipped
                 if(resp.extras.users){//build out the menu
 	                $('#select-choice-1').html(""); //prevent big lists from multiple logins
@@ -103,20 +110,22 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 		            var userDeets = resp.extras.products;
 		            var group = userDeets[userDeets.indexOf('cust_id') + 1][1];
 		            var wod = userDeets[userDeets.indexOf('wod') + 2][1];
-		            console.log("W: " + wod + " G: " + group);
+		            //console.log("W: " + wod + " G: " + group);
 		            
 		            $(".mygroup").html(resp.extras.cust_id);
 		            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load
+		            //name is chosen - lets now create the products db and load up the interface
                 	$(".startSession").click(function(){//They need to choose a user
-	                	//ADD TO DB - PRODUCTS
 	                	
-	                	app.signInController.CreateOrderDB($('#select-choice-1').val() + "-" + $('#select-choice-1 :selected').attr('id'));
-	                	console.log("newDB should be created");
+	                	app.signInController.CreateProductDB($('#select-choice-1').val(),$('#select-choice-1 :selected').attr('id'),"createProducts"); //create unique products db
+	                	
 	                	user.setItem("user",$('#select-choice-1').val()); //user
 	                	user.setItem("id",$('#select-choice-1 :selected').attr('id'));//push the userID to the database 
 	                	user.setItem("wod",wod);
 	                	user.setItem("group",group);
-		                app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);//put the additional stuff into the DB
+	                	
+		                app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);
+		                //put the additional stuff into the DB
 		              
 	                	var today = new Date();
 		                var expirationDate = new Date();
@@ -212,22 +221,18 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 // keep startup url (in case your app is an SPA with html5 url routing)
 var initialHref = window.location.href;
 
-function restartApplication() {
-  // Show splash screen (useful if your app takes time to load) 
-  //navigator.splashscreen.show();
-  // Reload original app url (ie your index.html file)
-  window.location = initialHref;
-}
 
 //sign out button
 $(".signOut").on('click', function(){ 
-	console.log("sign-out");
-	//page-signin
-	//empty the cart
-	$('.emptyCart').click();
-	window.localStorage.removeItem('mickman-session');//remove the session key
-	$(".orderList").addClass("hidden");
-	//$(':mobile-pagecontainer').pagecontainer('change', '#page-signin',{ reloadPage:true });//go to next page
-	$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
-	//restartApplication();
+	//console.log("sign-out");
+	$('.emptyCart').click();//empty the cart
+	
+	user.clear().then(function() {//clear out the current user data
+    	//console.log('User database is now empty.');
+		window.localStorage.removeItem('mickman-session');//remove the session key
+		productdb = ""; //clear out the current productdb var
+		loadCatCalled = 0; //reset this variable
+		$(".orderList").addClass("hidden");
+		$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
+	}) 
 });

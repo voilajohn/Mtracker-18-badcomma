@@ -234,7 +234,7 @@ MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the c
 			$(".emptyCart").removeClass("ui-state-disabled");
 		}
 		$(".cartlist").enhanceWithin(); //this will refresh the cart list. 
-		$(".cartlist").listview("refresh"); //1.25 test - this breaks it
+		$(".cartlist").listview("refresh"); //seems some issues with 
 		$(".cartlist").fadeIn();
 		var total = 0;
 		$( ".cartlist li .total span" ).each( function( index, element ){
