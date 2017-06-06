@@ -65,9 +65,7 @@ app.cartController = new MickmanAppLogin.CartController(); //call the cart contr
 app.orderController = new MickmanAppLogin.OrderController(); //call the order controller 
 
 function checkGroup(x){ //find the group name and the user saved.
-	//1.25 this will need to be updated to be the new listing - user data now stored in 'user'
-	//CHECK DB
-	
+	//x - debug where the checkGroup is coming from
 	user.iterate(function(value, key, iterationNumber) {
 		if(key == "group"){      group = value;
 		}else if(key == "user"){ currentuser = value;
@@ -82,7 +80,6 @@ function checkGroup(x){ //find the group name and the user saved.
 		//make sure that the dbs are displaying
 		app.orderController.CreateOrderDB(currentuser,id); //load the db
 		app.signInController.CreateProductDB(currentuser,id,x); //load the db 
-		//console.log("Create DBS called");
 	});
 	console.log("checkgroup" + x);
 }

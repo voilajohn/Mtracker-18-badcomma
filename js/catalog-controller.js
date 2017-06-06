@@ -60,6 +60,7 @@ MickmanAppLogin.CatalogController.prototype.init = function () {
 MickmanAppLogin.CatalogController.prototype.addpricetoPopup = function (e) { //push the price to the popup
 	$('#purchase span').html(e);
 };
+
 //ADD TO PRODUCT DB
 MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write the server items to the database
 	var data = y;
@@ -67,28 +68,19 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 	data.unshift(['user',x]);//push username selected to the front of the list
 	//console.log(data);
 	for(j=0;j<data.length;j++){
-		//if(data[j][1] != "" || data[j][1] != 0){//check for blanks
-			//need to send this all at once then return the info
-			//let's turn this into a promise chain so it can all be done at once then fire the getsaveddata after
+		if(data[j][1] != "" || data[j][1] != 0){//check for blanks
 			productList.push([data[j][0], data[j][1]]);
-		//}else{
-		//	console.log(data[j][0] + "is empty");
-		//}
+		}else{
+			productList.push([data[j][0], 0]);//lets clear it out
+		}
 	}
-	
-	//new
 	var promises = productList.map(function(item) {
 		return productdb.setItem(item[0],item[1]);
 	});
 	
 	Promise.all(promises).then(function(results) {
-		//this should be there I think but lets turn it off to see what happens
-	    //app.catalogController.getSavedData(); --old 
 	    checkGroup("promise"); //-- 1.25 turned this off - turned off the init but turned this one back on
-	    //console.log("store promise chain");
 	});
-	
-	//this.getSavedData(); //now lets boot up the page
 });
 MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 	cart.getItem("defaults").then( function(value) { //let's add in our defaults if they are saved
@@ -135,6 +127,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	$("#LEDlights").addClass('hidden'); 
 	
 	//clear buttons to make sure there isn't duplicates
+	CurrentUser = "";
 	CradioBtn = "";
 	VradioBtn = "";
 	SradioBtn = "";
@@ -156,10 +149,10 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	console.log("pdb: " + productdb);
 	// Need to set lowest price and flag the radio button
 	if(productdb){
-		console.log(productdb);
+		//console.log(productdb);
 	productdb.iterate(function(value, key, iterationNumber) {
-		console.log(key + "-" + iterationNumber);
-		//console.log(CradioBtn);
+		//console.log(key + "-" + iterationNumber);
+		
 	    if( (key == "25c") && value > 0 && value != null || (key == "25cg") && value > 0 && value != null ||
 	    	(key == "28c") && value > 0 && value != null || (key == "28cg") && value > 0 && value != null ||
 	    	(key == "36c") && value > 0 && value != null || (key == "36cg") && value > 0 && value != null ||
@@ -320,7 +313,9 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 		}else{
 			$("#other").removeClass('hidden');
 		}
-	    
+	    if(key == "user"){
+		    CurrentUser = key;		    
+	    }
 	}).then(function() {
 		//put the pricing on the items that need pricing added.
 		//$('#ClassicOption').controlgroup('container').html(CradioBtn);
