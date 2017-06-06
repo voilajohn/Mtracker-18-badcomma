@@ -110,7 +110,6 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 		            var userDeets = resp.extras.products;
 		            var group = userDeets[userDeets.indexOf('cust_id') + 1][1];
 		            var wod = userDeets[userDeets.indexOf('wod') + 2][1];
-		            //console.log("W: " + wod + " G: " + group);
 		            
 		            $(".mygroup").html(resp.extras.cust_id);
 		            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load
@@ -119,12 +118,27 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 	                	
 	                	app.signInController.CreateProductDB($('#select-choice-1').val(),$('#select-choice-1 :selected').attr('id'),"createProducts"); //create unique products db
 	                	
-	                	user.setItem("user",$('#select-choice-1').val()); //user
-	                	user.setItem("id",$('#select-choice-1 :selected').attr('id'));//push the userID to the database 
-	                	user.setItem("wod",wod);
-	                	user.setItem("group",group);
+				        var key = [
+				        	["user",$('#select-choice-1').val()],
+				        	["id",$('#select-choice-1 :selected').attr('id')],
+				        	["wod",wod],
+				        	["group",group]
+				        ];
+						var promises = key.map(function(item) { 
+							return user.setItem(item[0],item[1]);
+						});
+						Promise.all(promises).then(function(results) {
+							console.log("r: " + results);
+							//place the returned values
+							console.log(resp.extras.products);
+							app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);
+						});
+	                	//user.setItem("user",$('#select-choice-1').val()); //user
+	                	//user.setItem("id",$('#select-choice-1 :selected').attr('id'));//push the userID to the database 
+	                	//user.setItem("wod",wod);
+	                	//user.setItem("group",group);
 	                	
-		                app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);
+		                
 		                //put the additional stuff into the DB
 		              
 	                	var today = new Date();
