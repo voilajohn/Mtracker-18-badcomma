@@ -118,6 +118,11 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 	                	
 	                	app.signInController.CreateProductDB($('#select-choice-1').val(),$('#select-choice-1 :selected').attr('id'),"createProducts"); //create unique products db
 	                	
+	                	//user.setItem("user",$('#select-choice-1').val()); //user
+	                	//user.setItem("id",$('#select-choice-1 :selected').attr('id'));//push the userID to the database 
+	                	//user.setItem("wod",wod);
+	                	//user.setItem("group",group);
+	                	
 				        var key = [
 				        	["user",$('#select-choice-1').val()],
 				        	["id",$('#select-choice-1 :selected').attr('id')],
@@ -128,67 +133,65 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 							return user.setItem(item[0],item[1]);
 						});
 						Promise.all(promises).then(function(results) {
-							console.log("r: " + results);
-							//place the returned values
-							console.log(resp.extras.products);
+							$.mobile.loading("show");//show spinner
 							app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);
+							
+							//put the additional stuff into the DB
+		                	var today = new Date();
+			                var expirationDate = new Date();
+			                expirationDate.setTime(today.getTime() + MickmanAppLogin.Settings.sessionTimeoutInMSec);
+			                
+			                //left save all this stuff to a local database to get later 
+			                // - this may take over for the localdata stuff	
+			                
+			                var token = resp.extras.sessionID;
+			                var memberProf = $('#select-choice-1').val();
+			                var groupName = resp.extras.products[2][1];//find this in the code
+			                var UserID = $('#select-choice-1 :selected').attr('id');
+			                
+			                //create the session variables
+			                MickmanAppLogin.Session.getInstance().set({//local variable for checking the sessions
+			                    userProfileModel:  memberProf,
+			                    userGroup: groupName,
+			                    sessionId: token,
+			                    userId: UserID,
+			                    expirationDate: expirationDate,
+			                    keepSignedIn:me.$chkKeepSignedIn.is(":checked")
+			                });
+			               
+			                $.ajax({  //save this the users token to the db. 
+						        type: 'POST',
+						        url: MickmanAppLogin.Settings.tokenUrl,
+						        data: "user=" + userName + "&password=" + password + "&member=" + memberProf + "&senttoken=" + token,
+						        success: function (response) {
+							    	$.mobile.loading("hide");
+									if(response.success === true){
+										token = response.extras.token;
+										//ADD TO DB - PRODUCTS 
+										user.setItem("token",token);//push the token to the database
+										$.mobile.navigate(me.mainMenuPageId); //if that is successful we will reroute them to the catalog page
+									}else{ //show an error message.
+										  me.$ctnErr.html("<p>There was an error loading your profile. Please check your connection and try again.</p>");
+										  me.$ctnErr.addClass("bi-ctn-err").slideDown();
+										  me.$txtUserName.addClass(invalidInputStyle);
+									}
+								},
+								//YOU WERE ADDING THE RESPONSE TO THE PHP AND TRYING TO GET IT TO LOGIN AND STORE THE TOKEN TO BE USED IN THE SYNC OPERATION
+						        error: function (e) {
+						            $.mobile.loading("hide");
+						            console.log(e);
+						            // TODO: Use a friendlier error message below.
+						            me.$ctnErr.html("<p>Oops! It looks like we had a problem and could not log you on.  Please try again in a few minutes.</p>");
+						            me.$ctnErr.addClass("bi-ctn-err").slideDown();
+						        }
+			                });
+							
+							
+							
 						});
-	                	//user.setItem("user",$('#select-choice-1').val()); //user
-	                	//user.setItem("id",$('#select-choice-1 :selected').attr('id'));//push the userID to the database 
-	                	//user.setItem("wod",wod);
-	                	//user.setItem("group",group);
-	                	
+	                
 		                
-		                //put the additional stuff into the DB
-		              
-	                	var today = new Date();
-		                var expirationDate = new Date();
-		                expirationDate.setTime(today.getTime() + MickmanAppLogin.Settings.sessionTimeoutInMSec);
 		                
-		                //left save all this stuff to a local database to get later - this may take over for the localdata stuff	
-		                var token = resp.extras.sessionID;
-		                var memberProf = $('#select-choice-1').val();
-		                var groupName = resp.extras.products[2][1];//find this in the code
-		                var UserID = $('#select-choice-1 :selected').attr('id');
-		                
-		                MickmanAppLogin.Session.getInstance().set({//local variable for checking the sessions
-		                    userProfileModel:  memberProf,
-		                    userGroup: groupName,
-		                    sessionId: token,
-		                    userId: UserID,
-		                    expirationDate: expirationDate,
-		                    keepSignedIn:me.$chkKeepSignedIn.is(":checked")
-		                });
-		               
-		                $.mobile.loading("show");
-		               
-		                $.ajax({  //save this the users token to his db. 
-					        type: 'POST',
-					        url: MickmanAppLogin.Settings.tokenUrl,
-					        data: "user=" + userName + "&password=" + password + "&member=" + memberProf + "&senttoken=" + token,
-					        success: function (response) {
-						    	$.mobile.loading("hide");
-								if(response.success === true){
-									token = response.extras.token;
-									//ADD TO DB - PRODUCTS 
-									user.setItem("token",token);//push the token to the database 
-								
-									$.mobile.navigate(me.mainMenuPageId); //if that is successful we will reroute them to the catalog page
-								}else{ //show an error message.
-									  me.$ctnErr.html("<p>There was an error loading your profile. Please check your connection and try again.</p>");
-									  me.$ctnErr.addClass("bi-ctn-err").slideDown();
-									  me.$txtUserName.addClass(invalidInputStyle);
-								}
-							},
-							//YOU WERE ADDING THE RESPONSE TO THE PHP AND TRYING TO GET IT TO LOGIN AND STORE THE TOKEN TO BE USED IN THE SYNC OPERATION
-					        error: function (e) {
-					            $.mobile.loading("hide");
-					            console.log(e);
-					            // TODO: Use a friendlier error message below.
-					            me.$ctnErr.html("<p>Oops! It looks like we had a problem and could not log you on.  Please try again in a few minutes.</p>");
-					            me.$ctnErr.addClass("bi-ctn-err").slideDown();
-					        }
-		                });
                 	});
 					//pop up window with selection
 					$( "#confirm-member" ).popup( "open");
