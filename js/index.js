@@ -75,7 +75,6 @@ function checkGroup(x){ //find the group name and the user saved.
 		}else if(key == "id"){   id = value;
 		}
 	}).then(function() {	                  //update the profile display
-		//console.log(group + ":" + currentuser + ":" + wod);
 		$(".your-group").html(group);         //display on profile section
 		$(".your-profile").html(currentuser); //display on profile section
 		$(".your-delivery").html(wod);        //display on profile section

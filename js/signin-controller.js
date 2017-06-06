@@ -95,7 +95,7 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
         success: function (resp) {
 	        
             $.mobile.loading("hide");
-            //console.log(resp);
+            console.log(resp);
             if (resp.success === true) { // If the login method changes this part can be skipped
                 if(resp.extras.users){//build out the menu
 	                $('#select-choice-1').html(""); //prevent big lists from multiple logins
