@@ -67,13 +67,13 @@ MickmanAppLogin.CatalogController.prototype.storeData = (function(x,y) { //Write
 	data.unshift(['user',x]);//push username selected to the front of the list
 	//console.log(data);
 	for(j=0;j<data.length;j++){
-		if(data[j][1] != "" || data[j][1] != 0){//check for blanks
+		//if(data[j][1] != "" || data[j][1] != 0){//check for blanks
 			//need to send this all at once then return the info
 			//let's turn this into a promise chain so it can all be done at once then fire the getsaveddata after
 			productList.push([data[j][0], data[j][1]]);
-		}else{
-			console.log(data[j][0] + "is empty");
-		}
+		//}else{
+		//	console.log(data[j][0] + "is empty");
+		//}
 	}
 	
 	//new
@@ -108,6 +108,9 @@ MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 }
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
+	// should there be a check to see that the correct user data is loaded?
+	// should I check to make sure that there is only one of each item before adding it to the mix? (checkbox options)
+	 
 	$.mobile.loading("show");  // Show loading graphic
 	//clear out the orders section
 	$(".orderList").html("");
