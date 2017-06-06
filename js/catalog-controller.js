@@ -141,7 +141,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	    productuser = value;
     	user.getItem('user').then( function(value){
 	    	if(value == productuser){
-		    	console.log("we have a match it is ok to continue on");
+		    	console.log("we have a match it is ok to continue on" + value + ":" + productuser);
 		    	//from here we should load the catalog
 				if(productdb){
 				console.log(productdb);
