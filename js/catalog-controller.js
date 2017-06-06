@@ -99,18 +99,15 @@ MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 	});
 }
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
-MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded.
-	// should there be a check to see that the correct user data is loaded?
-	// should I check to make sure that there is only one of each item before adding it to the mix? (checkbox options)
-	 
+MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded
 	$.mobile.loading("show");  // Show loading graphic
 	//clear out the orders section
 	$(".orderList").html("");
 	$(".orderList").enhanceWithin();
 	
 	console.log("Fill out the Catalog");
-	//hide everything 
 	
+	//hide everything 
 	$("#ClassicWreath").addClass('hidden'); 
 	$("#VictorianWreath").addClass('hidden');  
 	$("#CranberrySplashWreath").addClass('hidden'); 
@@ -127,29 +124,37 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	$("#LEDlights").addClass('hidden'); 
 	
 	//clear buttons to make sure there isn't duplicates
-	CurrentUser = "";
-	CradioBtn = "";
-	VradioBtn = "";
-	SradioBtn = "";
-	CSradioBtn = "";
-	VSradioBtn = "";
-	CSSradioBtn = "";
-	CLCradioBtn = "";
-	GradioBtn = "";
-	NSTradioBtn = "";
-	EZWradioBtn = "";
-	LLradioBtn = "";
+	CurrentUser = ""; 
+	CradioBtn = "";VradioBtn = "";SradioBtn = "";
+	CSradioBtn = "";VSradioBtn = "";CSSradioBtn = "";
+	CLCradioBtn = "";GradioBtn = "";NSTradioBtn = "";
+	EZWradioBtn = "";LLradioBtn = "";
 	
 	$('#ClassicOption').html("");
 	$('#VictorianOption').html("");
 	$('#CranberryOption').html("");
 	$('#GarlandOption').html("");
+	
+    // lets check to make sure that we have the correct user before loading this function
+    var productuser;
+    productdb.getItem('user').then( function(value){
+	    productuser = value;
+    	user.getItem('user').then( function(value){
+	    	if(value == productuser){
+		    	console.log("we have a match it is ok to continue on");
+	    	}else{
+		    	console.log("err: " + value + " and " + productuser + "do not match");
+	    	}
+	    });
+    });
+    
+    
     
 	// Find the number of items in the datastore.
 	console.log("pdb: " + productdb);
 	// Need to set lowest price and flag the radio button
 	if(productdb){
-		//console.log(productdb);
+	console.log(productdb);
 	productdb.iterate(function(value, key, iterationNumber) {
 		//console.log(key + "-" + iterationNumber);
 		
@@ -319,6 +324,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	}).then(function() {
 		//put the pricing on the items that need pricing added.
 		//$('#ClassicOption').controlgroup('container').html(CradioBtn);
+		
 		//console.log(CradioBtn);
 		$('#ClassicOption').html(CradioBtn);
 		$('#VictorianOption').html(VradioBtn);
