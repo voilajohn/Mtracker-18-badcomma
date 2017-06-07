@@ -10,7 +10,7 @@ MickmanAppLogin.OrderController = function () {
 //gather the variables that we will need 
 MickmanAppLogin.OrderController.prototype.init = function () {
     this.$storePage = "#page-checkout";
-    checkGroup('order init');
+    //checkGroup('order init');
     console.log("init");
 };
 

@@ -101,6 +101,7 @@ MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded
 	$.mobile.loading("show");  // Show loading graphic
+	// ALL OF THE DYNAMIC ITEMS NEED TO BE REFRESHED AFTER THEY ARE CLEARED.
 	//clear out the orders section
 	$(".orderList").html("");
 	$(".orderList").enhanceWithin();
@@ -133,7 +134,14 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	$('#VictorianOption').html("");
 	$('#CranberryOption').html("");
 	$('#GarlandOption').html("");
-	
+				    
+    $("#ClassicSprayOption").html("");
+    $("#VictorianSprayOption").html("");
+    $("#CranberrySprayOption").html("");
+    $("#CandlelitCenterpieceOption").html("");
+    $('#NorthStarTreeOption').html("");
+    $('#EZWreathHangerOption').html("");
+	$('#LedLightOption').html("");
     // lets check to make sure that we have the correct user before loading this function
     var productuser;
     
