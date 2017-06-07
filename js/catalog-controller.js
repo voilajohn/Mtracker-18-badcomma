@@ -137,11 +137,11 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
     // lets check to make sure that we have the correct user before loading this function
     var productuser;
     
-    var opt = new Object;
-    opt.C = Array();
-    opt.V = Array();
-    opt.CS = Array();
-    opt.G = Array();
+    //var opt = new Object;
+    var optC = [];
+    var optV = [];
+    var optCS = [];
+    var optG = [];
     
     productdb.getItem('user').then( function(value){
 	    productuser = value;
@@ -154,47 +154,47 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 				productdb.iterate(function(value, key, iterationNumber) {
 					//console.log(key + "-" + iterationNumber);
 				    if( (key == "25c") && value > 0 && value != null || (key == "25cg") && value > 0 && value != null ){
-					    opt.C[0] = new Array(key,value,(key.slice(0,2) + "in."));
+					    optC[0] = new Array(key,value,(key.slice(0,2) + "in."));
 				    }
 				    if( (key == "28c") && value > 0 && value != null || (key == "28cg") && value > 0 && value != null ){
-					    opt.C[1] = new Array(key,value,(key.slice(0,2) + "in."));
+					    optC[1] = new Array(key,value,(key.slice(0,2) + "in."));
 				    }
 				    if( (key == "36c") && value > 0 && value != null || (key == "36cg") && value > 0 && value != null ){
-					    opt.C[2] = new Array(key,value,(key.slice(0,2) + "in."));
+					    optC[2] = new Array(key,value,(key.slice(0,2) + "in."));
 				    }
 				    if( (key == "48c") && value > 0 && value != null || (key == "48cg") && value > 0 && value != null ){
-					    opt.C[3] = new Array(key,value,(key.slice(0,2) + "in."));
+					    optC[3] = new Array(key,value,(key.slice(0,2) + "in."));
 				    }
-				    if ( (key == "60c") && value > 0 && value != null || (key == "60cg") && value > 0 && value != null ){ 					    		opt.C[4] = new Array(key,value,(key.slice(0,2) + "in."));
+				    if ( (key == "60c") && value > 0 && value != null || (key == "60cg") && value > 0 && value != null ){ 					    		optC[4] = new Array(key,value,(key.slice(0,2) + "in."));
 				    }
-				    if(opt.C.length != 0){ //Classic Wreath is available
+				    if(optC.length != 0){ //Classic Wreath is available
 					    $("#ClassicWreath").removeClass('hidden');
 				    }
 				    
 					if( (key == "25v") && value > 0 && value != null || (key == "25vg") && value > 0 && value != null){
-						opt.V[0] = new Array(key,value,(key.slice(0,2) + "in."));
+						optV[0] = new Array(key,value,(key.slice(0,2) + "in."));
 					}
 				    if( (key == "28v") && value > 0 && value != null || (key == "28vg") && value > 0 && value != null){
-					    opt.V[1] = new Array(key,value,(key.slice(0,2) + "in."));
+					    optV[1] = new Array(key,value,(key.slice(0,2) + "in."));
 				    }
 				    if( (key == "36v") && value > 0 && value != null || (key == "36vg") && value > 0 && value != null){
-					    opt.V[2] = new Array(key,value,(key.slice(0,2) + "in."));
+					    optV[2] = new Array(key,value,(key.slice(0,2) + "in."));
 				    }
-				    if(opt.V.length != 0){ //Victorian Wreath is available
+				    if(optV.length != 0){ //Victorian Wreath is available
 					   $("#VictorianWreath").removeClass('hidden'); 
 				    }
 					
 				
 					if( (key == "25cs") && value > 0 && value != null || (key == "25csg") && value > 0 && value != null){
-						opt.CS[0] = new Array(key,value,(key.slice(0,2) + "in."));
+						optCS[0] = new Array(key,value,(key.slice(0,2) + "in."));
 					} 
 				    if( (key == "28cs") && value > 0 && value != null || (key == "28csg") && value > 0 && value != null){
-					    opt.CS[1] = new Array(key,value,(key.slice(0,2) + "in."));
+					    optCS[1] = new Array(key,value,(key.slice(0,2) + "in."));
 				    }
 				    if( (key == "36cs") && value > 0 && value != null || (key == "36csg") && value > 0 && value != null){ 
-					    opt.CS[2] = new Array(key,value,(key.slice(0,2) + "in."));
+					    optCS[2] = new Array(key,value,(key.slice(0,2) + "in."));
 					}
-					if(opt.CS.length != 0){ //Cranberry Splash Wreath is available
+					if(optCS.length != 0){ //Cranberry Splash Wreath is available
 						$("#CranberrySplashWreath").removeClass('hidden'); 
 					}
 					
@@ -285,18 +285,18 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					}
 					
 					if( (key == "25gar") && value > 0 && value != null){
-						opt.G[0] = new Array(key,value,(key.slice(0,2) + "in."));
+						optG[0] = new Array(key,value,(key.slice(0,2) + "in."));
 					}
 					if( (key == "50gar") && value > 0 && value != null){
-						opt.G[1] = new Array(key,value,(key.slice(0,2) + "in."));
+						optG[1] = new Array(key,value,(key.slice(0,2) + "in."));
 					}
 					if( (key == "25garg") && value > 0 && value != null){
-						opt.G[3] = new Array(key,value,(key.slice(0,2) + "in."));
+						optG[3] = new Array(key,value,(key.slice(0,2) + "in."));
 					}
 					if( (key == "50garg") && value > 0 && value != null){ //Garland
-						opt.G[4] = new Array(key,value,(key.slice(0,2) + "in."));
+						optG[4] = new Array(key,value,(key.slice(0,2) + "in."));
 					}
-					if(opt.G.length != 0){
+					if(optG.length != 0){
 						$("#garland").removeClass('hidden');
 					}
 					if( (key == "hanger") && value > 0 && value != null){
@@ -338,18 +338,26 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					var optionArr = ["C","V","CS","G"];
 					//for(y=0;y<optionArr.length;y++){
 						
-						for(x=0;x<opt.C.length;x++){
-							CradioBtn += '<li class="ui-grid-b" id="row'+opt.C[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+opt.C[x][0]+'" data-prod-id="'+opt.C[x][0]+'" value="'+opt.C[x][1]+'" data-mini="true"/><label for="wreath'+opt.C[x][0]+'"><span class="sizeoption">'+opt.C[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+opt.C[x][1]+'</span></div></li>';
+						for(x=0;x<optC.length;x++){
+							if(optC[x]){
+								CradioBtn += '<li class="ui-grid-b" id="row'+optC[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+optC[x][0]+'" data-prod-id="'+optC[x][0]+'" value="'+optC[x][1]+'" data-mini="true"/><label for="wreath'+optC[x][0]+'"><span class="sizeoption">'+optC[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+optC[x][1]+'</span></div></li>';
+							}
 						}
 						
-						for(x=0;x<opt.V.length;x++){
-							VradioBtn += '<li class="ui-grid-b" id="row'+opt.V[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+opt.V[x][0]+'" data-prod-id="'+opt.V[x][0]+'" value="'+opt.V[x][1]+'" data-mini="true"/><label for="wreath'+opt.V[x][0]+'"><span class="sizeoption">'+opt.V[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+opt.V[x][1]+'</span></div></li>';
+						for(x=0;x<optV.length;x++){
+							if(optV[x]){
+								VradioBtn += '<li class="ui-grid-b" id="row'+optV[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+optV[x][0]+'" data-prod-id="'+optV[x][0]+'" value="'+optV[x][1]+'" data-mini="true"/><label for="wreath'+optV[x][0]+'"><span class="sizeoption">'+optV[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+optV[x][1]+'</span></div></li>';
+							}
 						}
-						for(x=0;x<opt.V.length;x++){
-							SradioBtn += '<li class="ui-grid-b" id="row'+opt.CS[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+opt.CS[x][0]+'" data-prod-id="'+opt.CS[x][0]+'" value="'+opt.CS[x][1]+'" data-mini="true"/><label for="wreath'+opt.CS[x][0]+'"><span class="sizeoption">'+opt.V[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+opt.CS[x][1]+'</span></div></li>';
+						for(x=0;x<optCS.length;x++){
+							if(optCS[x]){
+							SradioBtn += '<li class="ui-grid-b" id="row'+optCS[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+optCS[x][0]+'" data-prod-id="'+optCS[x][0]+'" value="'+optCS[x][1]+'" data-mini="true"/><label for="wreath'+optCS[x][0]+'"><span class="sizeoption">'+optCS[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+optCS[x][1]+'</span></div></li>';
+							}
 						}
-						for(x=0;x<opt.G.length;x++){
-							GradioBtn += '<li class="ui-grid-b" id="row'+opt.G[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+opt.G[x][0]+'" data-prod-id="'+opt.G[x][0]+'" value="'+opt.G[x][1]+'" data-mini="true"/><label for="wreath'+opt.G[x][0]+'"><span class="sizeoption">'+opt.G[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+opt.G[x][1]+'</span></div></li>';
+						for(x=0;x<optG.length;x++){
+							if(optG[x]){
+							GradioBtn += '<li class="ui-grid-b" id="row'+optG[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+optG[x][0]+'" data-prod-id="'+optG[x][0]+'" value="'+optG[x][1]+'" data-mini="true"/><label for="wreath'+optG[x][0]+'"><span class="sizeoption">'+optG[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+opt.G[x][1]+'</span></div></li>';
+							}
 						}
 					//}
 					
@@ -418,7 +426,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 				    
 				}).catch(function(err) {
 				    // This code runs if there were any errors
-				    console.log(err);
+				    console.log("E: " + err);
 				});
 				console.log("Get Saved Data");
 				
