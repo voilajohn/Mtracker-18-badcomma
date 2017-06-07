@@ -130,6 +130,7 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
     
     switch (ui.toPage.attr("id")) {
         case "page-signin": //if it's the sign-in page lets check to see if they have a valid session
+        	console.log("check-login");
             if (!ui.prevPage) {
                 // Check session.keepSignedIn and redirect to main menu.
                 var session = MickmanAppLogin.Session.getInstance().get(),

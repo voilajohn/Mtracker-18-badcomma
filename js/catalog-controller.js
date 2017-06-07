@@ -343,34 +343,40 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 				}).then(function() {
 					//put the pricing on the items that need pricing added.
 					//loop through arrays to build out the options menu
-					var optionArr = ["C","V","CS","G"];
-					//for(y=0;y<optionArr.length;y++){
+						CradioBtn = "";
+						$.each( optC, function( i, val ) {
+							if(val){
+								console.log(val[0]);
+								CradioBtn += '<li class="ui-grid-b" id="row'+val[0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+val[0]+'" data-prod-id="'+val[0]+'" value="'+val[1]+'" data-mini="true"/><label for="wreath'+val[0]+'"><span class="sizeoption">'+val[2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+val[1]+'</span></div></li>';
+							}
+						});
+						VradioBtn = "";
+						$.each( optV, function( i, val ) {
+							if(val){
+								console.log(val[0]);
+								VradioBtn += '<li class="ui-grid-b" id="row'+val[0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+val[0]+'" data-prod-id="'+val[0]+'" value="'+val[1]+'" data-mini="true"/><label for="wreath'+val[0]+'"><span class="sizeoption">'+val[2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+val[1]+'</span></div></li>';
+							}
+						});
+						SradioBtn = "";
+						$.each( optCS, function( i, val ) {
+							if(val){
+								console.log(val[0]);
+								SradioBtn += '<li class="ui-grid-b" id="row'+val[0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+val[0]+'" data-prod-id="'+val[0]+'" value="'+val[1]+'" data-mini="true"/><label for="wreath'+val[0]+'"><span class="sizeoption">'+val[2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+val[1]+'</span></div></li>';
+							}
+						});
+						GradioBtn = "";
+						$.each( optG, function( i, val ) {
+							if(val){
+								console.log(val[0]);
+								GradioBtn += '<li class="ui-grid-b" id="row'+val[0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+val[0]+'" data-prod-id="'+val[0]+'" value="'+val[1]+'" data-mini="true"/><label for="wreath'+val[0]+'"><span class="sizeoption">'+val[2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+val[1]+'</span></div></li>';
+							}
+						});
 						
-						for(x=0;x<optC.length;x++){
-							if(optC[x]){
-								CradioBtn += '<li class="ui-grid-b" id="row'+optC[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+optC[x][0]+'" data-prod-id="'+optC[x][0]+'" value="'+optC[x][1]+'" data-mini="true"/><label for="wreath'+optC[x][0]+'"><span class="sizeoption">'+optC[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+optC[x][1]+'</span></div></li>';
-							}
-						}
-						
-						for(x=0;x<optV.length;x++){
-							if(optV[x]){
-								VradioBtn += '<li class="ui-grid-b" id="row'+optV[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+optV[x][0]+'" data-prod-id="'+optV[x][0]+'" value="'+optV[x][1]+'" data-mini="true"/><label for="wreath'+optV[x][0]+'"><span class="sizeoption">'+optV[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+optV[x][1]+'</span></div></li>';
-							}
-						}
-						for(x=0;x<optCS.length;x++){
-							if(optCS[x]){
-							SradioBtn += '<li class="ui-grid-b" id="row'+optCS[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+optCS[x][0]+'" data-prod-id="'+optCS[x][0]+'" value="'+optCS[x][1]+'" data-mini="true"/><label for="wreath'+optCS[x][0]+'"><span class="sizeoption">'+optCS[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+optCS[x][1]+'</span></div></li>';
-							}
-						}
-						for(x=0;x<optG.length;x++){
-							if(optG[x]){
-							GradioBtn += '<li class="ui-grid-b" id="row'+optG[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+optG[x][0]+'" data-prod-id="'+optG[x][0]+'" value="'+optG[x][1]+'" data-mini="true"/><label for="wreath'+optG[x][0]+'"><span class="sizeoption">'+optG[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+opt.G[x][1]+'</span></div></li>';
-							}
-						}
 					//}
 					
-					
-					$('#ClassicOption').html(CradioBtn);
+					console.log(CradioBtn);
+					$('#ClassicOption').html("").html(CradioBtn).enhanceWithin();
+					//$('#ClassicOption').html(CradioBtn);
 					$('#VictorianOption').html(VradioBtn);
 					$('#CranberryOption').html(SradioBtn);
 					$('#ClassicSprayOption').html(CSradioBtn);
