@@ -4,13 +4,13 @@ var MickmanAppLogin = MickmanAppLogin || {};
 
 var ClassicWreathDescription = "This popular wreath is as traditional as Christmas itself. The Balsam Fir Classic Wreath is tastefully decorated with a long tailed, gold-backed velveteen bow and white tipped and glittered Ponderosa pine cones accented with red jingle bells which match the generous red bow.";
 
-var VictorianWreathDescription = "These most popular Balsam Fir Holiday Evergree feature an exquisite satin bow with imprinted wired-gold edges to hold the generous loops of the ribbon. Trimmings include natural pine cones accented with gold jingle bells, and the matchin Christmas bulbs finish off the look of these elegaHoliday Decorations.";
+var VictorianWreathDescription = "These most popular Balsam Fir Holiday Evergree feature an exquisite satin bow with imprinted wired-gold edges to hold the generous loops of the ribbon. Trimmings include natural pine cones accented with gold jingle bells, and the matching Christmas bulbs finish off the look of these elegant Holiday Decorations.";
 
 var CranberrySplashWreathDescription = "This traditionally festive wreath is made from natural Balsam Fir boughs and is decorated with a generous, 4” wide, fabric bow with gold wired edges. The ornamental trimmings include faux cranberry sprigs and gold Juniper twigs. Three naturally bronzed Ponderosa Pine cones laced with gold jingle bells set the finishing touches for this stunning addition to your holiday décor.";
 
 var ClassicSprayDescription = "The combination of mixed evergreens of the Classic Spray are accented with a generous gold backed red velveteen bow which has wonderfully long tails. The white tipped & glittered pine cones are highlighted with festive red jingle bells which match the red bow. Either used by itself as a unique door decoration, or in concert with the Classic Wreath, the Classic Door Spray is appreciated by all.";
 
-var VictorianSprayDescription = "These most popular Balsam Fir Holiday Evergree feature an exquisite satin bow with imprinted wired-gold edges to hold the generous loops of the ribbon. Trimmings include natural pine cones accented with gold jingle bells, and the matching Christmas bulbs finish off the look of these elegant Holiday Decorations.";
+var VictorianSprayDescription = "These most popular Balsam Fir Holiday Evergreen feature an exquisite satin bow with imprinted wired-gold edges to hold the generous loops of the ribbon. Trimmings include natural pine cones accented with gold jingle bells, and the matching Christmas bulbs finish off the look of these elegant Holiday Decorations.";
 
 var CranberrySprayDescription = "The Cranberry Splash Spray is made from natural mixed evergreen boughs and is decorated with a generous, 4” wide, fabric bow with gold wired edges. The ornamental trimmings include faux cranberry sprigs and gold Juniper twigs. Natural bronze Ponderosa pine cones laced with gold jingle bells set the finishing touches for this stunning addition to your Holiday Décor.";
 
@@ -680,6 +680,12 @@ $(".slickIt").on('click', function(){ //rotating area
             }
         }
     });
+    //slide to the first slide if we are redoing it. 
+    var mySwiper = $('.swiper-container')[0].swiper;
+    mySwiper.update();
+    mySwiper.slideTo(0,1000,false);
+    mySwiper.update();
+    
 	$('.product-display').addClass("slicked");
 	$('.product-display').removeClass("unslicked");
 	

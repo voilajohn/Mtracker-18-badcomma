@@ -91,6 +91,15 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
         me.$ctnErr.addClass("bi-ctn-err").slideDown();
         return;
     }
+    //check for cart contents
+	console.log("logging in - clear cart");
+	cart.clear().then(function(){
+		console.log("cart db is empty");
+		//clear out the cart contents
+		
+	}).catch(function(err){
+		console.log(err);
+	});
 	
     $.mobile.loading("show");  // Show loading graphic
     $.ajax({
@@ -246,14 +255,25 @@ var initialHref = window.location.href;
 
 //sign out button
 $(".signOut").on('click', function(){ 
-	//console.log("sign-out");
 	$('.emptyCart').click();//empty the cart
-	
 	user.clear().then(function() {//clear out the current user data
-    	//console.log('User database is now empty.');
-		window.localStorage.removeItem('mickman-session');//remove the session key
+		window.localStorage.removeItem('mickman-session'); //remove the session key
 		productdb = ""; //clear out the current productdb var
 		loadCatCalled = 0; //reset this variable
+		var mySwiper = $('.swiper-container')[0].swiper; //remove swiper
+		mySwiper.destroy();		
+		mySwiper = undefined;
+		$("#ClassicSprayOption").html(""); //clear product settings
+	    $("#VictorianSprayOption").html("");
+	    $("#CranberrySprayOption").html("");
+	    $("#CandlelitCenterpieceOption").html("");
+	    $('#NorthStarTreeOption').html("");
+	    $('#EZWreathHangerOption').html("");
+		$('#LedLightOption').html("");	
+		CradioBtn = "";VradioBtn = "";SradioBtn = ""; //clear options
+		CSradioBtn = "";VSradioBtn = "";CSSradioBtn = "";
+		CLCradioBtn = "";GradioBtn = "";NSTradioBtn = "";
+		EZWradioBtn = "";LLradioBtn = "";
 		$(".orderList").addClass("hidden");
 		$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
 	}) 

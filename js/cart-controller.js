@@ -97,6 +97,7 @@ MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t,r,q
 			//console.log(appendHtml);
 		}
 		$(".cart-items").append(appendHtml);
+		$('#purchase').data('fieldrealName',r);
 		$('#purchase').enhanceWithin();
 	}else{
 		console.log("notArray");

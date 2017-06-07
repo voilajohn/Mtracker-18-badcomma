@@ -282,7 +282,10 @@ $( ".ppanel" ).on( "panelbeforeopen", function( event, ui ) {//lets gather all t
 	app.catalogController.showDefaults();//grab the defaults if they are saved.
 });
 $( "#purchase" ).on( "popupbeforeposition", function( event, ui ) {
+	//we need to check all the items for addons
+	
 	var productName = $(this).data('fieldrealName');
+	console.log("p: " + productName);
 	if(productName == "hanger" || productName == "25gar" || productName == "50gar" || productName == "led" || productName == "tlt"){
 		//EZ wreath hanger / Garland / LED lights / Tiny Living Tree
 		$(this).find(".addon-wrapper").css("display","none");

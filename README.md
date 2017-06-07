@@ -1,7 +1,17 @@
 # Mtracker
-####### Version 1.272 ####### 
+####### Version 1.28 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
+
+/**************** vs 1.28  || 6-7-17 **************/
+~ Order button verbiage
+~ Better log out - clear stuff.
+~ Login - destroy cart if it exists. 
+~ Add ons - fixed LED and EZ Wreath Hanger showing up on items that should not show them. 
+~ Added debug message on Sync.
+~ Description typos Victorian Wreath and Spray
+~ Swiper - always start at 1 item on load.
+~ Order button - multiple time press
 
 /**************** vs 1.27  || 6-6-17 **************/
 ~ Further refinement for the Separate login - issues with iPad and slower connections should be fixed. 

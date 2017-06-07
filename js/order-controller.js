@@ -153,7 +153,7 @@ $(".create-order").click(function () {
 							var orderData = "<h2>Your Order Details</h2>";
 							var subtotal = 0;
 							//for(y=0;y<pdataA.length;y++){ //personal data
-							orderData += "<a href='#' class='ui-btn closesummary'>Close</a>";
+							//orderData += "<a href='#' class='ui-btn closesummary'>Close</a>";
 							orderData += "<table class='reciept-table'>";
 							orderData += "<tr><td><strong>Name: </strong>"+pdataA[1]+" "+pdataA[2]+"</td></tr>";
 							orderData += "<tr><td><strong>Address: </strong>"+pdataA[3]+"</td></tr>";
@@ -245,7 +245,8 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 			        url: MickmanAppLogin.Settings.syncDataUrl,
 			        data: "token=" + token + "&id="+ myID +"&data=" + JSON.stringify(orderArray) + "&sync-data=true",
 			        success: function (resp) {
-				        //alert(resp);
+				        //alert("Debug:" + resp);
+				        alert("Debug: " + JSON.stringify(resp, null, 4));
 				        if(resp.success == true){//now lets mark the columns that we saved.
 					        markedOrder = String(resp.extras.marksaved);//we need to mark the returned as a string 
 					        syncedArray = markedOrder.split(",");//to create an array
@@ -277,8 +278,8 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 				        $.mobile.loading("hide");
 					},
 					error: function(e){
-						console.log(e);
-						alert("error");
+						//console.log(e);
+						alert("Debug: error" + e);
 					}
 				});
 			}else{
@@ -286,13 +287,13 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 				$.mobile.loading("hide");
 			}
 		}).catch(function(err) {
-			
+			alert("Debug: internal db not found");
 		});
 });
 //close summary
-$(document).on('click', '.closesummary', function(){
+/*$(document).on('click', '.closesummary', function(){
 	$(':mobile-pagecontainer').pagecontainer('change', '#page-orders');
-});
+});*/
 //print page
 $(document).on('click', '.printOrders', function(){//first lets organize the content of the orders
 	var gtotal = 0;
