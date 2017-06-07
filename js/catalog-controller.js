@@ -137,53 +137,76 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
     // lets check to make sure that we have the correct user before loading this function
     var productuser;
     
+    var opt = new Object;
+    opt.C = Array();
+    opt.V = Array();
+    opt.CS = Array();
+    opt.G = Array();
+    
     productdb.getItem('user').then( function(value){
 	    productuser = value;
+	    
     	user.getItem('user').then( function(value){
-	    	if(value == productuser){
+	    	
+	    	if(value == productuser){ //from here we should load the catalog
 		    	console.log("we have a match it is ok to continue on" + value + ":" + productuser);
-		    	//from here we should load the catalog
-				if(productdb){
-				console.log(productdb);
+		    	
 				productdb.iterate(function(value, key, iterationNumber) {
 					//console.log(key + "-" + iterationNumber);
-				    if( (key == "25c") && value > 0 && value != null || (key == "25cg") && value > 0 && value != null ||
-				    	(key == "28c") && value > 0 && value != null || (key == "28cg") && value > 0 && value != null ||
-				    	(key == "36c") && value > 0 && value != null || (key == "36cg") && value > 0 && value != null ||
-				    	(key == "48c") && value > 0 && value != null || (key == "48cg") && value > 0 && value != null ||
-				    	(key == "60c") && value > 0 && value != null || (key == "60cg") && value > 0 && value != null
-				    ){ //Classic Wreath is available
-					    $("#ClassicWreath").removeClass('hidden'); 
-					    var buttonLabel = key.slice(0,2) + "in.";
-					    CradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
-					    CradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
-					 
+				    if( (key == "25c") && value > 0 && value != null || (key == "25cg") && value > 0 && value != null ){
+					    opt.C[0] = new Array(key,value,(key.slice(0,2) + "in."));
 				    }
-					if( (key == "25v") && value > 0 && value != null || (key == "25vg") && value > 0 && value != null ||
-				    	(key == "28v") && value > 0 && value != null || (key == "28vg") && value > 0 && value != null ||
-				    	(key == "36v") && value > 0 && value != null || (key == "36vg") && value > 0 && value != null 
-				    ){ //Victorian Wreath is available
-					    $("#VictorianWreath").removeClass('hidden'); 
-					    var buttonLabel = key.slice(0,2) + "in.";
-					    VradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
-					    VradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
+				    if( (key == "28c") && value > 0 && value != null || (key == "28cg") && value > 0 && value != null ){
+					    opt.C[1] = new Array(key,value,(key.slice(0,2) + "in."));
+				    }
+				    if( (key == "36c") && value > 0 && value != null || (key == "36cg") && value > 0 && value != null ){
+					    opt.C[2] = new Array(key,value,(key.slice(0,2) + "in."));
+				    }
+				    if( (key == "48c") && value > 0 && value != null || (key == "48cg") && value > 0 && value != null ){
+					    opt.C[3] = new Array(key,value,(key.slice(0,2) + "in."));
+				    }
+				    if ( (key == "60c") && value > 0 && value != null || (key == "60cg") && value > 0 && value != null ){ 					    		opt.C[4] = new Array(key,value,(key.slice(0,2) + "in."));
+				    }
+				    if(opt.C.length != 0){ //Classic Wreath is available
+					    $("#ClassicWreath").removeClass('hidden');
+				    }
+				    
+					if( (key == "25v") && value > 0 && value != null || (key == "25vg") && value > 0 && value != null){
+						opt.V[0] = new Array(key,value,(key.slice(0,2) + "in."));
 					}
-					if( (key == "25cs") && value > 0 && value != null || (key == "25csg") && value > 0 && value != null || 
-				    	(key == "28cs") && value > 0 && value != null || (key == "28csg") && value > 0 && value != null ||
-				    	(key == "36cs") && value > 0 && value != null || (key == "36csg") && value > 0 && value != null
-				    ){ //Cranberry Splash Wreath is available
-					    $("#CranberrySplashWreath").removeClass('hidden'); 
-					    var buttonLabel = key.slice(0,2) + "in.";	
-					    SradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
-					    SradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>'; 
+				    if( (key == "28v") && value > 0 && value != null || (key == "28vg") && value > 0 && value != null){
+					    opt.V[1] = new Array(key,value,(key.slice(0,2) + "in."));
+				    }
+				    if( (key == "36v") && value > 0 && value != null || (key == "36vg") && value > 0 && value != null){
+					    opt.V[2] = new Array(key,value,(key.slice(0,2) + "in."));
+				    }
+				    if(opt.V.length != 0){ //Victorian Wreath is available
+					   $("#VictorianWreath").removeClass('hidden'); 
+				    }
+					
+				
+					if( (key == "25cs") && value > 0 && value != null || (key == "25csg") && value > 0 && value != null){
+						opt.CS[0] = new Array(key,value,(key.slice(0,2) + "in."));
+					} 
+				    if( (key == "28cs") && value > 0 && value != null || (key == "28csg") && value > 0 && value != null){
+					    opt.CS[1] = new Array(key,value,(key.slice(0,2) + "in."));
+				    }
+				    if( (key == "36cs") && value > 0 && value != null || (key == "36csg") && value > 0 && value != null){ 
+					    opt.CS[2] = new Array(key,value,(key.slice(0,2) + "in."));
 					}
-					    if($("#ClassicWreath").hasClass('hidden') && $("#VictorianWreath").hasClass('hidden') && $("#CranberrySplashWreath").hasClass('hidden')){
-						    //hide the wreath filter button
-							$("#wreath").addClass('hidden');//hide the other category
-							$('#filterset').trigger('create');
-					    }else{
-							$("#wreath").removeClass('hidden');//hide the other category
-					    }
+					if(opt.CS.length != 0){ //Cranberry Splash Wreath is available
+						$("#CranberrySplashWreath").removeClass('hidden'); 
+					}
+					
+					//category display option
+				    if($("#ClassicWreath").hasClass('hidden') && $("#VictorianWreath").hasClass('hidden') && $("#CranberrySplashWreath").hasClass('hidden')){
+					    //hide the wreath filter button
+						$("#wreath").addClass('hidden');//hide the other category
+						$('#filterset').trigger('create');
+				    }else{
+						$("#wreath").removeClass('hidden');//hide the other category
+				    }
+				    
 					//SPRAYS
 					if( (key == "sprayc") && value > 0 && value != null || 
 						(key == "spraycg") && value > 0 && value != null
@@ -194,8 +217,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					    $("#ClassicSpray .price span.num").html(value);
 					    $("#ClassicSpray .split-custom-wrapper a").data("db-name",key);
 					    var buttonLabel = "";
-					    CSradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
-					    CSradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
+					    CSradioBtn = '<li class="ui-grid-b" id="row'+key+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
 					}
 					if( (key == "sprayv") && value > 0 && value != null || 
 						(key == "sprayvg") && value > 0 && value != null
@@ -206,8 +228,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					    $("#VictorianSpray .price span.num").html(value);
 					    $("#VictorianSpray .split-custom-wrapper a").data("db-name",key);
 					    var buttonLabel = "";
-					    VSradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
-					    VSradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
+					    VSradioBtn = '<li class="ui-grid-b" id="row'+key+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
 					}
 					if( (key == "spraycs") && value > 0 && value != null || 
 						(key == "spraycsg") && value > 0 && value != null ){ //Classic Spray
@@ -217,8 +238,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					    $("#CranberrySpray .price span.num").html(value);
 					    $("#CranberrySpray .split-custom-wrapper a").data("db-name",key);
 					    var buttonLabel = "";
-					    CSSradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
-					    CSSradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
+					    CSSradioBtn = '<li class="ui-grid-b" id="row'+key+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
 					}
 					if($("#ClassicSpray").hasClass('hidden') &&  $("#VictorianSpray").hasClass('hidden') && $("#CranberrySpray").hasClass('hidden')){
 						//hide wreath sort button
@@ -237,8 +257,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 						$("#HolidayCenterpiece .price span.num").html(value);
 						$("#HolidayCenterpiece .split-custom-wrapper a").data("db-name",key);
 						var buttonLabel = "";
-						CLCradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
-					    CLCradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
+					    CLCradioBtn = '<li class="ui-grid-b" id="row'+key+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
 					}
 					if($("#HolidayCenterpiece").hasClass('hidden')){
 						$("#centerpiece").addClass('hidden');//hide the other category
@@ -256,8 +275,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 						$("#tabletoptree .price span.num").html(value);
 						$("#tabletoptree .split-custom-wrapper a").data("db-name",key);
 						var buttonLabel = "";
-						NSTradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
-					    NSTradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
+					    NSTradioBtn = '<li class="ui-grid-b" id="row'+key+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
 					}
 					if($("#tabletoptree").hasClass('hidden')){
 						$("#tree").addClass('hidden');//hide the other category
@@ -265,17 +283,21 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					}else{
 						$("#tree").removeClass('hidden');
 					}
-					if( (key == "25gar") && value > 0 && value != null ||
-						(key == "50gar") && value > 0 && value != null ||
-						(key == "25garg") && value > 0 && value != null ||
-						(key == "50garg") && value > 0 && value != null 
-					){ //Garland
+					
+					if( (key == "25gar") && value > 0 && value != null){
+						opt.G[0] = new Array(key,value,(key.slice(0,2) + "in."));
+					}
+					if( (key == "50gar") && value > 0 && value != null){
+						opt.G[1] = new Array(key,value,(key.slice(0,2) + "in."));
+					}
+					if( (key == "25garg") && value > 0 && value != null){
+						opt.G[3] = new Array(key,value,(key.slice(0,2) + "in."));
+					}
+					if( (key == "50garg") && value > 0 && value != null){ //Garland
+						opt.G[4] = new Array(key,value,(key.slice(0,2) + "in."));
+					}
+					if(opt.G.length != 0){
 						$("#garland").removeClass('hidden');
-						var buttonLabel = key.slice(0,2) + "ft.";
-						GradioBtn += '<li class="ui-grid-b" id="row'+key+'" >';
-					    GradioBtn += '<div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
-					   
-					    //$('#GarlandOption').controlgroup('container').append(radioBtn);
 					}
 					if( (key == "hanger") && value > 0 && value != null){
 						//$("#EZWreathHanger").show();
@@ -312,9 +334,26 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 				    }
 				}).then(function() {
 					//put the pricing on the items that need pricing added.
-					//$('#ClassicOption').controlgroup('container').html(CradioBtn);
+					//loop through arrays to build out the options menu
+					var optionArr = ["C","V","CS","G"];
+					//for(y=0;y<optionArr.length;y++){
+						
+						for(x=0;x<opt.C.length;x++){
+							CradioBtn += '<li class="ui-grid-b" id="row'+opt.C[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+opt.C[x][0]+'" data-prod-id="'+opt.C[x][0]+'" value="'+opt.C[x][1]+'" data-mini="true"/><label for="wreath'+opt.C[x][0]+'"><span class="sizeoption">'+opt.C[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+opt.C[x][1]+'</span></div></li>';
+						}
+						
+						for(x=0;x<opt.V.length;x++){
+							VradioBtn += '<li class="ui-grid-b" id="row'+opt.V[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+opt.V[x][0]+'" data-prod-id="'+opt.V[x][0]+'" value="'+opt.V[x][1]+'" data-mini="true"/><label for="wreath'+opt.V[x][0]+'"><span class="sizeoption">'+opt.V[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+opt.V[x][1]+'</span></div></li>';
+						}
+						for(x=0;x<opt.V.length;x++){
+							SradioBtn += '<li class="ui-grid-b" id="row'+opt.CS[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+opt.CS[x][0]+'" data-prod-id="'+opt.CS[x][0]+'" value="'+opt.CS[x][1]+'" data-mini="true"/><label for="wreath'+opt.CS[x][0]+'"><span class="sizeoption">'+opt.V[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+opt.CS[x][1]+'</span></div></li>';
+						}
+						for(x=0;x<opt.G.length;x++){
+							GradioBtn += '<li class="ui-grid-b" id="row'+opt.G[x][0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+opt.G[x][0]+'" data-prod-id="'+opt.G[x][0]+'" value="'+opt.G[x][1]+'" data-mini="true"/><label for="wreath'+opt.G[x][0]+'"><span class="sizeoption">'+opt.G[x][2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+opt.G[x][1]+'</span></div></li>';
+						}
+					//}
 					
-					//console.log(CradioBtn);
+					
 					$('#ClassicOption').html(CradioBtn);
 					$('#VictorianOption').html(VradioBtn);
 					$('#CranberryOption').html(SradioBtn);
@@ -381,25 +420,10 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 				    // This code runs if there were any errors
 				    console.log(err);
 				});
-				}else{
-					console.log("no db set");
-				}
-				//update the page titles
-				//checkGroup();
 				console.log("Get Saved Data");
 				
 				//lets query for the user data too
 				this.getUserData(); //only load this on the first time around after the catalog is in there
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
 	    	}else{
 		    	console.log("err: " + value + " and " + productuser + "do not match");
 	    	}
