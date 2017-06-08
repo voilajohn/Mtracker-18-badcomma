@@ -487,31 +487,32 @@
 	    <div data-role="footer" data-position="fixed">
 		
 		</div><!--/footer-->
-	</div><!-- /page -->
+	</div>
+	<!-- /page -->
 	<!-- Orders Page -->
 	<div data-role="page" id="page-order-complete" class="ui-page ui-body-a">
 	    <div data-role="header" data-theme="b" data-position="fixed">
 	        <a href="#profile-panel" data-transition="slide" class="ui-nodisc-icon ui-btn ui-btn-right ui-btn-icon-notext"><i class="zmdi-hc-3x zmdi zmdi-account"></i></a>
 		    <a href="#menu-panel" data-transition="slide" data-direction="reverse" class="ui-nodisc-icon ui-btn ui-btn-left ui-btn-icon-notext " data-rel="popup"><i class="zmdi-hc-3x zmdi zmdi-menu"></i></a>
 	        <h1>Thank You</h1>
-	    </div><!-- /header -->
+	    </div>
 	    <div class="banner thanks-banner">
 		     <strong>Thank you for supporting our group <span class="group"></span>!</strong>
 			 It will be delivered <span class="delivery-time"></span>
 			 <p><em>You will receive an email confirmation.</em></p>
 	    </div>
 	    <div role="main" class="ui-content">
-		   <a href='#' class='ui-btn closesummary'>Transaction Completed<span>Click here to enter your next transaction.</span></a>
+		   <a href='#' data-rel="" class='ui-btn closesummary'>Transaction Completed<span>Click here to enter your next transaction.</span></a>
 		   <div class="order-details"></div>
 	    </div>
 	    <div data-role="footer" data-position="fixed">
 		
-		</div><!--/footer-->
+		</div>
 	</div><!-- /page -->
 	
 	<!-- Orders Page -->
 	<div data-role="page" id="page-orders" class="ui-page ui-body-a">
-	    <div data-role="header" data-theme="b" data-position="fixed">
+	    <div data-role="header" data-theme="b" data-position="fixed" id="#position-header">
 	        <a href="#profile-panel" data-transition="slide" class="ui-nodisc-icon ui-btn ui-btn-right ui-btn-icon-notext"><i class="zmdi-hc-3x zmdi zmdi-account"></i></a>
 		    <a href="#menu-panel" data-transition="slide" data-direction="reverse" class="ui-nodisc-icon ui-btn ui-btn-left ui-btn-icon-notext " data-rel="popup"><i class="zmdi-hc-3x zmdi zmdi-menu"></i></a>
 	        <h1>Orders</h1>
@@ -534,6 +535,19 @@
 		</div><!--/footer-->
 		<div data-role="popup" id="popupName"><p></p></div>
 		<div data-role="popup" id="popupOrder" data-theme="a" data-overlay-theme="a" class="ui-content " style="min-width:95%;max-width:95%; padding-bottom:2em;"><div></div><a href="#" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-a grey-button">Close</a></div>
+		<!--popup-->
+		<div data-role="popup" id="popupOrderComplete" data-theme="a" data-overlay-theme="a" data-transition="slideup" style="margin-top:20px;">
+		<div class="banner thanks-banner">
+		     <strong>Thank you for supporting our group <span class="group"></span>!</strong>
+			 It will be delivered <span class="delivery-time"></span>
+			 <p><em>You will receive an email confirmation.</em></p>
+	    </div>
+	    <div class="ui-content">
+		   <a href='#' class='ui-btn closesummary'>Transaction Completed<span>Click here to enter your next transaction.</span></a>
+		   <div class="order-details"></div>
+		</div>
+		</div>
+		<!--popup-->
 	</div><!-- /page -->
 	
 	<div data-role="panel" id="profile-panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a" class="ppanel">
@@ -556,11 +570,7 @@
         </form>
        
         <a href="#" data-rel="close" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete ui-btn-icon-left">Close</a>
-        <!-- bottom-button
-        
-       <a href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete emptyOrders" data-mini="true">(Debug) Delete Orders</a>
-        <a href="#" class="ui-btn ui-shadow ui-corner-all ui-btn-a ui-icon-delete emptyProducts" data-mini="true">(Debug) Delete Products</a>
-        -->
+
         
 		</div>
 

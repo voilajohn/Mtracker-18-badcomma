@@ -137,50 +137,59 @@ $(".create-order").click(function () {
 				        	for(i=0;i<cartArr.length;i++){
 								cartItems.push(cartArr[i]); //create a collection to remove
 							}
-							/*******************************
-								SOMETHING ABOUT UPDATING THE CART IS MESSING UP THE DATABASES*? or is it not what the heck?
-							********************************/
 							var promises = cartItems.map(function(item) { return  cart.removeItem(item); });
 							Promise.all(promises).then(function(results) {
-							    console.log("r-"+results);
-							});
-							if(deliverydate != null){
-								$('#page-order-complete .delivery-time').html(deliverydate);
-							}
-							if(group != null){
-								$("#page-order-complete .group").html(group);
-							}
-							var orderData = "<h2>Your Order Details</h2>";
-							var subtotal = 0;
-							//for(y=0;y<pdataA.length;y++){ //personal data
-							//orderData += "<a href='#' class='ui-btn closesummary'>Close</a>";
-							orderData += "<table class='reciept-table'>";
-							orderData += "<tr><td><strong>Name: </strong>"+pdataA[1]+" "+pdataA[2]+"</td></tr>";
-							orderData += "<tr><td><strong>Address: </strong>"+pdataA[3]+"</td></tr>";
-							orderData += "<tr><td><strong>City: </strong>"+pdataA[4]+"</td></tr>";
-							orderData += "<tr><td><strong>State: </strong>"+pdataA[5]+"</td></tr>";
-							orderData += "<tr><td><strong>Zip: </strong>"+pdataA[6]+"</td></tr>";
-							orderData += "<tr><td><strong>Phone: </strong>"+pdataA[7]+" ["+pdataA[8]+"]</td></tr>";
-							orderData += "<tr><td><strong>Email: </strong>"+pdataA[9]+"</td></tr>";
-							orderData += "</table>";
-							//}
-							for(x=0;x<cartContents.length;x++){ //cart data
-								orderData += "<table class='reciept-table'><tr><td><img src='"+cartContents[x][1][2]+"' class='cartimg'/></td><td><strong>"+cartContents[x][0]+"</strong><br><p>Quantity:"+cartContents[x][1][1]+"</br>cost per:"+format1(cartContents[x][1][0], "$")+"</p></td></tr></table>";
-								subtotal += Number(cartContents[x][1][1])*Number(cartContents[x][1][0]);
-							}
-							orderData += "<p>Order Subtotal: "+format1(subtotal, "$")+"</p>";
+							    //console.log("r-"+results);
+							    if(deliverydate != null){
+									//$('#page-order-complete .delivery-time').html(deliverydate);
+									$('#popupOrderComplete .delivery-time').html(deliverydate);
+								}
+								if(group != null){
+									//$("#page-order-complete .group").html(group);
+									$("#popupOrderComplete .group").html(group);
+								}
+								var orderData = "<h2>Your Order Details</h2>";
+								var subtotal = 0;
+								//for(y=0;y<pdataA.length;y++){ //personal data
+								//orderData += "<a href='#' class='ui-btn closesummary'>Close</a>";
+								orderData += "<table class='reciept-table'>";
+								orderData += "<tr><td><strong>Name: </strong>"+pdataA[1]+" "+pdataA[2]+"</td></tr>";
+								orderData += "<tr><td><strong>Address: </strong>"+pdataA[3]+"</td></tr>";
+								orderData += "<tr><td><strong>City: </strong>"+pdataA[4]+"</td></tr>";
+								orderData += "<tr><td><strong>State: </strong>"+pdataA[5]+"</td></tr>";
+								orderData += "<tr><td><strong>Zip: </strong>"+pdataA[6]+"</td></tr>";
+								orderData += "<tr><td><strong>Phone: </strong>"+pdataA[7]+" ["+pdataA[8]+"]</td></tr>";
+								orderData += "<tr><td><strong>Email: </strong>"+pdataA[9]+"</td></tr>";
+								orderData += "</table>";
+								//}
+								for(x=0;x<cartContents.length;x++){ //cart data
+									orderData += "<table class='reciept-table'><tr><td><img src='"+cartContents[x][1][2]+"' class='cartimg'/></td><td><strong>"+cartContents[x][0]+"</strong><br><p>Quantity:"+cartContents[x][1][1]+"</br>cost per:"+format1(cartContents[x][1][0], "$")+"</p></td></tr></table>";
+									subtotal += Number(cartContents[x][1][1])*Number(cartContents[x][1][0]);
+								}
+								orderData += "<p>Order Subtotal: "+format1(subtotal, "$")+"</p>";
+								
+								//$("#page-order-complete .order-details").html(orderData);
+								$("#popupOrderComplete .order-details").html(orderData);
+								
+								//$(':mobile-pagecontainer').pagecontainer('change', '#page-order-complete');//go to next page
+								$(':mobile-pagecontainer').pagecontainer('change', '#page-orders');
+								
+								//openpopup
+								$("#popupOrderComplete").popup("open");
+								//$("#popupOrderComplete").popup("reposition", {positionTo: 'window'});
+								
+								//clear out the fields 
+								$("#personal-fname").val("");
+								$("#personal-lname").val("");
+								$("#personal-address").val("");
+								$("#personal-city").val("");
+								$("#personal-state").val("");
+								$("#personal-zip").val("");
+								$("#personal-phone").val("");
+								$("#personal-email").val("");
+								    
+								});
 							
-							$("#page-order-complete .order-details").html(orderData);
-							$(':mobile-pagecontainer').pagecontainer('change', '#page-order-complete');//go to next page
-							//clear out the fields 
-							$("#personal-fname").val("");
-							$("#personal-lname").val("");
-							$("#personal-address").val("");
-							$("#personal-city").val("");
-							$("#personal-state").val("");
-							$("#personal-zip").val("");
-							$("#personal-phone").val("");
-							$("#personal-email").val("");
 				        ////}
 			        }).catch(function(err){
 				        console.log("ORDER ARRAY NOT ADDED TO ORDER: " + err);

@@ -12,6 +12,11 @@ body {
 h1,h2,h3,h4,h5 {
     color:#00a65e;
 }
+/*#popupOrderComplete{
+	left:0px;
+	top:0px;
+	position:absolute;
+}*/
 .closesummary{
 	text-align:center;
 }

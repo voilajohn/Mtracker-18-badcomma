@@ -76,7 +76,8 @@ function checkGroup(x){ //find the group name and the user saved.
 		$(".your-group").html(group);         //display on profile section
 		$(".your-profile").html(currentuser); //display on profile section
 		$(".your-delivery").html(wod);        //display on profile section
-		
+		deliverydate = wod;
+		group = group;
 		//make sure that the dbs are displaying
 		app.orderController.CreateOrderDB(currentuser,id); //load the db
 		app.signInController.CreateProductDB(currentuser,id,x); //load the db 
@@ -145,15 +146,10 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
         case "page-checkout": //if it's the second step of the cart let's check for saved 
     }
 });
-$(document).bind("mobileinit", function(){ //added to help with the page transition bouncing back 1.29
-	$.mobile.pushStateEnabled = false;
-});
 //close summary
 $(document).on('click', '.closesummary', function(event){
-	event.stopPropagation();
-    event.preventDefault();
-	$(':mobile-pagecontainer').pagecontainer('change', $('#page-cart'),{transition:'none'});
-});
+	$("#popupOrderComplete").popup("close");
+})
 //Login Button - pagebeforecreate
 $(document).delegate("#page-signin", "pagebeforecreate", function () {
 	app.signInController.init();
@@ -279,15 +275,18 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
     });
 });
 //Cart Page is Loaded
-$(document).delegate("#page-cart", "pagebeforeshow", function () { //pageshow
+$(document).delegate("#page-cart", "pageshow", function () {
 	app.cartController.init();
     app.cartController.getCartData(); //lets gather the cart info each time the cart is visited.
 });
 
 //Orders page
-$(document).delegate("#page-orders", "pagebeforeshow", function () { //pageshow
+$(document).delegate("#page-orders", "pageshow", function () {
 	app.orderController.init();
     app.orderController.buildOrders(); //lets gather the cart info each time the cart is visited.
+});
+$(document).on("popupafteropen", function() {
+    $('#popupOrderComplete').popup('reposition', 'positionTo: window');
 });
 $( ".ppanel" ).on( "panelbeforeopen", function( event, ui ) {//lets gather all the info we need to display in there.
 	app.catalogController.showDefaults();//grab the defaults if they are saved.
