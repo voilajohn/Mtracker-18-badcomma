@@ -245,8 +245,8 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 			        url: MickmanAppLogin.Settings.syncDataUrl,
 			        data: "token=" + token + "&id="+ myID +"&data=" + JSON.stringify(orderArray) + "&sync-data=true",
 			        success: function (resp) {
-				        //alert("Debug:" + resp);
-				        alert("Debug: " + JSON.stringify(resp, null, 4));
+				        //console.log("Debug:" + resp);
+				        console.log("Debug: " + JSON.stringify(resp, null, 4));
 				        if(resp.success == true){//now lets mark the columns that we saved.
 					        markedOrder = String(resp.extras.marksaved);//we need to mark the returned as a string 
 					        syncedArray = markedOrder.split(",");//to create an array
@@ -279,21 +279,17 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 					},
 					error: function(e){
 						//console.log(e);
-						alert("Debug: error" + e);
+						console.log("Debug: error" + e);
 					}
 				});
 			}else{
-				alert("these orders appear to have been synced.");
+				console.log("these orders appear to have been synced.");
 				$.mobile.loading("hide");
 			}
 		}).catch(function(err) {
-			alert("Debug: internal db not found");
+			console.log("Debug: internal db not found");
 		});
 });
-//close summary
-/*$(document).on('click', '.closesummary', function(){
-	$(':mobile-pagecontainer').pagecontainer('change', '#page-orders');
-});*/
 //print page
 $(document).on('click', '.printOrders', function(){//first lets organize the content of the orders
 	var gtotal = 0;

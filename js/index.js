@@ -145,7 +145,15 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
         case "page-checkout": //if it's the second step of the cart let's check for saved 
     }
 });
-
+$(document).bind("mobileinit", function(){ //added to help with the page transition bouncing back 1.29
+	$.mobile.pushStateEnabled = false;
+});
+//close summary
+$(document).on('click', '.closesummary', function(event){
+	event.stopPropagation();
+    event.preventDefault();
+	$(':mobile-pagecontainer').pagecontainer('change', $('#page-cart'),{transition:'none'});
+});
 //Login Button - pagebeforecreate
 $(document).delegate("#page-signin", "pagebeforecreate", function () {
 	app.signInController.init();
@@ -271,13 +279,13 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
     });
 });
 //Cart Page is Loaded
-$(document).delegate("#page-cart", "pageshow", function () {
+$(document).delegate("#page-cart", "pagebeforeshow", function () { //pageshow
 	app.cartController.init();
     app.cartController.getCartData(); //lets gather the cart info each time the cart is visited.
 });
 
 //Orders page
-$(document).delegate("#page-orders", "pageshow", function () {
+$(document).delegate("#page-orders", "pagebeforeshow", function () { //pageshow
 	app.orderController.init();
     app.orderController.buildOrders(); //lets gather the cart info each time the cart is visited.
 });

@@ -353,7 +353,7 @@ function getAll(arr){
 
 //contact info submitted - store it in A 
 /* #### BUTTONS ### */
-$('.emptyCart').click(function () { //clear the cart db
+$('.emptyTCart').click(function () { //clear the cart db
 	cart.clear().then(function(){
 		console.log("cart db is empty");
 		app.cartController.getCartData();
