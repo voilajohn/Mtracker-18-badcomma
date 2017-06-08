@@ -22,9 +22,11 @@ MickmanAppLogin.CartController.prototype.init = function () {//gather the variab
 
 //##### add to cart #####
 MickmanAppLogin.CartController.prototype.addProduct = function (e) {//add one product to the cart
+	console.log(e);
 	cart.getItem(e[0]).then(function(value) {
 		if(value){ //the record is there.
 			if(e != "" && value[1] != ""){//one up the quantity 
+				console.log(e[0],[e[1],Number(value[1]+1),e[2],e[3]]);
 				cart.setItem(e[0],[e[1],Number(value[1]+1),e[2],e[3]]).then(function(){ 
 					//make sure to wait until it is set before refreshing it. 
 					var total = 0;
@@ -78,6 +80,7 @@ MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t,r,q
 	if(Array.isArray(e)){ //check if it is multiples
 		//fill in the first one 
 		console.log("isArray");
+		console.log(r);
 		//hide original
 		$('.purchaseAdd').addClass('hidden');
 		var appendHtml = "";
@@ -118,7 +121,7 @@ MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t,r,q
 };
 
 MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
-	//console.log(e + " --- " + r);
+	console.log(e + " --- " + r);
 	
 	if(r != "cancel"){
 		var cartList = []; //stuff that exists in the cart already
@@ -153,10 +156,13 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 					if(jQuery.inArray(String(itemList[x]),cartList) !== -1){
 						listNum = jQuery.inArray(String(itemList[x]),cartList);
 						savedData = cartValues[Number(listNum)];
-						cart.setItem(cartList[Number(listNum)],[cartValues[Number(listNum)][0],Number(cartValues[Number(listNum)][1]+e[x][4]),cartValues[Number(listNum)][2]]).then( function(){
+						//console.log(cartList[Number(listNum)],[cartValues[Number(listNum)][0],Number(cartValues[Number(listNum)][1]+e[x][4]),cartValues[Number(listNum)][2],e[x][3]]);
+						cart.setItem(cartList[Number(listNum)],[cartValues[Number(listNum)][0],Number(cartValues[Number(listNum)][1]+e[x][4]),cartValues[Number(listNum)][2],e[x][3]]).then( function(){
 							app.cartController.getCartData(); //lets make sure that we refresh after updating the 
 						});
 					}else{
+						// name [price, quantity, image,dbname]
+						console.log("--" + e[x][3]);
 						cart.setItem(e[x][0],[e[x][1],e[x][4],e[x][2],e[x][3]]).then( function(){
 							app.cartController.getCartData(); //lets make sure that we refresh after updating the 
 						});
@@ -374,6 +380,7 @@ $(document).on('click', '.addProduct', function(){ //Cart + button
 	var prodprice = $(this).parent().parent().data('product-cost');
 	var prodthumb = $(this).parent().parent().data('product-thumb');
 	var prodid = $(this).parent().parent().data('product-id');
+	console.log(prodid);
 	prod = [prodname,prodprice,prodthumb,prodid];
 	app.cartController.addProduct(prod);
 });

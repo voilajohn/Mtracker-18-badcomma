@@ -175,6 +175,7 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	    // last item - added db-name this one adds variables to the popup
 	    //e,s,p,t,r,q
 	    console.log($(this).data("quantity"));
+	     console.log($(this).data("db-name"));
 	    //if($(this).data("num") != ""){
 		if($(this).data("quantity") != 0){ 
 		    app.cartController.addpricetoPopup(
@@ -208,6 +209,7 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 		    costA.push($(this).find("span.sentPrice").text());
 		    productA.push($(this).find("span.sentProduct").text());
 		    productIDA.push($(this).attr("id"));
+		    
 		    sizeA.push($(this).find("span.sentSize").text());
 		    thumb = $(this).find("img").attr('src');
 		    quantityA.push($(this).find("span.sentQuantity").text());
@@ -224,6 +226,7 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 		    
 		    if(product == "LED Lights" || product == "EZ Wreath Hanger"){ 
 			    var items = [[product,Number(cost),thumb,productID,1]];
+			    console.log(productID);
 			}else{ 
 				console.log(size);
 				if(size != 0){

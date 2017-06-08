@@ -2,6 +2,8 @@
 ####### Version 1.28 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
+/**************** vs 1.281  || 6-7-17 **************/
+~ Fixed Sync issue 
 
 /**************** vs 1.28  || 6-7-17 **************/
 ~ Order button verbiage
