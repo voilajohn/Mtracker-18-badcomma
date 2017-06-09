@@ -285,9 +285,6 @@ $(document).delegate("#page-orders", "pageshow", function () {
 	app.orderController.init();
     app.orderController.buildOrders(); //lets gather the cart info each time the cart is visited.
 });
-$(document).on("popupafteropen", function() {
-    $('#popupOrderComplete').popup('reposition', 'positionTo: window');
-});
 $( ".ppanel" ).on( "panelbeforeopen", function( event, ui ) {//lets gather all the info we need to display in there.
 	app.catalogController.showDefaults();//grab the defaults if they are saved.
 });
