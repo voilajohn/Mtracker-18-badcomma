@@ -168,9 +168,9 @@ $(document).delegate("#page-checkout", "pagebeforecreate", function () {
 });
 
 //Catalog Page is Loaded - pagebeforecreate
-$(document).delegate("#page-main-menu", "pageshow", function () {
+//$(document).delegate("#page-main-menu", "pageshow", function () {
 //$(document).on( "pagecontainershow", function() {
-//$(document).delegate("#page-main-menu", "pagebeforecreate", function () {
+$(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	app.catalogController.init();
     //app.catalogController.getSavedData();
     checkGroup('pagebeforecreate'); 
