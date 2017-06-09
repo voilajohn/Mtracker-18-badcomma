@@ -681,10 +681,7 @@ $(".slickIt").on('click', function(){ //rotating area
         }
     });
     //slide to the first slide if we are redoing it. 
-    var mySwiper = $('.swiper-container')[0].swiper;
-    mySwiper.update();
-    mySwiper.slideTo(0,1000,false);
-    mySwiper.update();
+    swiper.slideTo(0,1000,false); 
     
 	$('.product-display').addClass("slicked");
 	$('.product-display').removeClass("unslicked");
