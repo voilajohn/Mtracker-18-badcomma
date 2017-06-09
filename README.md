@@ -3,6 +3,9 @@
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
+/**************** vs 1.286  || 6-9-17 **************/
+~ popup was causing issues - moved to ordersPage
+
 /**************** vs 1.285  || 6-8-17 **************/
 ~ removed debug message on Orders
 ~ added dialog for clear cart.

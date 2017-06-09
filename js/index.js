@@ -148,7 +148,7 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
 });
 //close summary
 $(document).on('click', '.closesummary', function(event){
-	$("#popupOrderComplete").popup("close");
+	$("#OrderComplete").addClass("hidden");
 })
 //Login Button - pagebeforecreate
 $(document).delegate("#page-signin", "pagebeforecreate", function () {

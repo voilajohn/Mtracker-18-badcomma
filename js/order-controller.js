@@ -142,11 +142,11 @@ $(".create-order").click(function () {
 							    //console.log("r-"+results);
 							    if(deliverydate != null){
 									//$('#page-order-complete .delivery-time').html(deliverydate);
-									$('#popupOrderComplete .delivery-time').html(deliverydate);
+									$('#OrderComplete .delivery-time').html(deliverydate);
 								}
 								if(group != null){
 									//$("#page-order-complete .group").html(group);
-									$("#popupOrderComplete .group").html(group);
+									$("#OrderComplete .group").html(group);
 								}
 								var orderData = "<h2>Your Order Details</h2>";
 								var subtotal = 0;
@@ -169,14 +169,13 @@ $(".create-order").click(function () {
 								orderData += "<p>Order Subtotal: "+format1(subtotal, "$")+"</p>";
 								
 								//$("#page-order-complete .order-details").html(orderData);
-								$("#popupOrderComplete .order-details").html(orderData);
+								$("#OrderComplete .order-details").html(orderData);
 								
 								//$(':mobile-pagecontainer').pagecontainer('change', '#page-order-complete');//go to next page
 								$(':mobile-pagecontainer').pagecontainer('change', '#page-orders');
 								
 								//openpopup
-								$("#popupOrderComplete").popup("open");
-								$('#popupOrderComplete').popup('reposition', 'positionTo: window');
+								$("#OrderComplete").removeClass("hidden");
 								
 								//clear out the fields 
 								$("#personal-fname").val("");

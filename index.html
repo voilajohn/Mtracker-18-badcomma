@@ -519,6 +519,19 @@
 	    </div><!-- /header -->
 	    <div role="main" class="ui-content">
 		    <div id="ctn-err" class="bi-invisible print-message"></div>
+		    <!--reciept-->
+		    <div id="OrderComplete" class="hidden">
+		<div class="banner thanks-banner">
+		     <strong>Thank you for supporting our group <span class="group"></span>!</strong>
+			 It will be delivered <span class="delivery-time"></span>
+			 <p><em>You will receive an email confirmation.</em></p>
+	    </div>
+	    <div class="ui-content">
+		   <a href='#' class='ui-btn closesummary'>Transaction Completed<span>Click here to enter your next transaction.</span></a>
+		   <div class="order-details"></div>
+		</div>
+		</div>
+		    <!--reciept-->
 		    <ul data-role="listview" data-split-icon="search" data-theme="a"  data-split-theme="b" data-inset="true" class="orderList hidden" data-filter="true"   data-filter-placeholder="Search Orders...">
 			    <!--<li>None at this time</li>-->
 		    </ul>
@@ -536,17 +549,7 @@
 		<div data-role="popup" id="popupName"><p></p></div>
 		<div data-role="popup" id="popupOrder" data-theme="a" data-overlay-theme="a" class="ui-content " style="min-width:95%;max-width:95%; padding-bottom:2em;"><div></div><a href="#" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-a grey-button">Close</a></div>
 		<!--popup-->
-		<div data-role="popup" id="popupOrderComplete" data-theme="a" data-overlay-theme="a" data-transition="slideup" style="margin-top:20px;">
-		<div class="banner thanks-banner">
-		     <strong>Thank you for supporting our group <span class="group"></span>!</strong>
-			 It will be delivered <span class="delivery-time"></span>
-			 <p><em>You will receive an email confirmation.</em></p>
-	    </div>
-	    <div class="ui-content">
-		   <a href='#' class='ui-btn closesummary'>Transaction Completed<span>Click here to enter your next transaction.</span></a>
-		   <div class="order-details"></div>
-		</div>
-		</div>
+		
 		<!--popup-->
 	</div><!-- /page -->
 	
