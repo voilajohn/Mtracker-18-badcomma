@@ -340,6 +340,10 @@ h3.mc-text-danger  {
 .red i {
 	color:#d2232a;
 }
+.emptyTCart{ /*button*/
+	background:#d2232a !important;
+	color:#FFF !important;
+}
 .green i, .green{
 	color:#00a65e;
 }
