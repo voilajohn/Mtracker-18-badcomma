@@ -176,7 +176,7 @@ $(".create-order").click(function () {
 								
 								//openpopup
 								$("#popupOrderComplete").popup("open");
-								//$("#popupOrderComplete").popup("reposition", {positionTo: 'window'});
+								$('#popupOrderComplete').popup('reposition', 'positionTo: window');
 								
 								//clear out the fields 
 								$("#personal-fname").val("");
