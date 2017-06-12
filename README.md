@@ -1,7 +1,14 @@
 # Mtracker
-####### Version 1.286 ####### 
+####### Version 1.288 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
+
+/**************** vs 1.288  || 6-9-17 **************/
+~ experiment to fix the slider
+~ starting on droid css - header area
+~ experimental Android setting in index.js
+~ moved form navigation to below the form so that iPad keyboard bar doesn't cover it. 
+~ experiment to fix the orders flip back - was loading the loadOrders function twice - switched to only do it once. 
 
 /**************** vs 1.287  || 6-9-17 **************/
 ~ changes to catalog load method

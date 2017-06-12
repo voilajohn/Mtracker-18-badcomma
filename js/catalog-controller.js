@@ -652,7 +652,7 @@ $(".slickIt").on('click', function(){ //rotating area
         slidesPerView: 5,
         spaceBetween: 30,
         mode: 'horizontal',
-        centeredSlides: true,
+        //centeredSlides: true,
         
         slidesPerView: 'auto',
         grabCursor: true,
@@ -670,7 +670,7 @@ $(".slickIt").on('click', function(){ //rotating area
                 spaceBetween: 30
             },
             640: {
-                slidesPerView: 3,
+                slidesPerView: 'auto',
                 spaceBetween: 20
             },
             320: {
@@ -681,7 +681,7 @@ $(".slickIt").on('click', function(){ //rotating area
         }
     });
     //slide to the first slide if we are redoing it. 
-    swiper.slideTo(0,1000,false); 
+    //swiper.slideTo(0,1000,false); 
     
 	$('.product-display').addClass("slicked");
 	$('.product-display').removeClass("unslicked");

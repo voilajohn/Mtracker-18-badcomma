@@ -10,7 +10,7 @@ MickmanAppLogin.OrderController = function () {
 //gather the variables that we will need 
 MickmanAppLogin.OrderController.prototype.init = function () {
     this.$storePage = "#page-checkout";
-    //checkGroup('order init');
+    checkGroup('orderBuild');
     console.log("init");
 };
 
@@ -64,7 +64,7 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 
 //show orders 
 MickmanAppLogin.OrderController.prototype.buildOrders = function(){
-	checkGroup('orderBuild'); //let's try adding this in to make sure that it knows there is an orderdb db to iterate over.
+	//checkGroup('orderBuild'); //let's try adding this in to make sure that it knows there is an orderdb db to iterate over.
 	console.log("build");
 	$(".orderList").removeClass("hidden");
 	$(".orderList").html("");

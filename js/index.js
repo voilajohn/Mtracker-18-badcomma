@@ -41,6 +41,10 @@ var app = {
 		        isprintAvailable = true;
 		    }
 		);
+		//not sure if this is going to work or not. 
+		if (cordova.platformId == 'android') {
+		    StatusBar.hide(); //hide statusbar for just Android phones
+		}
     },
     // Update DOM on a Received Event
     receivedEvent: function (id) {
@@ -91,7 +95,7 @@ function format1(n, currency) {  // decimal currency format 00.00
     });
 }
 
-$(document).on("pagecontainerbeforeshow", function (event, ui) {
+$(document).on("pagecontainerbeforeshow", function (event, ui) { //update the title on the pages.
     if (typeof ui.toPage == "object") {
 	    
         switch (ui.toPage.attr("id")) {
@@ -107,7 +111,7 @@ $(document).on("pagecontainerbeforeshow", function (event, ui) {
             	updatePageHighlight("#page-cart");//update navigation
 				$('#page-cart div[data-role=header]').find('h1').html(group);//replace title 
             	break;
-            case "page-checkout":
+            case "page-checkout": 
             	app.catalogController.getUserData(); //load saved defaults
             	app.catalogController.showDefaults();
             	updatePageHighlight("#page-cart");//update navigation

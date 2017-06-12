@@ -1088,3 +1088,44 @@ and (max-width : 568px) {
 		/* !important*/
 	}
 }
+
+/*DROID LARGER RESOLUTION*/
+
+html {
+    font-size: 40px !important;
+}
+.unbehaved-element {
+    font-size: 2em  !important;
+}
+@media only screen and (max-width: 1580px) {
+  html{
+    font-size: 28px !important;
+  }
+  .zmdi{
+    font-size: 40px !important;
+     padding:10px !important;
+  }
+  .unbehaved-element {
+    font-size: 1.9em !important;
+  }
+}
+@media  only screen and (max-width: 980px) {
+  html{
+    font-size: 20px !important;
+  }
+   .zmdi{
+    font-size: 30px !important;
+    padding:3px !important;
+  }
+}
+@media  only screen and (max-width: 800px) {
+  body {
+    font-size: 16px !important;
+  }
+  .zmdi.zmdi-account ,.zmdi.zmdi-menu{
+	  font-size: 26px !important;
+  }
+  .zmdi{
+    font-size: 18px !important;
+  }
+}
