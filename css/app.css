@@ -1135,6 +1135,12 @@ html {
 	  float:left !important;
 	  margin-top:20px;
   }
+  .slider .inner h2{
+ 	 font-size:30px !important;
+  }
+  .slider .inner .ui-btn{
+	  font-size:20px;
+  }
   /*.banner1{
 	width:35%;
   }
@@ -1157,6 +1163,12 @@ html {
   #keepsigned .checktext{
 	padding-top:5px;
 	display:inline-block;
+  }
+  .slider .inner h2{
+ 	 font-size:20px !important;
+  }
+  .slider .inner .ui-btn{
+	  font-size:16px;
   }
 }
 @media  only screen and (max-width: 800px) {
@@ -1207,5 +1219,11 @@ html {
   .banner3{
 	width:15% !important;
 	text-align:right;
+  }
+  .slider .inner h2{
+ 	 font-size:16px !important;
+  }
+  .slider .inner .ui-btn{
+	  font-size:14px;
   }
 }

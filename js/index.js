@@ -154,6 +154,8 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
 //close summary
 $(document).on('click', '.closesummary', function(event){
 	$("#OrderComplete").addClass("hidden");
+	//redirect and hope for the best
+	$(':mobile-pagecontainer').pagecontainer('change', '#page-main-menu', { 'transition':'none' });
 })
 //Login Button - pagebeforecreate
 $(document).delegate("#page-signin", "pagebeforecreate", function () {
