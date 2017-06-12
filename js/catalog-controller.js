@@ -658,7 +658,7 @@ $(".slickIt").on('click', function(){ //rotating area
         grabCursor: true,
         breakpoints: {
             2000: {
-                slidesPerView: auto,
+                slidesPerView: 3,
                 spaceBetween: 40
             },
             1024: {
