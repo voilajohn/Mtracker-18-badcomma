@@ -23,15 +23,8 @@ MickmanAppLogin.SignInController.prototype.CreateProductDB = function (name,id,x
 	//we want to make sure that the proper products are loaded!!
 	if(x != "orderBuild"){
 		app.catalogController.getSavedData(); //load the saved data into the catalog
+		console.log("- - - > load catalog");
 	}
-	
-	//if(loadCatCalled == 0 && x != "createProducts"){ //lets try only calling this function once only the first time the new products db is loaded.
-		//app.catalogController.getSavedData(); //load the saved data into the catalog
-		//loadCatCalled = 1;
-	//}else{
-	//	console.log("already called");
-	//}
-	// turned off 1.26
 	console.log("catalog called - " + x);
 }
 

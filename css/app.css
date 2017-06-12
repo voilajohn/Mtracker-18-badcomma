@@ -142,6 +142,7 @@ h1,h2,h3,h4,h5 {
 input[type='checkbox']{
 	display:none;
 }
+
 #keepsigned  .ui-btn.ui-checkbox-off:after, #keepsigned  .ui-btn.ui-checkbox-on:after, #keepsigned  .ui-btn.ui-radio-off:after, #keepsigned  .ui-btn.ui-radio-on:after{
 	display:none !important;
 }
@@ -879,6 +880,10 @@ legend{
 #keepsigned.ui-controlgroup .ui-btn{
 	border:none !important;
 }
+#keepsigned i.zmdi{
+  float:left;
+}
+
 /*.phone-fields .controlgroup-textinput{
 	width:60% !important;
 }
@@ -1108,6 +1113,27 @@ html {
   .unbehaved-element {
     font-size: 1.9em !important;
   }
+  #keepsigned .checktext{
+	padding-top:20px;
+	display:inline-block;
+  }
+  .syncOrders, .printOrders{
+	  padding:20px !important;
+  }
+  .ordercontrols .zmdi{
+	  font-size: 30px !important;
+  }
+  #keepsigned i.zmdi, .slider i.zmdi{
+	  font-size: 40px !important;
+  }
+  #menu-panel .ui-btn .nav-text{
+	  font-size:30px;
+	  float:left !important;
+  }
+  #menu-panel .zmdi-circle{
+	  float:left !important;
+	  margin-top:20px;
+  }
 }
 @media  only screen and (max-width: 980px) {
   html{
@@ -1116,6 +1142,10 @@ html {
    .zmdi{
     font-size: 30px !important;
     padding:3px !important;
+  }
+  #keepsigned .checktext{
+	padding-top:5px;
+	display:inline-block;
   }
 }
 @media  only screen and (max-width: 800px) {
@@ -1127,5 +1157,31 @@ html {
   }
   .zmdi{
     font-size: 18px !important;
+  }
+  #keepsigned i.zmdi, .slider i.zmdi{
+	  font-size: 30px !important;
+  }
+  #confirm-member i.zmdi{
+	  font-size: 30px !important;
+	  margin-top:0px;
+  }
+  #confirm-member .ui-block-a{
+	  padding-top:8px;
+  }
+
+  #keepsigned .checktext{
+	padding-top:10px;
+	display:inline-block;
+  }
+  .syncOrders, .printOrders{
+	  padding:10px !important;
+  }
+  #menu-panel .ui-btn .nav-text{
+	  font-size:16px;
+	  float:left !important;
+  }
+  #menu-panel .zmdi-circle{
+	  float:left !important;
+	  margin-top:5px;
   }
 }
