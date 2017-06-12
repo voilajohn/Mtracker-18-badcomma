@@ -57,7 +57,8 @@ app.initialize();
 
 // End boilerplate code.
 $(document).on("mobileinit", function (event, ui) {
-    $.mobile.defaultPageTransition = "slide";
+    //$.mobile.defaultPageTransition = "slide";
+    $.mobile.defaultPageTransition = "none";
 	$( "body>[data-role='panel']" ).panel(); //global panel
 	$("#menu-panel").trigger("create");
 });

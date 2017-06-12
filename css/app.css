@@ -1195,6 +1195,9 @@ html {
 	  float:left !important;
 	  margin-top:5px;
   }
+  .ordercontrols .zmdi{
+	  font-size: 16px !important;
+  }
   .banner1{
 	width:35% !important;
   }
