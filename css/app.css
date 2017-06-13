@@ -1122,21 +1122,27 @@ html {
 	#menu-panel .zmdi-circle{ float:left !important; margin-top:20px; }
 	/*catalog page*/
 	.bannertext{ font-size:25px; }
+	.slider .inner h2{ font-size:35px !important;padding:0px 20px; }
 	.slider .controlgroup-textinput{padding:0px 0px 0px 0px !important;height:auto !important;}
 	.slider .controlgroup-textinput input.q{font-size:30px !important;width:40px;}
 	.ui-btn{font-size:35px;}
 	.slider .inner .minus, .slider .inner .plus { font-size:30px;padding:12px 0px 14px 0px !important;min-width:40px; }
 	/*product display*/
-	.priceselect .ui-block-a label{ font-size:35px; padding-left:40px; } 
+	.priceselect .ui-block-a label{ font-size:35px; padding-left:60px; } 
 	.ui-grid-b .checkbox-check{width:50px;}
 	.labelprice{font-size:30px;}
 	/*product display*/
 	#purchase h2{font-size:35px !important;}
-	.checkout-radio label{font-size:35px !important;}
+	.checkout-radio label{font-size:30px !important;}
 	.cart-addons label, .clone{font-size:30px !important;}
 	.addonpricing{font-size:25px !important;}
 	.addonthumb{ max-width:145px;margin-right:15px; }
 	.cartthumb{ max-width:180px; height:auto; margin-right:20px; }
+	
+	.ui-btn.ui-checkbox-off:after, .ui-btn.ui-checkbox-on:after, .ui-btn.ui-radio-off:after, .ui-btn.ui-radio-on:after{
+		width:35px;height:35px;background-size:60%;margin: -18px 2px 0 2px;
+	}
+	#filterset .ui-btn{ font-size:35px !important;padding:10px 20px;}
 }
 /*IPADS*/
 @media only screen and (max-width: 1300px) {
@@ -1151,7 +1157,7 @@ html {
 	#menu-panel .zmdi-circle{ float:left !important; margin-top:20px; }
 	.bannertext{ font-size:20px; }
 	/*Catalog area*/
-	.slider .inner h2{ font-size:30px !important; }
+	.slider .inner h2{ font-size:30px !important;padding:0px 10px; }
 	.slider .inner .ui-btn{ font-size:20px; }
 	.slider .inner .minus, .slider .inner .plus { font-size:14px;padding:18px 0px 24px 0px !important;min-width:30px; }
 	.slider .inner .sizeoption{ font-size:30px; }
@@ -1161,9 +1167,13 @@ html {
 	.ui-btn{font-size:28px;}
 	/*product display*/
 	input[type="text"], input[type="password"]{ font-size:30px !important; }
-	.priceselect .ui-block-a label{ padding-left:40px; } 
+	.priceselect .ui-block-a label{ padding-left:45px; } 
 	.labelprice{font-size:20px;}
 	.clone{font-size:28px;}
+	.ui-btn.ui-checkbox-off:after, .ui-btn.ui-checkbox-on:after, .ui-btn.ui-radio-off:after, .ui-btn.ui-radio-on:after{
+		width:24px;height:24px;background-size:60%;margin: -12px 2px 0 2px;
+	}
+	#filterset .ui-btn{ font-size:25px !important;padding:10px 20px;}
 }
 /*Smaller tablets 600-800*/
 @media  only screen and (max-width: 980px) {
@@ -1182,6 +1192,7 @@ html {
 	/*product display*/
 	input[type="text"],input[type="password"]{ font-size:28px !important; }
 	.clone{font-size:20px;}
+	.priceselect .ui-block-a label{ padding-left:30px; } 
 	/*cart popup*/
 	#purchase h2{font-size:24px !important;}
 	.checkout-radio label{font-size:20px !important; }
@@ -1189,6 +1200,10 @@ html {
 	.addonpricing{font-size:14px !important;}
 	.addonthumb{ max-width:85px;margin-right:5px; }
 	.cartthumb{ max-width:100px; height:auto; margin-right:10px; }
+	.ui-btn.ui-checkbox-off:after, .ui-btn.ui-checkbox-on:after, .ui-btn.ui-radio-off:after, .ui-btn.ui-radio-on:after{
+		width:16px;height:16px;background-size:60%;margin: -6px 2px 0 2px;
+	}
+	#filterset .ui-btn{ font-size:18px !important;padding:10px 20px;}
 }
 /*Phones and small screens*/
 @media  only screen and (max-width: 600px) {
@@ -1229,4 +1244,5 @@ html {
 	.addonpricing{font-size:10px !important;}
 	.addonthumb{ max-width:45px;margin-right:5px; }
 	.cartthumb{ max-width:80px; height:auto; margin-right:10px; }
+	#filterset .ui-btn{ font-size:12px !important;padding:5px 5px;}
 }
