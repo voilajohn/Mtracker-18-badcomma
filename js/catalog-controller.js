@@ -658,15 +658,15 @@ $(".slickIt").on('click', function(){ //rotating area
         grabCursor: true,
         breakpoints: {
             2000: {
-                slidesPerView: 'auto',
+                slidesPerView: 2,
                 spaceBetween: 40
             },
             1024: {
-                slidesPerView: 3,
+                slidesPerView: 2,
                 spaceBetween: 40
             },
             768: {
-                slidesPerView: 3,
+                slidesPerView: 2,
                 spaceBetween: 30
             },
             640: {

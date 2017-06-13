@@ -1141,6 +1141,10 @@ html {
   .slider .inner .ui-btn{
 	  font-size:20px;
   }
+  /*product display*/
+  input[type="text"]{
+	  font-size:30px !important; 
+  }
   /*.banner1{
 	width:35%;
   }
@@ -1225,5 +1229,9 @@ html {
   }
   .slider .inner .ui-btn{
 	  font-size:14px;
+  }
+   /*product display*/
+  input[type="text"]{
+	  font-size:12px !important; 
   }
 }
