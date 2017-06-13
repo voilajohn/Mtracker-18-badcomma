@@ -485,12 +485,14 @@ input.q{
 	width:25px;
 	text-align:center;
 	color:blue !important;
+	font-size:20px !important;
 	/*-webkit-text-fill-color: rgba(0, 0, 0, 1); */
 	-webkit-opacity: 1;
 }
 input[type="text"].q:disabled, .priceselect .ui-disabled,.priceselect .ui-state-disabled,.priceselect .ui-btn.ui-state-disable {
     color: #000 !important;
     opacity:1 !important;
+    font-size:16px !important;
     -webkit-opacity: 1 !important;
 }
 .slider .ui-block-c{
@@ -581,8 +583,12 @@ p.purchaseprice:after{
 	padding:0px !important;
 	font-size:11px !important;
 }
+.cart-addons span.ledlightwrapper{
+	width:50% !important;
+}
 .cart-addons #ledlights{
 	border:1px solid #000;
+	width:50%;
 }
 .cart-addons label{
 	font-size:12px;
@@ -1103,135 +1109,124 @@ html {
 .unbehaved-element {
     font-size: 2em  !important;
 }
-@media only screen and (max-width: 1580px) {
-  html{
-    font-size: 28px !important;
-  }
-  .zmdi{
-    font-size: 40px !important;
-     padding:10px !important;
-  }
-  .unbehaved-element {
-    font-size: 1.9em !important;
-  }
-  #keepsigned .checktext{
-	padding-top:20px;
-	display:inline-block;
-  }
-  .syncOrders, .printOrders{
-	  padding:20px !important;
-  }
-  .ordercontrols .zmdi{
-	  font-size: 20px !important;
-  }
-  #keepsigned i.zmdi, .slider i.zmdi{
-	  font-size: 40px !important;
-  }
-  #menu-panel .ui-btn .nav-text{
-	  font-size:30px;
-	  float:left !important;
-  }
-  #menu-panel .zmdi-circle{
-	  float:left !important;
-	  margin-top:20px;
-  }
-  .slider .inner h2{
- 	 font-size:30px !important;
-  }
-  .slider .inner .ui-btn{
-	  font-size:20px;
-  }
-  /*product display*/
-  input[type="text"]{
-	  font-size:30px !important; 
-  }
-  /*.banner1{
-	width:35%;
-  }
-  .banner2{
-	width:35%;
-  }
-  .banner3{
-	width:40%;
-  }*/
-  
+/*BIG RES BRAD*/
+@media only screen and (max-width: 2000px) {
+	html{ font-size: 35px !important; }
+	.zmdi{ font-size: 60px !important; padding:10px !important; }
+	.unbehaved-element { font-size: 1.9em !important; }
+	#keepsigned .checktext{ padding-top:20px; padding-left:30px; display:inline-block; font-size:30px; }
+	.syncOrders, .printOrders{ padding:20px !important; }
+	.ordercontrols .zmdi{ font-size: 20px !important; }
+	#keepsigned i.zmdi, .slider i.zmdi{ font-size: 60px !important; }
+	#menu-panel .ui-btn .nav-text{ font-size:30px; float:left !important; }
+	#menu-panel .zmdi-circle{ float:left !important; margin-top:20px; }
+	/*catalog page*/
+	.bannertext{ font-size:25px; }
+	.slider .controlgroup-textinput{padding:0px 0px 0px 0px !important;height:auto !important;}
+	.slider .controlgroup-textinput input.q{font-size:30px !important;width:40px;}
+	.ui-btn{font-size:35px;}
+	.slider .inner .minus, .slider .inner .plus { font-size:30px;padding:12px 0px 14px 0px !important;min-width:40px; }
+	/*product display*/
+	.priceselect .ui-block-a label{ font-size:35px; padding-left:40px; } 
+	.ui-grid-b .checkbox-check{width:50px;}
+	.labelprice{font-size:30px;}
+	/*product display*/
+	#purchase h2{font-size:35px !important;}
+	.checkout-radio label{font-size:35px !important;}
+	.cart-addons label, .clone{font-size:30px !important;}
+	.addonpricing{font-size:25px !important;}
+	.addonthumb{ max-width:145px;margin-right:15px; }
+	.cartthumb{ max-width:180px; height:auto; margin-right:20px; }
 }
+/*IPADS*/
+@media only screen and (max-width: 1300px) {
+	html{ font-size: 28px !important; }
+	.zmdi{ font-size: 40px !important; padding:10px !important; }
+	.unbehaved-element { font-size: 1.9em !important; }
+	#keepsigned .checktext{ padding-top:15px; padding-left:10px; display:inline-block;font-size:28px; }
+	.syncOrders, .printOrders{ padding:20px !important; }
+	.ordercontrols .zmdi{ font-size: 20px !important; }
+	#keepsigned i.zmdi, .slider i.zmdi{ font-size: 40px !important; }
+	#menu-panel .ui-btn .nav-text{ font-size:30px; float:left !important; }
+	#menu-panel .zmdi-circle{ float:left !important; margin-top:20px; }
+	.bannertext{ font-size:20px; }
+	/*Catalog area*/
+	.slider .inner h2{ font-size:30px !important; }
+	.slider .inner .ui-btn{ font-size:20px; }
+	.slider .inner .minus, .slider .inner .plus { font-size:14px;padding:18px 0px 24px 0px !important;min-width:30px; }
+	.slider .inner .sizeoption{ font-size:30px; }
+	
+	.slider .controlgroup-textinput{padding:0px 0px 0px 0px !important;height:auto !important;}
+	.slider .controlgroup-textinput input.q{font-size:28px !important;padding:0px !important;margin:0px;}
+	.ui-btn{font-size:28px;}
+	/*product display*/
+	input[type="text"], input[type="password"]{ font-size:30px !important; }
+	.priceselect .ui-block-a label{ padding-left:40px; } 
+	.labelprice{font-size:20px;}
+	.clone{font-size:28px;}
+}
+/*Smaller tablets 600-800*/
 @media  only screen and (max-width: 980px) {
-  html{
-    font-size: 20px !important;
-  }
-   .zmdi{
-    font-size: 30px !important;
-    padding:3px !important;
-  }
-  #keepsigned .checktext{
-	padding-top:5px;
-	display:inline-block;
-  }
-  .slider .inner h2{
- 	 font-size:20px !important;
-  }
-  .slider .inner .ui-btn{
-	  font-size:16px;
-  }
+	html{ font-size: 20px !important; }
+	.zmdi{ font-size: 30px !important; padding:3px !important; }
+	#keepsigned .checktext{ padding-top:5px; display:inline-block; }
+	/*Catalog area*/
+	.bannertext{ font-size:16px; }
+	.slider .inner h2{ font-size:20px !important; }
+	.slider .inner .ui-btn{ font-size:16px; }
+	.slider .inner .minus, .slider .inner .plus { font-size:14px;padding:12px 0px 13px 0px !important;min-width:25px; }
+	.slider .controlgroup-textinput{padding:0px !important;height:auto !important;}
+	.slider .controlgroup-textinput input.q{font-size:20px !important;line-height:20px !important;}
+	.slider .inner .sizeoption{ font-size:20px; }
+	.ui-btn{font-size:20px;}
+	/*product display*/
+	input[type="text"],input[type="password"]{ font-size:28px !important; }
+	.clone{font-size:20px;}
+	/*cart popup*/
+	#purchase h2{font-size:24px !important;}
+	.checkout-radio label{font-size:20px !important; }
+	.cart-addons label, .clone{font-size:16px !important;}
+	.addonpricing{font-size:14px !important;}
+	.addonthumb{ max-width:85px;margin-right:5px; }
+	.cartthumb{ max-width:100px; height:auto; margin-right:10px; }
 }
-@media  only screen and (max-width: 800px) {
-  body {
-    font-size: 16px !important;
-  }
-  .zmdi.zmdi-account ,.zmdi.zmdi-menu{
-	  font-size: 26px !important;
-  }
-  .zmdi{
-    font-size: 18px !important;
-  }
-  #keepsigned i.zmdi, .slider i.zmdi{
-	  font-size: 30px !important;
-  }
-  #confirm-member i.zmdi{
-	  font-size: 30px !important;
-	  margin-top:0px;
-  }
-  #confirm-member .ui-block-a{
-	  padding-top:8px;
-  }
-
-  #keepsigned .checktext{
-	padding-top:10px;
-	display:inline-block;
-  }
-  .syncOrders, .printOrders{
-	  padding:10px !important;
-  }
-  #menu-panel .ui-btn .nav-text{
-	  font-size:16px;
-	  float:left !important;
-  }
-  #menu-panel .zmdi-circle{
-	  float:left !important;
-	  margin-top:5px;
-  }
-  .ordercontrols .zmdi{
-	  font-size: 16px !important;
-  }
-  .banner1{
-	width:35% !important;
-  }
-  .banner2{
-	width:45% !important;
-  }
-  .banner3{
-	width:15% !important;
-	text-align:right;
-  }
-  .slider .inner h2{
- 	 font-size:16px !important;
-  }
-  .slider .inner .ui-btn{
-	  font-size:14px;
-  }
-   /*product display*/
-  input[type="text"]{
-	  font-size:12px !important; 
-  }
+/*Phones and small screens*/
+@media  only screen and (max-width: 600px) {
+	/*header area*/
+	body { font-size: 16px !important; }
+	.zmdi.zmdi-account ,.zmdi.zmdi-menu{ font-size: 26px !important; }
+	.zmdi{ font-size: 18px !important; }
+	#keepsigned i.zmdi, .slider i.zmdi{ font-size: 30px !important; }
+	#confirm-member i.zmdi{ font-size: 30px !important; margin-top:0px; }
+	#confirm-member .ui-block-a{ padding-top:8px; }
+	#keepsigned .checktext{ padding-top:10px; display:inline-block; font-size:16px; }
+	.syncOrders, .printOrders{ padding:10px !important; }
+	#menu-panel .ui-btn .nav-text{ font-size:16px; float:left !important; }
+	#menu-panel .zmdi-circle{ float:left !important; margin-top:5px; }
+	.ordercontrols .zmdi{ font-size: 16px !important; }
+	.banner1{ width:35% !important; }
+	.banner2{ width:45% !important; }
+	.banner3{ width:15% !important; text-align:right; }
+	.bannertext{ font-size:12px !important; }
+	/*catalog page*/
+	.slider .inner h2{ font-size:16px !important; }
+	.slider .inner .ui-btn{ font-size:14px; }
+	.slider .inner .minus, .slider .inner .plus { font-size:14px;padding:10px 0px 9px 0px !important;min-width:20px; }
+	.slider .controlgroup-textinput{padding:0px !important;height:auto !important}
+	.slider .controlgroup-textinput input.q{font-size:16px !important;line-height:16px !important;width:25px;}
+	.slider .inner .sizeoption{ font-size:14px; }
+	.priceselect .ui-block-a label{ padding-left:28px; }
+	.slider .controlgroup-textinput{padding:0px 0px 2px 0px !important;}
+	.ui-btn{font-size:16px;}
+	/*product display*/
+	input[type="text"],input[type="password"]{ font-size:12px !important; }
+	.labelprice{font-size:14px;}
+	.clone{font-size:14px;}
+	/*cart popup*/
+	#purchase h2{font-size:20px !important;}
+	.checkout-radio label{font-size:14px !important; }
+	.cart-addons label, .clone{font-size:12px !important;}
+	.addonpricing{font-size:10px !important;}
+	.addonthumb{ max-width:45px;margin-right:5px; }
+	.cartthumb{ max-width:80px; height:auto; margin-right:10px; }
 }

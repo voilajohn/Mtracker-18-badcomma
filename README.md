@@ -1,12 +1,16 @@
 # Mtracker
-####### Version 1.288 ####### 
+####### Version 1.29 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
-/**************** vs 1.288  || 6-9-17 **************/
+/**************** vs 1.29  || 6-13-17 **************/
+~ moved the close orders page back to going to the products page
+~ revising the styles so that the layout looks better on droid or larger resolution devices.
+
+/**************** vs 1.288  || 6-12-17 **************/
 ~ experiment to fix the slider
 ~ starting on droid css - header area
-~ experimental Android setting in index.js
+~ experimental Android setting in index.js - this appears to have worked.
 ~ moved form navigation to below the form so that iPad keyboard bar doesn't cover it. 
 ~ experiment to fix the orders flip back - was loading the loadOrders function twice - switched to only do it once. 
 
