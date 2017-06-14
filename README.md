@@ -3,8 +3,8 @@
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
-/**************** vs 1.29  || 6-13-17 **************/
-~ further refinements in the styles for tablets and larger resolutions
+/**************** vs 1.291  || 6-13-17 **************/
+~ further refinements in the styles for tablets and larger resolutions - Products, Add to Cart Popup, Cart, Checkout, Make Payment.
 
 /**************** vs 1.29  || 6-13-17 **************/
 ~ moved the close orders page back to going to the products page
