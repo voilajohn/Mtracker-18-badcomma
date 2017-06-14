@@ -657,13 +657,21 @@ $(".slickIt").on('click', function(){ //rotating area
         slidesPerView: 'auto',
         grabCursor: true,
         breakpoints: {
-            2000: {
+            2000: { //edge - droid - landscape
+                slidesPerView: 4,
+                spaceBetween: 40
+            },
+            1500: { //edget - droid - portrait
                 slidesPerView: 2,
                 spaceBetween: 40
             },
-            1024: {
-                slidesPerView: 2,
+            1024: { //ipad landscape
+                slidesPerView: 3,
                 spaceBetween: 40
+            },
+            900: {
+                slidesPerView: 2,
+                spaceBetween: 30
             },
             768: {
                 slidesPerView: 2,
