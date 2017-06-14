@@ -1185,7 +1185,7 @@ html {
 	#keepsigned i.zmdi, .slider i.zmdi{ font-size: 40px !important; }
 	.bannertext{ font-size:20px; }
 	/*Catalog area*/
-	.slider .inner h2{ font-size:30px !important;padding:0px 10px; }
+	.slider .inner h2{ font-size:25px !important;padding:0px 10px; }
 	.slider .inner .ui-btn{ font-size:20px; }
 	.slider .inner .minus, .slider .inner .plus { font-size:14px;padding:11px 0px 11px 0px !important;min-width:20px; }
 	.slider .inner .sizeoption{ font-size:16px; }
@@ -1229,7 +1229,7 @@ html {
 	.payment-form .ui-btn{ font-size:24px !important; }
 	/*Menu Panels*/
 	#profile-panel legend{font-size:28px;}
-	#menu-panel .ui-btn .nav-text{ font-size:20px; float:left !important; }
+	#menu-panel .ui-btn .nav-text{ font-size:28px; float:left !important; }
 	#menu-panel .zmdi-circle{ float:left !important; margin-top:20px; }
 }
 /*Smaller tablets 600-800*/
