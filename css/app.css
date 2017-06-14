@@ -1102,10 +1102,21 @@ and (max-width : 568px) {
 }
 
 /*DROID LARGER RESOLUTION*/
+@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px)
+  and (-webkit-min-device-pixel-ratio : 4) 
+  and (-webkit-device-pixel-ratio : 4)
+  and (orientation: portrait) {
+	p{
+		  font-size:70px !important;
+	}
+	  
+}
 @media only screen and (min-width: 2500px) and (min-height: 1400) { /*Landscape mode*/
 
 }
-@media only screen and (min-width: 1400px) and (min-width: 2500) { /*Portrait mode*/
+@media only screen and (min-width: 1400px) and (min-height: 2500) { /*Portrait mode*/
 	html{ font-size: 35px !important; }
 	.zmdi{ font-size: 60px !important; padding:10px !important; }
 	.unbehaved-element { font-size: 1.9em !important; }
