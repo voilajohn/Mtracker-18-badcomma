@@ -1113,10 +1113,10 @@ and (max-width : 568px) {
 	}
 	  
 }
-@media only screen and (min-height: 1400) { /*Landscape mode*/
+@media only screen and (min-height: 1400) { /*Landscape mode?*/
 
 }
-@media only screen and (min-width: 1400px) { /*Portrait mode*/
+@media only screen and (min-width: 1400px) { /*Portrait mode?*/
 	html{ font-size: 35px !important; }
 	.zmdi{ font-size: 60px !important; padding:10px !important; }
 	.unbehaved-element { font-size: 1.9em !important; }
