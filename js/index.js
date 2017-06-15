@@ -330,3 +330,8 @@ function setAll(arr){
 		return product.setItem(key);
 	}) );
 }
+//fade in the app when the dom is loaded
+$(window).load(function() {
+  // When the page has loaded
+  $("body").fadeIn(2000);
+});

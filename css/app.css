@@ -8,6 +8,9 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     font-family:"Raleway", Arial, sans-serif;
+ 
+	display: none;
+
 }
 h1,h2,h3,h4,h5 {
     color:#00a65e;
@@ -772,7 +775,10 @@ input[type="radio"] {
 legend{
 	font-size:.8em;
 }
-
+.checktext{
+	display:inline-block;
+	padding-top:8px !important;
+}
 .ui-listview .ui-li-has-thumb > img:first-child,
 .ui-listview .ui-li-has-thumb > .ui-btn > img:first-child,
 .ui-listview .ui-li-has-thumb .ui-li-thumb {
@@ -1101,80 +1107,4 @@ and (max-width : 568px) {
 	}
 }
 
-/*DROID LARGER RESOLUTION*/
-@media screen 
-  and (device-width: 360px) 
-  and (device-height: 640px)
-  and (-webkit-min-device-pixel-ratio : 4) 
-  and (-webkit-device-pixel-ratio : 4)
-  and (orientation: portrait) {
-	p{
-		  font-size:70px !important;
-	}
-	  
-}
-@media only screen and (min-height: 1400) { /*Landscape mode?*/
 
-}
-@media only screen and (min-width: 1400px) { /*Portrait mode?*/
-	html{ font-size: 35px !important; }
-	.zmdi{ font-size: 60px !important; padding:10px !important; }
-	.unbehaved-element { font-size: 1.9em !important; }
-	#keepsigned .checktext{ padding-top:20px; padding-left:30px; display:inline-block; font-size:30px; }
-	.syncOrders, .printOrders{ padding:20px !important; }
-	.ordercontrols .zmdi{ font-size: 20px !important; }
-	#keepsigned i.zmdi, .slider i.zmdi{ font-size: 60px !important; }
-	/*catalog page*/
-	.bannertext{ font-size:25px; }
-	.slider .inner h2{ font-size:35px !important;padding:0px 20px; }
-	.slider .controlgroup-textinput{padding:0px 0px 0px 0px !important;height:auto !important;}
-	.slider .controlgroup-textinput input.q{font-size:30px !important;width:40px;}
-	.ui-btn{font-size:35px;}
-	.slider .inner .minus, .slider .inner .plus { font-size:30px;padding:12px 0px 14px 0px !important;min-width:40px; }
-	/*product display*/
-	input[type="text"],input[type="password"], input[type="tel"], input[type="email"]{ font-size:28px !important; }
-	.personal-info .controlgroup-textinput{padding-top:0px !important;padding-bottom:0px !important;height: 58px !important;}
-	.priceselect .ui-block-a label{ font-size:35px; padding-left:60px; } 
-	.addon-wrapper i.zmdi{ font-size: 35px !important; padding:0px !important; }
-	.ui-grid-b .checkbox-check{width:50px;}
-	.labelprice{font-size:30px;}
-	/*product display*/
-	#purchase h2{font-size:35px !important;}
-	.checkout-radio label{font-size:35px !important;}
-	.cart-addons label{font-size:25px !important;}
-	.clone{font-size:30px !important;}
-	.addonpricing{font-size:20px !important;}
-	.addonthumb{ max-width:125px;margin-right:15px; }
-	.cartthumb{ max-width:180px; height:auto; margin-right:20px; }
-	.ui-btn.ui-checkbox-off:after, .ui-btn.ui-checkbox-on:after, .ui-btn.ui-radio-off:after, .ui-btn.ui-radio-on:after{
-		width:35px;height:35px;background-size:60%;margin: -18px 2px 0 2px;
-	}
-	.ui-btn.ui-radio-on:after{ width:30px !important;height:30px !important;}
-	#filterset .ui-btn, .centeredB .ui-btn{ font-size:35px !important;padding:10px 20px; }
-	/*Checkout Page*/
-	.quantity-input{width:25%;padding:5px !important;height:44px !important;}
-	input#quantity{ height:44px;font-size:30px !important; }
-	.steps .dots span, .steps .highlights span.active{padding:5px 20px;}
-	.steps .bar{ height:15px;}
-	.steps .dots div{ margin-top:-20px;}
-	.steps .highlights span.active{ margin-top:-45px;}
-	.steps .dots p{ font-size:24px; }
-	.steps{ margin:10px auto 100px auto; }
-	.smaller{font-size:25px;}
-	.cartlist .cartthumb{ max-width:280px ;}
-	.divider-title{font-size:30px !important;}
-	.ui-listview .ui-li-has-thumb > img:first-child,
-	.ui-listview .ui-li-has-thumb > .ui-btn > img:first-child,
-	.ui-listview .ui-li-has-thumb .ui-li-thumb { min-width: 280px; max-height: 280px !important; }
-	.ui-listview > .ui-li-has-thumb > .ui-btn,
-	.ui-listview > .ui-li-static.ui-li-has-thumb {padding: .7em 1em .7em 310px;}
-	.bi-ctn-err { font-size:35px; }
-	.bi-ctn-suc { font-size:35px; }
-	.phone-fields .ui-mini{ font-size:22px !important; }
-	/*Payment Type*/
-	.payment-form .ui-btn{ font-size:35px !important; }
-	/*Menu*/
-	#profile-panel legend{font-size:35px;}
-	#menu-panel .ui-btn .nav-text{ font-size:30px; float:left !important; }
-	#menu-panel .zmdi-circle{ float:left !important; margin-top:20px; }
-}
