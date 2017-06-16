@@ -33,10 +33,10 @@ MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { /
 		contact += "<span style='display:block'>"+value[0][1] + " " + value[0][2]+"</span>";
 		contact += "<span style='display:block'>"+value[0][3]+"</span>";
 		contact += "<span style='display:block'>"+value[0][4] + " " + value[0][5] + "," +  value[0][6] +"</span><br>";
-		contact += "<span style='display:block'><strong>Phone: </strong>"+value[0][6]+"</span>";
-		contact += "<span style='display:block'><strong>Email: </strong>"+value[0][7]+"</span>";
+		contact += "<span style='display:block'><strong>Phone: </strong>"+value[0][7]+"</span>";
+		contact += "<span style='display:block'><strong>Email: </strong>"+value[0][9]+"</span>";
 		contact += "</p>";
-		contact += "<p><span style='display:block'></strong>Payment Status: </strong>"+value[2]+"</span></p>";
+		contact += "<p><span style='display:block'><strong>Payment Status: </strong>"+value[2]+"</span></p>";
 		var orders = "<div>";
 		var total = 0;
 		orders += "<br><p><strong>Order Details</strong></p>";
@@ -287,7 +287,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 					},
 					error: function(e){
 						//console.log(e);
-						console.log("Debug: error" + e);
+						console.log("Debug: error" + JSON.stringify(e, null, 4));
 					}
 				});
 			}else{
