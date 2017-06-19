@@ -12,6 +12,9 @@ MickmanAppLogin.OrderController.prototype.init = function () {
     this.$storePage = "#page-checkout";
     checkGroup('orderBuild');
     console.log("init");
+    $(".print-message").addClass('bi-invisible');
+	$(".print-message").removeClass("bi-ctn-err");
+	$(".print-message").html("");
 };
 
 //create custom db per user - new #1.23
@@ -218,7 +221,9 @@ $(document).on('click', '.namePop', function(){//send Name to the popup
 });
 //sync
 $(document).on('click', '.syncOrders', function(){//first lets organize the content of the orders
-	
+	$(".print-message").addClass('bi-invisible');
+	$(".print-message").removeClass("bi-ctn-err");
+	$(".print-message").html("");
 	//iterate through the orders and assemble into something to pass to the php
 	var token;
 	var myID;
@@ -255,6 +260,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 			        success: function (resp) {
 				        //console.log("Debug:" + resp);
 				        console.log("Debug: " + JSON.stringify(resp, null, 4));
+				        
 				        if(resp.success == true){//now lets mark the columns that we saved.
 					        markedOrder = String(resp.extras.marksaved);//we need to mark the returned as a string 
 					        syncedArray = markedOrder.split(",");//to create an array
@@ -287,15 +293,24 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 					},
 					error: function(e){
 						//console.log(e);
+						$.mobile.loading("hide");
 						console.log("Debug: error" + JSON.stringify(e, null, 4));
+						
+						$(".print-message").removeClass('bi-invisible');
+						$(".print-message").addClass("bi-ctn-err");
+						$(".print-message").html("Error syncing.");
 					}
 				});
 			}else{
 				console.log("these orders appear to have been synced.");
 				$.mobile.loading("hide");
+				$(".print-message").removeClass('bi-invisible');
+				$(".print-message").addClass("bi-ctn-err");
+				$(".print-message").html("These orders appear to have been synced.");
 			}
 		}).catch(function(err) {
 			console.log("Debug: internal db not found");
+			$.mobile.loading("hide");
 		});
 });
 //print page
