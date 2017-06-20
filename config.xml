@@ -26,7 +26,8 @@
 	 
     <!-- universal preferences -->
     <preference name="phonegap-version"           value="cli-6.5.0" />         
-    <preference name="fullscreen"                 value="true" />
+    <!--<preference name="fullscreen"                 value="true" />-->
+    <preference name="fullscreen" value="false" />
 	
 	<!-- ios preferences --> 
     <preference name="target-device" value="universal" />
