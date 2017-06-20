@@ -282,12 +282,14 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 							console.log("--");
 							Promise.all(promises).then(function(results) {
 								console.log(results);
-								//refresh the Orders
-								app.orderController.buildOrders();
+								app.orderController.buildOrders();//refresh the Orders
 							});
 				        }else{
 					        console.log("not saved");
 					        console.log(resp);
+					        $(".print-message").removeClass('bi-invisible');
+							$(".print-message").addClass("bi-ctn-err");
+							$(".print-message").html("Sync Error: "+resp);
 				        }
 				        $.mobile.loading("hide");
 					},
