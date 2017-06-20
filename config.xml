@@ -2,8 +2,8 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.phonegap.MickmanTracker"
-        versionCode = "10.24" 
-        version     = "1.292" >
+        versionCode = "10.25" 
+        version     = "1.30" >
 	
     <name>Mickman Digital Sales Aid</name>
     <description>
@@ -36,6 +36,7 @@
     <!-- Droid permissions settings allow links-->
 	<allow-navigation href="http://cpanel-2101-20.datarealm.com/*" />
 	<allow-navigation href="https://online.mickman.com/*" />
+	<preference name="android-windowSoftInputMode" value="stateVisible" />
    
     <!-- ios icons 7+ -->
     
