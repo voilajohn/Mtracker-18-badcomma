@@ -37,7 +37,7 @@
     <!-- Droid permissions settings allow links-->
 	<allow-navigation href="http://cpanel-2101-20.datarealm.com/*" />
 	<allow-navigation href="https://online.mickman.com/*" />
-	<preference name="android-windowSoftInputMode" value="stateVisible" />
+	<preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
    
     <!-- ios icons 7+ -->
     
