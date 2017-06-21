@@ -43,7 +43,7 @@ var app = {
 		);
 		//not sure if this is going to work or not. 
 		if (cordova.platformId == 'android') {
-		    StatusBar.hide(); //hide statusbar for just Android phones
+		    //StatusBar.hide(); //hide statusbar for just Android phones
 		}
     },
     // Update DOM on a Received Event
