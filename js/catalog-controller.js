@@ -553,8 +553,11 @@ $('.searchbtn').click(function () {
             $zoomIn: $section.find(".zoom-in"),
             $zoomOut: $section.find(".zoom-out"),
             $reset: $section.find(".reset"),
+            startTransform: 'scale(1.1)',
+            
             //panOnlyWhenZoomed: true,
-            minScale: 0.1
+            minScale: 0.5,
+            contain: 'automatic'
           });
     })();
     
