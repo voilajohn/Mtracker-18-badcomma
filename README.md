@@ -1,7 +1,10 @@
 # Mtracker
-####### Version 1.321 ####### 
+####### Version 1.322 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
+
+/**************** vs 1.322  || 7-7-17 **************/
+~ fixing swiper container so that when turned to list view it is not able to be swiped.
 
 /**************** vs 1.321  || 7-6-17 **************/
 ~ contain the zoom picture 

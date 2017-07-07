@@ -703,8 +703,9 @@ $(".slickIt").on('click', function(){ //rotating area
 });
 
 $(".unslickIt").on('click', function(){ //list view
+	//this should be destroying the swiper not allowing the 
 	var mySwiper = $('.swiper-container')[0].swiper;
-    mySwiper.destroy();
+    mySwiper.destroy(true,true);
     mySwiper = undefined;
     
     $(".product-button").each( function(){
