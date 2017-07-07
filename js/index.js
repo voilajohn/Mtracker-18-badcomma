@@ -144,18 +144,18 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
                 if (session && session.keepSignedIn && new Date(session.expirationDate).getTime() > today.getTime()) {
                     ui.toPage = $("#page-main-menu");  
                     console.log("Redirect");  
-                    console.log(JSON.stringify(session, null, 4));            
+                    //console.log(JSON.stringify(session, null, 4));            
                 }else{
 	                console.log("Not Logged in");
 	                //lets see if we can debug what is going on on droid
-	                var checkExp = new Date(session.expirationDate);
+	                /*var checkExp = new Date(session.expirationDate);
 	                var today = today;
 	                
 	                var readOut = "isSession: "+session+"\n";
 	                readOut += "keepsignedIn: "+session.keepSignedIn+"\n";
 	                readOut += "expTime: "+checkExp+"\r";
 	                readOut += "curTime: "+today+"\r";
-	                readOut += "NotExpired: "+(checkExp>today);
+	                readOut += "NotExpired: "+(checkExp>today);*/
 	                //alert(readOut);
                 }
             }
