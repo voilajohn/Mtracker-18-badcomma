@@ -156,7 +156,7 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
 	                readOut += "expTime: "+checkExp+"\r";
 	                readOut += "curTime: "+today+"\r";
 	                readOut += "NotExpired: "+(checkExp>today);
-	                alert(readOut);
+	                //alert(readOut);
                 }
             }
         case "page-checkout": //if it's the second step of the cart let's check for saved 
