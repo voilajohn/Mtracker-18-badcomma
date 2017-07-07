@@ -153,7 +153,7 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 			                
 			                var token = resp.extras.sessionID;
 			                var memberProf = $('#select-choice-1').val();
-			                var groupName = resp.extras.products[2][1];//find this in the code
+			                var groupName = resp.extras.products[1][1];//find this in the code
 			                var UserID = $('#select-choice-1 :selected').attr('id');
 			                
 			                //create the session variables

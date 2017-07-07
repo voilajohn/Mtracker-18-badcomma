@@ -143,14 +143,26 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
                     today = new Date();
                 if (session && session.keepSignedIn && new Date(session.expirationDate).getTime() > today.getTime()) {
                     ui.toPage = $("#page-main-menu");  
-                    console.log("Redirect");              
+                    console.log("Redirect");  
+                    console.log(JSON.stringify(session, null, 4));            
                 }else{
 	                console.log("Not Logged in");
+	                //lets see if we can debug what is going on on droid
+	                var checkExp = new Date(session.expirationDate);
+	                var today = today;
+	                
+	                var readOut = "isSession: "+session+"\n";
+	                readOut += "keepsignedIn: "+session.keepSignedIn+"\n";
+	                readOut += "expTime: "+checkExp+"\r";
+	                readOut += "curTime: "+today+"\r";
+	                readOut += "NotExpired: "+(checkExp>today);
+	                alert(readOut);
                 }
             }
         case "page-checkout": //if it's the second step of the cart let's check for saved 
     }
 });
+
 //close summary
 $(document).on('click', '.closesummary', function(event){
 	$("#OrderComplete").addClass("hidden");
