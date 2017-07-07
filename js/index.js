@@ -157,6 +157,8 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
 		                readOut += "curTime: "+today+"\r";
 		                readOut += "NotExpired: "+(checkExp>today);
 						alert(readOut);
+	                }else{
+		                alert("no session data found");
 	                }
                 }
             }
