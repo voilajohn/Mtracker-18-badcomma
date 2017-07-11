@@ -5,7 +5,7 @@ Droid and iOS compatible.
 
 /**************** vs 1.324  || 7-11-17 **************/
 ~ Made the number entry fields for quantity larger so the number don't get cut off. 
-~ Modified the Swiper settings.
+~ Modified the Swiper settings - experimental to try to stop the wierd sliding
 
 /**************** vs 1.323  || 7-10-17 **************/
 ~ adding back button to payment method.
