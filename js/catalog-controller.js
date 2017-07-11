@@ -637,10 +637,10 @@ $('.product-button').on('click', function(){
 		    $('.swiper-wrapper div.slider').show();
 		    filtered = false;
 	    }
-	   var mySwiper = $('.swiper-container')[0].swiper;
-	   mySwiper.update();
-	   mySwiper.slideTo(0,1000,false);
-	   mySwiper.update();
+	   var mySwiper2 = $('.swiper-container')[0].swiper;
+	   mySwiper2.update();
+	   mySwiper2.slideTo(0,1000,false);
+	   mySwiper2.update();
     }
     $(this).addClass('ui-btn-active');
 });
@@ -657,6 +657,7 @@ $(".slickIt").on('click', function(){ //rotating area
         mode: 'horizontal',
         initialSlide: 0,
         loop: true,
+        loopedSlides: 2,
         //centeredSlides: true,
         
         slidesPerView: 'auto',
