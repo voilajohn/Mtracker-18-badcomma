@@ -69,14 +69,17 @@ h1,h2,h3,h4,h5 {
 .synced1:before{
 	content: "\2713 ";
 	font-size:12px;
+	font-weight:bold;
 	position:absolute;
-	background:black;
+	background:#d2232a;
+	color:#FFF;
 	padding:5px 8px;
 	z-index:500;
 	top:-10px;
 	left:-10px;
 	border-radius:50%;	
 }
+
 /*#keepsigned label, */
 #keepsigned label i{
 	font-weight:normal !important;
@@ -190,6 +193,10 @@ li.odd a{
 	background:#CCC !important;
 	padding:0px !important;
 }
+li.delivered1 a{
+	background:#00a65e !important;
+	color:#FFF !important;
+}
 #popupOrder{
 	margin:0px auto !important;
 	padding:2px 10px !important;
@@ -201,25 +208,27 @@ li.odd a{
 	margin:0px;
 	padding:0px 10px;
 }
-.orderList{
+.orderList, .deliveryList{
 	box-shadow: none !important;
 }
-.orderList h3{
+.orderList h3, .deliveryList h3{
 	margin:0px !important;
 	padding:0px !important;
 }
-ul.orderList li{
+ul.orderList li, ul.deliveryList li{
 	margin-bottom:10px !important;
 	box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
 	height:auto;
 }
-ul.orderList{
+ul.orderList ul.deliveryList{
 	padding-bottom:20px !important;
 }
 /*ul.orderlist .ui-grid-b div{
 	padding:3px !important;
 }*/
-ul.orderlist .ui-grid-b .ui-block-a, ul.orderlist  .ui-grid-b .ui-block-b, ul.orderlist  .ui-grid-b .ui-block-c {
+ul.orderlist .ui-grid-b .ui-block-a, ul.orderlist  .ui-grid-b .ui-block-b, ul.orderlist  .ui-grid-b .ui-block-c 
+,ul.deliveryList  .ui-grid-b .ui-block-a ,ul.deliveryList  .ui-grid-b .ui-block-b, ul.deliveryList  .ui-grid-b .ui-block-c
+{
     padding: 3px !important;
     margin:0px !important;   
 }
@@ -248,7 +257,7 @@ ul.orderlist .ui-grid-b .ui-block-a, ul.orderlist  .ui-grid-b .ui-block-b, ul.or
    /* background:url('../images/temp-logo.png') no-repeat top center #00a65e !important;
 	   background-size:contain !important;
    */
-   background:#00a65e;
+    background:#00a65e;
     border:none;
     min-height:40px;
     padding:10px 0px;
@@ -796,7 +805,7 @@ legend{
 	min-height:150px !important;
 	/*height:150px;*/
 }
-.ui-listview.orderList li.ui-li-has-alt{
+.ui-listview.orderList li.ui-li-has-alt, .ui-listview.deliveryList li.ui-li-has-alt{
 	min-height:20px !important;
 	/*height:150px;*/
 }
@@ -805,6 +814,18 @@ legend{
 	padding:5px;
 	border:none;
 }
+.ui-listview.deliveryList .ui-btn-b{
+	background:#444 !important;
+	padding:5px;
+	border:none;
+}
+li.ui-tabs-active > a {
+    background:#00a65e !important;
+    border-color: rgb(51, 136, 204) !important;
+    color: rgb(255, 255, 255) !important;
+    text-shadow: 0 1px 0 rgb(0, 85, 153) !important;
+}
+/*li.ui-tabs-active > a { background: red !important; }*/
 /*.searchbtn{
 	float:left;
 	height:auto;

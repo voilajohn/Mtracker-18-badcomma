@@ -484,7 +484,11 @@
 			     <input type="hidden" name="personal" id="personal-data">
 			    <fieldset data-role="controlgroup" id="payment-type"><input type="radio" name="Payment" id="payment-check" value="pay-check" checked="checked"  ><label for="payment-check" data-icon="check">Paying now with Check</label><input type="radio" name="Payment" id="payment-cash" value="pay-cash"><label for="payment-cash"  data-icon="check">Paying now with Cash</label><input type="radio" name="Payment" id="payment-later" value="pay-later"><label for="payment-later"  data-icon="check">Paying later</label></fieldset>
 			</form>
-		     <a href="#" class="ui-btn create-order green-button ui-corner-all">Complete Order</a>
+		    
+		    <div data-role="controlgroup" data-type="horizontal" class="centeredB">
+				<a href="#page-checkout" class="ui-btn ui-btn-active green-button">Back</a>
+				<a href="#" class="ui-btn create-order ui-btn-active green-button">Complete Order</a>
+			</div>
 	    </div>
 	    <div data-role="footer" data-position="fixed">
 		
@@ -513,22 +517,42 @@
 		   <div class="order-details"></div>
 		</div>
 		</div>
+		<div data-role="tabs">
+			<div data-role="navbar">
+		        <ul>
+		          <li><a href="#orders" class="">Orders</a></li>
+		          <li><a href="#deliveries" class="">Delivery List</a></li>
+		        </ul>
+		      </div>
 		    <!--reciept-->
-		    <ul data-role="listview" data-split-icon="search" data-theme="a"  data-split-theme="b" data-inset="true" class="orderList hidden" data-filter="true"   data-filter-placeholder="Search Orders...">
-			    <!--<li>None at this time</li>-->
-		    </ul>
-		    <div data-role="navbar">
-				<ul class="ordercontrols">
-					<li><a href="#" class="ui-btn green-button ui-corner-all ui-btn-icon-left ui-icon-upload zmdi zmdi-hc-lg ui-nodisc-icon syncOrders">Sync</a></li>
-					<li><a href="#" class="ui-btn green-button ui-corner-all ui-icon-print ui-btn-icon-left zmdi zmdi-hc-lg ui-nodisc-icon printOrders">Print</a></li>
-				</ul>
-			</div>
-			<p>Note: Sync to server requires that you have an internet connection. Send to printer function will require access to an air print enabled printer.</p>
+		    <div id="orders">
+			    <ul data-role="listview" data-split-icon="search" data-theme="a" data-split-theme="b" data-inset="true" class="orderList hidden" data-filter="true" data-filter-placeholder="Search Orders...">
+				    <!--<li>None at this time</li>-->
+			    </ul>
+			    <div data-role="navbar">
+					<ul class="ordercontrols">
+						<li><a href="#" class="ui-btn green-button ui-corner-all ui-btn-icon-left ui-icon-upload zmdi zmdi-hc-lg ui-nodisc-icon syncOrders">Send Orders</a></li>
+						<li><a href="#" class="ui-btn green-button ui-corner-all ui-icon-print ui-btn-icon-left zmdi zmdi-hc-lg ui-nodisc-icon printOrders">Print</a></li>
+					</ul>
+				</div>
+				
+				<p><strong>Send Orders</strong><br>'Send Orders' uploads your order details to the server for backup, and allows the fundraising chairperson to keep track of order totals.</p>
+				<i> Please Note: 'Send Orders' requires that you have an internet connection. Send to printer function will require access to an air print enabled printer.</i>
+		    </div>
+		    <div id="deliveries">
+			    <p>Click the checkmark to mark your orders as delivered. </p>
+			    <ul data-role="listview" data-split-icon="check" data-theme="a" data-split-theme="b" data-inset="true" class="deliveryList hidden" data-filter="true" data-filter-placeholder="Search Orders...">
+				    <!--<li>None at this time</li>-->
+			    </ul>
+		    </div>
+		</div>
+		    
 	    </div>
 	    <div data-role="footer" data-position="fixed">
 		
 		</div><!--/footer-->
 		<div data-role="popup" id="popupName"><p></p></div>
+		<div data-role="popup" id="popupOrderID"><p></p></div>
 		<div data-role="popup" id="popupOrder" data-theme="a" data-overlay-theme="a" class="ui-content " style="min-width:95%;max-width:95%; padding-bottom:2em;"><div></div><a href="#" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-a grey-button">Close</a></div>
 	</div><!-- /page -->
 	

@@ -25,7 +25,30 @@ MickmanAppLogin.OrderController.prototype.CreateOrderDB = function (name,id) {
 	});
 	console.log(orderdb);
 }
-
+MickmanAppLogin.OrderController.prototype.markorderDelivered = function (x) { 
+	//alert("do stuff here - aka mark the internal db - toggle item"+x);
+	var savedOrder = [];
+	var sendData;
+	var deliveredFlag = 0;
+	var personalData = [];
+	var orderData = [];
+	orderdb.getItem(x).then( function(value){
+		savedOrder = value;
+		personalData = value[0];
+		orderData = value[1];
+		if(savedOrder[4] == 0){
+			deliveredFlag = 1;
+		}else{
+			deliveredFlag = 0;
+		}
+		console.log(":"+deliveredFlag);
+		sendData = [personalData,orderData,savedOrder[2],savedOrder[3],deliveredFlag];
+		console.log(sendData);
+		orderdb.setItem(x,sendData).then( function(){
+			app.orderController.buildOrders();//refresh the Orders
+		});
+	});
+};
 //add orders
 MickmanAppLogin.OrderController.prototype.addorderDatatoPopup = function (x) { //add order data to the popup then open it.
 	orderdb.getItem(x).then( function(value){
@@ -70,7 +93,9 @@ MickmanAppLogin.OrderController.prototype.buildOrders = function(){
 	//checkGroup('orderBuild'); //let's try adding this in to make sure that it knows there is an orderdb db to iterate over.
 	console.log("build");
 	$(".orderList").removeClass("hidden");
+	$(".deliveryList").removeClass("hidden");
 	$(".orderList").html("");
+	$(".deliveryList").html("");
 	var evenOdd;
 	
 	
@@ -87,17 +112,24 @@ MickmanAppLogin.OrderController.prototype.buildOrders = function(){
 		var month = new Date(+date[1]).getUTCMonth();
 		var year = new Date(+date[1]).getUTCFullYear();
 		var synced = "synced"+value[3];
+		var delivered = "delivered"+value[4];
+		console.log("sdf"+delivered);
 		var button = key;
 		if(iterationNumber % 2 == 0){
 			evenOdd = "even";
 		}else{
 			evenOdd = "odd";
 		};
-		var row = '<li class="'+evenOdd+" "+synced+'"><a href="#popupName" data-rel="popup" data-name="'+name+'" data-transition="pop" class="namePop"><div class="ui-grid-b"><div class="ui-block-a"><div class="ui-bar">'+Number(month+1) + "/" + day + "/" +  year+'</div></div><div class="ui-block-b"><div class="ui-bar">'+name+'</div></div><div class="ui-block-c"><div class="ui-bar">Total</div></div></div></a><a href="#popupOrder" class="fullOrder ui-nodisc-icon" data-rel="popup" data-position-to="window" data-orderid="'+key+'"></a></li>';
+		var row = '<li class="'+evenOdd+" "+synced+'"><a href="#popupName" data-rel="popup" data-name="'+name+'" data-transition="pop" class="namePop"><div class="ui-grid-a"><div class="ui-block-a"><div class="ui-bar">'+Number(month+1) + "/" + day + "/" +  year+'</div></div><div class="ui-block-b"><div class="ui-bar">'+name+'</div></div><</div></a><a href="#popupOrder" class="fullOrder ui-nodisc-icon" data-rel="popup" data-position-to="window" data-orderid="'+key+'"></a></li>';
+		
+		var deliveredrow = '<li class="'+evenOdd+" "+delivered+'"><a href="#popupOrderID" data-rel="popup" data-orderid="'+date[1]+'" data-transition="pop" class="orderPop"><div class="ui-grid-a"><div class="ui-block-a"><div class="ui-bar">'+date[1]+'</div></div><div class="ui-block-b"><div class="ui-bar">'+name+'</div></div></div></a><a href="#" class="setDelivered ui-nodisc-icon" data-orderid="'+key+'"></a></li>';//new
+		
 		$(".orderList").append(row);
+		$(".deliveryList").append(deliveredrow);//new
 	}).then(function(){
 		//refresh the listcontroller
 		$(".orderList").enhanceWithin().listview("refresh");
+		$(".deliveryList").enhanceWithin().listview("refresh");//new
 	}).catch(function(err){
 		console.log(err);
 	});
@@ -134,8 +166,9 @@ $(".create-order").click(function () {
 		        cartArr.push(key); //push all the keys into an array
 		        cartContents.push([key,value]);
 				orderdb.getItem(orderStamp).then( function(value){
-			        orderdb.setItem(orderStamp,[value[0],cartContents,value[2],0]).then( function(){
+			        orderdb.setItem(orderStamp,[value[0],cartContents,value[2],0,0]).then( function(){
 				        //added a value to track whether it is synced or not
+				        //added a value to track whether it is delivered or not - toggle
 					        ////if (iterationNumber == (cartLength-1)) { <!-- overkill removed
 				        	for(i=0;i<cartArr.length;i++){
 								cartItems.push(cartArr[i]); //create a collection to remove
@@ -219,6 +252,13 @@ $(document).on('click', '.fullOrder', function(){ //Cart + button
 $(document).on('click', '.namePop', function(){//send Name to the popup
 	$("#popupName p").html($(this).data('name'));
 });
+$(document).on('click', '.orderPop', function(){//send Name to the popup
+	$("#popupOrderID p").html($(this).data('orderid'));
+});
+//mark as delivered
+$(document).on('click', '.setDelivered', function(){//first lets organize the content of the orders
+	app.orderController.markorderDelivered($(this).data('orderid'));
+});
 //sync
 $(document).on('click', '.syncOrders', function(){//first lets organize the content of the orders
 	$(".print-message").addClass('bi-invisible');
@@ -245,7 +285,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 		orderdb.iterate(function(value, key, iterationNumber) {//now lets iterate through the orders
 			if(value[3] == 0){ //find the orders that aren't synced yet
 				orderArray.push([key,value]);
-				restoreArray.push([value[0],value[1],value[2],value[3]]);
+				restoreArray.push([value[0],value[1],value[2],value[3],value[4]]); //added 4 for delivered
 			}
 			//first lets try connecting using the token - 
 			$.mobile.loading("show");  // Show loading graphic

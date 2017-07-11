@@ -1,7 +1,15 @@
 # Mtracker
-####### Version 1.322 ####### 
+####### Version 1.323 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
+
+/**************** vs 1.323  || 7-10-17 **************/
+~ adding back button to payment method.
+~ sync button renamed to 'send orders'
+~ sync bubbles brightened to red with white check
+~ explanation added for 'send orders' added to bottom
+~ added section to the orders area for user to mark off delivered products - space added to the Orders DB to record the saved settings for this. 
+~ started writing in space in the code for custom message and group name. 
 
 /**************** vs 1.322  || 7-7-17 **************/
 ~ fixing swiper container so that when turned to list view it is not able to be swiped.
