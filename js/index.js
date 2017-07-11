@@ -152,13 +152,13 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
 		                var checkExp = new Date(session.expirationDate);
 						var today = today;
 						var readOut = "isSession: "+session+"\n";
-		                //readOut += "keepsignedIn: "+session.keepSignedIn+"\n";
-		                //readOut += "expTime: "+checkExp+"\r";
-		                //readOut += "curTime: "+today+"\r";
-		                //readOut += "NotExpired: "+(checkExp>today);
-						//alert(readOut);
+		                readOut += "keepsignedIn: "+session.keepSignedIn+"\n";
+		                readOut += "expTime: "+checkExp+"\r";
+		                readOut += "curTime: "+today+"\r";
+		                readOut += "NotExpired: "+(checkExp>today);
+						alert(readOut);
 	                }else{
-		                //alert("no session data found");
+		                alert("no session data found");
 	                }
                 }
             }
