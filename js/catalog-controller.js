@@ -655,6 +655,8 @@ $(".slickIt").on('click', function(){ //rotating area
         slidesPerView: 5,
         spaceBetween: 30,
         mode: 'horizontal',
+        initialSlide: 0,
+        loop: true,
         //centeredSlides: true,
         
         slidesPerView: 'auto',
@@ -686,8 +688,7 @@ $(".slickIt").on('click', function(){ //rotating area
             },
             320: {
                 slidesPerView: 'auto',
-                spaceBetween: 8,
-                centeredSlides: false
+                spaceBetween: 8
             }
         }
     });
@@ -705,6 +706,7 @@ $(".slickIt").on('click', function(){ //rotating area
 $(".unslickIt").on('click', function(){ //list view
 	//this should be destroying the swiper not allowing the 
 	var mySwiper = $('.swiper-container')[0].swiper;
+    //var mySwiper = $('.swiper-container');
     mySwiper.destroy(true,true);
     mySwiper = undefined;
     

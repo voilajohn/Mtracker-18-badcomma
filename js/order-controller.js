@@ -329,7 +329,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 					        //console.log(resp);
 					        $(".print-message").removeClass('bi-invisible');
 							$(".print-message").addClass("bi-ctn-err");
-							$(".print-message").html("Sync Error: " + resp);
+							$(".print-message").html("Sync Error: " + JSON.stringify(resp, null, 4));
 				        }
 				        $.mobile.loading("hide");
 					},

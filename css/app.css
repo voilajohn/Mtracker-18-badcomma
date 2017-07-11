@@ -543,7 +543,7 @@ input[type="text"].q:disabled, .priceselect .ui-disabled,.priceselect .ui-state-
 	text-align:center;
 }
 .priceselect .plus,.priceselect .minus{
-	padding:6px 9px 6px 9px !important;
+	padding:9px 9px 10px 9px !important;
 	display:inline-block;
 }
 
@@ -901,9 +901,9 @@ li.ui-tabs-active > a {
 	height:auto;
 }
 .controlgroup-textinput{
-    padding-top:.22em;
-    padding-bottom:.22em;
-    height: 28px;
+    padding-top:.1em;
+    padding-bottom:.1em;
+    /*height: 28px;*/
 }
 .phone-fields{
 	margin-left:5px !important;
@@ -928,7 +928,8 @@ li.ui-tabs-active > a {
 .quantity-input{
 	width:25%;
 	padding:5px !important;
-	height:20px !important;
+	/*height:25px !important;*/
+	/*border:1px solid #000 !important;*/
 }
  input#quantity{
 	padding:2px !important;
