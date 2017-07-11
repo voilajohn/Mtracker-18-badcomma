@@ -696,10 +696,12 @@ input[type="radio"] {
 .product-display div.slider a.searchbtn img{
 	display:block;
 }
+/*
+Why is this here?	
 .swiper-slide{
 	width: 1024px;
 	max-width: 100vw;
-}
+}*/
 .slider .split-custom-wrapper .ui-btn {
   white-space:normal !important;
   text-overflow: inherit !important;
