@@ -656,8 +656,8 @@ $(".slickIt").on('click', function(){ //rotating area
         spaceBetween: 30,
         mode: 'horizontal',
         initialSlide: 0,
-        loop: true,
-        loopedSlides: 2,
+        /*loop: true,
+        loopedSlides: 2,*/
         //centeredSlides: true,
         
         slidesPerView: 'auto',
