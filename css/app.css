@@ -1113,6 +1113,7 @@ and (max-device-width : 568px) {
 	}
 	.slider{
 	/*width:240px;/* !important*/
+	width:80%;
 	}
 }
 @media only screen 
@@ -1128,6 +1129,7 @@ and (max-width : 568px) {
 	.slider{
 		/*width:240px;
 		/* !important*/
+		width:80%;
 	}
 }
 
