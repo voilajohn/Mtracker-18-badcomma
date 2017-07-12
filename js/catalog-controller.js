@@ -429,7 +429,11 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 					$("#LEDlights .split-custom-wrapper a").data("product-size",0); //push the product size to the checkout area.
 					//$("#LEDlights .split-custom-wrapper a").data("quantities","");
-					
+					//remove all hidden items
+					$(".swiper-wrapper .slider.hidden").each( function(){
+						$(this).remove();
+						//console.log($(this));
+					});
 					//need to make sure the page is loaded.
 					$(".slickIt").trigger("click"); //now load the carousel
 					$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
@@ -598,34 +602,54 @@ $('.save-defaults').click(function () { //lets create a default field in the car
 		$("#profile-panel #ctn-err").text("Please fill in all the fields to save.");
 		$("#profile-panel #ctn-err").addClass("bi-ctn-err").slideDown();
 	}
-	
 });
 
 //filter buttons on the bottom of the page
 var filtered = false;
 $('.product-button').on('click', function(){
 	//lets make it so that when you click it switches to the other filter unless it is the all button then it shows everything.
+    //var swiper = $(".swiper-wrapper");
+    //console.log(swiper.length);
     var filtername = $(this).attr('id');
-    var swiper = $(".swiper-container");
-    console.log(swiper.length);
-    if(swiper.length == 0){ //swiper no swiping
+    var isSlicked = $('.product-display').hasClass("slicked");
+    if(isSlicked){
+	    console.log("slicked");
 	    if(filtername != "All"){
 		    //console.log(filtername);
-		    $('.product-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
+		    ///$('.product-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
+		    
 			$(".product-button").each( function(){
 				$(this).removeClass('ui-btn-active');
 			});
+			$('.swiper-wrapper').slick('slickUnfilter');
+		    $('.swiper-wrapper').slick('slickFilter','.'+filtername+'-filter');
+		    console.log(filtername+'-filter');
 	        filtered = true;
+	        $('.swiper-wrapper').slick('slickGoTo',0);
 	    }else{
 			$(".product-button").each( function(){
 				$(this).removeClass('ui-btn-active');
 			});
-		    $('.product-wrapper div.slider').show();
+			console.log("unfilter");
+			$('.swiper-wrapper').slick('slickUnfilter');
+		    ///$('.product-wrapper div.slider').show();
 		    filtered = false;
+		    $('.swiper-wrapper').slick('slickGoTo',0);
 	    }
     }else{
+	    //find a different filter method
+	    //console.log("not-slicked - use a different filter");
+	    //$('.swiper-wrapper').slick('slickUnfilter');
+	    console.log("not-slicked - use a different filter");
+	    $(".product-button").each( function(){
+			$(this).removeClass('ui-btn-active');
+		});
+    }
+    //if(swiper.length == 0){ //swiper no swiping
+	    
+   /* }else{
 	    if(filtername != "All"){
-		    $('.swiper-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
+		    //$('.swiper-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
 			$(".product-button").each( function(){
 				$(this).removeClass('ui-btn-active');
 			});
@@ -634,31 +658,34 @@ $('.product-button').on('click', function(){
 			$(".product-button").each( function(){
 				$(this).removeClass('ui-btn-active');
 			});
-		    $('.swiper-wrapper div.slider').show();
+		    //$('.swiper-wrapper div.slider').show();
 		    filtered = false;
 	    }
-	   var mySwiper2 = $('.swiper-container')[0].swiper;
-	   mySwiper2.update();
-	   mySwiper2.slideTo(0,1000,false);
-	   mySwiper2.update();
-    }
+	   ///var mySwiper2 = $('.swiper-container')[0].swiper;
+	   ///mySwiper2.update();
+	   ///mySwiper2.slideTo(0,1000,false);
+	   ///mySwiper2.update();
+    }*/
     $(this).addClass('ui-btn-active');
 });
 
 $(".slickIt").on('click', function(){ //rotating area
 	//alert("DEBUG: slickit triggered");
-	$(".product-display").addClass('swiper-container');
-	$(".product-wrapper").addClass('swiper-wrapper');
-	var swiper = new Swiper('.swiper-container', {
+	////$(".product-display").addClass('swiper-container');
+	////$(".product-wrapper").addClass('swiper-wrapper');
+	$('.swiper-wrapper').slick({
+		dots:true,
+		infinite:false,
+		centerMode:true,
+		centerPadding:'20px'
+	});
+	/*var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
         slidesPerView: 5,
         spaceBetween: 30,
         mode: 'horizontal',
         initialSlide: 0,
-        /*loop: true,
-        loopedSlides: 2,*/
-        //centeredSlides: true,
         
         slidesPerView: 'auto',
         grabCursor: true,
@@ -692,7 +719,8 @@ $(".slickIt").on('click', function(){ //rotating area
                 spaceBetween: 8
             }
         }
-    });
+    });*/
+    
     //slide to the first slide if we are redoing it. 
     //swiper.slideTo(0,1000,false); 
     
@@ -705,21 +733,29 @@ $(".slickIt").on('click', function(){ //rotating area
 });
 
 $(".unslickIt").on('click', function(){ //list view
+	
 	//this should be destroying the swiper not allowing the 
-	var mySwiper = $('.swiper-container')[0].swiper;
-	//var mySwiper = $('.swiper-container').swiper;
-    //var mySwiper = $('.swiper-container');
-    mySwiper.destroy();//true,true
-    mySwiper = undefined;
+	///var mySwiper = $('.swiper-container')[0].swiper;
+    ///mySwiper.destroy();//true,true
+    ///mySwiper = undefined;
     
+    //clear the filter
+    $('.swiper-wrapper').slick('slickUnfilter');
+    
+    //slick - remove slick powers
+    $('.swiper-wrapper').slick('unslick');
+    
+    //update the top buttons
     $(".product-button").each( function(){
 		$(this).removeClass('ui-btn-active');
 	});
     $('#All').addClass('ui-btn-active');
-    $('.swiper-wrapper').removeAttr('style');
-    $('.swiper-slide').removeAttr('style');  
-	$(".product-display").removeClass('swiper-container');
-	$(".product-wrapper").removeClass('swiper-wrapper');
+    
+    //this is removing the styles from the swiper items
+    ///$('.swiper-wrapper').removeAttr('style');
+    ///$('.swiper-slide').removeAttr('style');  
+	///$(".product-display").removeClass('swiper-container');
+	///$(".product-wrapper").removeClass('swiper-wrapper');
 	
 	console.log("unslcked");
 	$('.product-display').removeClass("slicked");

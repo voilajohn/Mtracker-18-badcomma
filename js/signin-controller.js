@@ -267,6 +267,7 @@ $(".signOut").on('click', function(){
 		CSradioBtn = "";VSradioBtn = "";CSSradioBtn = "";
 		CLCradioBtn = "";GradioBtn = "";NSTradioBtn = "";
 		EZWradioBtn = "";LLradioBtn = "";
+		console.log("should change pages to page-signin");
 		$(".orderList").addClass("hidden");
 		$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
 	}) 

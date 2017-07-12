@@ -673,7 +673,8 @@ input[type="radio"] {
 }
 .product-display div.slider{
 	position:relative;
-	margin:10px 0px;
+	/*margin:10px 0px;*/
+	margin:10px 5px;
 	list-style:none;
 	padding:0px;
 }
@@ -717,7 +718,7 @@ Why is this here?
 	min-height:auto;
 }
 .product-display.unslicked div.slider{
-	width:100%;
+	width:95%;
 }
 /*.product-display.unslicked{
 	list-style:none;
@@ -1097,7 +1098,9 @@ li.ui-tabs-active > a {
 	padding-top:7px !important;
 }
 
-
+.slick-dots li{
+	margin: 0 2px;
+}
  
 /*Mobile styles - smalll screens iPhone 5 / 5S*/
 @media only screen 
@@ -1113,7 +1116,8 @@ and (max-device-width : 568px) {
 	}
 	.slider{
 	/*width:240px;/* !important*/
-	width:85%;
+	/*margin:0px 5px;
+	width:85%;*/
 	}
 }
 @media only screen 
@@ -1129,7 +1133,8 @@ and (max-width : 568px) {
 	.slider{
 		/*width:240px;
 		/* !important*/
-		width:85%;
+		/*margin:0px 5px;
+		width:85%;*/
 	}
 }
 
