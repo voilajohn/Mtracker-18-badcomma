@@ -251,6 +251,7 @@ var initialHref = window.location.href;
 $(".signOut").on('click', function(){ 
 	window.localStorage.removeItem('mickman-session'); //remove the session key
 	$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
+	$('.swiper-wrapper').slick('unslick');
 	
 	$('.emptyTCart').click();//empty the cart
 	user.clear().then(function() {//clear out the current user data
