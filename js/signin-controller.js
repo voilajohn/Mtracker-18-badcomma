@@ -249,13 +249,12 @@ var initialHref = window.location.href;
 
 //sign out button
 $(".signOut").on('click', function(){ 
-	window.localStorage.removeItem('mickman-session'); //remove the session key
-	$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
-	$('.swiper-wrapper').slick('unslick');
+	
 	
 	$('.emptyTCart').click();//empty the cart
 	user.clear().then(function() {//clear out the current user data
-		
+		window.localStorage.removeItem('mickman-session'); //remove the session key
+		$('.swiper-wrapper').slick('unslick');
 		productdb = ""; //clear out the current productdb var
 		loadCatCalled = 0; //reset this variable
 		var mySwiper = $('.swiper-container')[0].swiper; //remove swiper
@@ -274,7 +273,6 @@ $(".signOut").on('click', function(){
 		EZWradioBtn = "";LLradioBtn = "";
 		console.log("should change pages to page-signin");
 		$(".orderList").addClass("hidden");
-		
-		document.reload();
+		$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
 	}) 
 });
