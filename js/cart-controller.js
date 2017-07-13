@@ -254,8 +254,10 @@ MickmanAppLogin.CartController.prototype.getCartData = function(){ //build the c
 		if(cartCount == 0){
 			console.log("there is nothing in the cart");
 			$(".emptyCart").addClass("ui-state-disabled");
+			$(".checkoutNow").addClass("ui-state-disabled");
 		}else{
 			$(".emptyCart").removeClass("ui-state-disabled");
+			$(".checkoutNow").removeClass("ui-state-disabled");
 		}
 		$(".cartlist").enhanceWithin(); //this will refresh the cart list. 
 		$(".cartlist").listview("refresh"); //seems some issues with 

@@ -447,9 +447,11 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 						//console.log($(this));
 					///});
 					//need to make sure the page is loaded.
+					$.mobile.loading("hide");
+					
 					$(".slickIt").trigger("click"); //now load the carousel
 					$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
-					$.mobile.loading("hide");
+					
 					
 				    
 				}).catch(function(err) {
@@ -673,34 +675,10 @@ $('.product-button').on('click', function(){
 			$(this).removeClass('ui-btn-active');
 		});
     }
-    //if(swiper.length == 0){ //swiper no swiping
-	    
-   /* }else{
-	    if(filtername != "All"){
-		    //$('.swiper-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
-			$(".product-button").each( function(){
-				$(this).removeClass('ui-btn-active');
-			});
-	        filtered = true;
-	    }else{
-			$(".product-button").each( function(){
-				$(this).removeClass('ui-btn-active');
-			});
-		    //$('.swiper-wrapper div.slider').show();
-		    filtered = false;
-	    }
-	   ///var mySwiper2 = $('.swiper-container')[0].swiper;
-	   ///mySwiper2.update();
-	   ///mySwiper2.slideTo(0,1000,false);
-	   ///mySwiper2.update();
-    }*/
     $(this).addClass('ui-btn-active');
 });
 
 $(".slickIt").on('click', function(){ //rotating area
-	//alert("DEBUG: slickit triggered");
-	////$(".product-display").addClass('swiper-container');
-	////$(".product-wrapper").addClass('swiper-wrapper');
 	$('.swiper-wrapper div.slider').show(); //turn these back on in case they were turned off on the sort
 	$(".product-button").each( function(){
 		$(this).removeClass('ui-btn-active');
@@ -715,51 +693,7 @@ $(".slickIt").on('click', function(){ //rotating area
 	});
 	$('.swiper-wrapper').slick('slickUnfilter');
 	$('.swiper-wrapper').slick('slickFilter','.show');//only show the shown
-	/*var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        slidesPerView: 5,
-        spaceBetween: 30,
-        mode: 'horizontal',
-        initialSlide: 0,
-        
-        slidesPerView: 'auto',
-        grabCursor: true,
-        breakpoints: {
-            2000: { //edge - droid - landscape
-                slidesPerView: 4,
-                spaceBetween: 40
-            },
-            1500: { //edget - droid - portrait
-                slidesPerView: 2,
-                spaceBetween: 40
-            },
-            1024: { //ipad landscape
-                slidesPerView: 3,
-                spaceBetween: 40
-            },
-            900: {
-                slidesPerView: 2,
-                spaceBetween: 30
-            },
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 30
-            },
-            640: {
-                slidesPerView: 'auto',
-                spaceBetween: 20
-            },
-            320: {
-                slidesPerView: 'auto',
-                spaceBetween: 8
-            }
-        }
-    });*/
-    
-    //slide to the first slide if we are redoing it. 
-    //swiper.slideTo(0,1000,false); 
-    
+	    
 	$('.product-display').addClass("slicked");
 	$('.product-display').removeClass("unslicked");
 	
@@ -769,12 +703,7 @@ $(".slickIt").on('click', function(){ //rotating area
 });
 
 $(".unslickIt").on('click', function(){ //list view
-	
-	//this should be destroying the swiper not allowing the 
-	///var mySwiper = $('.swiper-container')[0].swiper;
-    ///mySwiper.destroy();//true,true
-    ///mySwiper = undefined;
-    
+
     //clear the filter
     $('.swiper-wrapper').slick('slickUnfilter');
     $('.swiper-wrapper').slick('slickFilter','.show');
@@ -787,12 +716,6 @@ $(".unslickIt").on('click', function(){ //list view
 		$(this).removeClass('ui-btn-active');
 	});
     $('#All').addClass('ui-btn-active');
-    
-    //this is removing the styles from the swiper items
-    ///$('.swiper-wrapper').removeAttr('style');
-    ///$('.swiper-slide').removeAttr('style');  
-	///$(".product-display").removeClass('swiper-container');
-	///$(".product-wrapper").removeClass('swiper-wrapper');
 	
 	console.log("unslcked");
 	$('.product-display').removeClass("slicked");
