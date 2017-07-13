@@ -99,7 +99,7 @@ MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 	});
 }
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
-MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is loaded
+MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is 
 	$.mobile.loading("show");  // Show loading graphic
 	// ALL OF THE DYNAMIC ITEMS NEED TO BE REFRESHED AFTER THEY ARE CLEARED.
 	//clear out the orders section
@@ -177,6 +177,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 				    }
 				    if(optC.length != 0){ //Classic Wreath is available
 					    $("#ClassicWreath").removeClass('hidden');
+					    $("#ClassicWreath").addClass('show');
 				    }
 				    
 					if( (key == "25v") && value > 0 && value != null || (key == "25vg") && value > 0 && value != null){
@@ -190,6 +191,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 				    }
 				    if(optV.length != 0){ //Victorian Wreath is available
 					   $("#VictorianWreath").removeClass('hidden'); 
+					   $("#VictorianWreath").addClass('show');
 				    }
 					
 				
@@ -203,7 +205,8 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					    optCS[2] = new Array(key,value,(key.slice(0,2) + "in."));
 					}
 					if(optCS.length != 0){ //Cranberry Splash Wreath is available
-						$("#CranberrySplashWreath").removeClass('hidden'); 
+						$("#CranberrySplashWreath").removeClass('hidden');
+						$("#CranberrySplashWreath").addClass('show'); 
 					}
 					
 					//category display option
@@ -213,6 +216,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 						$('#filterset').trigger('create');
 				    }else{
 						$("#wreath").removeClass('hidden');//hide the other category
+						
 				    }
 				    
 					//SPRAYS
@@ -221,6 +225,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 				    ){ //Classic Spray
 					    //$("#ClassicSpray").show();
 					    $("#ClassicSpray").removeClass('hidden'); 
+					    $("#ClassicSpray").addClass('show'); 
 					    $("#ClassicSpray .split-custom-wrapper a").data("num",value);
 					    $("#ClassicSpray .price span.num").html(value);
 					    $("#ClassicSpray .split-custom-wrapper a").data("db-name",key);
@@ -232,6 +237,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 				    ){ //Classic Spray
 					    //$("#VictorianSpray").show();
 					    $("#VictorianSpray").removeClass('hidden'); 
+					    $("#VictorianSpray").addClass('show'); 
 					    $("#VictorianSpray .split-custom-wrapper a").data("num",value);
 					    $("#VictorianSpray .price span.num").html(value);
 					    $("#VictorianSpray .split-custom-wrapper a").data("db-name",key);
@@ -242,6 +248,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 						(key == "spraycsg") && value > 0 && value != null ){ //Classic Spray
 					    //$("#CranberrySpray").show();
 					    $("#CranberrySpray").removeClass('hidden');
+					    $("#CranberrySpray").addClass('show'); 
 					    $("#CranberrySpray .split-custom-wrapper a").data("num",value);
 					    $("#CranberrySpray .price span.num").html(value);
 					    $("#CranberrySpray .split-custom-wrapper a").data("db-name",key);
@@ -260,6 +267,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					if( (key == "cc") && value > 0 && value != null ){ //Holiday Centerpiece
 						//$("#HolidayCenterpiece").show();
 						$("#HolidayCenterpiece").removeClass('hidden');
+						$("#HolidayCenterpiece").addClass('show'); 
 			
 						$("#HolidayCenterpiece .split-custom-wrapper a").data("num",value);
 						$("#HolidayCenterpiece .price span.num").html(value);
@@ -272,6 +280,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 						$('#filterset').trigger('create');
 					}else{
 						$("#centerpiece").removeClass('hidden');
+						$("#centerpiece").addClass('show'); 
 					}
 					
 					if( (key == "tlt") && value > 0 && value != null
@@ -279,6 +288,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 						//$("#tabletoptree").show();
 						
 						$("#tabletoptree").removeClass('hidden');
+						$("#tabletoptree").addClass('show'); 
 						$("#tabletoptree .split-custom-wrapper a").data("num",value);
 						$("#tabletoptree .price span.num").html(value);
 						$("#tabletoptree .split-custom-wrapper a").data("db-name",key);
@@ -310,6 +320,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					if( (key == "hanger") && value > 0 && value != null){
 						//$("#EZWreathHanger").show();
 						$("#EZWreathHanger").removeClass('hidden');
+						$("#EZWreathHanger").addClass('show'); 
 						$("#EZWreathHanger .split-custom-wrapper a").data("num",value);
 						$("#EZWreathHanger .split-custom-wrapper a").data("db-name",key);
 						$("#EZWreathHanger .price span.num").html(value);
@@ -320,6 +331,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					if( (key == "led") && value > 0 && value != null){
 						//$("#LEDlights").show();
 						$("#LEDlights").removeClass('hidden');
+						$("#LEDlights").addClass('show'); 
 						
 						$("#LEDlights .split-custom-wrapper a").data("num",value);
 						$("#LEDlights .split-custom-wrapper a").data("db-name",key);
@@ -430,10 +442,10 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					$("#LEDlights .split-custom-wrapper a").data("product-size",0); //push the product size to the checkout area.
 					//$("#LEDlights .split-custom-wrapper a").data("quantities","");
 					//remove all hidden items
-					$(".swiper-wrapper .slider.hidden").each( function(){
-						$(this).detach();
+					///$(".swiper-wrapper .slider.hidden").each( function(){
+						///$(this).detach();
 						//console.log($(this));
-					});
+					///});
 					//need to make sure the page is loaded.
 					$(".slickIt").trigger("click"); //now load the carousel
 					$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
@@ -616,13 +628,15 @@ $('.product-button').on('click', function(){
 	    console.log("slicked");
 	    if(filtername != "All"){
 		    //console.log(filtername);
+		    //unhide those hidden by the other sort
+		    $('.swiper-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
 		    ///$('.product-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
 		    
 			$(".product-button").each( function(){
 				$(this).removeClass('ui-btn-active');
 			});
 			$('.swiper-wrapper').slick('slickUnfilter');
-		    $('.swiper-wrapper').slick('slickFilter','.'+filtername+'-filter');
+		    $('.swiper-wrapper').slick('slickFilter','.'+filtername+'-filter','.show');//testing having multiple options
 		    console.log(filtername+'-filter');
 	        filtered = true;
 	        $('.swiper-wrapper').slick('slickGoTo',0);
@@ -632,14 +646,30 @@ $('.product-button').on('click', function(){
 			});
 			console.log("unfilter");
 			$('.swiper-wrapper').slick('slickUnfilter');
+			$('.swiper-wrapper').slick('slickFilter','.show');
 		    ///$('.product-wrapper div.slider').show();
 		    filtered = false;
 		    $('.swiper-wrapper').slick('slickGoTo',0);
 	    }
     }else{
 	    //find a different filter method
-	    //console.log("not-slicked - use a different filter");
 	    //$('.swiper-wrapper').slick('slickUnfilter');
+	    if(filtername != "All"){
+	    	$('.swiper-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
+			$(".product-button").each( function(){
+				$(this).removeClass('ui-btn-active');
+			});
+	        filtered = true;
+	        console.log("not All" + filtername);
+	    }else{
+		    $(".product-button").each( function(){
+				$(this).removeClass('ui-btn-active');
+			});
+		    $('.swiper-wrapper div.slider').show();
+		    filtered = false;
+		    console.log("All");
+	    }
+	    //console.log("not-slicked - use a different filter");
 	    console.log("not-slicked - use a different filter");
 	    $(".product-button").each( function(){
 			$(this).removeClass('ui-btn-active');
@@ -673,12 +703,16 @@ $(".slickIt").on('click', function(){ //rotating area
 	//alert("DEBUG: slickit triggered");
 	////$(".product-display").addClass('swiper-container');
 	////$(".product-wrapper").addClass('swiper-wrapper');
+	//$('.swiper-wrapper div.slider').show(); //turn these back on in case they were turned off on the sort
+	//this might add some issues
 	$('.swiper-wrapper').slick({
 		dots:true,
 		infinite:false,
 		centerMode:true,
 		centerPadding:'20px'
 	});
+	$('.swiper-wrapper').slick('slickUnfilter');
+	$('.swiper-wrapper').slick('slickFilter','.show');//only show the shown
 	/*var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
@@ -741,6 +775,7 @@ $(".unslickIt").on('click', function(){ //list view
     
     //clear the filter
     $('.swiper-wrapper').slick('slickUnfilter');
+    $('.swiper-wrapper').slick('slickFilter','.show');
     
     //slick - remove slick powers
     $('.swiper-wrapper').slick('unslick');

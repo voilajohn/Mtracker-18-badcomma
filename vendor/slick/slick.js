@@ -981,21 +981,26 @@
         }
 
     };
-
-    Slick.prototype.filterSlides = Slick.prototype.slickFilter = function(filter) {
+	//CUSTOM to allow 2 filters 
+    //Slick.prototype.filterSlides = Slick.prototype.slickFilter = function(filter) {
+    Slick.prototype.filterSlides = Slick.prototype.slickFilter = function(filter,filter2) {
 
         var _ = this;
-
-        if (filter !== null) {
+        //if (filter !== null) {
+        if (filter !== null || filter2 !== null) {
 
             _.$slidesCache = _.$slides;
 
             _.unload();
 
             _.$slideTrack.children(this.options.slide).detach();
-
-            _.$slidesCache.filter(filter).appendTo(_.$slideTrack);
-
+            //filter by 2
+			if(filter && filter2){
+            	_.$slidesCache.filter(filter).filter(filter2).appendTo(_.$slideTrack);
+            }else{
+				_.$slidesCache.filter(filter).appendTo(_.$slideTrack);
+            }      
+            //console.log(_.$slideTrack);     
             _.reinit();
 
         }

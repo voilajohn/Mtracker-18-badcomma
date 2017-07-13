@@ -28,6 +28,7 @@ h1,h2,h3,h4,h5 {
 	font-size:12px;
 }
 .hidden{display:none !important;}
+.show{display:block !important;}
 /*Login Screen*/
 .loginpage .ui-block-a,
 .loginpage .ui-block-c {

@@ -174,6 +174,7 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 							    	$.mobile.loading("hide");
 									if(response.success === true){
 										token = response.extras.token;
+										backup = $('product-display').clone();
 										//ADD TO DB - PRODUCTS 
 										user.setItem("token",token);//push the token to the database
 										$.mobile.navigate(me.mainMenuPageId); //if that is successful we will reroute them to the catalog page
@@ -248,9 +249,12 @@ var initialHref = window.location.href;
 
 //sign out button
 $(".signOut").on('click', function(){ 
+	window.localStorage.removeItem('mickman-session'); //remove the session key
+	$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
+	
 	$('.emptyTCart').click();//empty the cart
 	user.clear().then(function() {//clear out the current user data
-		window.localStorage.removeItem('mickman-session'); //remove the session key
+		
 		productdb = ""; //clear out the current productdb var
 		loadCatCalled = 0; //reset this variable
 		var mySwiper = $('.swiper-container')[0].swiper; //remove swiper
@@ -269,6 +273,7 @@ $(".signOut").on('click', function(){
 		EZWradioBtn = "";LLradioBtn = "";
 		console.log("should change pages to page-signin");
 		$(".orderList").addClass("hidden");
-		$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
+		
+		document.reload();
 	}) 
 });
