@@ -254,7 +254,12 @@ $(".signOut").on('click', function(){
 	$('.emptyTCart').click();//empty the cart
 	user.clear().then(function() {//clear out the current user data
 		window.localStorage.removeItem('mickman-session'); //remove the session key
-		$('.swiper-wrapper').slick('unslick');
+		$('.swiper-wrapper').slick('unslick'); //clean up catalog
+		$(".swiper-wrapper div.slider").each( function(){
+			console.log($(this));
+			$(this).addClass('hidden');
+			$(this).removeClass('show');
+		});
 		productdb = ""; //clear out the current productdb var
 		loadCatCalled = 0; //reset this variable
 		var mySwiper = $('.swiper-container')[0].swiper; //remove swiper
