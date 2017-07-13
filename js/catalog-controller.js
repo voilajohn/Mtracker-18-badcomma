@@ -628,8 +628,6 @@ $('.product-button').on('click', function(){
 	    console.log("slicked");
 	    if(filtername != "All"){
 		    //console.log(filtername);
-		    //unhide those hidden by the other sort
-		    $('.swiper-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
 		    ///$('.product-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
 		    
 			$(".product-button").each( function(){
@@ -655,6 +653,7 @@ $('.product-button').on('click', function(){
 	    //find a different filter method
 	    //$('.swiper-wrapper').slick('slickUnfilter');
 	    if(filtername != "All"){
+		    //this should be hiding everytthing that is not the filtername
 	    	$('.swiper-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
 			$(".product-button").each( function(){
 				$(this).removeClass('ui-btn-active');
@@ -665,11 +664,10 @@ $('.product-button').on('click', function(){
 		    $(".product-button").each( function(){
 				$(this).removeClass('ui-btn-active');
 			});
-		    $('.swiper-wrapper div.slider').show();
+		    $('.swiper-wrapper div.slider').show();//show all of them
 		    filtered = false;
 		    console.log("All");
 	    }
-	    //console.log("not-slicked - use a different filter");
 	    console.log("not-slicked - use a different filter");
 	    $(".product-button").each( function(){
 			$(this).removeClass('ui-btn-active');
@@ -703,7 +701,11 @@ $(".slickIt").on('click', function(){ //rotating area
 	//alert("DEBUG: slickit triggered");
 	////$(".product-display").addClass('swiper-container');
 	////$(".product-wrapper").addClass('swiper-wrapper');
-	//$('.swiper-wrapper div.slider').show(); //turn these back on in case they were turned off on the sort
+	$('.swiper-wrapper div.slider').show(); //turn these back on in case they were turned off on the sort
+	$(".product-button").each( function(){
+		$(this).removeClass('ui-btn-active');
+	});
+	$("#All").addClass('ui-btn-active');
 	//this might add some issues
 	$('.swiper-wrapper').slick({
 		dots:true,
