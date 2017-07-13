@@ -431,7 +431,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					//$("#LEDlights .split-custom-wrapper a").data("quantities","");
 					//remove all hidden items
 					$(".swiper-wrapper .slider.hidden").each( function(){
-						$(this).remove();
+						$(this).detach();
 						//console.log($(this));
 					});
 					//need to make sure the page is loaded.
