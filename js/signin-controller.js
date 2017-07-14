@@ -122,6 +122,9 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 			            var userDeets = resp.extras.products;
 			            var group = userDeets[userDeets.indexOf('cust_id') + 1][1];
 			            var wod = userDeets[userDeets.indexOf('wod') + 2][1];
+			            //var gname = userDeets[userDeets.indexOf('groupname')][1];
+			            //var message = userDeets[userDeets.indexOf('message')][1];
+			            //console.log(userDeets.indexOf('groupname'));
 			            
 			            $(".mygroup").html(resp.extras.cust_id);
 			            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load
@@ -130,16 +133,14 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 		                	
 		                	app.signInController.CreateProductDB($('#select-choice-1').val(),$('#select-choice-1 :selected').attr('id'),"createProducts"); //create unique products db
 		                	
-		                	//user.setItem("user",$('#select-choice-1').val()); //user
-		                	//user.setItem("id",$('#select-choice-1 :selected').attr('id'));//push the userID to the database 
-		                	//user.setItem("wod",wod);
-		                	//user.setItem("group",group);
-		                	
 					        var key = [
 					        	["user",$('#select-choice-1').val()],
 					        	["id",$('#select-choice-1 :selected').attr('id')],
 					        	["wod",wod],
 					        	["group",group]
+					        	//,
+					        	//["groupname",gname],
+					        	//["message",message]
 					        ];
 							var promises = key.map(function(item) { 
 								return user.setItem(item[0],item[1]);

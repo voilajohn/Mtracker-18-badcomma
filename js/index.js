@@ -202,10 +202,10 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
     app.cartController.$btnAdd.off("tap").on("tap", function (event) {
 	    // last item - added db-name this one adds variables to the popup
 	    //e,s,p,t,r,q
-	    console.log($(this).data("quantity"));
-	     console.log($(this).data("db-name"));
+	    console.log("q:"+$(this).data("quantity"));
+	    console.log("db:"+$(this).data("db-name"));
 	    //if($(this).data("num") != ""){
-		if($(this).data("quantity") != 0){ 
+		if($(this).data("quantity") != 0 && $(this).data("quantity") != ""){ 
 		    app.cartController.addpricetoPopup(
 		    	$(this).data("num"), //e
 		    	$(this).data("product-size"), //s
