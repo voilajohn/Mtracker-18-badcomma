@@ -350,3 +350,6 @@ $(window).load(function() {
   // When the page has loaded
   $("body").fadeIn(2000);
 });
+
+// keep startup url (in case your app is an SPA with html5 url routing)
+var initialHref = window.location.href;

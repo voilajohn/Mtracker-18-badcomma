@@ -100,139 +100,146 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
         url: MickmanAppLogin.Settings.signInUrl,
         data: "user=" + userName + "&password=" + password + "&try-login=" + tryLogin,
         success: function (resp) {
-	        
             $.mobile.loading("hide");
             console.log(resp);
-            if (resp.success === true) { // If the login method changes this part can be skipped
-                if(resp.extras.users){//build out the menu
-	                $('#select-choice-1').html(""); //prevent big lists from multiple logins
-	                var users = resp.extras.users;
-	                var ids = resp.extras.ids;
-	                
-	                $.each(users, function(bb){
-		                var Uname = (users[bb]);
-		                var Uid = (ids[bb]);
-		                $('#select-choice-1').append('<option value="'+Uname+'" id="'+Uid+'">'+Uname+'</option>');
-		            });
-		            var userDeets = resp.extras.products;
-		            var group = userDeets[userDeets.indexOf('cust_id') + 1][1];
-		            var wod = userDeets[userDeets.indexOf('wod') + 2][1];
-		            
-		            $(".mygroup").html(resp.extras.cust_id);
-		            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load
-		            //name is chosen - lets now create the products db and load up the interface
-                	$(".startSession").click(function(){//They need to choose a user
-	                	
-	                	app.signInController.CreateProductDB($('#select-choice-1').val(),$('#select-choice-1 :selected').attr('id'),"createProducts"); //create unique products db
-	                	
-	                	//user.setItem("user",$('#select-choice-1').val()); //user
-	                	//user.setItem("id",$('#select-choice-1 :selected').attr('id'));//push the userID to the database 
-	                	//user.setItem("wod",wod);
-	                	//user.setItem("group",group);
-	                	
-				        var key = [
-				        	["user",$('#select-choice-1').val()],
-				        	["id",$('#select-choice-1 :selected').attr('id')],
-				        	["wod",wod],
-				        	["group",group]
-				        ];
-						var promises = key.map(function(item) { 
-							return user.setItem(item[0],item[1]);
-						});
-						Promise.all(promises).then(function(results) {
-							$.mobile.loading("show");//show spinner
-							app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);
-							
-							//put the additional stuff into the DB
-		                	var today = new Date();
-			                var expirationDate = new Date();
-			                expirationDate.setTime(today.getTime() + MickmanAppLogin.Settings.sessionTimeoutInMSec);
-			                
-			                //left save all this stuff to a local database to get later 
-			                // - this may take over for the localdata stuff	
-			                
-			                var token = resp.extras.sessionID;
-			                var memberProf = $('#select-choice-1').val();
-			                var groupName = resp.extras.products[1][1];//find this in the code
-			                var UserID = $('#select-choice-1 :selected').attr('id');
-			                
-			                //create the session variables
-			                MickmanAppLogin.Session.getInstance().set({//local variable for checking the sessions
-			                    userProfileModel:  memberProf,
-			                    userGroup: groupName,
-			                    sessionId: token,
-			                    userId: UserID,
-			                    expirationDate: expirationDate,
-			                    keepSignedIn:me.$chkKeepSignedIn.is(":checked")
-			                });
-			               
-			                $.ajax({  //save this the users token to the db. 
-						        type: 'POST',
-						        url: MickmanAppLogin.Settings.tokenUrl,
-						        data: "user=" + userName + "&password=" + password + "&member=" + memberProf + "&senttoken=" + token,
-						        success: function (response) {
-							    	$.mobile.loading("hide");
-									if(response.success === true){
-										token = response.extras.token;
-										backup = $('product-display').clone();
-										//ADD TO DB - PRODUCTS 
-										user.setItem("token",token);//push the token to the database
-										$.mobile.navigate(me.mainMenuPageId); //if that is successful we will reroute them to the catalog page
-									}else{ //show an error message.
-										  me.$ctnErr.html("<p>There was an error loading your profile. Please check your connection and try again.</p>");
-										  me.$ctnErr.addClass("bi-ctn-err").slideDown();
-										  me.$txtUserName.addClass(invalidInputStyle);
-									}
-								},
-								//YOU WERE ADDING THE RESPONSE TO THE PHP AND TRYING TO GET IT TO LOGIN AND STORE THE TOKEN TO BE USED IN THE SYNC OPERATION
-						        error: function (e) {
-						            $.mobile.loading("hide");
-						            console.log(e);
-						            // TODO: Use a friendlier error message below.
-						            me.$ctnErr.html("<p>Oops! It looks like we had a problem and could not log you on.  Please try again in a few minutes.</p>");
-						            me.$ctnErr.addClass("bi-ctn-err").slideDown();
-						        }
-			                });
-							
-							
-							
-						});
-	                
+            if(resp == ""){
+	            console.log("Error: server issues");
+	            me.$ctnErr.html("<p>Sorry there appears to be a server issue: please standby while we work on getting the issue resolved.</p>");
+											  me.$ctnErr.addClass("bi-ctn-err").slideDown();
+											  me.$txtUserName.addClass(invalidInputStyle);
+	        }else{
+	            if (resp.success === true) { // If the login method changes this part can be skipped
+	                if(resp.extras.users){//build out the menu
+		                $('#select-choice-1').html(""); //prevent big lists from multiple logins
+		                var users = resp.extras.users;
+		                var ids = resp.extras.ids;
 		                
+		                $.each(users, function(bb){
+			                var Uname = (users[bb]);
+			                var Uid = (ids[bb]);
+			                $('#select-choice-1').append('<option value="'+Uname+'" id="'+Uid+'">'+Uname+'</option>');
+			            });
+			            var userDeets = resp.extras.products;
+			            var group = userDeets[userDeets.indexOf('cust_id') + 1][1];
+			            var wod = userDeets[userDeets.indexOf('wod') + 2][1];
+			            
+			            $(".mygroup").html(resp.extras.cust_id);
+			            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load
+			            //name is chosen - lets now create the products db and load up the interface
+	                	$(".startSession").click(function(){//They need to choose a user
+		                	
+		                	app.signInController.CreateProductDB($('#select-choice-1').val(),$('#select-choice-1 :selected').attr('id'),"createProducts"); //create unique products db
+		                	
+		                	//user.setItem("user",$('#select-choice-1').val()); //user
+		                	//user.setItem("id",$('#select-choice-1 :selected').attr('id'));//push the userID to the database 
+		                	//user.setItem("wod",wod);
+		                	//user.setItem("group",group);
+		                	
+					        var key = [
+					        	["user",$('#select-choice-1').val()],
+					        	["id",$('#select-choice-1 :selected').attr('id')],
+					        	["wod",wod],
+					        	["group",group]
+					        ];
+							var promises = key.map(function(item) { 
+								return user.setItem(item[0],item[1]);
+							});
+							Promise.all(promises).then(function(results) {
+								$.mobile.loading("show");//show spinner
+								app.catalogController.storeData($('#select-choice-1').val(),resp.extras.products);
+								
+								//put the additional stuff into the DB
+			                	var today = new Date();
+				                var expirationDate = new Date();
+				                expirationDate.setTime(today.getTime() + MickmanAppLogin.Settings.sessionTimeoutInMSec);
+				                
+				                //left save all this stuff to a local database to get later 
+				                // - this may take over for the localdata stuff	
+				                
+				                var token = resp.extras.sessionID;
+				                var memberProf = $('#select-choice-1').val();
+				                var groupName = resp.extras.products[1][1];//find this in the code
+				                var UserID = $('#select-choice-1 :selected').attr('id');
+				                
+				                //create the session variables
+				                MickmanAppLogin.Session.getInstance().set({//local variable for checking the sessions
+				                    userProfileModel:  memberProf,
+				                    userGroup: groupName,
+				                    sessionId: token,
+				                    userId: UserID,
+				                    expirationDate: expirationDate,
+				                    keepSignedIn:me.$chkKeepSignedIn.is(":checked")
+				                });
+				               
+				                $.ajax({  //save this the users token to the db. 
+							        type: 'POST',
+							        url: MickmanAppLogin.Settings.tokenUrl,
+							        data: "user=" + userName + "&password=" + password + "&member=" + memberProf + "&senttoken=" + token,
+							        success: function (response) {
+								    	$.mobile.loading("hide");
+										if(response.success === true){
+											token = response.extras.token;
+											backup = $('product-display').clone();
+											//ADD TO DB - PRODUCTS 
+											user.setItem("token",token);//push the token to the database
+											$.mobile.navigate(me.mainMenuPageId); //if that is successful we will reroute them to the catalog page
+										}else{ //show an error message.
+											  me.$ctnErr.html("<p>There was an error loading your profile. Please check your connection and try again.</p>");
+											  me.$ctnErr.addClass("bi-ctn-err").slideDown();
+											  me.$txtUserName.addClass(invalidInputStyle);
+										}
+									},
+									//YOU WERE ADDING THE RESPONSE TO THE PHP AND TRYING TO GET IT TO LOGIN AND STORE THE TOKEN TO BE USED IN THE SYNC OPERATION
+							        error: function (e) {
+							            $.mobile.loading("hide");
+							            console.log(e);
+							            // TODO: Use a friendlier error message below.
+							            me.$ctnErr.html("<p>Oops! It looks like we had a problem and could not log you on.  Please try again in a few minutes.</p>");
+							            me.$ctnErr.addClass("bi-ctn-err").slideDown();
+							        }
+				                });
+								
+								
+								
+							});
 		                
-                	});
-					//pop up window with selection
-					$( "#confirm-member" ).popup( "open");
-                }else{
-	                me.$ctnErr.html("<p>Oops! It looks like your leader hasn't added members yet.</p>");
-                    me.$ctnErr.addClass("bi-ctn-err").slideDown();
-                }
-                return;
-            } else {
-                if (resp.extras.msg) {
-                    switch (resp.extras.msg) {
-                        case 0: //MickmanAppLogin.ApiMessages.DB_ERROR:
-                        // TODO: Use a friendlier error message below.
-                            me.$ctnErr.html("<p>Oops! It looks like we had a problem and could not log you on.  Please try again in a few minutes.</p>");
-                            me.$ctnErr.addClass("bi-ctn-err").slideDown();
-                            break;
-                        case 1: //MickmanAppLogin.ApiMessages.INVALID_PWD:
-                        
-                        case 2: //MickmanAppLogin.ApiMessages.EMAIL_NOT_FOUND:
-                            me.$ctnErr.html("<p>You entered a wrong username or password.  Please try again.</p>");
-                            me.$ctnErr.addClass("bi-ctn-err").slideDown();
-                            me.$txtUserName.addClass(invalidInputStyle);
-                            break;
-                        default:
-                        	me.$ctnErr.html("<p>Something Unexpected Happened.  Please try again.</p>");
-                            me.$ctnErr.addClass("bi-ctn-err").slideDown();
-                            me.$txtUserName.addClass(invalidInputStyle);
-                            break;
-                    }
-                }else{
-	                console.log("nothing back");
-                }
-            }
+			                
+			                
+	                	});
+						//pop up window with selection
+						$( "#confirm-member" ).popup( "open");
+	                }else{
+		                me.$ctnErr.html("<p>Oops! It looks like your leader hasn't added members yet.</p>");
+	                    me.$ctnErr.addClass("bi-ctn-err").slideDown();
+	                }
+	                return;
+	            } else {
+	                if (resp.extras.msg) {
+		                console.log(resp.extras.msg);
+	                    switch (resp.extras.msg) {
+	                        case 0: //MickmanAppLogin.ApiMessages.DB_ERROR:
+	                        // TODO: Use a friendlier error message below.
+	                            me.$ctnErr.html("<p>Oops! It looks like we had a problem and could not log you on.  Please try again in a few minutes.</p>");
+	                            me.$ctnErr.addClass("bi-ctn-err").slideDown();
+	                            break;
+	                        case 1: //MickmanAppLogin.ApiMessages.INVALID_PWD:
+	                        
+	                        case 2: //MickmanAppLogin.ApiMessages.EMAIL_NOT_FOUND:
+	                            me.$ctnErr.html("<p>You entered a wrong username or password.  Please try again.</p>");
+	                            me.$ctnErr.addClass("bi-ctn-err").slideDown();
+	                            me.$txtUserName.addClass(invalidInputStyle);
+	                            break;
+	                        default:
+	                        	me.$ctnErr.html("<p>Something Unexpected Happened.  Please try again.</p>");
+	                            me.$ctnErr.addClass("bi-ctn-err").slideDown();
+	                            me.$txtUserName.addClass(invalidInputStyle);
+	                            break;
+	                    }
+	                }else{
+		                console.log("nothing back");
+	                }
+	            }
+	        }//server issue message
         },
         error: function (e) {
             $.mobile.loading("hide");
@@ -243,29 +250,22 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
         }
     });
 };
-// keep startup url (in case your app is an SPA with html5 url routing)
-var initialHref = window.location.href;
 
+function restartApplication(){
+	//show splash screen
+	//navigator.splashscreen.show();
+	console.log("location reloading page");
+	window.location = initialHref;
+}
 
 //sign out button
 $(".signOut").on('click', function(){ 
-	
-	
-	$('.emptyTCart').click();//empty the cart
 	user.clear().then(function() {//clear out the current user data
-		window.localStorage.removeItem('mickman-session'); //remove the session key
-		$('.swiper-wrapper').slick('unslick'); //clean up catalog
-		$(".swiper-wrapper div.slider").each( function(){
-			console.log($(this));
-			$(this).addClass('hidden');
-			$(this).removeClass('show');
-		});
-		productdb = ""; //clear out the current productdb var
-		loadCatCalled = 0; //reset this variable
-		var mySwiper = $('.swiper-container')[0].swiper; //remove swiper
-		mySwiper.destroy();		
-		mySwiper = undefined;
-		$("#ClassicSprayOption").html(""); //clear product settings
+		console.log("should change pages to page-signin");
+		$(".orderList").addClass("hidden");
+		
+		//clear product settings
+		$("#ClassicSprayOption").html(""); 
 	    $("#VictorianSprayOption").html("");
 	    $("#CranberrySprayOption").html("");
 	    $("#CandlelitCenterpieceOption").html("");
@@ -276,8 +276,30 @@ $(".signOut").on('click', function(){
 		CSradioBtn = "";VSradioBtn = "";CSSradioBtn = "";
 		CLCradioBtn = "";GradioBtn = "";NSTradioBtn = "";
 		EZWradioBtn = "";LLradioBtn = "";
-		console.log("should change pages to page-signin");
-		$(".orderList").addClass("hidden");
+		
+		//remove swiper
+		$('.swiper-wrapper').slick('unslick'); //clean up catalog
+		$(".swiper-wrapper div.slider").each( function(){
+			console.log($(this));
+			$(this).addClass('hidden');
+			$(this).removeClass('show');
+		});
+		
+		window.localStorage.removeItem('mickman-session'); //remove the session key
+		productdb = ""; //clear out the current productdb var
+		loadCatCalled = 0; //reset this variable
+		
+		//old
+		///var mySwiper = $('.swiper-container')[0].swiper; 
+		///mySwiper.destroy();		
+		///mySwiper = undefined;
+		
 		$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
+		//empty the cart
+		//$('.emptyTCart').click();
+		app.cartController.flushCart("logout");
+		restartApplication(); //reload the DOM
+		
+		console.log("called restart");
 	}) 
 });

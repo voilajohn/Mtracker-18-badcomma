@@ -345,13 +345,23 @@ MickmanAppLogin.CartController.prototype.saveCartData = function(){
 	}
 };
 
+MickmanAppLogin.CartController.prototype.flushCart = function(x){
+	cart.clear().then(function(){
+		console.log("logout flush");
+		if(x != "logout"){
+			app.cartController.getCartData();
+		}
+	}).catch(function(err){
+		console.log(err);
+	});
+};
+
 //check for many items in the cart already
 function getAll(arr){
 	return Promise.all( arr.map(function(key){
 		return cart.getItem(key);
 	}) );
 }
-
 
 //contact info submitted - store it in A 
 /* #### BUTTONS ### */
