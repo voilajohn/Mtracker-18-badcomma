@@ -280,7 +280,6 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 						$('#filterset').trigger('create');
 					}else{
 						$("#centerpiece").removeClass('hidden');
-						$("#centerpiece").addClass('show'); 
 					}
 					
 					if( (key == "tlt") && value > 0 && value != null
@@ -296,9 +295,11 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					    NSTradioBtn = '<li class="ui-grid-b" id="row'+key+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
 					}
 					if($("#tabletoptree").hasClass('hidden')){
+						console.log("tree should be hidden");
 						$("#tree").addClass('hidden');//hide the other category
 						$('#filterset').trigger('create');
 					}else{
+						console.log("show tree button");
 						$("#tree").removeClass('hidden');
 					}
 					
