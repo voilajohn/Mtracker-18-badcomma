@@ -502,6 +502,15 @@ input.q{
 	/*-webkit-text-fill-color: rgba(0, 0, 0, 1); */
 	-webkit-opacity: 1;
 }
+input.qinput, input[type="text"].qinput:disabled, 
+.cartlist .ui-disabled, .cartlist .ui-state-disabled,.cartlist .ui-btn.ui-state-disable, 
+.ui-block-b .ui-disabled, .ui-block-b .ui-state-disabled,.ui-block-b .ui-btn.ui-state-disable,
+.ui-block-a .ui-disabled, .ui-block-a .ui-state-disabled,.ui-block-a .ui-btn.ui-state-disable{
+	color: #000 !important;
+    opacity:1 !important;
+    font-size:16px !important;
+    -webkit-opacity: 1 !important;
+}
 input[type="text"].q:disabled, .priceselect .ui-disabled,.priceselect .ui-state-disabled,.priceselect .ui-btn.ui-state-disable {
     color: #000 !important;
     opacity:1 !important;

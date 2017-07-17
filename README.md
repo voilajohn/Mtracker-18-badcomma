@@ -5,6 +5,8 @@ Droid and iOS compatible.
 
 /**************** vs 1.33  || 7-17-17 **************/
 ~ Adding additional led / hanger quantities - checkboxes and step buttons
+~ Investigating issue with not syncing.
+~ Invsetigating issue with empty product.
 
 /**************** vs 1.325  || 7-13-17 **************/
 ~ Fixed the swiper settings and updated the login/logout

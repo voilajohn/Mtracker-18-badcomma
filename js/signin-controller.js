@@ -246,7 +246,7 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
             $.mobile.loading("hide");
             console.log(e);
             // TODO: Use a friendlier error message below.
-            me.$ctnErr.html("<p>Oops! It looks like we had a problem and could not log you on.  Please try again in a few minutes. ("+e+")</p>");
+            me.$ctnErr.html("<p>Oops! It looks like we had a problem and could not log you on.  Please try again in a few minutes. ("+ JSON.stringify(e, null, 4)+")</p>");
             me.$ctnErr.addClass("bi-ctn-err").slideDown();
         }
     });
