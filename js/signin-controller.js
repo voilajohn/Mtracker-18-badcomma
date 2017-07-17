@@ -279,21 +279,21 @@ $(".signOut").on('click', function(){
 		EZWradioBtn = "";LLradioBtn = "";
 		
 		//remove swiper
-		$('.swiper-wrapper').slick('unslick'); //clean up catalog
-		$(".swiper-wrapper div.slider").each( function(){
-			console.log($(this));
-			$(this).addClass('hidden');
-			$(this).removeClass('show');
-		});
+		//$('.swiper-wrapper').slick('unslick'); //clean up catalog
+		//$(".swiper-wrapper div.slider").each( function(){
+		//	console.log($(this));
+		//	$(this).addClass('hidden');
+		//	$(this).removeClass('show');
+		//});
 		
 		window.localStorage.removeItem('mickman-session'); //remove the session key
 		productdb = ""; //clear out the current productdb var
 		loadCatCalled = 0; //reset this variable
 		
 		//old
-		///var mySwiper = $('.swiper-container')[0].swiper; 
-		///mySwiper.destroy();		
-		///mySwiper = undefined;
+		var mySwiper = $('.swiper-container')[0].swiper; 
+		mySwiper.destroy();		
+		mySwiper = undefined;
 		
 		$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
 		//empty the cart
