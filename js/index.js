@@ -190,22 +190,26 @@ $(document).delegate("#page-checkout", "pagebeforecreate", function () {
 });
 
 //Catalog Page is Loaded - pagebeforecreate
-//$(document).delegate("#page-main-menu", "pageshow", function () {
-//$(document).on( "pagecontainershow", function() {
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	app.catalogController.init();
     //app.catalogController.getSavedData();
     checkGroup('pagebeforecreate'); 
     console.log("page-main-menu");
     app.cartController.init();
+    //going to try moving this part to cart
+    console.log("qtest: "+$(this).data("quantity"));
     //this adds the info to the cart pop up
     app.cartController.$btnAdd.off("tap").on("tap", function (event) {
 	    // last item - added db-name this one adds variables to the popup
 	    //e,s,p,t,r,q
 	    console.log("q:"+$(this).data("quantity"));
 	    console.log("db:"+$(this).data("db-name"));
+	    
+	    console.log($(this).data("quantity"));
+	    
 	    //if($(this).data("num") != ""){
 		if($(this).data("quantity") != 0 && $(this).data("quantity") != ""){ 
+			console.log($(this).data("quantity"));
 		    app.cartController.addpricetoPopup(
 		    	$(this).data("num"), //e
 		    	$(this).data("product-size"), //s
@@ -220,6 +224,7 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 		    event.preventDefault();
 	    }
     });
+    
     //this function adds to the cart from the product popup
     app.cartController.$btnCheck.off("tap").on("tap", function (event) {
 	    //lets check here to see if there are more than one item being added
