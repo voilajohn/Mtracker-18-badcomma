@@ -142,15 +142,15 @@ h1,h2,h3,h4,h5 {
     -webkit-border-radius: 0 !important; border-radius: 0 !important; 
     color:#444 !important;
 }
-
-/*.ui-page-theme-a .ui-btn.ui-checkbox-on:after{
+/*this was off
+.ui-page-theme-a .ui-btn.ui-checkbox-on:after{
 	display:none !important;
 }*/
 input[type='checkbox']{
 	display:none;
 }
 
-#keepsigned  .ui-btn.ui-checkbox-off:after, #keepsigned  .ui-btn.ui-checkbox-on:after, #keepsigned  .ui-btn.ui-radio-off:after, #keepsigned  .ui-btn.ui-radio-on:after{
+#keepsigned .ui-btn.ui-checkbox-off:after, #keepsigned .ui-btn.ui-checkbox-on:after, #keepsigned .ui-btn.ui-radio-off:after, #keepsigned .ui-btn.ui-radio-on:after{
 	display:none !important;
 }
 /*radio*/
@@ -183,7 +183,7 @@ input[type='checkbox']{
     margin-top: -15px !important; 
     box-shadow: none!important; -moz-box-shadow: none!important; -webkit-box-shadow: none!important; 
     -webkit-border-radius: 0 !important; border-radius: 0 !important; 
-    background: url(http://www.surveyshare.com/images/icons/check.png) 50% 50% no-repeat !important;
+    /*background: url(http://www.surveyshare.com/images/icons/check.png) 50% 50% no-repeat !important;*/
     background:#ccc !important;
 }
 li.even a{
@@ -929,13 +929,14 @@ li.ui-tabs-active > a {
 	width:10% !important;
 	border:1px solid #000;
 }*/
+
 .quantity-input{
 	width:25%;
 	padding:5px !important;
 	/*height:25px !important;*/
 	/*border:1px solid #000 !important;*/
 }
- input#quantity{
+ input#quantity,  input#ledquantity, input#hangerquantity{
 	padding:2px !important;
 	height: 15px;
 	min-height:1.2em;
@@ -946,8 +947,15 @@ li.ui-tabs-active > a {
 	font-size:14px;
 	color:#000;
 }
-.removeProduct, .addProduct{
+.removeProduct, .addProduct, .removeLED, .addLED, .removeHanger, .addHanger{
 	padding:5px 2px !important;
+}
+.ledsquare .addon-q, .hangersquare .addon-q{
+	margin:0px auto;
+	padding:2px 5px;
+}
+.addon-wrapper .ui-bar-a{
+	padding:0px;
 }
 .middle-image{
 	margin:0px auto !important;

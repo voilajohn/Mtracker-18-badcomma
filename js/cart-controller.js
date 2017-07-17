@@ -363,6 +363,36 @@ function getAll(arr){
 	}) );
 }
 
+$('#ledlights').click(function() {
+	var isChecked =  $('#ledlights').is(':checked');
+	//if it is checked lets make the checkbox with options appear and allow for number input
+	console.log(isChecked);
+	if(isChecked == true){
+		$('.ledsquare .addon-q').removeClass('hidden');
+		$('.ledsquare .addon-q #ledquantity').val('1');
+		//$('.ledsquare .addon-q').enhanceWithin().controlgroup("refresh");
+		//set to 1
+	}else{
+		$('.ledsquare .addon-q').addClass('hidden');
+		$('.ledsquare .addon-q #ledquantity').val('0');
+		//$('.ledsquare .addon-q').enhanceWithin().controlgroup("refresh");
+		//set to 0
+	}
+});
+$('#ezwreathhanger').click(function() {
+	var isChecked =  $('#ezwreathhanger').is(':checked');
+	//if it is checked lets make the checkbox with options appear and allow for number input
+	console.log(isChecked);
+	if(isChecked == true){
+		$('.hangersquare .addon-q').removeClass('hidden');
+		$('.hangersquare .addon-q #hangerquantity').val('1');
+		//$('.ledsquare .addon-q').enhanceWithin().controlgroup("refresh");
+	}else{
+		$('.hangersquare .addon-q').addClass('hidden');
+		$('.hangersquare .addon-q #hangerquantity').val('0');
+		//$('.ledsquare .addon-q').enhanceWithin().controlgroup("refresh");
+	}
+});
 //contact info submitted - store it in A 
 /* #### BUTTONS ### */
 $('.emptyTCart').click(function () { //clear the cart db
@@ -405,4 +435,40 @@ $(document).on('click', '.removeProduct', function(){ //Cart - button
 	var prodid = $(this).parent().parent().data('product-id');
 	prod = [prodname,prodprice,prodthumb,prodid];
 	app.cartController.removeProduct(prod);
+}); 
+
+$(document).on('click', '.addLED', function(){ //Cart + button  
+	var prodcount = Number($('.ledsquare .addon-q #ledquantity').val());
+	prodcount ++;
+	$('.ledsquare .addon-q #ledquantity').val(prodcount);
+});
+
+$(document).on('click', '.removeLED', function(){ //Cart - button    
+	var prodcount = Number($('.ledsquare .addon-q #ledquantity').val());
+	if(prodcount == 1){
+		$('.ledsquare .addon-q #ledquantity').val(0); //set it to zero
+		$('.ledsquare .addon-q').addClass("hidden");
+		$("#ledlights").attr("checked",false).checkboxradio("refresh"); //turn it off
+	}else{
+		prodcount --;
+		$('.ledsquare .addon-q #ledquantity').val(prodcount);
+	}
+}); 
+
+$(document).on('click', '.addHanger', function(){ //Cart + button 
+	var prodcount = Number($('.hangersquare .addon-q #hangerquantity').val());
+	prodcount ++;
+	$('.hangersquare .addon-q #hangerquantity').val(prodcount);
+});
+
+$(document).on('click', '.removeHanger', function(){ //Cart - button    
+	var prodcount = Number($('.hangersquare .addon-q #hangerquantity').val());
+	if(prodcount == 1){
+		$('.hangersquare .addon-q #hangerquantity').val(0); //set it to zero
+		$('.hangersquare .addon-q').addClass("hidden");
+		$("#ezwreathhanger").attr("checked",false).checkboxradio("refresh"); //turn it off
+	}else{
+		prodcount --;
+		$('.hangersquare .addon-q #hangerquantity').val(prodcount);
+	}
 }); 

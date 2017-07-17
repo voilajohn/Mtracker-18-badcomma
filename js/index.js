@@ -253,6 +253,7 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 		    thumb = $(this).parent().parent().find("img").attr('src');
 		    
 		    if(product == "LED Lights" || product == "EZ Wreath Hanger"){ 
+			    //get quantities
 			    var items = [[product,Number(cost),thumb,productID,1]];
 			    console.log(productID);
 			}else{ 
@@ -285,14 +286,18 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	    //need to make sure that this is getting added if there is already one in there.
 	    if($("#ledlights").is(":checked") || $("#ezwreathhanger").is(":checked")){
 		    if($("#ledlights").is(":checked")){//led
+			   var ledq = Number($(".ledsquare #ledquantity").val());//getq
+			   console.log("led: "+ledq);
 			   lthumb = $(this).parent().parent().find(".cart-addons img.ledthumb").attr('src');
 			   lprice = $(this).parent().parent().find("span.addledprice").text();
-			   items.push(["LED Light Set",Number(lprice),lthumb,"led",1]);
+			   items.push(["LED Light Set",Number(lprice),lthumb,"led",ledq]);
 		    }
 		    if($("#ezwreathhanger").is(":checked")){
+			   var ezhq = Number($(".hangersquare #hangerquantity").val());//getq
+			   console.log("ez: "+ezhq);
 			   ezthumb = $(this).parent().parent().find(".cart-addons img.ezthumb").attr('src');
 			   ezprice = $(this).parent().parent().find("span.addhangerprice").text();
-			   items.push(["EZ Wreath Hanger",Number(ezprice),ezthumb,"hanger",1]);
+			   items.push(["EZ Wreath Hanger",Number(ezprice),ezthumb,"hanger",ezhq]);
 		    }
 	    }
         app.cartController.addtoCartCommand(items,radioSelected);
@@ -314,6 +319,12 @@ $( ".ppanel" ).on( "panelbeforeopen", function( event, ui ) {//lets gather all t
 });
 $( "#purchase" ).on( "popupbeforeposition", function( event, ui ) {
 	//we need to check all the items for addons
+	//uncheck them
+	$(this).find("#ledlights").attr("checked",false).checkboxradio("refresh");
+	$(this).find("#ezwreathhanger").attr("checked",false).checkboxradio("refresh");
+	$(this).find('.addon-q').addClass('hidden');
+	$('.ledsquare .addon-q #ledquantity').val('0');
+	$('.hangersquare .addon-q #hangerquantity').val('0');
 	
 	var productName = $(this).data('fieldrealName');
 	console.log("p: " + productName);
