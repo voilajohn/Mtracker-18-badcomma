@@ -77,6 +77,7 @@ MickmanAppLogin.CartController.prototype.addpricetoPopup = function (e,s,p,t,r,q
 	//save cart to db 
 	//added q 
 	console.log(e + ":" +  s + ":" + p + ":" + t + ":" + q + e.length + ":" +  Array.isArray());//5
+	console.log("add to pop");
 	if(Array.isArray(e)){ //check if it is multiples
 		//fill in the first one 
 		console.log("isArray");

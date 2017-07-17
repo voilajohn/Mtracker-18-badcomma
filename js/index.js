@@ -192,12 +192,12 @@ $(document).delegate("#page-checkout", "pagebeforecreate", function () {
 //Catalog Page is Loaded - pagebeforecreate
 $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	app.catalogController.init();
-    //app.catalogController.getSavedData();
+	
     checkGroup('pagebeforecreate'); 
     console.log("page-main-menu");
     app.cartController.init();
-    //going to try moving this part to cart
     console.log("qtest: "+$(this).data("quantity"));
+    
     //this adds the info to the cart pop up
     app.cartController.$btnAdd.off("tap").on("tap", function (event) {
 	    // last item - added db-name this one adds variables to the popup
@@ -206,7 +206,9 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	    console.log("db:"+$(this).data("db-name"));
 	    
 	    console.log($(this).data("quantity"));
-	    
+	    if($(this).data("quantity") == ""){
+		    alert("ERROR! There is no Quantity Set");
+	    }
 	    //if($(this).data("num") != ""){
 		if($(this).data("quantity") != 0 && $(this).data("quantity") != ""){ 
 			console.log($(this).data("quantity"));
@@ -259,6 +261,9 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 		    
 		    if(product == "LED Lights" || product == "EZ Wreath Hanger"){ 
 			    //get quantities
+			    if(productID == ""){
+				    console.log("error product name is missing");
+			    }
 			    var items = [[product,Number(cost),thumb,productID,1]];
 			    console.log(productID);
 			}else{ 
