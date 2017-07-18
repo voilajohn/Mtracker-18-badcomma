@@ -199,7 +199,9 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 		
 		if(r == "checkout"){
 			//app.cartController.getCartData();//1.26 refresh the cart
+			console.log("page-cart?");
 	    	$(':mobile-pagecontainer').pagecontainer('change', '#page-cart');
+	    	
 	    }else{
 		    $('.product-message').removeClass("bi-ctn-err");
 		    $('.product-message').html("<p>Items successfully added to your cart.</p>").fadeIn('slow');
