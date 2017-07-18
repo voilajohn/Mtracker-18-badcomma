@@ -616,8 +616,11 @@ $('.save-defaults').click(function () { //lets create a default field in the car
 });
 
 //sort products sample
-function showProjectsbyCat( cat ){
+function showProductsbyCat( cat ){
+  console.log(cat);
   if ( cat == 'all'){
+	
+	//then we will show the rest. 
     $('#products-hidden .slider').each(function(){
        var owl = $(".slider-wrapper").data('owlCarousel');
        elem = $(this).parent().html();
@@ -626,6 +629,7 @@ function showProjectsbyCat( cat ){
        $(this).parent().remove();
     });
   }else{
+	  
     $('#products-hidden .slider.'+ cat).each(function(){
        var owl = $(".slider-wrapper").data('owlCarousel');
        elem = $(this).parent().html();
@@ -635,15 +639,152 @@ function showProjectsbyCat( cat ){
     });
 
     $('#projects-carousel .slider:not(.project.'+ cat + ')').each(function(){
+	   //console.log($(this).parent().index());
        var owl = $(".slider-wrapper").data('owlCarousel');
        targetPos = $(this).parent().index();
        elem = $(this).parent();
 
        $( elem ).clone().appendTo( $('#projects-hidden') );
        owl.removeItem(targetPos);
+       $(".slider-wrapper").trigger('refresh.owl.carousel');
     });
   }
 }
+
+
+//filter buttons on the bottom of the page
+var filtered = false;
+$('.product-button').on('click', function(){
+	//lets make it so that when you click it switches to the other filter unless it is the all button then it shows everything.
+    var filtername = $(this).attr('id');
+    var swiper = $(".swiper-container");
+    console.log(swiper.length);
+    if(swiper.length == 0){ //swiper no swiping
+	    if(filtername != "All"){
+		    //console.log(filtername);
+		    $('.product-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
+			$(".product-button").each( function(){
+				$(this).removeClass('ui-btn-active');
+			});
+	        filtered = true;
+	    }else{
+			$(".product-button").each( function(){
+				$(this).removeClass('ui-btn-active');
+			});
+		    $('.product-wrapper div.slider').show();
+		    filtered = false;
+	    }
+    }else{
+	    if(filtername != "All"){
+		    $('.swiper-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
+			$(".product-button").each( function(){
+				$(this).removeClass('ui-btn-active');
+			});
+	        filtered = true;
+	    }else{
+			$(".product-button").each( function(){
+				$(this).removeClass('ui-btn-active');
+			});
+		    $('.swiper-wrapper div.slider').show();
+		    filtered = false;
+	    }
+	   var mySwiper2 = $('.swiper-container')[0].swiper;
+	   mySwiper2.update();
+	   mySwiper2.slideTo(0,1000,false);
+	   mySwiper2.update();
+    }
+    $(this).addClass('ui-btn-active');
+});
+
+$(".slickIt").on('click', function(){ //rotating area
+	//alert("DEBUG: slickit triggered");
+	$(".product-display").addClass('swiper-container');
+	$(".product-wrapper").addClass('swiper-wrapper');
+	var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        slidesPerView: 5,
+        spaceBetween: 30,
+        mode: 'horizontal',
+        initialSlide: 0,
+        loop: true,
+        loopedSlides: 2,
+        //centeredSlides: true,
+        
+        slidesPerView: 'auto',
+        grabCursor: true,
+        breakpoints: {
+            2000: { //edge - droid - landscape
+                slidesPerView: 4,
+                spaceBetween: 40
+            },
+            1500: { //edget - droid - portrait
+                slidesPerView: 2,
+                spaceBetween: 40
+            },
+            1024: { //ipad landscape
+                slidesPerView: 3,
+                spaceBetween: 40
+            },
+            900: {
+                slidesPerView: 2,
+                spaceBetween: 30
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 30
+            },
+            640: {
+                slidesPerView: 'auto',
+                spaceBetween: 20
+            },
+            320: {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            }
+        }
+    });
+    //slide to the first slide if we are redoing it. 
+    //swiper.slideTo(0,1000,false); 
+    
+	$('.product-display').addClass("slicked");
+	$('.product-display').removeClass("unslicked");
+	
+	$(this).addClass("ui-btn-active");
+	$('.unslickIt').removeClass("ui-btn-active");
+	//remove the listview layout
+});
+
+$(".unslickIt").on('click', function(){ //list view
+	//this should be destroying the swiper not allowing the 
+	var mySwiper = $('.swiper-container')[0].swiper;
+    //var mySwiper = $('.swiper-container');
+    mySwiper.destroy(true,true);
+    mySwiper = undefined;
+    
+    $(".product-button").each( function(){
+		$(this).removeClass('ui-btn-active');
+	});
+    $('#All').addClass('ui-btn-active');
+    $('.swiper-wrapper').removeAttr('style');
+    $('.swiper-slide').removeAttr('style');  
+	$(".product-display").removeClass('swiper-container');
+	$(".product-wrapper").removeClass('swiper-wrapper');
+	
+	console.log("unslcked");
+	$('.product-display').removeClass("slicked");
+	$('.product-display').addClass("unslicked");
+	
+	$('.slickIt').removeClass("ui-btn-active");
+	$(this).addClass("ui-btn-active");
+	//style it as a listview
+});
+/*
+	
+	
+	
+
+
 
 //filter buttons on the bottom of the page
 var filtered = false;
@@ -653,9 +794,9 @@ $('.product-button').on('click', function(){
     //console.log(swiper.length);
     
     
-    
-    /*
     var filtername = $(this).attr('id');
+    //showProductsbyCat(filtername+'-filter');
+    
     var isSlicked = $('.product-display').hasClass("slicked");
     if(isSlicked){
 	    console.log("slicked");
@@ -707,40 +848,51 @@ $('.product-button').on('click', function(){
 		});
     }
     $(this).addClass('ui-btn-active');
-    */
+    
 });
 
 $(".slickIt").on('click', function(){ //rotating area
-	console.log("slickit");
-	
+	//move the hidden 
+	$('.swiper-wrapper .slider:not(.show)').each(function(){//first lets remove the hidden ones.
+       var owl = $(".slider-wrapper").data('owlCarousel');
+       targetPos = $(this).parent().index();
+       elem = $(this).parent();
+
+       $( elem ).clone().appendTo( $('#products-hidden') );
+       //owl.removeItem(targetPos);
+       $(".slider-wrapper").trigger('remove.owl.carousel', [targetPos]);
+	   //owl.trigger('remove.owl.carousel',[targetPos]).trigger('refresh.owl.carousel');
+	   //owl.trigger('remove.owl.carousel',[8]).trigger('refresh.owl.carousel');
+	   console.log(targetPos);
+       
+    });
+
 	//start the slider - new
-	$('.swiper-wrapper').owlCarousel({
+	var $owl = $('.swiper-wrapper').owlCarousel({
 	    loop:false,
 	    stagePadding:20,
 	    center:true,
 	    margin:5,
-	    //lazyLoad:true,
 	    items:1,
 	    nav:true
-	    //,
-	    //nestedItemSelector: 'swiper-slide'
-	    /*responsive:{
-	        0:{
-	            items:1
-	        },
-	        600:{
-	            items:3
-	        },
-	        1000:{
-	            items:5
-	        }
-	    }*/
 	});
-	if(!$('.swiper-wrapper').hasClass('owl-carousel')){
+	   
+	var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 1,
+        centeredSlides: true,
+        paginationClickable: true,
+        spaceBetween: 30
+    });
+	//hide the hidden ones
+	if(!$('.swiper-wrapper').hasClass('owl-carousel')){ //this needs to be there for it to do the carousel
 		$('.swiper-wrapper').addClass('owl-carousel');
 	}
-		
-	/*$('.swiper-wrapper div.slider').show(); //turn these back on in case they were turned off on the sort
+	
+	console.log("slickit");
+	//filter out the empty ones
+	
+	$('.swiper-wrapper div.slider').show(); //turn these back on in case they were turned off on the sort
 	$(".product-button").each( function(){
 		$(this).removeClass('ui-btn-active');
 	});
@@ -760,7 +912,7 @@ $(".slickIt").on('click', function(){ //rotating area
 	$('.product-display').removeClass("unslicked");
 	
 	$(this).addClass("ui-btn-active");
-	$('.unslickIt').removeClass("ui-btn-active");*/
+	$('.unslickIt').removeClass("ui-btn-active");
 	//remove the listview layout
 });
 
@@ -772,7 +924,7 @@ $(".unslickIt").on('click', function(){ //list view
 	owl.find('.owl-stage-outer').children().unwrap();
     
     
-    /*
+    
     //clear the filter
     $('.swiper-wrapper').slick('slickUnfilter');
     $('.swiper-wrapper').slick('slickFilter','.show');
@@ -793,9 +945,10 @@ $(".unslickIt").on('click', function(){ //list view
 	$('.slickIt').removeClass("ui-btn-active");
 	$(this).addClass("ui-btn-active");
 	//style it as a listview
-	*/
+	
 });
 
+*/
 $(document).on('click', '.plus', function(event){ //Cart - button  
 	//these have changed
 	var productID = $(event.target).parent().parent().parent().parent().parent().attr('id');
