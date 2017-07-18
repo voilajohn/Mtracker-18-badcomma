@@ -621,6 +621,9 @@ $('.product-button').on('click', function(){
 	//lets make it so that when you click it switches to the other filter unless it is the all button then it shows everything.
     //var swiper = $(".swiper-wrapper");
     //console.log(swiper.length);
+    
+    
+    /*
     var filtername = $(this).attr('id');
     var isSlicked = $('.product-display').hasClass("slicked");
     if(isSlicked){
@@ -673,10 +676,37 @@ $('.product-button').on('click', function(){
 		});
     }
     $(this).addClass('ui-btn-active');
+    */
 });
 
 $(".slickIt").on('click', function(){ //rotating area
-	$('.swiper-wrapper div.slider').show(); //turn these back on in case they were turned off on the sort
+	
+	//start the slider - new
+	$('.owl-carousel').owlCarousel({
+	    loop:false,
+	    margin:10,
+	    nav:true,
+	    nestedItemSelector: 'swiper-slide',
+	    responsive:{
+	        0:{
+	            items:1
+	        },
+	        600:{
+	            items:3
+	        },
+	        1000:{
+	            items:5
+	        }
+	    }
+	});
+	
+	
+	
+	
+	
+	
+	
+	/*$('.swiper-wrapper div.slider').show(); //turn these back on in case they were turned off on the sort
 	$(".product-button").each( function(){
 		$(this).removeClass('ui-btn-active');
 	});
@@ -696,12 +726,15 @@ $(".slickIt").on('click', function(){ //rotating area
 	$('.product-display').removeClass("unslicked");
 	
 	$(this).addClass("ui-btn-active");
-	$('.unslickIt').removeClass("ui-btn-active");
+	$('.unslickIt').removeClass("ui-btn-active");*/
 	//remove the listview layout
 });
 
 $(".unslickIt").on('click', function(){ //list view
 
+    
+    
+    /*
     //clear the filter
     $('.swiper-wrapper').slick('slickUnfilter');
     $('.swiper-wrapper').slick('slickFilter','.show');
@@ -722,6 +755,7 @@ $(".unslickIt").on('click', function(){ //list view
 	$('.slickIt').removeClass("ui-btn-active");
 	$(this).addClass("ui-btn-active");
 	//style it as a listview
+	*/
 });
 
 $(document).on('click', '.plus', function(event){ //Cart - button  
