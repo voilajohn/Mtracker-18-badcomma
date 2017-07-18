@@ -715,11 +715,11 @@ $(".slickIt").on('click', function(){ //rotating area
 	
 	//start the slider - new
 	$('.swiper-wrapper').owlCarousel({
-	    loop:true,
+	    loop:false,
 	    stagePadding:20,
 	    center:true,
 	    margin:5,
-	    lazyLoad:true,
+	    //lazyLoad:true,
 	    items:1,
 	    nav:true
 	    //,
