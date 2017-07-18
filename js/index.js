@@ -182,6 +182,9 @@ $(document).on('click', '.closesummary', function(event){
 	//redirect and hope for the best
 	$(':mobile-pagecontainer').pagecontainer('change', '#page-main-menu', { 'transition':'none' });
 })
+$(document).on('click', '.checkoutNow', function(event){
+	alert("checkout?");
+});
 //Login Button - pagebeforecreate
 $(document).delegate("#page-signin", "pagebeforecreate", function () {
 	app.signInController.init();
