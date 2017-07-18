@@ -684,7 +684,7 @@ input[type="radio"] {
 .product-display div.slider{
 	position:relative;
 	/*margin:10px 0px;*/
-	margin:10px 5px;
+	/*margin:10px 5px;*/
 	list-style:none;
 	padding:0px;
 }
@@ -708,11 +708,11 @@ input[type="radio"] {
 	display:block;
 }
 /*
-Why is this here?	
+Why is this here?	*/
 .swiper-slide{
 	width: 1024px;
 	max-width: 100vw;
-}*/
+}
 .slider .split-custom-wrapper .ui-btn {
   white-space:normal !important;
   text-overflow: inherit !important;
@@ -1147,7 +1147,7 @@ and (max-device-width : 568px) {
 	.slider{
 	/*width:240px;/* !important*/
 	/*margin:0px 5px;
-	width:85%;*/
+	width:100%;*/
 	}
 }
 @media only screen 
@@ -1164,7 +1164,7 @@ and (max-width : 568px) {
 		/*width:240px;
 		/* !important*/
 		/*margin:0px 5px;
-		width:85%;*/
+		width:100%;*/
 	}
 }
 

@@ -663,6 +663,7 @@ $('.product-button').on('click', function(){
 	    if(filtername != "All"){
 		    //console.log(filtername);
 		    $('.product-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
+			
 			$(".product-button").each( function(){
 				$(this).removeClass('ui-btn-active');
 			});
@@ -671,6 +672,7 @@ $('.product-button').on('click', function(){
 			$(".product-button").each( function(){
 				$(this).removeClass('ui-btn-active');
 			});
+		    
 		    $('.product-wrapper div.slider').show();
 		    filtered = false;
 	    }
@@ -681,13 +683,18 @@ $('.product-button').on('click', function(){
 				$(this).removeClass('ui-btn-active');
 			});
 	        filtered = true;
+	        var mySwiper2 = $('.swiper-container')[0].swiper;
+	        //swiper.update();
+	        console.log("nav updated");
 	    }else{
 			$(".product-button").each( function(){
 				$(this).removeClass('ui-btn-active');
 			});
 		    $('.swiper-wrapper div.slider').show();
 		    filtered = false;
+		    //swiper.update();
 	    }
+	    
 	   var mySwiper2 = $('.swiper-container')[0].swiper;
 	   mySwiper2.update();
 	   mySwiper2.slideTo(0,1000,false);
@@ -697,53 +704,29 @@ $('.product-button').on('click', function(){
 });
 
 $(".slickIt").on('click', function(){ //rotating area
-	//alert("DEBUG: slickit triggered");
+	//remove the slides we aren't going to need.
+	
 	$(".product-display").addClass('swiper-container');
 	$(".product-wrapper").addClass('swiper-wrapper');
 	var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
-        slidesPerView: 5,
-        spaceBetween: 30,
+        spaceBetween: 0,
         mode: 'horizontal',
         initialSlide: 0,
-        loop: true,
-        loopedSlides: 2,
-        //centeredSlides: true,
-        
-        slidesPerView: 'auto',
-        grabCursor: true,
-        breakpoints: {
-            2000: { //edge - droid - landscape
-                slidesPerView: 4,
-                spaceBetween: 40
-            },
-            1500: { //edget - droid - portrait
-                slidesPerView: 2,
-                spaceBetween: 40
-            },
-            1024: { //ipad landscape
-                slidesPerView: 3,
-                spaceBetween: 40
-            },
-            900: {
-                slidesPerView: 2,
-                spaceBetween: 30
-            },
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 30
-            },
-            640: {
-                slidesPerView: 'auto',
-                spaceBetween: 20
-            },
-            320: {
-                slidesPerView: 'auto',
-                spaceBetween: 8
-            }
-        }
+        loop: false,
+        slidesPerView: 1,
+        grabCursor: true
     });
+    /*$('.swiper-wrapper div.slider:not(.show)').each(function(){//first lets remove the hidden ones.
+       //var owl = $(".slider-wrapper").data('owlCarousel');
+       targetPos = $(this).parent().index();
+       console.log($(this));
+       $( this ).clone().appendTo( $('#products-hidden') );
+       swiper.removeSlide(targetPos);
+	   console.log(targetPos);
+    });*/
+    swiper.update();
     //slide to the first slide if we are redoing it. 
     //swiper.slideTo(0,1000,false); 
     
@@ -759,7 +742,7 @@ $(".unslickIt").on('click', function(){ //list view
 	//this should be destroying the swiper not allowing the 
 	var mySwiper = $('.swiper-container')[0].swiper;
     //var mySwiper = $('.swiper-container');
-    mySwiper.destroy(true,true);
+    mySwiper.destroy();//true,true
     mySwiper = undefined;
     
     $(".product-button").each( function(){
