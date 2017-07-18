@@ -388,16 +388,16 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					console.log(CradioBtn);
 					$('#ClassicOption').html("").html(CradioBtn).enhanceWithin();
 					//$('#ClassicOption').html(CradioBtn);
-					$('#VictorianOption').html(VradioBtn).enhanceWithin();
-					$('#CranberryOption').html(SradioBtn).enhanceWithin();
-					$('#ClassicSprayOption').html(CSradioBtn).enhanceWithin();
-					$('#VictorianSprayOption').html(VSradioBtn).enhanceWithin();
-					$('#CranberrySprayOption').html(CSSradioBtn).enhanceWithin();
-					$('#CandlelitCenterpieceOption').html(CLCradioBtn).enhanceWithin();
-					$('#GarlandOption').html(GradioBtn).enhanceWithin();
-					$('#NorthStarTreeOption').html(NSTradioBtn).enhanceWithin();
-					$('#EZWreathHangerOption').html(EZWradioBtn).enhanceWithin();
-					$('#LedLightOption').html(LLradioBtn).enhanceWithin();
+					$('#VictorianOption').html("").html(VradioBtn).enhanceWithin();
+					$('#CranberryOption').html("").html(SradioBtn).enhanceWithin();
+					$('#ClassicSprayOption').html("").html(CSradioBtn).enhanceWithin();
+					$('#VictorianSprayOption').html("").html(VSradioBtn).enhanceWithin();
+					$('#CranberrySprayOption').html("").html(CSSradioBtn).enhanceWithin();
+					$('#CandlelitCenterpieceOption').html("").html(CLCradioBtn).enhanceWithin();
+					$('#GarlandOption').html("").html(GradioBtn).enhanceWithin();
+					$('#NorthStarTreeOption').html("").html(NSTradioBtn).enhanceWithin();
+					$('#EZWreathHangerOption').html("").html(EZWradioBtn).enhanceWithin();
+					$('#LedLightOption').html("").html(LLradioBtn).enhanceWithin();
 					
 					//console.log("refresh");
 				    //$("#ClassicOption").enhanceWithin().controlgroup("refresh");
@@ -446,7 +446,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					//need to make sure the page is loaded.
 					$.mobile.loading("hide");
 					
-					$(".slickIt").trigger("click"); //now load the carousel
+					//$(".slickIt").trigger("click"); //now load the carousel
 					$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
 					
 					
