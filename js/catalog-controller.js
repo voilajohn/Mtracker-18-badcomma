@@ -682,7 +682,7 @@ $('.product-button').on('click', function(){
 $(".slickIt").on('click', function(){ //rotating area
 	
 	//start the slider - new
-	$('.owl-carousel').owlCarousel({
+	$('.wiper-wrapper').owlCarousel({
 	    loop:false,
 	    margin:10,
 	    nav:true,
