@@ -290,9 +290,9 @@ $(".signOut").on('click', function(){
 		loadCatCalled = 0; //reset this variable
 		
 		//old
-		//var mySwiper = $('.swiper-container')[0].swiper; 
-		//mySwiper.destroy();		
-		//mySwiper = undefined;
+		var mySwiper = $('.swiper-container')[0].swiper; 
+		mySwiper.destroy();		
+		mySwiper = undefined;
 		
 		$(':mobile-pagecontainer').pagecontainer('change', '#page-signin');//go to next page
 		//empty the cart

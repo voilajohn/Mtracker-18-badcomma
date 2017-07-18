@@ -681,10 +681,10 @@ $('.product-button').on('click', function(){
 		    //swiper.update();
 	    }
 	    
-	   var mySwiper2 = $('.swiper-container')[0].swiper;
-	   mySwiper2.update();
-	   mySwiper2.slideTo(0,1000,false);
-	   mySwiper2.update();
+	   var swiper = $('.swiper-container')[0].swiper;
+	   swiper.update();
+	   swiper.slideTo(0,1000,false);
+	   swiper.update();
     }
     $(this).addClass('ui-btn-active');
 });
@@ -694,6 +694,7 @@ $(".slickIt").on('click', function(){ //rotating area
 	
 	$(".product-display").addClass('swiper-container');
 	$(".product-wrapper").addClass('swiper-wrapper');
+	
 	var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
