@@ -76,13 +76,23 @@ function checkGroup(x){ //find the group name and the user saved.
 		}else if(key == "user"){ currentuser = value;
 		}else if(key == "wod"){  wod = value;
 		}else if(key == "id"){   id = value;
+		}else if(key == "groupname"){   groupname = value;
+		}else if(key == "message"){   message = value;
 		}
 	}).then(function() {	                  //update the profile display
 		$(".your-group").html(group);         //display on profile section
 		$(".your-profile").html(currentuser); //display on profile section
 		$(".your-delivery").html(wod);        //display on profile section
 		deliverydate = wod;
-		group = group;
+		if(groupname != ""){
+			group = groupname;
+		}else{
+			group = group;
+		}
+		if(message != ""){
+			$('.message').html(message);
+			
+		}
 		//make sure that the dbs are displaying
 		app.orderController.CreateOrderDB(currentuser,id); //load the db
 		app.signInController.CreateProductDB(currentuser,id,x); //load the db 

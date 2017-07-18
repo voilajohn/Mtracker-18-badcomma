@@ -438,13 +438,14 @@ $(document).on('click', '.removeProduct', function(){ //Cart - button
 	app.cartController.removeProduct(prod);
 }); 
 
-$(document).on('click', '.addLED', function(){ //Cart + button  
+$(document).on('click', '.addLED', function(event){ //Cart + button  
 	var prodcount = Number($('.ledsquare .addon-q #ledquantity').val());
 	prodcount ++;
 	$('.ledsquare .addon-q #ledquantity').val(prodcount);
+	event.preventDefault();
 });
 
-$(document).on('click', '.removeLED', function(){ //Cart - button    
+$(document).on('click', '.removeLED', function(event){ //Cart - button    
 	var prodcount = Number($('.ledsquare .addon-q #ledquantity').val());
 	if(prodcount == 1){
 		$('.ledsquare .addon-q #ledquantity').val(0); //set it to zero
@@ -454,15 +455,17 @@ $(document).on('click', '.removeLED', function(){ //Cart - button
 		prodcount --;
 		$('.ledsquare .addon-q #ledquantity').val(prodcount);
 	}
+	event.preventDefault();
 }); 
 
-$(document).on('click', '.addHanger', function(){ //Cart + button 
+$(document).on('click', '.addHanger', function(event){ //Cart + button 
 	var prodcount = Number($('.hangersquare .addon-q #hangerquantity').val());
 	prodcount ++;
 	$('.hangersquare .addon-q #hangerquantity').val(prodcount);
+	event.preventDefault();
 });
 
-$(document).on('click', '.removeHanger', function(){ //Cart - button    
+$(document).on('click', '.removeHanger', function(event){ //Cart - button    
 	var prodcount = Number($('.hangersquare .addon-q #hangerquantity').val());
 	if(prodcount == 1){
 		$('.hangersquare .addon-q #hangerquantity').val(0); //set it to zero
@@ -472,4 +475,5 @@ $(document).on('click', '.removeHanger', function(){ //Cart - button
 		prodcount --;
 		$('.hangersquare .addon-q #hangerquantity').val(prodcount);
 	}
+	event.preventDefault();
 }); 

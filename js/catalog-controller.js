@@ -388,30 +388,30 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					console.log(CradioBtn);
 					$('#ClassicOption').html("").html(CradioBtn).enhanceWithin();
 					//$('#ClassicOption').html(CradioBtn);
-					$('#VictorianOption').html(VradioBtn);
-					$('#CranberryOption').html(SradioBtn);
-					$('#ClassicSprayOption').html(CSradioBtn);
-					$('#VictorianSprayOption').html(VSradioBtn);
-					$('#CranberrySprayOption').html(CSSradioBtn);
-					$('#CandlelitCenterpieceOption').html(CLCradioBtn);
-					$('#GarlandOption').html(GradioBtn);
-					$('#NorthStarTreeOption').html(NSTradioBtn);
-					$('#EZWreathHangerOption').html(EZWradioBtn);
-					$('#LedLightOption').html(LLradioBtn);
+					$('#VictorianOption').html(VradioBtn).enhanceWithin();
+					$('#CranberryOption').html(SradioBtn).enhanceWithin();
+					$('#ClassicSprayOption').html(CSradioBtn).enhanceWithin();
+					$('#VictorianSprayOption').html(VSradioBtn).enhanceWithin();
+					$('#CranberrySprayOption').html(CSSradioBtn).enhanceWithin();
+					$('#CandlelitCenterpieceOption').html(CLCradioBtn).enhanceWithin();
+					$('#GarlandOption').html(GradioBtn).enhanceWithin();
+					$('#NorthStarTreeOption').html(NSTradioBtn).enhanceWithin();
+					$('#EZWreathHangerOption').html(EZWradioBtn).enhanceWithin();
+					$('#LedLightOption').html(LLradioBtn).enhanceWithin();
 					
 					//console.log("refresh");
 				    //$("#ClassicOption").enhanceWithin().controlgroup("refresh");
-				    $("#ClassicOption").enhanceWithin();
-				    $("#VictorianOption").enhanceWithin(); 
-				    $("#CranberryOption").enhanceWithin();
-				    $("#ClassicSprayOption").enhanceWithin();
-				    $("#VictorianSprayOption").enhanceWithin();
-				    $("#CranberrySprayOption").enhanceWithin();
-				    $("#CandlelitCenterpieceOption").enhanceWithin();
-				    $('#GarlandOption').enhanceWithin();
-				    $('#NorthStarTreeOption').enhanceWithin();
-				    $('#EZWreathHangerOption').enhanceWithin();
-					$('#LedLightOption').enhanceWithin();
+				    //$("#ClassicOption").enhanceWithin();
+				    //$("#VictorianOption").enhanceWithin(); 
+				    //$("#CranberryOption").enhanceWithin();
+				    //$("#ClassicSprayOption").enhanceWithin();
+				    //$("#VictorianSprayOption").enhanceWithin();
+				    //$("#CranberrySprayOption").enhanceWithin();
+				    //$("#CandlelitCenterpieceOption").enhanceWithin();
+				    //$('#GarlandOption').enhanceWithin();
+				    //$('#NorthStarTreeOption').enhanceWithin();
+				    //$('#EZWreathHangerOption').enhanceWithin();
+					//$('#LedLightOption').enhanceWithin();
 				    
 				    //activate non radio buttons
 				    var productName = $("#ClassicSpray h2").text();
@@ -442,11 +442,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 					$("#LEDlights .split-custom-wrapper a").data("product-size",0); //push the product size to the checkout area.
 					//$("#LEDlights .split-custom-wrapper a").data("quantities","");
-					//remove all hidden items
-					///$(".swiper-wrapper .slider.hidden").each( function(){
-						///$(this).detach();
-						//console.log($(this));
-					///});
+				
 					//need to make sure the page is loaded.
 					$.mobile.loading("hide");
 					
@@ -686,6 +682,7 @@ $(".slickIt").on('click', function(){ //rotating area
 	});
 	$("#All").addClass('ui-btn-active');
 	//this might add some issues
+	//$('.swiper-wrapper').slick('unslick');
 	$('.swiper-wrapper').slick({
 		dots:true,
 		infinite:false,
