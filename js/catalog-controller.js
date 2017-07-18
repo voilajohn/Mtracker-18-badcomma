@@ -100,6 +100,7 @@ MickmanAppLogin.CatalogController.prototype.showDefaults = function(){
 }
 /*Build out page - grab the data from the database and show what the user set up on his website.*/
 MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This now only runs once when the page is 
+	$('.addtocart').addClass('ui-disabled');
 	$.mobile.loading("show");  // Show loading graphic
 	// ALL OF THE DYNAMIC ITEMS NEED TO BE REFRESHED AFTER THEY ARE CLEARED.
 	//clear out the orders section
@@ -445,12 +446,11 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 				
 					//need to make sure the page is loaded.
 					$.mobile.loading("hide");
+					$('.addtocart').removeClass('ui-disabled');//hopefully this fixes the phantom product issue
 					
-					//$(".slickIt").trigger("click"); //now load the carousel
+					$(".slickIt").trigger("click"); //now load the carousel
 					$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
-					
-					
-				    
+					    
 				}).catch(function(err) {
 				    // This code runs if there were any errors
 				    console.log("E: " + err);
@@ -615,12 +615,43 @@ $('.save-defaults').click(function () { //lets create a default field in the car
 	}
 });
 
+//sort products sample
+function showProjectsbyCat( cat ){
+  if ( cat == 'all'){
+    $('#products-hidden .slider').each(function(){
+       var owl = $(".slider-wrapper").data('owlCarousel');
+       elem = $(this).parent().html();
+
+       owl.addItem(elem);
+       $(this).parent().remove();
+    });
+  }else{
+    $('#products-hidden .slider.'+ cat).each(function(){
+       var owl = $(".slider-wrapper").data('owlCarousel');
+       elem = $(this).parent().html();
+
+       owl.addItem( elem );
+       $(this).parent().remove();
+    });
+
+    $('#projects-carousel .slider:not(.project.'+ cat + ')').each(function(){
+       var owl = $(".slider-wrapper").data('owlCarousel');
+       targetPos = $(this).parent().index();
+       elem = $(this).parent();
+
+       $( elem ).clone().appendTo( $('#projects-hidden') );
+       owl.removeItem(targetPos);
+    });
+  }
+}
+
 //filter buttons on the bottom of the page
 var filtered = false;
 $('.product-button').on('click', function(){
 	//lets make it so that when you click it switches to the other filter unless it is the all button then it shows everything.
     //var swiper = $(".swiper-wrapper");
     //console.log(swiper.length);
+    
     
     
     /*
@@ -680,14 +711,20 @@ $('.product-button').on('click', function(){
 });
 
 $(".slickIt").on('click', function(){ //rotating area
+	console.log("slickit");
 	
 	//start the slider - new
-	$('.wiper-wrapper').owlCarousel({
-	    loop:false,
-	    margin:10,
-	    nav:true,
-	    nestedItemSelector: 'swiper-slide',
-	    responsive:{
+	$('.swiper-wrapper').owlCarousel({
+	    loop:true,
+	    stagePadding:20,
+	    center:true,
+	    margin:5,
+	    lazyLoad:true,
+	    items:1,
+	    nav:true
+	    //,
+	    //nestedItemSelector: 'swiper-slide'
+	    /*responsive:{
 	        0:{
 	            items:1
 	        },
@@ -697,15 +734,12 @@ $(".slickIt").on('click', function(){ //rotating area
 	        1000:{
 	            items:5
 	        }
-	    }
+	    }*/
 	});
-	
-	
-	
-	
-	
-	
-	
+	if(!$('.swiper-wrapper').hasClass('owl-carousel')){
+		$('.swiper-wrapper').addClass('owl-carousel');
+	}
+		
 	/*$('.swiper-wrapper div.slider').show(); //turn these back on in case they were turned off on the sort
 	$(".product-button").each( function(){
 		$(this).removeClass('ui-btn-active');
@@ -731,7 +765,11 @@ $(".slickIt").on('click', function(){ //rotating area
 });
 
 $(".unslickIt").on('click', function(){ //list view
-
+	
+	//undo the owl carousel
+    owl = $('.swiper-wrapper');
+	owl.trigger('destroy.owl.carousel').removeClass('owl-carousel owl-loaded');
+	owl.find('.owl-stage-outer').children().unwrap();
     
     
     /*

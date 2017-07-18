@@ -1,7 +1,12 @@
 # Mtracker
-####### Version 1.325 ####### 
+####### Version 1.4 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
+
+/**************** vs 1.4  || 7-18-17 **************/
+~ Fixed issue with Add-on buttons setting off nav below popup
+~ Fixed (hopefully) the phantom product by setting the add to cart buttons as inactive until everything is loaded
+~ Working on the slider to replace the scrubby issues going on switched to Owlcarousel
 
 /**************** vs 1.33  || 7-17-17 **************/
 ~ Adding additional led / hanger quantities - checkboxes and step buttons
