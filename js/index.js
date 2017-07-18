@@ -183,7 +183,8 @@ $(document).on('click', '.closesummary', function(event){
 	$(':mobile-pagecontainer').pagecontainer('change', '#page-main-menu', { 'transition':'none' });
 })
 $(document).on('click', '.checkoutNow', function(event){
-	alert("checkout?");
+	//alert("checkout?");
+	console.log("checkout clicked");
 });
 //Login Button - pagebeforecreate
 $(document).delegate("#page-signin", "pagebeforecreate", function () {
