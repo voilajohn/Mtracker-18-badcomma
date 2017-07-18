@@ -311,7 +311,8 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 			   lthumb = $(this).parent().parent().find(".cart-addons img.ledthumb").attr('src');
 			   lprice = $(this).parent().parent().find("span.addledprice").text();
 			   //items.push(["LED Light Set",Number(lprice),lthumb,"led",ledq]);
-			   items.push(["LED Light Set",1]);
+			   items.push(["LED Light Set",Number(lprice),lthumb,"led",1]);
+			   //items.push(["LED Light Set",1]);
 		    }
 		    if($("#ezwreathhanger").is(":checked")){
 			   var ezhq = Number($(".hangersquare #hangerquantity").val());//getq
@@ -319,12 +320,20 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 			   ezthumb = $(this).parent().parent().find(".cart-addons img.ezthumb").attr('src');
 			   ezprice = $(this).parent().parent().find("span.addhangerprice").text();
 			   //items.push(["EZ Wreath Hanger",Number(ezprice),ezthumb,"hanger",ezhq]);
-			   items.push(["EZ Wreath Hanger",1]);
+			   items.push(["EZ Wreath Hanger",Number(ezprice),ezthumb,"hanger",1]);
+			   //items.push(["EZ Wreath Hanger",1]);
 		    }
 	    }
         app.cartController.addtoCartCommand(items,radioSelected);
     });
 });
+var checkUserVal = function(){
+	console.log("load-list");
+}
+$(document).ready(function(){
+   $('.swiper-wrapper div.slider').on('change', checkUserVal);
+});
+
 //Cart Page is Loaded
 $(document).delegate("#page-cart", "pageshow", function () {
 	app.cartController.init();
