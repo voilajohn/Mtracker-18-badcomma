@@ -399,20 +399,6 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					$('#NorthStarTreeOption').html("").html(NSTradioBtn).enhanceWithin();
 					$('#EZWreathHangerOption').html("").html(EZWradioBtn).enhanceWithin();
 					$('#LedLightOption').html("").html(LLradioBtn).enhanceWithin();
-					
-					//console.log("refresh");
-				    //$("#ClassicOption").enhanceWithin().controlgroup("refresh");
-				    //$("#ClassicOption").enhanceWithin();
-				    //$("#VictorianOption").enhanceWithin(); 
-				    //$("#CranberryOption").enhanceWithin();
-				    //$("#ClassicSprayOption").enhanceWithin();
-				    //$("#VictorianSprayOption").enhanceWithin();
-				    //$("#CranberrySprayOption").enhanceWithin();
-				    //$("#CandlelitCenterpieceOption").enhanceWithin();
-				    //$('#GarlandOption').enhanceWithin();
-				    //$('#NorthStarTreeOption').enhanceWithin();
-				    //$('#EZWreathHangerOption').enhanceWithin();
-					//$('#LedLightOption').enhanceWithin();
 				    
 				    //activate non radio buttons
 				    var productName = $("#ClassicSpray h2").text();
@@ -711,7 +697,7 @@ $(".slickIt").on('click', function(){ //rotating area
 	var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
         paginationClickable: true,
-        spaceBetween: 0,
+        spaceBetween: 8,
         mode: 'horizontal',
         initialSlide: 0,
         loop: false,
@@ -762,176 +748,9 @@ $(".unslickIt").on('click', function(){ //list view
 	$(this).addClass("ui-btn-active");
 	//style it as a listview
 });
-/*
-	
-	
-	
 
-
-
-//filter buttons on the bottom of the page
-var filtered = false;
-$('.product-button').on('click', function(){
-	//lets make it so that when you click it switches to the other filter unless it is the all button then it shows everything.
-    //var swiper = $(".swiper-wrapper");
-    //console.log(swiper.length);
-    
-    
-    var filtername = $(this).attr('id');
-    //showProductsbyCat(filtername+'-filter');
-    
-    var isSlicked = $('.product-display').hasClass("slicked");
-    if(isSlicked){
-	    console.log("slicked");
-	    if(filtername != "All"){
-		    //console.log(filtername);
-		    ///$('.product-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
-		    
-			$(".product-button").each( function(){
-				$(this).removeClass('ui-btn-active');
-			});
-			$('.swiper-wrapper').slick('slickUnfilter');
-		    $('.swiper-wrapper').slick('slickFilter','.'+filtername+'-filter','.show');//testing having multiple options
-		    console.log(filtername+'-filter');
-	        filtered = true;
-	        $('.swiper-wrapper').slick('slickGoTo',0);
-	    }else{
-			$(".product-button").each( function(){
-				$(this).removeClass('ui-btn-active');
-			});
-			console.log("unfilter");
-			$('.swiper-wrapper').slick('slickUnfilter');
-			$('.swiper-wrapper').slick('slickFilter','.show');
-		    ///$('.product-wrapper div.slider').show();
-		    filtered = false;
-		    $('.swiper-wrapper').slick('slickGoTo',0);
-	    }
-    }else{
-	    //find a different filter method
-	    //$('.swiper-wrapper').slick('slickUnfilter');
-	    if(filtername != "All"){
-		    //this should be hiding everytthing that is not the filtername
-	    	$('.swiper-wrapper div.slider').show().filter(':not(.'+filtername+'-filter)').hide();
-			$(".product-button").each( function(){
-				$(this).removeClass('ui-btn-active');
-			});
-	        filtered = true;
-	        console.log("not All" + filtername);
-	    }else{
-		    $(".product-button").each( function(){
-				$(this).removeClass('ui-btn-active');
-			});
-		    $('.swiper-wrapper div.slider').show();//show all of them
-		    filtered = false;
-		    console.log("All");
-	    }
-	    console.log("not-slicked - use a different filter");
-	    $(".product-button").each( function(){
-			$(this).removeClass('ui-btn-active');
-		});
-    }
-    $(this).addClass('ui-btn-active');
-    
-});
-
-$(".slickIt").on('click', function(){ //rotating area
-	//move the hidden 
-	$('.swiper-wrapper .slider:not(.show)').each(function(){//first lets remove the hidden ones.
-       var owl = $(".slider-wrapper").data('owlCarousel');
-       targetPos = $(this).parent().index();
-       elem = $(this).parent();
-
-       $( elem ).clone().appendTo( $('#products-hidden') );
-       //owl.removeItem(targetPos);
-       $(".slider-wrapper").trigger('remove.owl.carousel', [targetPos]);
-	   //owl.trigger('remove.owl.carousel',[targetPos]).trigger('refresh.owl.carousel');
-	   //owl.trigger('remove.owl.carousel',[8]).trigger('refresh.owl.carousel');
-	   console.log(targetPos);
-       
-    });
-
-	//start the slider - new
-	var $owl = $('.swiper-wrapper').owlCarousel({
-	    loop:false,
-	    stagePadding:20,
-	    center:true,
-	    margin:5,
-	    items:1,
-	    nav:true
-	});
-	   
-	var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        slidesPerView: 1,
-        centeredSlides: true,
-        paginationClickable: true,
-        spaceBetween: 30
-    });
-	//hide the hidden ones
-	if(!$('.swiper-wrapper').hasClass('owl-carousel')){ //this needs to be there for it to do the carousel
-		$('.swiper-wrapper').addClass('owl-carousel');
-	}
 	
-	console.log("slickit");
-	//filter out the empty ones
 	
-	$('.swiper-wrapper div.slider').show(); //turn these back on in case they were turned off on the sort
-	$(".product-button").each( function(){
-		$(this).removeClass('ui-btn-active');
-	});
-	$("#All").addClass('ui-btn-active');
-	//this might add some issues
-	//$('.swiper-wrapper').slick('unslick');
-	$('.swiper-wrapper').slick({
-		dots:true,
-		infinite:false,
-		centerMode:true,
-		centerPadding:'20px'
-	});
-	$('.swiper-wrapper').slick('slickUnfilter');
-	$('.swiper-wrapper').slick('slickFilter','.show');//only show the shown
-	    
-	$('.product-display').addClass("slicked");
-	$('.product-display').removeClass("unslicked");
-	
-	$(this).addClass("ui-btn-active");
-	$('.unslickIt').removeClass("ui-btn-active");
-	//remove the listview layout
-});
-
-$(".unslickIt").on('click', function(){ //list view
-	
-	//undo the owl carousel
-    owl = $('.swiper-wrapper');
-	owl.trigger('destroy.owl.carousel').removeClass('owl-carousel owl-loaded');
-	owl.find('.owl-stage-outer').children().unwrap();
-    
-    
-    
-    //clear the filter
-    $('.swiper-wrapper').slick('slickUnfilter');
-    $('.swiper-wrapper').slick('slickFilter','.show');
-    
-    //slick - remove slick powers
-    $('.swiper-wrapper').slick('unslick');
-    
-    //update the top buttons
-    $(".product-button").each( function(){
-		$(this).removeClass('ui-btn-active');
-	});
-    $('#All').addClass('ui-btn-active');
-	
-	console.log("unslcked");
-	$('.product-display').removeClass("slicked");
-	$('.product-display').addClass("unslicked");
-	
-	$('.slickIt').removeClass("ui-btn-active");
-	$(this).addClass("ui-btn-active");
-	//style it as a listview
-	
-});
-
-*/
 $(document).on('click', '.plus', function(event){ //Cart - button  
 	//these have changed
 	var productID = $(event.target).parent().parent().parent().parent().parent().attr('id');
