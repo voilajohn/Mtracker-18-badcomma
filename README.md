@@ -1,11 +1,12 @@
 # Mtracker
-####### Version 1.4 ####### 
+####### Version 1.41 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
-/**************** vs 1.41  || 7-19-17 **************/
+/**************** vs 1.411  || 7-19-17 **************/
 ~ Testing issue with the slider going wrong on first load
 ~ Added in variable to stop carousel from booting multiple times.
+~ Added delay to checkout button to prevent underlayer of nav from being hit.
 
 /**************** vs 1.4  || 7-18-17 **************/
 ~ Fixed issue with Add-on buttons setting off nav below popup
