@@ -691,7 +691,8 @@ $('.product-button').on('click', function(){
 
 $(".slickIt").on('click', function(){ //rotating area
 	//remove the slides we aren't going to need.
-	
+	alert("swiper init");
+	console.log("Swiper fired");
 	$(".product-display").addClass('swiper-container');
 	$(".product-wrapper").addClass('swiper-wrapper');
 	
@@ -705,14 +706,7 @@ $(".slickIt").on('click', function(){ //rotating area
         slidesPerView: 1,
         grabCursor: true
     });
-    /*$('.swiper-wrapper div.slider:not(.show)').each(function(){//first lets remove the hidden ones.
-       //var owl = $(".slider-wrapper").data('owlCarousel');
-       targetPos = $(this).parent().index();
-       console.log($(this));
-       $( this ).clone().appendTo( $('#products-hidden') );
-       swiper.removeSlide(targetPos);
-	   console.log(targetPos);
-    });*/
+   
     swiper.update();
     //slide to the first slide if we are redoing it. 
     //swiper.slideTo(0,1000,false); 
