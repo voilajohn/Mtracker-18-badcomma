@@ -691,12 +691,12 @@ $('.product-button').on('click', function(){
 
 $(".slickIt").on('click', function(){ //rotating area
 	//remove the slides we aren't going to need.
-	
 	console.log("Swiper fired");
 	$(".product-display").addClass('swiper-container');
 	$(".product-wrapper").addClass('swiper-wrapper');
+	
 	if(swiperRunning != 1){
-		alert("swiper init" + swiperRunning);
+		console.log("swiper init");
 		var swiper = new Swiper('.swiper-container', {
 	        pagination: '.swiper-pagination',
 	        paginationClickable: true,
@@ -712,7 +712,7 @@ $(".slickIt").on('click', function(){ //rotating area
 	    	}
 	    });
     }else{
-	    alert("swiper running - don't boot it up:" + swiperRunning);
+	    console.log("swiper booted - don't reboot");
     }
    
     swiper.update();

@@ -5,6 +5,7 @@ Droid and iOS compatible.
 
 /**************** vs 1.41  || 7-19-17 **************/
 ~ Testing issue with the slider going wrong on first load
+~ Added in variable to stop carousel from booting multiple times.
 
 /**************** vs 1.4  || 7-18-17 **************/
 ~ Fixed issue with Add-on buttons setting off nav below popup
