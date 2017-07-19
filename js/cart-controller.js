@@ -199,8 +199,10 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 		
 		if(r == "checkout"){
 			//app.cartController.getCartData();//1.26 refresh the cart
+			//lets try closing the popup delay then move the page. 
+			
+			//$("#purchase").popup("close");
 	    	$(':mobile-pagecontainer').pagecontainer('change', '#page-cart');
-	    	
 	    }else{
 		    $('.product-message').removeClass("bi-ctn-err");
 		    $('.product-message').html("<p>Items successfully added to your cart.</p>").fadeIn('slow');

@@ -122,8 +122,6 @@ $(document).on("pagecontainerbeforeshow", function (event, ui) { //update the ti
             case "page-cart":
             	updatePageHighlight("#page-cart");//update navigation
 				$('#page-cart div[data-role=header]').find('h1').html(group);//replace title 
-				$('.checkoutNow').addClass('ui-disabled');
-				$('.emptyCart').addClass('ui-disabled');
             	break;
             case "page-checkout": 
             	app.catalogController.getUserData(); //load saved defaults
@@ -330,7 +328,10 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 			   //items.push(["EZ Wreath Hanger",Number(ezprice),ezthumb,"hanger",1]);
 		    }
 	    }
-        app.cartController.addtoCartCommand(items,radioSelected);
+	    //delay it here
+	    setTimeout(function(){
+				app.cartController.addtoCartCommand(items,radioSelected);
+    	}, 600);
     });
 });
 var checkUserVal = function(){
@@ -344,14 +345,6 @@ $(document).ready(function(){
 $(document).delegate("#page-cart", "pageshow", function () {
 	app.cartController.init();
     app.cartController.getCartData(); //lets gather the cart info each time the cart is visited.
-    $('.checkoutNow').removeClass('ui-disabled');
-	$('.emptyCart').removeClass('ui-disabled');
-});
-$(document).delegate("#page-cart", "pagehide", function () {
-	//app.cartController.init();
-    //app.cartController.getCartData(); //lets gather the cart info each time the cart is visited.
-    $('.checkoutNow').addClass('ui-disabled');
-	$('.emptyCart').addClass('ui-disabled');
 });
 //Orders page
 $(document).delegate("#page-orders", "pageshow", function () {
