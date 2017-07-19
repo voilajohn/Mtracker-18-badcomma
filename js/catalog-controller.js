@@ -669,16 +669,12 @@ $('.product-button').on('click', function(){
 				$(this).removeClass('ui-btn-active');
 			});
 	        filtered = true;
-	        var mySwiper2 = $('.swiper-container')[0].swiper;
-	        //swiper.update();
-	        console.log("nav updated");
 	    }else{
 			$(".product-button").each( function(){
 				$(this).removeClass('ui-btn-active');
 			});
 		    $('.swiper-wrapper div.slider').show();
 		    filtered = false;
-		    //swiper.update();
 	    }
 	    
 	   var swiper = $('.swiper-container')[0].swiper;
@@ -714,8 +710,6 @@ $(".slickIt").on('click', function(){ //rotating area
     }else{
 	    console.log("swiper booted - don't reboot");
     }
-   
-    swiper.update();
     //slide to the first slide if we are redoing it. 
     //swiper.slideTo(0,1000,false); 
     
