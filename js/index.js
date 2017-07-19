@@ -221,7 +221,8 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 	    
 	    console.log($(this).data("quantity"));
 	    if($(this).data("quantity") == ""){
-		    alert("ERROR! There is no Quantity Set");
+		    //alert("ERROR! There is no Quantity Set");
+		    console.log("ERROR! There is no Quantity Set");
 	    }
 	    //if($(this).data("num") != ""){
 		if($(this).data("quantity") != 0 && $(this).data("quantity") != ""){ 

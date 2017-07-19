@@ -199,7 +199,6 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 		
 		if(r == "checkout"){
 			//app.cartController.getCartData();//1.26 refresh the cart
-			console.log("page-cart?");
 	    	$(':mobile-pagecontainer').pagecontainer('change', '#page-cart');
 	    	
 	    }else{
@@ -217,7 +216,7 @@ MickmanAppLogin.CartController.prototype.addtoCartCommand = function (e,r) {
 		$('body').scrollTop(0);
 	    $("#purchase").popup("close");
 	    
-	   // console.log("clear");
+	    //console.log("clear");
 	    //uncheck options if they are checked
 		$("#ledlights").attr("checked",false).checkboxradio("refresh");
 		$("#ezwreathhanger").attr("checked",false).checkboxradio("refresh");

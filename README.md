@@ -3,6 +3,9 @@
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
+/**************** vs 1.41  || 7-19-17 **************/
+~ Testing issue with the slider going wrong on first load
+
 /**************** vs 1.4  || 7-18-17 **************/
 ~ Fixed issue with Add-on buttons setting off nav below popup
 ~ Fixed (hopefully) the phantom product by setting the add to cart buttons as inactive until everything is loaded
