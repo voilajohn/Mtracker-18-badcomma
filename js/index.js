@@ -14,6 +14,7 @@ var orderdb; //new 1.23
 var productdb; //new 1.25
 var swiper;
 var loadCatCalled = 0;
+var swiperRunning = 0;
 
 // Begin boilerplate code generated with Cordova project.
 

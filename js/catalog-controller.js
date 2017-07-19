@@ -691,21 +691,29 @@ $('.product-button').on('click', function(){
 
 $(".slickIt").on('click', function(){ //rotating area
 	//remove the slides we aren't going to need.
-	alert("swiper init");
+	
 	console.log("Swiper fired");
 	$(".product-display").addClass('swiper-container');
 	$(".product-wrapper").addClass('swiper-wrapper');
-	
-	var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        spaceBetween: 8,
-        mode: 'horizontal',
-        initialSlide: 0,
-        loop: false,
-        slidesPerView: 1,
-        grabCursor: true
-    });
+	if(swiperRunning != 1){
+		alert("swiper init" + swiperRunning);
+		var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        paginationClickable: true,
+	        spaceBetween: 8,
+	        mode: 'horizontal',
+	        initialSlide: 0,
+	        loop: false,
+	        slidesPerView: 1,
+	        grabCursor: true,
+	        onInit: function(swiper){
+	        // do something
+	        	swiperRunning = 1;
+	    	}
+	    });
+    }else{
+	    alert("swiper running - don't boot it up:" + swiperRunning);
+    }
    
     swiper.update();
     //slide to the first slide if we are redoing it. 
@@ -741,6 +749,7 @@ $(".unslickIt").on('click', function(){ //list view
 	
 	$('.slickIt').removeClass("ui-btn-active");
 	$(this).addClass("ui-btn-active");
+	swiperRunning = 0;
 	//style it as a listview
 });
 
