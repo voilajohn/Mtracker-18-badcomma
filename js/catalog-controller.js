@@ -691,25 +691,30 @@ $(".slickIt").on('click', function(){ //rotating area
 	$(".product-display").addClass('swiper-container');
 	$(".product-wrapper").addClass('swiper-wrapper');
 	
+		
 	if(swiperRunning != 1){
-		console.log("swiper init");
-		var swiper = new Swiper('.swiper-container', {
-	        pagination: '.swiper-pagination',
-	        paginationClickable: true,
-	        spaceBetween: 8,
-	        mode: 'horizontal',
-	        initialSlide: 0,
-	        loop: false,
-	        slidesPerView: 1,
-	        grabCursor: true,
-	        onInit: function(swiper){
-	        // do something
-	        	swiperRunning = 1;
-	    	}
-	    });
+		
     }else{
-	    console.log("swiper booted - don't reboot");
+	    var mySwiper = $('.swiper-container')[0].swiper;
+	    mySwiper.destroy();//true,true
+	    mySwiper = undefined;
+	    console.log("swiper booted - remove and restart");
     }
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        spaceBetween: 8,
+        mode: 'horizontal',
+        initialSlide: 0,
+        loop: false,
+        slidesPerView: 1,
+        grabCursor: true,
+        onInit: function(swiper){
+        // do something
+        	swiperRunning = 1;
+        	console.log("swiper init");
+    	}
+    });
     //slide to the first slide if we are redoing it. 
     //swiper.slideTo(0,1000,false); 
     
