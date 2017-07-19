@@ -347,7 +347,12 @@ $(document).delegate("#page-cart", "pageshow", function () {
     $('.checkoutNow').removeClass('ui-disabled');
 	$('.emptyCart').removeClass('ui-disabled');
 });
-
+$(document).delegate("#page-cart", "pagehide", function () {
+	//app.cartController.init();
+    //app.cartController.getCartData(); //lets gather the cart info each time the cart is visited.
+    $('.checkoutNow').addClass('ui-disabled');
+	$('.emptyCart').addClass('ui-disabled');
+});
 //Orders page
 $(document).delegate("#page-orders", "pageshow", function () {
 	app.orderController.init();
