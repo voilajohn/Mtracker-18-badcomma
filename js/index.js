@@ -122,6 +122,8 @@ $(document).on("pagecontainerbeforeshow", function (event, ui) { //update the ti
             case "page-cart":
             	updatePageHighlight("#page-cart");//update navigation
 				$('#page-cart div[data-role=header]').find('h1').html(group);//replace title 
+				$('.checkoutNow').addClass('ui-disabled');
+				$('.emptyCart').addClass('ui-disabled');
             	break;
             case "page-checkout": 
             	app.catalogController.getUserData(); //load saved defaults
@@ -342,6 +344,8 @@ $(document).ready(function(){
 $(document).delegate("#page-cart", "pageshow", function () {
 	app.cartController.init();
     app.cartController.getCartData(); //lets gather the cart info each time the cart is visited.
+    $('.checkoutNow').removeClass('ui-disabled');
+	$('.emptyCart').removeClass('ui-disabled');
 });
 
 //Orders page

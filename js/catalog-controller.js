@@ -690,15 +690,14 @@ $(".slickIt").on('click', function(){ //rotating area
 	console.log("Swiper fired");
 	$(".product-display").addClass('swiper-container');
 	$(".product-wrapper").addClass('swiper-wrapper');
-	
 		
 	if(swiperRunning != 1){
-		
     }else{
 	    var mySwiper = $('.swiper-container')[0].swiper;
 	    mySwiper.destroy();//true,true
 	    mySwiper = undefined;
 	    console.log("swiper booted - remove and restart");
+	    swiperRunning = 0;
     }
     var swiper = new Swiper('.swiper-container', {
         pagination: '.swiper-pagination',
