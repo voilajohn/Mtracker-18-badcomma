@@ -896,7 +896,14 @@ li.ui-tabs-active > a {
 	font-size:12px;
 	text-align:center;
 }
-
+.banner-text{
+	background:#000;
+	color:#FFF;
+	padding:3px 0px;
+	font-size:12px;
+	text-align:center;
+	margin:0px;
+}
 .bannertext{
 	padding:5px 10px 0px 10px !important;
 	text-align:center;

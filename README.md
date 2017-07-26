@@ -1,7 +1,10 @@
 # Mtracker
-####### Version 1.41 ####### 
+####### Version 1.42 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
+
+/**************** vs 1.42  || 7-26-17 **************/
+~ Added message and Groupname variables to the app.
 
 /**************** vs 1.411  || 7-19-17 **************/
 ~ Testing issue with the slider going wrong on first load

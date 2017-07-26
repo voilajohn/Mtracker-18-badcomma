@@ -435,7 +435,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					$('.addtocart').removeClass('ui-disabled');//hopefully this fixes the phantom product issue
 					
 					$(".slickIt").trigger("click"); //now load the carousel
-					$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
+					//$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
 					    
 				}).catch(function(err) {
 				    // This code runs if there were any errors

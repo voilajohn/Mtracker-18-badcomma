@@ -105,8 +105,8 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
             if(resp == ""){
 	            console.log("Error: server issues");
 	            me.$ctnErr.html("<p>Sorry there appears to be a server issue: please standby while we work on getting the issue resolved.</p>");
-											  me.$ctnErr.addClass("bi-ctn-err").slideDown();
-											  me.$txtUserName.addClass(invalidInputStyle);
+				me.$ctnErr.addClass("bi-ctn-err").slideDown();
+				me.$txtUserName.addClass(invalidInputStyle);
 	        }else{
 	            if (resp.success === true) { // If the login method changes this part can be skipped
 	                if(resp.extras.users){//build out the menu
@@ -122,9 +122,10 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 			            var userDeets = resp.extras.products;
 			            var group = userDeets[userDeets.indexOf('cust_id') + 1][1];
 			            var wod = userDeets[userDeets.indexOf('wod') + 2][1];
-			            var gname = userDeets[userDeets.indexOf('groupname')];
-			            var message = userDeets[userDeets.indexOf('message')];
-			            //console.log(userDeets.indexOf('groupname'));
+			            var gname = userDeets[userDeets.indexOf('groupname') + 41][1];
+			            var message = userDeets[userDeets.indexOf('message') + 40][1];
+			            $('#OrderComplete .message').html(message);
+			            console.log(gname + " : " + message);
 			            
 			            $(".mygroup").html(resp.extras.cust_id);
 			            $('#select-choice-1').selectmenu("refresh"); //make sure that the items load

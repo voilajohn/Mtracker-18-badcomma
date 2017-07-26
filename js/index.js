@@ -6,6 +6,7 @@ var product;
 var cart;
 var order;
 var group; //get the group name
+var groupname;
 var currentuser; //get the user name
 var wod; var id;
 var deliverydate;
@@ -81,14 +82,16 @@ function checkGroup(x){ //find the group name and the user saved.
 		}else if(key == "message"){   message = value;
 		}
 	}).then(function() {	                  //update the profile display
-		$(".your-group").html(group);         //display on profile section
+		$(".your-group").html(groupname);         //display on profile section
 		$(".your-profile").html(currentuser); //display on profile section
 		$(".your-delivery").html(wod);        //display on profile section
+		$(".delivery-time").html(wod);        //display on order section
+		$("#OrderComplete .message").html(message);
 		deliverydate = wod;
 		if(groupname != ""){
-			group = groupname;
+			//groupname = groupname;
 		}else{
-			group = group;
+			groupname = group;
 		}
 		if(message != ""){
 			$('.message').html(message);
@@ -113,7 +116,8 @@ $(document).on("pagecontainerbeforeshow", function (event, ui) { //update the ti
         switch (ui.toPage.attr("id")) {
             case "page-main-menu":
                 updatePageHighlight("#page-main-menu");//update navigation
-				$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title 
+				//$('#page-main-menu div[data-role=header]').find('h1').html(group);//replace title
+				$('.banner-text').find('p').html(groupname);//replace title 
                 break;
             case "page-signin":
                 app.signInController.resetSignInForm(); // Reset signin form.
@@ -121,21 +125,21 @@ $(document).on("pagecontainerbeforeshow", function (event, ui) { //update the ti
                 break;
             case "page-cart":
             	updatePageHighlight("#page-cart");//update navigation
-				$('#page-cart div[data-role=header]').find('h1').html(group);//replace title 
+				$('.banner-text').find('p').html(groupname);//replace title 
             	break;
             case "page-checkout": 
             	app.catalogController.getUserData(); //load saved defaults
             	app.catalogController.showDefaults();
             	updatePageHighlight("#page-cart");//update navigation
-				$('#page-checkout div[data-role=header]').find('h1').html(group);//replace title
+				$('.banner-text').find('p').html(groupname);//replace title
             	break;
             case "page-payment":
             	updatePageHighlight("#page-cart");//update navigation
-				$('#page-payment div[data-role=header]').find('h1').html(group);//replace title 
+				$('.banner-text').find('p').html(groupname);//replace title 
             	break;
             case "page-orders":
            		updatePageHighlight("#page-orders");//update navigation
-		   		$('#page-orders div[data-role=header]').find('h1').html(group);//replace title 
+		   		$('.banner-text').find('p').html(groupname);//replace title 
             	break;
         }
     }
@@ -167,9 +171,9 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
 		                readOut += "expTime: "+checkExp+"\r";
 		                readOut += "curTime: "+today+"\r";
 		                readOut += "NotExpired: "+(checkExp>today);
-						alert(readOut);
+						//alert(readOut);
 	                }else{
-		                alert("no session data found");
+		                //alert("no session data found");
 	                }
                 }
             }
