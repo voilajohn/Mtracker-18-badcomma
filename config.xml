@@ -23,7 +23,7 @@
 	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
 	<gap:plugin name="de.appplant.cordova.plugin.printer" source="npm"/>
 	<gap:plugin name="cordova-plugin-whitelist" source="npm"/>
-	<gap:plugin name="cordova-plugin-inappbrowser" source="npm" version="0.5.2" />
+	<gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>
 	 
     <!-- universal preferences -->
     <preference name="phonegap-version"           value="cli-6.5.0" /> 
