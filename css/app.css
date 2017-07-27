@@ -874,12 +874,20 @@ li.ui-tabs-active > a {
 	text-align:center;
 }
 .logo div{
-	padding:5px 5px 0px 5px;
+	padding:0px 5px 0px 5px;
 	margin:0px auto;
 	display:inline-block;
 	font-size:12px;
 	width:60%;
 	vertical-align:top;
+}
+.logo span{
+	font-size:12px;
+	/*border-top:1px solid #CCC;*/
+	padding-top:4px;
+	display:inline-block;
+	width:80%;
+	margin-top:3px;
 }
 .logo img.logoimg{
 	max-width:50px;
