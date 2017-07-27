@@ -1,5 +1,5 @@
 # Mtracker
-####### Version 1.42 ####### 
+####### Version 1.43 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
