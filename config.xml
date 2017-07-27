@@ -23,6 +23,7 @@
 	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
 	<gap:plugin name="de.appplant.cordova.plugin.printer" source="npm"/>
 	<gap:plugin name="cordova-plugin-whitelist" source="npm"/>
+	<gap:plugin name="org.apache.cordova.inappbrowser" source="npm" version="0.5.2" />
 	 
     <!-- universal preferences -->
     <preference name="phonegap-version"           value="cli-6.5.0" /> 
@@ -38,6 +39,7 @@
     <!-- Droid permissions settings allow links-->
 	<allow-navigation href="http://cpanel-2101-20.datarealm.com/*" />
 	<allow-navigation href="https://online.mickman.com/*" />
+	<allow-navigation href="http://www.holidayfundraiser.com/*" />
 	<preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
    
     <!-- ios icons 7+ -->

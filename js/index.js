@@ -278,23 +278,27 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 		    productID = $(this).parent().parent().data("fieldrealName");
 		    size = $(this).parent().parent().find("span.sentSize").text();
 		    thumb = $(this).parent().parent().find("img").attr('src');
-		    
-		    if(product == "LED Lights" || product == "EZ Wreath Hanger"){ 
-			    //get quantities
-			    if(productID == ""){
+		    if(productID == ""){
 				    console.log("error product name is missing");
-			    }
-			    var items = [[product,Number(cost),thumb,productID,1]];
-			    console.log(productID);
-			}else{ 
-				console.log(size);
-				if(size != 0){
-					var items = [[product+"-"+size,Number(cost),thumb,productID,1]];//just adding one
-				}else{
-					var items = [[product,Number(cost),thumb,productID,1]];//just adding one
-				}
-				
-			}//added a quantity to the end
+				    alert("THE ID IS MISSING!: " + product);
+			}else{
+			    if(product == "LED Lights" || product == "EZ Wreath Hanger"){ 
+				    //get quantities
+				    if(productID == ""){
+					    console.log("error product name is missing");
+				    }
+				    var items = [[product,Number(cost),thumb,productID,1]];
+				    console.log(productID);
+				}else{ 
+					console.log(size);
+					if(size != 0){
+						var items = [[product+"-"+size,Number(cost),thumb,productID,1]];//just adding one
+					}else{
+						var items = [[product,Number(cost),thumb,productID,1]];//just adding one
+					}
+					
+				}//added a quantity to the end
+			}
 		}else{//put together an order for each item. 
 			console.log('put together');
 			var items = [];
@@ -405,3 +409,8 @@ $(window).load(function() {
 
 // keep startup url (in case your app is an SPA with html5 url routing)
 var initialHref = window.location.href;
+
+$(".urlclick").on('click', function(){ 
+	//ref.show();
+	var ref = cordova.InAppBrowser.open('http://www.holidayfundraiser.com', '_blank', 'location=yes');
+});
