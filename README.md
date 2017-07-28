@@ -5,6 +5,9 @@ Droid and iOS compatible.
 
 /**************** vs 1.42  || 7-26-17 **************/
 ~ Added message and Groupname variables to the app.
+~ adding in subtotal to payment screen
+~ hardcoding product ID for LED and for HANGER to prevent sync error
+~ revising sync script to send back synced when the orders are accepted even if totals fail - emailing Brad if the totals fail.
 
 /**************** vs 1.411  || 7-19-17 **************/
 ~ Testing issue with the slider going wrong on first load
