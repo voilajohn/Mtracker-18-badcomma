@@ -280,12 +280,15 @@ $(document).delegate("#page-main-menu", "pagebeforecreate", function () {
 		    thumb = $(this).parent().parent().find("img").attr('src');
 		    if(productID == ""){
 				    console.log("error product name is missing");
-				    alert("THE ID IS MISSING!: " + product);
 			}else{
 			    if(product == "LED Lights" || product == "EZ Wreath Hanger"){ 
 				    //get quantities
-				    if(productID == ""){
-					    console.log("error product name is missing");
+				    if(productID == ""){//hard code it in
+					    if(product == "LED Lights"){
+						    var items = [[product,Number(cost),thumb,'led',1]];
+					    }else if(product == "EZ Wreath Hanger"){
+						    var items = [[product,Number(cost),thumb,'hanger',1]];
+					    }
 				    }
 				    var items = [[product,Number(cost),thumb,productID,1]];
 				    console.log(productID);
@@ -411,6 +414,5 @@ $(window).load(function() {
 var initialHref = window.location.href;
 
 $(".urlclick").on('click', function(){ 
-	//ref.show();
 	var ref = cordova.InAppBrowser.open('http://www.holidayfundraiser.com', '_blank', 'location=yes');
 });

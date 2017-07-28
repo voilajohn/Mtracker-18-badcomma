@@ -15,6 +15,9 @@ body {
 h1,h2,h3,h4,h5 {
     color:#00a65e;
 }
+.aligncenter{
+	text-align:center;
+}
 /*#popupOrderComplete{
 	left:0px;
 	top:0px;
