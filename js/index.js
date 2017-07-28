@@ -159,7 +159,8 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
                 if (session && session.keepSignedIn && new Date(session.expirationDate).getTime() > today.getTime()) {
                     ui.toPage = $("#page-main-menu");  
                     console.log("Redirect");  
-                    console.log(JSON.stringify(session, null, 4));            
+                    console.log(JSON.stringify(session, null, 4)); 
+                    $('.banner-text').find('p').html(groupname);//replace title            
                 }else{
 	                console.log("Not Logged in");
 	                //lets see if we can debug what is going on on droid
@@ -350,9 +351,6 @@ var checkUserVal = function(){
 }
 $(document).ready(function(){
    $('.swiper-wrapper div.slider').on('change', checkUserVal);
-});
-$(document).delegate("#page-main-menu", "pageshow", function () {
-	$('.banner-text').find('p').html(groupname);//replace title 
 });
 //Cart Page is Loaded
 $(document).delegate("#page-cart", "pageshow", function () {
