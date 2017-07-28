@@ -1,9 +1,9 @@
 # Mtracker
-####### Version 1.43 ####### 
+####### Version 1.44 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
-/**************** vs 1.42  || 7-26-17 **************/
+/**************** vs 1.44  || 7-26-17 **************/
 ~ Added message and Groupname variables to the app.
 ~ adding in subtotal to payment screen
 ~ hardcoding product ID for LED and for HANGER to prevent sync error
