@@ -159,8 +159,7 @@ $(document).on("pagecontainerbeforechange", function (event, ui) {
                 if (session && session.keepSignedIn && new Date(session.expirationDate).getTime() > today.getTime()) {
                     ui.toPage = $("#page-main-menu");  
                     console.log("Redirect");  
-                    console.log(JSON.stringify(session, null, 4)); 
-                    $('.banner-text').find('p').html(groupname);//replace title            
+                    console.log(JSON.stringify(session, null, 4));            
                 }else{
 	                console.log("Not Logged in");
 	                //lets see if we can debug what is going on on droid
