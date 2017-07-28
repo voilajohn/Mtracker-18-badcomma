@@ -351,7 +351,9 @@ var checkUserVal = function(){
 $(document).ready(function(){
    $('.swiper-wrapper div.slider').on('change', checkUserVal);
 });
-
+$(document).delegate("#page-main-menu", "pageshow", function () {
+	$('.banner-text').find('p').html(groupname);//replace title 
+});
 //Cart Page is Loaded
 $(document).delegate("#page-cart", "pageshow", function () {
 	app.cartController.init();
