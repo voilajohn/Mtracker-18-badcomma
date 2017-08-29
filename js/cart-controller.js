@@ -297,26 +297,40 @@ MickmanAppLogin.CartController.prototype.saveCartData = function(){
 		//console.log($('#'+fieldArr[x]).val().length);
     }
     for(y=0;y<fieldArr.length;y++){
-		if($('#'+fieldArr[y]).val().length === 0){
-			$('#'+fieldArr[y]).addClass(invalidInputStyle);
-			invalidInput = true;
+	    //required fields
+		//if($('#'+fieldArr[y]).val().length === 0){
+			//$('#'+fieldArr[y]).addClass(invalidInputStyle);
+			//invalidInput = true;
+		//}
+		if('#'+fieldArr[y] == "#personal-fname"){ //first-name is required
+			if($('#'+fieldArr[y]).val().length === 0){
+				invalidInput = true;
+				$("#personal-fname").addClass(invalidInputStyle);
+			}
 		}
 		if('#'+fieldArr[y] == "#personal-email"){
-			if(!emailReg.test($("#personal-email").val())){
-	    		invalidInput = true;
-				$("#personal-email").addClass(invalidInputStyle);
+			if($('#'+fieldArr[y]).val().length !== 0){ //if there is something there lets validate it
+				if(!emailReg.test($("#personal-email").val())){
+		    		invalidInput = true;
+					$("#personal-email").addClass(invalidInputStyle);
+					console.log($('#'+fieldArr[y]).val().length);
+				}
 			}
     	}
     	if('#'+fieldArr[y] == "#personal-phone"){
-			if(!phoneReg.test($("#personal-phone").val())){
-	    		invalidInput = true;
-				$("#personal-phone").addClass(invalidInputStyle);
+	    	if($('#'+fieldArr[y]).val().length === 0){ //if there is something there lets validate it
+				if(!phoneReg.test($("#personal-phone").val())){
+		    		invalidInput = true;
+					$("#personal-phone").addClass(invalidInputStyle);
+				}
 			}
     	}
     	if('#'+fieldArr[y] == "#personal-zip"){
-			if(!isValidZip.test($("#personal-zip").val())){
-	    		invalidInput = true;
-				$("#personal-zip").addClass(invalidInputStyle);
+	    	if($('#'+fieldArr[y]).val().length != 0){ //if there is something there lets validate it
+				if(!isValidZip.test($("#personal-zip").val())){
+		    		invalidInput = true;
+					$("#personal-zip").addClass(invalidInputStyle);
+				}
 			}
     	}
     	
@@ -374,12 +388,10 @@ $('#ledlights').click(function() {
 	if(isChecked == true){
 		$('.ledsquare .addon-q').removeClass('hidden');
 		$('.ledsquare .addon-q #ledquantity').val('1');
-		//$('.ledsquare .addon-q').enhanceWithin().controlgroup("refresh");
 		//set to 1
 	}else{
 		$('.ledsquare .addon-q').addClass('hidden');
 		$('.ledsquare .addon-q #ledquantity').val('0');
-		//$('.ledsquare .addon-q').enhanceWithin().controlgroup("refresh");
 		//set to 0
 	}
 });
@@ -390,11 +402,9 @@ $('#ezwreathhanger').click(function() {
 	if(isChecked == true){
 		$('.hangersquare .addon-q').removeClass('hidden');
 		$('.hangersquare .addon-q #hangerquantity').val('1');
-		//$('.ledsquare .addon-q').enhanceWithin().controlgroup("refresh");
 	}else{
 		$('.hangersquare .addon-q').addClass('hidden');
 		$('.hangersquare .addon-q #hangerquantity').val('0');
-		//$('.ledsquare .addon-q').enhanceWithin().controlgroup("refresh");
 	}
 });
 //contact info submitted - store it in A 
@@ -406,7 +416,6 @@ $('.emptyTCart').click(function () { //clear the cart db
 	}).catch(function(err){
 		console.log(err);
 	});
-	//$(".cartlist").listview("refresh"); //1.25
 });
 
 

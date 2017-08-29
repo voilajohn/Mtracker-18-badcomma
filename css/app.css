@@ -982,6 +982,10 @@ input#ledquantity, input#hangerquantity{
 	font-size:14px;
 	color:#000;
 }
+.small{
+	font-size:11px;
+	padding:0px 10px;
+}
 .removeProduct, .addProduct{
 	padding:11px 3px !important;
 }
