@@ -1,9 +1,9 @@
 # Mtracker
-####### Version 1.45 ####### 
+####### Version 1.443 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
 
-**************** vs 1.45  || 8-29-17 **************/
+**************** vs 1.443  || 8-29-17 **************/
 ~ Removed Validation from all fields except first name and phone
 ~ Added some verbiage by email denoting that it will email reciept.
 
