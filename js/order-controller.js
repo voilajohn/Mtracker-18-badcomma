@@ -259,16 +259,11 @@ $(document).on('click', '.orderPop', function(){//send Name to the popup
 $(document).on('click', '.setDelivered', function(){//first lets organize the content of the orders
 	app.orderController.markorderDelivered($(this).data('orderid'));
 });
-function unfreeseSync(){
-	$(".syncOrders").removeClass('ui-state-disabled');
-}
+
 //sync
 $(document).on('click', '.syncOrders', function(){//first lets organize the content of the orders
 	//disable the sync button until we hear back or it times out
 	$(".syncOrders").addClass('ui-state-disabled');
-	setTimeout(function(){ unfreezeSync(); }, 60000); 
-	//set a timer to remove the disablement in case the server is never reached
-	//60000 - 1 min
 	$(".print-message").addClass('bi-invisible');
 	$(".print-message").removeClass("bi-ctn-err");
 	$(".print-message").html("");
