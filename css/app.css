@@ -312,7 +312,7 @@ ul.orderlist .ui-grid-b .ui-block-a, ul.orderlist  .ui-grid-b .ui-block-b, ul.or
 .ui-btn.green-button.ui-state-disabled{
 	color:#CCC !important;
 	opacity:.5 !important;
-    /*font-size:16px !important;*/
+    font-size:12.5px !important;
     -webkit-opacity: .5 !important;
 }
 .ui-btn.grey-button{
@@ -512,18 +512,18 @@ input.q{
 	-webkit-opacity: 1;
 }
 input.qinput, input[type="text"].qinput:disabled, 
-.cartlist .ui-disabled, .cartlist .ui-state-disabled,.cartlist .ui-btn.ui-state-disable,.ordercontrols .ui-btn.ui-state-disable, 
+.cartlist .ui-disabled, .cartlist .ui-state-disabled,.cartlist .ui-btn.ui-state-disable,
 .ui-block-b .ui-disabled, .ui-block-b .ui-state-disabled,.ui-block-b .ui-btn.ui-state-disable,
 .ui-block-a .ui-disabled, .ui-block-a .ui-state-disabled,.ui-block-a .ui-btn.ui-state-disable{
 	color: #000 !important;
     opacity:1 !important;
-    /*font-size:16px !important;*/
+    font-size:16px !important;
     -webkit-opacity: 1 !important;
 }
-input[type="text"].q:disabled, .priceselect .ui-disabled, .ordercontrols .ui-disabled,.priceselect .ui-state-disabled,.priceselect .ui-btn.ui-state-disable {
+input[type="text"].q:disabled, .priceselect .ui-disabled,.priceselect .ui-state-disabled,.priceselect .ui-btn.ui-state-disable {
     color: #000 !important;
     opacity:1 !important;
-    /*font-size:16px !important;*/
+    font-size:16px !important;
     -webkit-opacity: 1 !important;
 }
 .slider .ui-block-c{
