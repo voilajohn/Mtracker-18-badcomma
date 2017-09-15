@@ -2,6 +2,8 @@
 ####### Version 1.443 ####### 
 Customizable App to collect fundraising orders for an on the go sales tool.
 Droid and iOS compatible.
+**************** vs 1.5  || 9-15-17 **************/
+~ Adding delay to sync button to prevent multiple submissions
 
 **************** vs 1.443  || 8-29-17 **************/
 ~ Removed Validation from all fields except first name and phone
