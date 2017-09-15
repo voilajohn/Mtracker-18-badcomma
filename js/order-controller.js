@@ -340,7 +340,6 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 						//console.log(e);
 						$.mobile.loading("hide");
 						console.log("Debug: error" + JSON.stringify(e, null, 4));
-						
 						$(".print-message").removeClass('bi-invisible');
 						$(".print-message").addClass("bi-ctn-err");
 						$(".print-message").html("Error syncing.");
@@ -353,6 +352,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 				$(".print-message").removeClass('bi-invisible');
 				$(".print-message").addClass("bi-ctn-err");
 				$(".print-message").html("These orders appear to have been synced.");
+				$(".syncOrders").removeClass('ui-state-disabled');
 			}
 		}).catch(function(err) {
 			console.log("Debug: internal db not found");
