@@ -261,6 +261,8 @@ $(document).on('click', '.setDelivered', function(){//first lets organize the co
 });
 //sync
 $(document).on('click', '.syncOrders', function(){//first lets organize the content of the orders
+	//disable the sync button until we hear back or it times out
+	$(".syncOrders").addClass('ui-state-disabled');
 	$(".print-message").addClass('bi-invisible');
 	$(".print-message").removeClass("bi-ctn-err");
 	$(".print-message").html("");
@@ -332,6 +334,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 							$(".print-message").html("Sync Error: " + JSON.stringify(resp, null, 4));
 				        }
 				        $.mobile.loading("hide");
+				        $(".syncOrders").removeClass('ui-state-disabled');
 					},
 					error: function(e){
 						//console.log(e);
@@ -341,6 +344,7 @@ $(document).on('click', '.syncOrders', function(){//first lets organize the cont
 						$(".print-message").removeClass('bi-invisible');
 						$(".print-message").addClass("bi-ctn-err");
 						$(".print-message").html("Error syncing.");
+						$(".syncOrders").removeClass('ui-state-disabled');
 					}
 				});
 			}else{
