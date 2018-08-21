@@ -2,12 +2,12 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.phonegap.MickmanTracker"
-        versionCode = "10.555"
-        version     = "1.510" >
+        versionCode = "11.000"
+        version     = "2.000" >
 	
     <name>Mickman Digital Sales Aid</name>
     <description>
-	    A Customizable App to collect scout orders for an on the go sales tool. 
+	    2018 Version - A Customizable App to collect scout orders for an on the go sales tool. 
 	    Droid and iOS compatible.
 	   *See Readme for version details
     </description>
