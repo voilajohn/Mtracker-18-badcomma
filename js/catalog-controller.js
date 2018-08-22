@@ -6,6 +6,8 @@ var ClassicWreathDescription = "This popular wreath is as traditional as Christm
 
 var VictorianWreathDescription = "These most popular Balsam Fir Holiday Evergree feature an exquisite satin bow with imprinted wired-gold edges to hold the generous loops of the ribbon. Trimmings include natural pine cones accented with gold jingle bells, and the matching Christmas bulbs finish off the look of these elegant Holiday Decorations.";
 
+var WintergreenWreathDescription = "The truly unique look of these Holiday Evergreens will stand out in any neighborhood! The stylish green bow and trimmings are accented with bronzed cones laced with gold jingle bells.";
+
 var CranberrySplashWreathDescription = "This traditionally festive wreath is made from natural Balsam Fir boughs and is decorated with a generous, 4” wide, fabric bow with gold wired edges. The ornamental trimmings include faux cranberry sprigs and gold Juniper twigs. Three naturally bronzed Ponderosa Pine cones laced with gold jingle bells set the finishing touches for this stunning addition to your holiday décor.";
 
 var ClassicSprayDescription = "The combination of mixed evergreens of the Classic Spray are accented with a generous gold backed red velveteen bow which has wonderfully long tails. The white tipped & glittered pine cones are highlighted with festive red jingle bells which match the red bow. Either used by itself as a unique door decoration, or in concert with the Classic Wreath, the Classic Door Spray is appreciated by all.";
@@ -13,6 +15,8 @@ var ClassicSprayDescription = "The combination of mixed evergreens of the Classi
 var VictorianSprayDescription = "These most popular Balsam Fir Holiday Evergreen feature an exquisite satin bow with imprinted wired-gold edges to hold the generous loops of the ribbon. Trimmings include natural pine cones accented with gold jingle bells, and the matching Christmas bulbs finish off the look of these elegant Holiday Decorations.";
 
 var CranberrySprayDescription = "The Cranberry Splash Spray is made from natural mixed evergreen boughs and is decorated with a generous, 4” wide, fabric bow with gold wired edges. The ornamental trimmings include faux cranberry sprigs and gold Juniper twigs. Natural bronze Ponderosa pine cones laced with gold jingle bells set the finishing touches for this stunning addition to your Holiday Décor.";
+
+var WintergreenSprayDescription = "The truly unique look of these Holiday Evergreens will stand out in any neighborhood! The stylish green bow and trimmings are accented with bronzed cones laced with gold jingle bells.";
 
 var tabletoptreeDescription = "Each living tree arrives with 7 frosted and glittered cones with a ‘star garland’ accent. The container is wrapped in burlap with a generous matching ribbon and bow that adds to the natural ‘organic’ theme of this wonderful Table Top Christmas Tree. The LED light set, with timer, adds just the right amount of twinkle to this festive Table Top Christmas Tree. These nursery grown Dwarf Alberta Spruce Trees are about 22” tall. They will remain fresh through the holidays with regular watering as per the care instructions which accompany each tree. These trees can be planted outdoors after the holidays to enjoy for years to come!";
 
@@ -27,9 +31,11 @@ var EZWreathHangerDescription = "Our customized EZ Hanger® allows you to easily
 var CradioBtn = ""; //Classic
 var VradioBtn = ""; //Victorian
 var SradioBtn = ""; //Cranberry 
+var WradioBtn = ""; //2018 
 var CSradioBtn = ""; //Classic Spray
 var VSradioBtn = ""; //Victorian Spray
 var CSSradioBtn = ""; //Cranberry Splash Spray
+var WSradioBtn = ""; //2018
 var CLCradioBtn = ""; //Candlelit Centerpiece
 var GradioBtn = ""; //Garland
 var NSTradioBtn = ""; //NorthStarTree
@@ -51,6 +57,7 @@ MickmanAppLogin.CatalogController.prototype.init = function () {
     $('#ClassicOption').html("");
 	$('#VictorianOption').html("");
 	$('#CranberryOption').html("");
+	$('#WintergreenOption').html("");//2018
 	$('#GarlandOption').html("");
 	
 	$("#purchase #ledlights").hide();
@@ -113,10 +120,12 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	$("#ClassicWreath").addClass('hidden'); 
 	$("#VictorianWreath").addClass('hidden');  
 	$("#CranberrySplashWreath").addClass('hidden'); 
+	$("#WintergreenWreath").addClass('hidden'); //2018
 	
 	$("#ClassicSpray").addClass('hidden'); 
 	$("#VictorianSpray").addClass('hidden'); 
 	$("#CranberrySpray").addClass('hidden'); 
+	$("#WintergreenSpray").addClass('hidden'); //2018
 	
 	$("#HolidayCenterpiece").addClass('hidden'); 
 	$("#tabletoptree").addClass('hidden'); 
@@ -130,15 +139,18 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	CSradioBtn = "";VSradioBtn = "";CSSradioBtn = "";
 	CLCradioBtn = "";GradioBtn = "";NSTradioBtn = "";
 	EZWradioBtn = "";LLradioBtn = "";
+	WradioBtn = "";WSradioBtn = "";//2018
 	
 	$('#ClassicOption').html("");
 	$('#VictorianOption').html("");
 	$('#CranberryOption').html("");
+	$('#WintergreenOption').html("");//
 	$('#GarlandOption').html("");
 				    
     $("#ClassicSprayOption").html("");
     $("#VictorianSprayOption").html("");
     $("#CranberrySprayOption").html("");
+    $("#WintergreenSprayOption").html("");
     $("#CandlelitCenterpieceOption").html("");
     $('#NorthStarTreeOption').html("");
     $('#EZWreathHangerOption').html("");
@@ -150,6 +162,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
     var optC = [];
     var optV = [];
     var optCS = [];
+    var optW = [];//2018
     var optG = [];
     
     productdb.getItem('user').then( function(value){
@@ -210,8 +223,20 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 						$("#CranberrySplashWreath").addClass('show'); 
 					}
 					
+					//2018
+					if( (key == "25w") && value > 0 && value != null || (key == "25wg") && value > 0 && value != null){
+						optW[0] = new Array(key,value,(key.slice(0,2) + "in."));
+					} 
+				    if( (key == "28w") && value > 0 && value != null || (key == "28wg") && value > 0 && value != null){
+					    optW[1] = new Array(key,value,(key.slice(0,2) + "in."));
+				    }
+					if(optW.length != 0){ //Wintergreen Wreath is available
+						$("#WintergreenWreath").removeClass('hidden');
+						$("#WintergreenWreath").addClass('show'); 
+					}
+					
 					//category display option
-				    if($("#ClassicWreath").hasClass('hidden') && $("#VictorianWreath").hasClass('hidden') && $("#CranberrySplashWreath").hasClass('hidden')){
+				    if($("#ClassicWreath").hasClass('hidden') && $("#VictorianWreath").hasClass('hidden') && $("#CranberrySplashWreath").hasClass('hidden') && $("#WintergreenWreath").hasClass('hidden')){ //2018
 					    //hide the wreath filter button
 						$("#wreath").addClass('hidden');//hide the other category
 						$('#filterset').trigger('create');
@@ -256,7 +281,19 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					    var buttonLabel = "";
 					    CSSradioBtn = '<li class="ui-grid-b" id="row'+key+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
 					}
-					if($("#ClassicSpray").hasClass('hidden') &&  $("#VictorianSpray").hasClass('hidden') && $("#CranberrySpray").hasClass('hidden')){
+					//2018
+					if( (key == "sprayw") && value > 0 && value != null || 
+						(key == "spraywg") && value > 0 && value != null ){ //Wintergreen Spray
+					    $("#WintergreenSpray").removeClass('hidden');
+					    $("#WintergreenSpray").addClass('show'); 
+					    $("#WintergreenSpray .split-custom-wrapper a").data("num",value);
+					    $("#WintergreenSpray .price span.num").html(value);
+					    $("#WintergreenSpray .split-custom-wrapper a").data("db-name",key);
+					    var buttonLabel = "";
+					    WSradioBtn = '<li class="ui-grid-b" id="row'+key+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+key+'" data-prod-id="'+key+'" value="'+value+'" data-mini="true"/><label for="wreath'+key+'"><span class="sizeoption">&nbsp;'+buttonLabel+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-mini ui-btn"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+value+'</span></div></li>';
+					}
+					
+					if($("#ClassicSpray").hasClass('hidden') &&  $("#VictorianSpray").hasClass('hidden') && $("#CranberrySpray").hasClass('hidden') && $("#WintergreenSpray").hasClass('hidden')){ //2018
 						//hide wreath sort button
 					    //hide the wreath filter button
 						$("#spray").addClass('hidden');//hide the other category
@@ -376,6 +413,13 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 								SradioBtn += '<li class="ui-grid-b" id="row'+val[0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+val[0]+'" data-prod-id="'+val[0]+'" value="'+val[1]+'" data-mini="true"/><label for="wreath'+val[0]+'"><span class="sizeoption">'+val[2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+val[1]+'</span></div></li>';
 							}
 						});
+						WradioBtn = "";//2018
+						$.each( optW, function( i, val ) {
+							if(val){
+								console.log(val[0]);
+								WradioBtn += '<li class="ui-grid-b" id="row'+val[0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+val[0]+'" data-prod-id="'+val[0]+'" value="'+val[1]+'" data-mini="true"/><label for="wreath'+val[0]+'"><span class="sizeoption">'+val[2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+val[1]+'</span></div></li>';
+							}
+						});
 						GradioBtn = "";
 						$.each( optG, function( i, val ) {
 							if(val){
@@ -391,9 +435,11 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					//$('#ClassicOption').html(CradioBtn);
 					$('#VictorianOption').html("").html(VradioBtn).enhanceWithin();
 					$('#CranberryOption').html("").html(SradioBtn).enhanceWithin();
+					$('#WintergreenOption').html("").html(WradioBtn).enhanceWithin();//2018
 					$('#ClassicSprayOption').html("").html(CSradioBtn).enhanceWithin();
 					$('#VictorianSprayOption').html("").html(VSradioBtn).enhanceWithin();
 					$('#CranberrySprayOption').html("").html(CSSradioBtn).enhanceWithin();
+					$('#WintegreenSprayOption').html("").html(WGSradioBtn).enhanceWithin();//2018
 					$('#CandlelitCenterpieceOption').html("").html(CLCradioBtn).enhanceWithin();
 					$('#GarlandOption').html("").html(GradioBtn).enhanceWithin();
 					$('#NorthStarTreeOption').html("").html(NSTradioBtn).enhanceWithin();
@@ -412,6 +458,10 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 				    var productName = $("#CranberrySpray h2").text();
 					$("#CranberrySpray .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 				    $("#CranberrySpray .split-custom-wrapper a").data("product-size",0); 
+				    
+				    var productName = $("#WintergreenSpray h2").text(); //2018
+					$("#WintergreeenSpray .split-custom-wrapper a").data("product",productName); //2018
+				    $("#wintergreenSpray .split-custom-wrapper a").data("product-size",0); //2018
 				    
 					var productName = $("#HolidayCenterpiece h2").text();
 					$("#HolidayCenterpiece .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.

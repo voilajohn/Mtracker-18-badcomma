@@ -269,6 +269,7 @@ $(".signOut").on('click', function(){
 		$("#ClassicSprayOption").html(""); 
 	    $("#VictorianSprayOption").html("");
 	    $("#CranberrySprayOption").html("");
+	    $("#WintergreenSprayOption").html("");//2018
 	    $("#CandlelitCenterpieceOption").html("");
 	    $('#NorthStarTreeOption').html("");
 	    $('#EZWreathHangerOption').html("");
@@ -277,6 +278,7 @@ $(".signOut").on('click', function(){
 		CSradioBtn = "";VSradioBtn = "";CSSradioBtn = "";
 		CLCradioBtn = "";GradioBtn = "";NSTradioBtn = "";
 		EZWradioBtn = "";LLradioBtn = "";
+		WradioBtn = "";WSradioBtn = "";//2018
 		
 		//remove swiper
 		//$('.swiper-wrapper').slick('unslick'); //clean up catalog
