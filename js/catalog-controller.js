@@ -460,8 +460,8 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 				    $("#CranberrySpray .split-custom-wrapper a").data("product-size",0); 
 				    
 				    var productName = $("#WintergreenSpray h2").text(); //2018
-					$("#WintergreeenSpray .split-custom-wrapper a").data("product",productName); //2018
-				    $("#wintergreenSpray .split-custom-wrapper a").data("product-size",0); //2018
+					$("#WintergreenSpray .split-custom-wrapper a").data("product",productName); //2018
+				    $("#WintergreenSpray .split-custom-wrapper a").data("product-size",0); //2018
 				    
 					var productName = $("#HolidayCenterpiece h2").text();
 					$("#HolidayCenterpiece .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
