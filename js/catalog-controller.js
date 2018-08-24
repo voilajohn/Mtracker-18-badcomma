@@ -144,13 +144,13 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 	$('#ClassicOption').html("");
 	$('#VictorianOption').html("");
 	$('#CranberryOption').html("");
-	$('#WintergreenOption').html("");//
+	$('#WintergreenOption').html("");//2018
 	$('#GarlandOption').html("");
 				    
     $("#ClassicSprayOption").html("");
     $("#VictorianSprayOption").html("");
     $("#CranberrySprayOption").html("");
-    $("#WintergreenSprayOption").html("");
+    $("#WintergreenSprayOption").html("");//2018
     $("#CandlelitCenterpieceOption").html("");
     $('#NorthStarTreeOption').html("");
     $('#EZWreathHangerOption').html("");
@@ -439,7 +439,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					$('#ClassicSprayOption').html("").html(CSradioBtn).enhanceWithin();
 					$('#VictorianSprayOption').html("").html(VSradioBtn).enhanceWithin();
 					$('#CranberrySprayOption').html("").html(CSSradioBtn).enhanceWithin();
-					$('#WintegreenSprayOption').html("").html(WGSradioBtn).enhanceWithin();//2018
+					$('#WintergreenSprayOption').html("").html(WGSradioBtn).enhanceWithin();//2018
 					$('#CandlelitCenterpieceOption').html("").html(CLCradioBtn).enhanceWithin();
 					$('#GarlandOption').html("").html(GradioBtn).enhanceWithin();
 					$('#NorthStarTreeOption').html("").html(NSTradioBtn).enhanceWithin();
