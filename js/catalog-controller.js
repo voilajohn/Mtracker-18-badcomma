@@ -479,7 +479,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					$("#LEDlights .split-custom-wrapper a").data("product",productName); //push the product name to the checkout area.
 					$("#LEDlights .split-custom-wrapper a").data("product-size",0); //push the product size to the checkout area.
 					//$("#LEDlights .split-custom-wrapper a").data("quantities","");
-				
+					console.log("it appears to be breaking before this point");
 					//need to make sure the page is loaded.
 					$.mobile.loading("hide");
 					$('.addtocart').removeClass('ui-disabled');//hopefully this fixes the phantom product issue
