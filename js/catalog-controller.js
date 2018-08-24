@@ -399,6 +399,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 								CradioBtn += '<li class="ui-grid-b" id="row'+val[0]+'" ><div class="ui-block-a"><input type="checkbox" class="checkbox-check" name="size" id="wreath'+val[0]+'" data-prod-id="'+val[0]+'" value="'+val[1]+'" data-mini="true"/><label for="wreath'+val[0]+'"><span class="sizeoption">'+val[2]+'</span></label></div><div class="ui-block-b"><div data-role="controlgroup" data-type="horizontal"><a href="#" class="ui-mini ui-btn ui-corner-all minus">-</a><input type="text" class="q" value="0" disabled="disabled" data-wrapper-class="controlgroup-textinput ui-btn" data-mini="true"/><a href="#" class="ui-mini ui-btn ui-corner-all plus">+</a></div></div><div class="ui-block-c"><span class="labelprice">$'+val[1]+'</span></div></li>';
 							}
 						});
+						console.log(CradioBtn);
 						VradioBtn = "";
 						$.each( optV, function( i, val ) {
 							if(val){
