@@ -244,7 +244,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 						$("#wreath").removeClass('hidden');//hide the other category
 						
 				    }
-				    
+				    console.log("show wreaths");
 					//SPRAYS
 					if( (key == "sprayc") && value > 0 && value != null || 
 						(key == "spraycg") && value > 0 && value != null
@@ -302,6 +302,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					}else{
 						$("#spray").removeClass('hidden');//hide the other category
 				    }
+				    console.log("show sprays");
 					if( (key == "cc") && value > 0 && value != null ){ //Holiday Centerpiece
 						//$("#HolidayCenterpiece").show();
 						$("#HolidayCenterpiece").removeClass('hidden');
