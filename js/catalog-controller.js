@@ -167,7 +167,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
     
     productdb.getItem('user').then( function(value){
 	    productuser = value;
-	    
+	    console.log("load products");
     	user.getItem('user').then( function(value){
 	    	
 	    	if(value == productuser){ //from here we should load the catalog
@@ -441,7 +441,7 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 					$('#ClassicSprayOption').html("").html(CSradioBtn).enhanceWithin();
 					$('#VictorianSprayOption').html("").html(VSradioBtn).enhanceWithin();
 					$('#CranberrySprayOption').html("").html(CSSradioBtn).enhanceWithin();
-					$('#WintergreenSprayOption').html("").html(WGSradioBtn).enhanceWithin();//2018
+					$('#WintergreenSprayOption').html("").html(WSradioBtn).enhanceWithin();//2018
 					$('#CandlelitCenterpieceOption').html("").html(CLCradioBtn).enhanceWithin();
 					$('#GarlandOption').html("").html(GradioBtn).enhanceWithin();
 					$('#NorthStarTreeOption').html("").html(NSTradioBtn).enhanceWithin();
