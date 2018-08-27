@@ -229,6 +229,9 @@ MickmanAppLogin.CatalogController.prototype.getSavedData = function(){ //This no
 				    if( (key == "28w") && value > 0 && value != null || (key == "28wg") && value > 0 && value != null){
 					    optW[1] = new Array(key,value,(key.slice(0,2) + "in."));
 				    }
+				    if( (key == "36w") && value > 0 && value != null || (key == "36wg") && value > 0 && value != null ){
+					    optW[2] = new Array(key,value,(key.slice(0,2) + "in."));
+				    }
 					if(optW.length != 0){ //Wintergreen Wreath is available
 						$("#WintergreenWreath").removeClass('hidden');
 						$("#WintergreenWreath").addClass('show'); 
