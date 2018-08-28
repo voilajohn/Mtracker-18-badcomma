@@ -8,9 +8,7 @@ body {
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     font-family:"Raleway", Arial, sans-serif;
- 
 	display: none;
-
 }
 h1,h2,h3,h4,h5 {
     color:#00a65e;
@@ -289,6 +287,10 @@ ul.orderlist .ui-grid-b .ui-block-a, ul.orderlist  .ui-grid-b .ui-block-b, ul.or
 	display:inline-block;
 	float:left;
 }
+.zmdi-circle:before{
+	content:"" !important; 
+}
+
 .ui-page-theme-a .ui-btn.ui-btn-active{
 	border-color:#FFF;
 }

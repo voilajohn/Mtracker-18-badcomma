@@ -120,10 +120,11 @@ MickmanAppLogin.SignInController.prototype.onSignInCommand = function () {
 			                $('#select-choice-1').append('<option value="'+Uname+'" id="'+Uid+'">'+Uname+'</option>');
 			            });
 			            var userDeets = resp.extras.products;
+			            console.log(userDeets);
 			            var group = userDeets[userDeets.indexOf('cust_id') + 1][1];
 			            var wod = userDeets[userDeets.indexOf('wod') + 2][1];
 			            var gname = userDeets[userDeets.indexOf('groupname') + 41][1];
-			            var message = userDeets[userDeets.indexOf('message') + 40][1];
+			            var message = userDeets[userDeets.indexOf('message') + 47][1]; //updated +8 xtra fields
 			            $('#OrderComplete .message').html(message);
 			            console.log(gname + " : " + message);
 			            
