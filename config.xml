@@ -3,7 +3,7 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.phonegap.MickmanTracker"
         versionCode = "11.000"
-        version     = "2.110" >
+        version     = "2.111" >
 	
     <name>Mickman Digital Sales Aid</name>
     <description>
@@ -20,7 +20,7 @@
     <gap:platform name="android" />
     
     <!-- third party plugins -->
-	<gap:plugin name="cordova-plugin-statusbar" source="npm" />
+	<gap:plugin name="cordova-plugin-statusbar" source="npm" spec="2.4.1"/>
 	<gap:plugin name="de.appplant.cordova.plugin.printer" source="npm"/>
 	<gap:plugin name="cordova-plugin-whitelist" source="npm"/>
 	<gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>
