@@ -20,16 +20,16 @@
     <gap:platform name="android" />
     
     <!-- third party plugins -->
-	<gap:plugin name="cordova-plugin-statusbar" source="npm"/>
+	<gap:plugin name="cordova-plugin-statusbar" source="npm" spec="2.3.0"/>
 	<gap:plugin name="de.appplant.cordova.plugin.printer" source="npm"/>
 	<gap:plugin name="cordova-plugin-whitelist" source="npm"/>
 	<gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>
 	 
     <!-- universal preferences -->
    <!-- <preference name="phonegap-version"           value="cli-6.5.0" /> -->
-    <preference name="phonegap-version"  value="cli-8.0.0" />
+    <preference name="phonegap-version"  value="cli-7.1.0" />
     <preference name="orientation" value="portrait" />        
-    <!--<preference name="fullscreen"                 value="true" />-->
+    <!--<preference name="fullscreen" value="true" />-->
     <preference name="fullscreen" value="false" />
 	
 	<!-- ios preferences --> 
@@ -44,7 +44,7 @@
 	<preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
    
     <!-- ios icons 7+ -->
-    <icon src="images/icons/icon-1024.png" width="1024" height="1024" />
+    <icon src="images/icons/ios/icon.png" width="1024" height="1024" />
     
     <!-- iPhone 6 / 6+ -->
 	<icon src="images/icons/icon-60@3x.png" platform="ios" width="180" height="180" />
