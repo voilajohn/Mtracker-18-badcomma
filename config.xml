@@ -3,7 +3,7 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.phonegap.MickmanTracker"
         versionCode = "11.000"
-        version     = "2.100" >
+        version     = "2.110" >
 	
     <name>Mickman Digital Sales Aid</name>
     <description>
