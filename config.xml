@@ -20,7 +20,7 @@
     <gap:platform name="android" />
     
     <!-- third party plugins -->
-	<gap:plugin name="cordova-plugin-statusbar" source="npm" spec="2.3.0"/>
+	<gap:plugin name="cordova-plugin-statusbar" source="npm"/>
 	<gap:plugin name="de.appplant.cordova.plugin.printer" source="npm"/>
 	<gap:plugin name="cordova-plugin-whitelist" source="npm"/>
 	<gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>
@@ -29,8 +29,8 @@
    <!-- <preference name="phonegap-version"           value="cli-6.5.0" /> -->
     <preference name="phonegap-version"  value="cli-7.1.0" />
     <preference name="orientation" value="portrait" />        
-    <!--<preference name="fullscreen" value="true" />-->
-    <preference name="fullscreen" value="false" />
+    <preference name="fullscreen" value="true" />
+    <!--<preference name="fullscreen" value="false" />-->
 	
 	<!-- ios preferences --> 
     <preference name="target-device" value="universal" />
