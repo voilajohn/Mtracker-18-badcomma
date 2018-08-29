@@ -3,7 +3,7 @@
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.phonegap.MickmanTracker"
         versionCode = "11.000"
-        version     = "2.000" >
+        version     = "2.100" >
 	
     <name>Mickman Digital Sales Aid</name>
     <description>
@@ -26,7 +26,8 @@
 	<gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>
 	 
     <!-- universal preferences -->
-    <preference name="phonegap-version"           value="cli-6.5.0" /> 
+   <!-- <preference name="phonegap-version"           value="cli-6.5.0" /> -->
+    <preference name="phonegap-version"  value="cli-7.1.0" />
     <preference name="orientation" value="portrait" />        
     <!--<preference name="fullscreen"                 value="true" />-->
     <preference name="fullscreen" value="false" />
@@ -43,6 +44,7 @@
 	<preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
    
     <!-- ios icons 7+ -->
+    <icon src="images/icons/icon-1024.png" width="1024" height="1024" />
     
     <!-- iPhone 6 / 6+ -->
 	<icon src="images/icons/icon-60@3x.png" platform="ios" width="180" height="180" />
