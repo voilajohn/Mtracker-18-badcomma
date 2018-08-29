@@ -413,5 +413,6 @@ $(window).load(function() {
 var initialHref = window.location.href;
 
 $(".urlclick").on('click', function(){ 
-	var ref = cordova.InAppBrowser.open('http://www.holidayfundraiser.com', '_blank', 'location=yes');
+	//var ref = cordova.InAppBrowser.open('http://www.holidayfundraiser.com', '_blank', 'location=yes');
+	var ref = cordova.InAppBrowser.open('http://www.holidayfundraiser.com', '_system', 'location=yes'); //2018
 });
