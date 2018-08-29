@@ -37,6 +37,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
         app.receivedEvent('deviceready'); 
+        StatusBar.overlaysWebView(false);//2018
         window.plugin.printer.isAvailable(
 		    function (isAvailable) {
 		        //alert(isAvailable ? 'Service is available' : 'Service NOT available');
