@@ -2,8 +2,8 @@
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "com.phonegap.MickmanTracker"
-        versionCode = "2.0"
-        version     = "2.112" >
+        versionCode = "2.1"
+        version     = "2.200">
 	
     <name>Mickman Digital Sales Aid</name>
     <description>
@@ -18,6 +18,7 @@
     
     <gap:platform name="ios" />
     <gap:platform name="android" />
+    <preference name="android-minSdkVersion" value="8" />
     
     <!-- third party plugins -->
 	<gap:plugin name="cordova-plugin-statusbar" source="npm"/>
