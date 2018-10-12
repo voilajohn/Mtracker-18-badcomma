@@ -341,9 +341,12 @@ MickmanAppLogin.CartController.prototype.saveCartData = function(){
         $('#page-checkout #ctn-err').addClass("bi-ctn-err").slideDown();
 	}else{
 		var userN;
+		var userNew;
 		if(currentuser != null){
 			//userN = currentuser;
-			userN = currentuser.replace(/,/g, '-');//remove the comma from the user name
+			userNew = currentuser.replace(/,/g, '-');//remove the comma from the user name
+			console.log("userN: " + userNew);
+			userN = "test";
 		}else{
 			userN = "not available";
 		}
