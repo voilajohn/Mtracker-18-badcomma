@@ -345,7 +345,7 @@ MickmanAppLogin.CartController.prototype.saveCartData = function(){
 		if(currentuser != null){
 			//userN = currentuser;
 			userN = currentuser.replace(/,/g, '-');//remove the comma from the user name
-			console.log("userN: " + userNew);
+			console.log("userN: " + userN);
 			//userN = "test";
 		}else{
 			userN = "not available";
