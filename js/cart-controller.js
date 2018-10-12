@@ -343,8 +343,8 @@ MickmanAppLogin.CartController.prototype.saveCartData = function(){
 		var userN;
 		//var userNew;
 		if(currentuser != null){
-			userN = currentuser;
-			//userN = currentuser.replace(/,/g, ' ');//remove the comma from the user name
+			//userN = currentuser;
+			userN = currentuser.replace(/,/g, ' ');//remove the comma from the user name
 			console.log("userN: " + userN);
 			//userN = "test";
 		}else{
