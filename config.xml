@@ -7,7 +7,7 @@
 	
     <name>Mickman Digital Sales Aid</name>
     <description>
-	    2018 Version - Original - A Customizable App to collect scout orders for an on the go sales tool. 
+	    BROKEN - 2018 Version - Original - A Customizable App to collect scout orders for an on the go sales tool. 
 	    Droid and iOS compatible.
 	   *See Readme for version details
     </description>
@@ -129,5 +129,5 @@
 		<false/>
 	</gap:config-file>
 	
-    <preference name="android-minSdkVersion" value="26" />
+    <!--<preference name="android-minSdkVersion" value="26" />-->
 </widget>
